@@ -257,6 +257,11 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     (void)pkCallbacks;
     (void)scr;
     (void)forceScr;
+    (void)ourKey;
+    (void)ourCert;
+    (void)verifyCert;
+    (void)useClientCert;
+    (void)overrideDateErrors;
 
     StackTrap();
 
@@ -531,12 +536,15 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
         wolfSSL_CTX_set_psk_client_callback(ctx, my_psk_client_cb);
         if (cipherList == NULL) {
             const char *defaultCipherList;
-            #ifdef HAVE_NULL_CIPHER
+            #if defined(HAVE_AESGCM) && !defined(NO_DH)
+                defaultCipherList = "DHE-PSK-AES128-GCM-SHA256";
+            #elif defined(HAVE_NULL_CIPHER)
                 defaultCipherList = "PSK-NULL-SHA256";
             #else
                 defaultCipherList = "PSK-AES128-CBC-SHA256";
             #endif
-            if (wolfSSL_CTX_set_cipher_list(ctx,defaultCipherList) !=SSL_SUCCESS)
+            if (wolfSSL_CTX_set_cipher_list(ctx,defaultCipherList)
+                                                                  !=SSL_SUCCESS)
                 err_sys("client can't set cipher list 2");
         }
 #endif
@@ -558,7 +566,7 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     wolfSSL_CTX_set_default_passwd_cb(ctx, PasswordCallBack);
 #endif
 
-#if defined(WOLFSSL_SNIFFER) && !defined(HAVE_NTRU) && !defined(HAVE_ECC)
+#if defined(WOLFSSL_SNIFFER)
     if (cipherList == NULL) {
         /* don't use EDH, can't sniff tmp keys */
         if (wolfSSL_CTX_set_cipher_list(ctx, "AES256-SHA256") != SSL_SUCCESS) {
@@ -599,10 +607,15 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     }
 
     if (!usePsk && !useAnon) {
-        if (wolfSSL_CTX_load_verify_locations(ctx, verifyCert, 0) != SSL_SUCCESS)
-                err_sys("can't load ca file, Please run from wolfSSL home dir");
+        if (wolfSSL_CTX_load_verify_locations(ctx, verifyCert,0) != SSL_SUCCESS)
+            err_sys("can't load ca file, Please run from wolfSSL home dir");
+#ifdef HAVE_ECC
+        /* load ecc verify too, echoserver uses it by default w/ ecc */
+        if (wolfSSL_CTX_load_verify_locations(ctx, eccCert, 0) != SSL_SUCCESS)
+            err_sys("can't load ecc ca file, Please run from wolfSSL home dir");
+#endif /* HAVE_ECC */
     }
-#endif
+#endif /* !NO_FILESYSTEM && !NO_CERTS */
 #if !defined(NO_CERTS)
     if (!usePsk && !useAnon && doPeerCheck == 0)
         wolfSSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, 0);

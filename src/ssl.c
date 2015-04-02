@@ -5606,11 +5606,11 @@ static INLINE word32 HashSession(const byte* sessionID, word32 len, int* error)
     byte digest[MAX_DIGEST_SIZE];
 
 #ifndef NO_MD5
-    *error =    wc_Md5Hash(sessionID, len, digest);
+    *error =  wc_Md5Hash(sessionID, len, digest);
 #elif !defined(NO_SHA)
-    *error =    wc_ShaHash(sessionID, len, digest);
+    *error =  wc_ShaHash(sessionID, len, digest);
 #elif !defined(NO_SHA256)
-    *error = Sha256Hash(sessionID, len, digest);
+    *error =  wc_Sha256Hash(sessionID, len, digest);
 #else
     #error "We need a digest to hash the session IDs"
 #endif
@@ -7675,6 +7675,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
             }
         }
 #endif /* NO_DES3 */
+#ifndef NO_RC4
         else if (ctx->cipherType == ARC4_TYPE || (type &&
                                      XSTRNCMP(type, "ARC4", 4) == 0)) {
             WOLFSSL_MSG("ARC4");
@@ -7684,6 +7685,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
             if (key)
                 wc_Arc4SetKey(&ctx->cipher.arc4, key, ctx->keyLen);
         }
+#endif /* NO_RC4 */
         else if (ctx->cipherType == NULL_CIPHER_TYPE || (type &&
                                      XSTRNCMP(type, "NULL", 4) == 0)) {
             WOLFSSL_MSG("NULL cipher");
@@ -7779,9 +7781,11 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
                 break;
 #endif
 
+#ifndef NO_RC4
             case ARC4_TYPE :
                 wc_Arc4Process(&ctx->cipher.arc4, dst, src, len);
                 break;
+#endif
 
             case NULL_CIPHER_TYPE :
                 XMEMCPY(dst, src, len);
@@ -8218,20 +8222,13 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
 
     long wolfSSL_SSL_SESSION_set_timeout(WOLFSSL_SESSION* ses, long t)
     {
-        word32 time;
+        word32 tmptime;
         if (!ses || t < 0)
             return BAD_FUNC_ARG;
 
-        /* for cross library compatibility accept a long but convert it to a
-           word32 (unsigned 32 bit) for wolfSSL sessions */
-        if ( (t >> 32) > 0) {
-            WOLFSSL_MSG("Session time is to large");
-            return BAD_FUNC_ARG;
-        } else {
-            time = t & 0xFFFFFFFF;
-        }
+        tmptime = t & 0xFFFFFFFF;
 
-        ses->timeout = time;
+        ses->timeout = tmptime;
 
         return SSL_SUCCESS;
     }

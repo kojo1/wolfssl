@@ -105,15 +105,18 @@
 /* Uncomment next line if building for uT-Kernel */
 /* #define WOLFSSL_uTKERNEL2 */
 
+/* Uncomment next line if using Max Strength build */
+/* #define WOLFSSL_MAX_STRENGTH */
+
 #include <wolfssl/wolfcrypt/visibility.h>
-
-#ifdef IPHONE
-    #define SIZEOF_LONG_LONG 8
-#endif
-
 
 #ifdef WOLFSSL_USER_SETTINGS
     #include <user_settings.h>
+#endif
+
+
+#ifdef IPHONE
+    #define SIZEOF_LONG_LONG 8
 #endif
 
 
@@ -337,7 +340,7 @@
         #pragma diag_suppress=11
     #endif
 
-    #include <ti/ndk/nettools/mytime/mytime.h>
+    #include <ti/sysbios/hal/Seconds.h>
 #endif
 
 #ifdef EBSNET
@@ -748,6 +751,20 @@
     #endif
 #endif
 
+/* if desktop type system and fastmath increase default max bits */
+#ifdef WOLFSSL_X86_64_BUILD
+    #ifdef USE_FAST_MATH
+        #ifndef FP_MAX_BITS
+            #define FP_MAX_BITS 8192
+        #endif
+    #endif
+#endif
+
+/* If using the max strength build, ensure OLD TLS is disabled. */
+#ifdef WOLFSSL_MAX_STRENGTH
+    #undef NO_OLD_TLS
+    #define NO_OLD_TLS
+#endif
 
 /* Place any other flags or defines here */
 

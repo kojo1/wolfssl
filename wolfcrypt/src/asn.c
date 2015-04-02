@@ -363,7 +363,7 @@ time_t XTIME(time_t * timer)
 {
     time_t sec = 0;
 
-    sec = (time_t) MYTIME_gettime();
+    sec = (time_t) Seconds_get();
 
     if (timer != NULL)
         *timer = sec;
@@ -1318,40 +1318,6 @@ int wc_DhKeyDecode(const byte* input, word32* inOutIdx, DhKey* key, word32 inSz)
     return 0;
 }
 
-int wc_DhSetKey(DhKey* key, const byte* p, word32 pSz, const byte* g, word32 gSz)
-{
-    if (key == NULL || p == NULL || g == NULL || pSz == 0 || gSz == 0)
-        return BAD_FUNC_ARG;
-
-    /* may have leading 0 */
-    if (p[0] == 0) {
-        pSz--; p++;
-    }
-
-    if (g[0] == 0) {
-        gSz--; g++;
-    }
-
-    if (mp_init(&key->p) != MP_OKAY)
-        return MP_INIT_E;
-    if (mp_read_unsigned_bin(&key->p, p, pSz) != 0) {
-        mp_clear(&key->p);
-        return ASN_DH_KEY_E;
-    }
-
-    if (mp_init(&key->g) != MP_OKAY) {
-        mp_clear(&key->p);
-        return MP_INIT_E;
-    }
-    if (mp_read_unsigned_bin(&key->g, g, gSz) != 0) {
-        mp_clear(&key->g);
-        mp_clear(&key->p);
-        return ASN_DH_KEY_E;
-    }
-
-    return 0;
-}
-
 
 int wc_DhParamsLoad(const byte* input, word32 inSz, byte* p, word32* pInOutSz,
                  byte* g, word32* gInOutSz)
@@ -1459,6 +1425,7 @@ void InitDecodedCert(DecodedCert* cert, byte* source, word32 inSz, void* heap)
     cert->subjectCNLen    = 0;
     cert->subjectCNEnc    = CTC_UTF8;
     cert->subjectCNStored = 0;
+    cert->weOwnAltNames   = 0;
     cert->altNames        = NULL;
 #ifndef IGNORE_NAME_CONSTRAINTS
     cert->altEmailNames   = NULL;
@@ -1597,7 +1564,7 @@ void FreeDecodedCert(DecodedCert* cert)
         XFREE(cert->subjectCN, cert->heap, DYNAMIC_TYPE_SUBJECT_CN);
     if (cert->pubKeyStored == 1)
         XFREE(cert->publicKey, cert->heap, DYNAMIC_TYPE_PUBLIC_KEY);
-    if (cert->altNames)
+    if (cert->weOwnAltNames && cert->altNames)
         FreeAltNames(cert->altNames, cert->heap);
 #ifndef IGNORE_NAME_CONSTRAINTS
     if (cert->altEmailNames)
@@ -2397,12 +2364,12 @@ int ValidateDate(const byte* date, byte format, int dateType)
     time_t ltime;
     struct tm  certTime;
     struct tm* localTime;
-    struct tm* tmpTime;
+    struct tm* tmpTime = NULL;
     int    i = 0;
 
-#ifdef FREESCALE_MQX
-    struct tm  mqxTime;
-    tmpTime = &mqxTime;
+#if defined(FREESCALE_MQX) || defined(TIME_OVERRIDES)
+    struct tm tmpTimeStorage;
+    tmpTime = &tmpTimeStorage;
 #else
     (void)tmpTime;
 #endif
@@ -2428,9 +2395,9 @@ int ValidateDate(const byte* date, byte format, int dateType)
     GetTime((int*)&certTime.tm_hour, date, &i);
     GetTime((int*)&certTime.tm_min,  date, &i);
     GetTime((int*)&certTime.tm_sec,  date, &i);
-        
+
         if (date[i] != 'Z') {     /* only Zulu supported for this profile */
-        WOLFSSL_MSG("Only Zulu time supported for this profile"); 
+        WOLFSSL_MSG("Only Zulu time supported for this profile");
         return 0;
     }
 
@@ -3449,6 +3416,8 @@ static int DecodeAltNames(byte* input, int sz, DecodedCert* cert)
         WOLFSSL_MSG("\tBad Sequence");
         return ASN_PARSE_E;
     }
+
+    cert->weOwnAltNames = 1;
 
     while (length > 0) {
         byte       b = input[idx++];
@@ -5251,13 +5220,13 @@ static int SetValidity(byte* output, int daysValid)
     time_t     ticks;
     time_t     normalTime;
     struct tm* now;
-    struct tm* tmpTime;
+    struct tm* tmpTime = NULL;
     struct tm  local;
 
-#ifdef FREESCALE_MQX
-    /* for use with MQX gmtime_r */
-    struct tm mqxTime;
-    tmpTime = &mqxTime;
+#if defined(FREESCALE_MQX) || defined(TIME_OVERRIDES)
+    /* for use with gmtime_r */
+    struct tm tmpTimeStorage;
+    tmpTime = &tmpTimeStorage;
 #else
     (void)tmpTime;
 #endif

@@ -85,7 +85,7 @@
     static word64 total_cycles;
     #define BEGIN_INTEL_CYCLES total_cycles = get_intel_cycles();
     #define END_INTEL_CYCLES   total_cycles = get_intel_cycles() - total_cycles;
-    #define SHOW_INTEL_CYCLES  printf(" Cycles per byte = %5.2f", \
+    #define SHOW_INTEL_CYCLES  printf(" Cycles per byte = %6.2f", \
                                (float)total_cycles / (numBlocks*sizeof(plain)));
 #else
     #define BEGIN_INTEL_CYCLES
@@ -93,7 +93,8 @@
     #define SHOW_INTEL_CYCLES
 #endif
 
-#if defined(USE_CERT_BUFFERS_1024) || defined(USE_CERT_BUFFERS_2048)
+#if defined(USE_CERT_BUFFERS_1024) || defined(USE_CERT_BUFFERS_2048) \
+                                   || !defined(NO_DH)
     /* include test cert and key buffers for use with NO_FILESYSTEM */
     #if defined(WOLFSSL_MDK_ARM)
         #include "cert_data.h" /* use certs_test.c for initial data, 
@@ -430,7 +431,7 @@ void bench_aes(int show)
 #endif
 
     if (show) {
-        printf("AES      %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+        printf("AES      %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                                   blockType, total, persec);
         SHOW_INTEL_CYCLES
         printf("\n");
@@ -472,7 +473,7 @@ void bench_aesgcm(void)
     persec = persec / 1024;
 #endif
 
-    printf("AES-GCM  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("AES-GCM  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -502,7 +503,7 @@ void bench_aesctr(void)
     persec = persec / 1024;
 #endif
 
-    printf("AES-CTR  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("AES-CTR  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -535,7 +536,7 @@ void bench_aesccm(void)
     persec = persec / 1024;
 #endif
 
-    printf("AES-CCM  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("AES-CCM  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -574,7 +575,7 @@ void bench_poly1305()
     persec = persec / 1024;
 #endif
 
-    printf("POLY1305 %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("POLY1305 %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                                   blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -609,7 +610,7 @@ void bench_camellia(void)
     persec = persec / 1024;
 #endif
 
-    printf("Camellia %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("Camellia %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -648,7 +649,7 @@ void bench_des(void)
     persec = persec / 1024;
 #endif
 
-    printf("3DES     %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("3DES     %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -686,7 +687,7 @@ void bench_arc4(void)
     persec = persec / 1024;
 #endif
 
-    printf("ARC4     %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("ARC4     %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -719,7 +720,7 @@ void bench_hc128(void)
     persec = persec / 1024;
 #endif
 
-    printf("HC128    %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("HC128    %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -749,7 +750,7 @@ void bench_rabbit(void)
     persec = persec / 1024;
 #endif
 
-    printf("RABBIT   %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("RABBIT   %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -781,7 +782,7 @@ void bench_chacha(void)
     persec = persec / 1024;
 #endif
 
-    printf("CHACHA   %d %s took %5.3f seconds, %7.3f MB/s", numBlocks, blockType, total, persec);
+    printf("CHACHA   %d %s took %5.3f seconds, %8.3f MB/s", numBlocks, blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
 
@@ -814,7 +815,7 @@ void bench_chacha20_poly1305_aead(void)
     persec = persec / 1024;
 #endif
 
-    printf("ChaCha-Poly %d %s took %5.3f seconds, %7.3f MB/s",
+    printf("CHA-POLY %d %s took %5.3f seconds, %8.3f MB/s",
            numBlocks, blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -848,7 +849,7 @@ void bench_md5(void)
     persec = persec / 1024;
 #endif
 
-    printf("MD5      %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("MD5      %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -885,7 +886,7 @@ void bench_sha(void)
     persec = persec / 1024;
 #endif
 
-    printf("SHA      %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("SHA      %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -931,7 +932,7 @@ void bench_sha256(void)
     persec = persec / 1024;
 #endif
 
-    printf("SHA-256  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("SHA-256  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -976,7 +977,7 @@ void bench_sha384(void)
     persec = persec / 1024;
 #endif
 
-    printf("SHA-384  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("SHA-384  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -1021,7 +1022,7 @@ void bench_sha512(void)
     persec = persec / 1024;
 #endif
 
-    printf("SHA-512  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("SHA-512  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -1053,7 +1054,7 @@ void bench_ripemd(void)
     persec = persec / 1024;
 #endif
 
-    printf("RIPEMD   %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("RIPEMD   %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -1099,7 +1100,7 @@ void bench_blake2(void)
     persec = persec / 1024;
 #endif
 
-    printf("BLAKE2b  %d %s took %5.3f seconds, %7.3f MB/s", numBlocks,
+    printf("BLAKE2b  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
     SHOW_INTEL_CYCLES
     printf("\n");
@@ -1218,6 +1219,8 @@ void bench_rsa(void)
         void set_Bench_DH_File(char * cert) { certDHname = cert ; }
     #elif defined(FREESCALE_MQX)
         static char *certDHname = "a:\\certs\\dh2048.der";
+    #elif defined(NO_ASN)
+        /* do nothing, but don't need a file */
     #else
         static const char *certDHname = "certs/dh2048.der";
     #endif
@@ -1240,6 +1243,9 @@ void bench_dh(void)
     DhKey  dhKey;
     int    dhKeySz = 2048; /* used in printf */
 
+    (void)idx;
+    (void)tmp;
+
 	
 #ifdef USE_CERT_BUFFERS_1024
     XMEMCPY(tmp, dh_key_der_1024, sizeof_dh_key_der_1024);
@@ -1248,6 +1254,9 @@ void bench_dh(void)
 #elif defined(USE_CERT_BUFFERS_2048)
     XMEMCPY(tmp, dh_key_der_2048, sizeof_dh_key_der_2048);
     bytes = sizeof_dh_key_der_2048;
+#elif defined(NO_ASN)
+    dhKeySz = 1024;
+    /* do nothing, but don't use default FILE */
 #else
     FILE*  file = fopen(certDHname, "rb");
 
@@ -1261,12 +1270,16 @@ void bench_dh(void)
 
 		
     wc_InitDhKey(&dhKey);
+#ifdef NO_ASN
+    bytes = wc_DhSetKey(&dhKey, dh_p, sizeof(dh_p), dh_g, sizeof(dh_g));
+#else
     bytes = wc_DhKeyDecode(tmp, &idx, &dhKey, (word32)bytes);
+    #if !defined(USE_CERT_BUFFERS_1024) && !defined(USE_CERT_BUFFERS_2048)
+        fclose(file);
+    #endif
+#endif
     if (bytes != 0) {
         printf("dhekydecode failed, can't benchmark\n");
-        #if !defined(USE_CERT_BUFFERS_1024) && !defined(USE_CERT_BUFFERS_2048)
-            fclose(file);
-        #endif
         return;
     }
 
@@ -1295,9 +1308,6 @@ void bench_dh(void)
     printf("DH  %d key agreement   %6.3f milliseconds, avg over %d"
            " iterations\n", dhKeySz, milliEach, ntimes);
 
-#if !defined(USE_CERT_BUFFERS_1024) && !defined(USE_CERT_BUFFERS_2048)
-    fclose(file);
-#endif
     wc_FreeDhKey(&dhKey);
 }
 #endif

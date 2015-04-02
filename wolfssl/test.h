@@ -965,15 +965,6 @@ static INLINE void CRL_CallBack(const char* url)
 
 #endif
 
-#ifndef NO_CERTS
-
-static INLINE void CaCb(unsigned char* der, int sz, int type)
-{
-    (void)der;
-    printf("Got CA cache add callback, derSz = %d, type = %d\n", sz, type);
-}
-
-
 #ifndef NO_DH
 static INLINE void SetDH(WOLFSSL* ssl)
 {
@@ -1029,6 +1020,15 @@ static INLINE void SetDHCtx(WOLFSSL_CTX* ctx)
     wolfSSL_CTX_SetTmpDH(ctx, p, sizeof(p), g, sizeof(g));
 }
 #endif /* NO_DH */
+
+#ifndef NO_CERTS
+
+static INLINE void CaCb(unsigned char* der, int sz, int type)
+{
+    (void)der;
+    printf("Got CA cache add callback, derSz = %d, type = %d\n", sz, type);
+}
+
 #endif /* !NO_CERTS */
 
 #ifdef HAVE_CAVIUM
@@ -1769,7 +1769,8 @@ static INLINE void SetupPkCallbacks(WOLFSSL_CTX* ctx, WOLFSSL* ssl)
 
 
 
-#if defined(__hpux__) || defined(__MINGW32__) || defined (WOLFSSL_TIRTOS)
+#if defined(__hpux__) || defined(__MINGW32__) || defined (WOLFSSL_TIRTOS) \
+                      || defined(_MSC_VER)
 
 /* HP/UX doesn't have strsep, needed by test/suites.c */
 static INLINE char* strsep(char **stringp, const char *delim)
@@ -1791,7 +1792,7 @@ static INLINE char* strsep(char **stringp, const char *delim)
     return start;
 }
 
-#endif /* __hpux__ */
+#endif /* __hpux__ and others */
 
 /* Create unique filename, len is length of tempfn name, assuming
    len does not include null terminating character,

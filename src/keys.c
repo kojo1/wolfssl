@@ -1820,7 +1820,7 @@ static int SetPrefix(byte* sha_input, int idx)
 
 
 static int SetKeys(Ciphers* enc, Ciphers* dec, Keys* keys, CipherSpecs* specs,
-                   byte side, void* heap, int devId)
+                   int side, void* heap, int devId)
 {
 #ifdef BUILD_ARC4
     word32 sz = specs->key_size;
@@ -2366,7 +2366,7 @@ int SetKeysSide(WOLFSSL* ssl, enum encrypt_side side)
     }
 
 #ifdef HAVE_ONE_TIME_AUTH
-    if (!ssl->auth.setup) {
+    if (!ssl->auth.setup && ssl->specs.bulk_cipher_algorithm == wolfssl_chacha){
         ret = SetAuthKeys(&ssl->auth, keys, &ssl->specs, ssl->heap, devId);
         if (ret != 0)
            return ret;

@@ -29,6 +29,7 @@
 #include <wolfssl/internal.h>
 #include <wolfssl/error-ssl.h>
 #include <wolfssl/wolfcrypt/asn.h>
+#include <wolfssl/wolfcrypt/dh.h>
 #ifdef NO_INLINE
     #include <wolfssl/wolfcrypt/misc.h>
 #else
@@ -426,9 +427,11 @@ void SSL_CtxResourceFree(WOLFSSL_CTX* ctx)
     if (ctx->suites)
         XFREE(ctx->suites, ctx->heap, DYNAMIC_TYPE_SUITES);
 
-#ifndef NO_CERTS
+#ifndef NO_DH
     XFREE(ctx->serverDH_G.buffer, ctx->heap, DYNAMIC_TYPE_DH);
     XFREE(ctx->serverDH_P.buffer, ctx->heap, DYNAMIC_TYPE_DH);
+#endif
+#ifndef NO_CERTS
     XFREE(ctx->privateKey.buffer, ctx->heap, DYNAMIC_TYPE_KEY);
     XFREE(ctx->certificate.buffer, ctx->heap, DYNAMIC_TYPE_CERT);
     XFREE(ctx->certChain.buffer, ctx->heap, DYNAMIC_TYPE_CERT);
@@ -624,9 +627,9 @@ static void InitSuitesHashSigAlgo(Suites* suites, int haveECDSAsig,
     suites->hashSigAlgoSz = (word16)idx;
 }
 
-void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
-                byte haveDH, byte haveNTRU, byte haveECDSAsig,
-                byte haveStaticECC, int side)
+void InitSuites(Suites* suites, ProtocolVersion pv, word16 haveRSA,
+                word16 havePSK, word16 haveDH, word16 haveNTRU,
+                word16 haveECDSAsig, word16 haveStaticECC, int side)
 {
     word16 idx = 0;
     int    tls    = pv.major == SSLv3_MAJOR && pv.minor >= TLSv1_MINOR;
@@ -700,6 +703,139 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
+#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveECDSAsig) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveECDSAsig) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveRSA) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveRSA) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveDH && haveRSA) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_DHE_RSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveDH && haveRSA) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_DHE_RSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_RSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveRSA) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_RSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_RSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveRSA) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_RSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveECDSAsig && haveStaticECC) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveECDSAsig && haveStaticECC) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveRSAsig && haveStaticECC) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveRSAsig && haveStaticECC) {
+        suites->suites[idx++] = ECC_BYTE;
+        suites->suites[idx++] = TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_DHE_PSK_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && haveDH && havePSK) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_DHE_PSK_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_DHE_PSK_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && haveDH && havePSK) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_DHE_PSK_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_PSK_WITH_AES_256_GCM_SHA384
+    if (tls1_2 && havePSK) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_PSK_WITH_AES_256_GCM_SHA384;
+    }
+#endif
+
+#ifdef BUILD_TLS_PSK_WITH_AES_128_GCM_SHA256
+    if (tls1_2 && havePSK) {
+        suites->suites[idx++] = 0;
+        suites->suites[idx++] = TLS_PSK_WITH_AES_128_GCM_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+    if (tls1_2 && haveECDSAsig) {
+        suites->suites[idx++] = CHACHA_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+    if (tls && haveRSA) {
+        suites->suites[idx++] = CHACHA_BYTE;
+        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256;
+    }
+#endif
+
+#ifdef BUILD_TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+    if (tls && haveRSA) {
+        suites->suites[idx++] = CHACHA_BYTE;
+        suites->suites[idx++] = TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256;
+    }
+#endif
+
 #ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
     if (tls1_2 && haveRSAsig) {
         suites->suites[idx++] = ECC_BYTE;
@@ -756,24 +892,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveECDSAsig) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384;
-    }
-#endif
-
 #ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
     if (tls && haveECDSAsig) {
         suites->suites[idx++] = ECC_BYTE;
         suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA;
-    }
-#endif
-
-#ifdef BUILD_TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveECDSAsig && haveStaticECC) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384;
     }
 #endif
 
@@ -784,24 +906,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveECDSAsig) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256;
-    }
-#endif
-
 #ifdef BUILD_TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
     if (tls && haveECDSAsig) {
         suites->suites[idx++] = ECC_BYTE;
         suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA;
-    }
-#endif
-
-#ifdef BUILD_TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveECDSAsig && haveStaticECC) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256;
     }
 #endif
 
@@ -840,24 +948,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveRSA) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384;
-    }
-#endif
-
 #ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
     if (tls && haveRSA) {
         suites->suites[idx++] = ECC_BYTE;
         suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA;
-    }
-#endif
-
-#ifdef BUILD_TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveRSAsig && haveStaticECC) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384;
     }
 #endif
 
@@ -868,24 +962,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveRSA) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256;
-    }
-#endif
-
 #ifdef BUILD_TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
     if (tls && haveRSA) {
         suites->suites[idx++] = ECC_BYTE;
         suites->suites[idx++] = TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA;
-    }
-#endif
-
-#ifdef BUILD_TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveRSAsig && haveStaticECC) {
-        suites->suites[idx++] = ECC_BYTE;
-        suites->suites[idx++] = TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256;
     }
 #endif
 
@@ -917,38 +997,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-    if (tls && haveRSA) {
-        suites->suites[idx++] = CHACHA_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256;
-    }
-#endif
-
-#ifdef BUILD_TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
-    if (tls1_2 && haveECDSAsig) {
-        suites->suites[idx++] = CHACHA_BYTE;
-        suites->suites[idx++] = TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256;
-    }
-#endif
-
-#ifdef BUILD_TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-    if (tls && haveRSA) {
-        suites->suites[idx++] = CHACHA_BYTE;
-        suites->suites[idx++] = TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256;
-    }
-#endif
-
 #ifdef BUILD_TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA
     if (tls && haveRSAsig && haveStaticECC) {
         suites->suites[idx++] = ECC_BYTE;
         suites->suites[idx++] = TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA;
-    }
-#endif
-
-#ifdef BUILD_TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveDH && haveRSA) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_DHE_RSA_WITH_AES_256_GCM_SHA384;
     }
 #endif
 
@@ -987,13 +1039,6 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveDH && haveRSA) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_DHE_RSA_WITH_AES_128_GCM_SHA256;
-    }
-#endif
-
 #ifdef BUILD_TLS_DHE_RSA_WITH_AES_128_CBC_SHA256
     if (tls1_2 && haveDH && haveRSA) {
         suites->suites[idx++] = 0;
@@ -1015,24 +1060,10 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_RSA_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveRSA) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_RSA_WITH_AES_256_GCM_SHA384;
-    }
-#endif
-
 #ifdef BUILD_TLS_RSA_WITH_AES_256_CBC_SHA256
     if (tls1_2 && haveRSA) {
         suites->suites[idx++] = 0;
         suites->suites[idx++] = TLS_RSA_WITH_AES_256_CBC_SHA256;
-    }
-#endif
-
-#ifdef BUILD_TLS_RSA_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveRSA) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_RSA_WITH_AES_128_GCM_SHA256;
     }
 #endif
 
@@ -1071,20 +1102,6 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     }
 #endif
 
-#ifdef BUILD_TLS_DHE_PSK_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && haveDH && havePSK) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_DHE_PSK_WITH_AES_256_GCM_SHA384;
-    }
-#endif
-
-#ifdef BUILD_TLS_PSK_WITH_AES_256_GCM_SHA384
-    if (tls1_2 && havePSK) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_PSK_WITH_AES_256_GCM_SHA384;
-    }
-#endif
-
 #ifdef BUILD_TLS_PSK_WITH_AES_256_CBC_SHA
     if (tls && havePSK) {
         suites->suites[idx++] = 0;
@@ -1103,20 +1120,6 @@ void InitSuites(Suites* suites, ProtocolVersion pv, byte haveRSA, byte havePSK,
     if (tls && havePSK) {
         suites->suites[idx++] = 0;
         suites->suites[idx++] = TLS_PSK_WITH_AES_256_CBC_SHA384;
-    }
-#endif
-
-#ifdef BUILD_TLS_DHE_PSK_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && haveDH && havePSK) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_DHE_PSK_WITH_AES_128_GCM_SHA256;
-    }
-#endif
-
-#ifdef BUILD_TLS_PSK_WITH_AES_128_GCM_SHA256
-    if (tls1_2 && havePSK) {
-        suites->suites[idx++] = 0;
-        suites->suites[idx++] = TLS_PSK_WITH_AES_128_GCM_SHA256;
     }
 #endif
 
@@ -1548,15 +1551,17 @@ int InitSSL(WOLFSSL* ssl, WOLFSSL_CTX* ctx)
     ssl->options.quietShutdown = ctx->quietShutdown;
     ssl->options.groupMessages = ctx->groupMessages;
 
+#ifndef NO_DH
+    if (ssl->options.side == WOLFSSL_SERVER_END) {
+        ssl->buffers.serverDH_P = ctx->serverDH_P;
+        ssl->buffers.serverDH_G = ctx->serverDH_G;
+    }
+#endif
 #ifndef NO_CERTS
     /* ctx still owns certificate, certChain, key, dh, and cm */
     ssl->buffers.certificate = ctx->certificate;
     ssl->buffers.certChain = ctx->certChain;
     ssl->buffers.key = ctx->privateKey;
-    if (ssl->options.side == WOLFSSL_SERVER_END) {
-        ssl->buffers.serverDH_P = ctx->serverDH_P;
-        ssl->buffers.serverDH_G = ctx->serverDH_G;
-    }
 #endif
 
 #ifdef WOLFSSL_DTLS
@@ -1725,7 +1730,7 @@ void SSL_ResourceFree(WOLFSSL* ssl)
     XFREE(ssl->hsHashes, ssl->heap, DYNAMIC_TYPE_HASHES);
     XFREE(ssl->buffers.domainName.buffer, ssl->heap, DYNAMIC_TYPE_DOMAIN);
 
-#ifndef NO_CERTS
+#ifndef NO_DH
     XFREE(ssl->buffers.serverDH_Priv.buffer, ssl->heap, DYNAMIC_TYPE_DH);
     XFREE(ssl->buffers.serverDH_Pub.buffer, ssl->heap, DYNAMIC_TYPE_DH);
     /* parameters (p,g) may be owned by ctx */
@@ -1733,7 +1738,8 @@ void SSL_ResourceFree(WOLFSSL* ssl)
         XFREE(ssl->buffers.serverDH_G.buffer, ssl->heap, DYNAMIC_TYPE_DH);
         XFREE(ssl->buffers.serverDH_P.buffer, ssl->heap, DYNAMIC_TYPE_DH);
     }
-
+#endif
+#ifndef NO_CERTS
     if (ssl->buffers.weOwnCert)
         XFREE(ssl->buffers.certificate.buffer, ssl->heap, DYNAMIC_TYPE_CERT);
     if (ssl->buffers.weOwnCertChain)
@@ -1890,7 +1896,7 @@ void FreeHandshakeResources(WOLFSSL* ssl)
         ssl->eccTempKey = NULL;
     }
 #endif
-#ifndef NO_CERTS
+#ifndef NO_DH
     XFREE(ssl->buffers.serverDH_Priv.buffer, ssl->heap, DYNAMIC_TYPE_DH);
     ssl->buffers.serverDH_Priv.buffer = NULL;
     XFREE(ssl->buffers.serverDH_Pub.buffer, ssl->heap, DYNAMIC_TYPE_DH);
@@ -1902,7 +1908,8 @@ void FreeHandshakeResources(WOLFSSL* ssl)
         XFREE(ssl->buffers.serverDH_P.buffer, ssl->heap, DYNAMIC_TYPE_DH);
         ssl->buffers.serverDH_P.buffer = NULL;
     }
-
+#endif
+#ifndef NO_CERTS
     if (ssl->buffers.weOwnCert) {
         XFREE(ssl->buffers.certificate.buffer, ssl->heap, DYNAMIC_TYPE_CERT);
         ssl->buffers.certificate.buffer = NULL;
@@ -2342,7 +2349,7 @@ ProtocolVersion MakeDTLSv1_2(void)
 
     word32 LowResTimer(void)
     {
-        return (word32) MYTIME_gettime();
+        return (word32) Seconds_get();
     }
 
 #elif defined(USER_TICKS)
@@ -2355,6 +2362,21 @@ ProtocolVersion MakeDTLSv1_2(void)
         */
     }
 #endif
+
+#elif defined(TIME_OVERRIDES)
+
+    /* use same asn time overrides unless user wants tick override above */
+
+    #ifndef HAVE_TIME_T_TYPE
+        typedef long time_t;
+    #endif
+    extern time_t XTIME(time_t * timer);
+
+    word32 LowResTimer(void)
+    {
+        return (word32) XTIME(0);
+    }
+
 #else /* !USE_WINDOWS_API && !HAVE_RTP_SYS && !MICRIUM && !USER_TICKS */
 
     #include <time.h>
@@ -3795,9 +3817,9 @@ int CopyDecodedToX509(WOLFSSL_X509* x509, DecodedCert* dCert)
         x509->derCert.length = dCert->maxIdx;
     }
 
-    x509->altNames     = dCert->altNames;
-    dCert->altNames    = NULL;     /* takes ownership */
-    x509->altNamesNext = x509->altNames;  /* index hint */
+    x509->altNames       = dCert->altNames;
+    dCert->weOwnAltNames = 0;
+    x509->altNamesNext   = x509->altNames;  /* index hint */
 
     x509->isCa = dCert->isCA;
 #ifdef OPENSSL_EXTRA
@@ -9895,6 +9917,10 @@ static void PickHashSigAlgo(WOLFSSL* ssl,
         byte    hashAlgo = sha_mac;
         byte    sigAlgo  = ssl->specs.sig_algo;
         word16  verifySz = (word16) (*inOutIdx - begin);
+
+        (void)hash;
+        (void)sigAlgo;
+        (void)hashAlgo;
 
         /* save message for hash verify */
         if (verifySz > MAX_DH_SZ)
