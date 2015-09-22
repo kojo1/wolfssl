@@ -11,9 +11,6 @@
 #include <wolfssl/wolfcrypt/error-crypt.h>
 #include <wolfssl/wolfcrypt/random.h>
 
-#if defined(WOLFSSL_FREERTOS_PLUS)
-#endif
-
 #ifdef ATOMIC_USER
     #include <wolfssl/wolfcrypt/aes.h>
     #include <wolfssl/wolfcrypt/arc4.h>
