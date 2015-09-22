@@ -60,6 +60,9 @@
 /* Uncomment next line if using FreeRTOS Windows Simulator */
 /* #define FREERTOS_WINSIM */
 
+/* Uncomment next line if using FreeRTOS PLUS */
+/* #define  WOLFSSL_FREERTOS_PLUS */
+
 /* Uncomment next line if using RTIP */
 /* #define EBSNET */
 
@@ -305,7 +308,7 @@
 
 
 /* Micrium will use Visual Studio for compilation but not the Win32 API */
-#if defined(_WIN32) && !defined(MICRIUM) && !defined(FREERTOS) \
+#if defined(_WIN32) && !defined(MICRIUM) && !defined(FREERTOS) && !defined(WOLFSSL_FREERTOS_PLUS)\
         && !defined(EBSNET) && !defined(WOLFSSL_EROAD)
     #define USE_WINDOWS_API
 #endif
@@ -404,6 +407,25 @@ static char *fgets(char *buff, int sz, FILE *fp)
     #ifndef SINGLE_THREADED
         #include "semphr.h"
     #endif
+#endif
+
+#ifdef  WOLFSSL_FREERTOS_PLUS
+#define WOLFSSL_USER_IO
+#define WOLFSSL_HAVE_MIN
+#define XMALLOC(s, h, type)  pvPortMalloc((s))
+#define XFREE(p, h, type)    vPortFree((p))
+#define CUSTOM_RAND_GENERATE testRandGen
+
+static int testRandGen(void) {
+	return 0;
+}
+
+#define NO_WOLFSSL_DIR
+#define NO_WRITEV
+#define USE_FAST_MATH
+#define TFM_TIMING_REGISTANT
+#define NO_MAIN_DRIVER
+#define DEBUG_WOLFSSL
 #endif
 
 #ifdef WOLFSSL_TIRTOS

@@ -11,6 +11,9 @@
 #include <wolfssl/wolfcrypt/error-crypt.h>
 #include <wolfssl/wolfcrypt/random.h>
 
+#if defined(WOLFSSL_FREERTOS_PLUS)
+#endif
+
 #ifdef ATOMIC_USER
     #include <wolfssl/wolfcrypt/aes.h>
     #include <wolfssl/wolfcrypt/arc4.h>
@@ -49,6 +52,9 @@
     	char **h_addr_list; /* list of addresses from name server */
     };
     #define SOCKET_T int
+#elif defined(WOLFSSL_FREERTOS_PLUS)
+#define SOCKET_T Socket_t
+
 #else
     #include <string.h>
     #include <sys/types.h>
@@ -130,7 +136,7 @@
         #define WOLFSSL_THREAD
         #define INFINITE -1
         #define WAIT_OBJECT_0 0L
-    #elif defined(WOLFSSL_MDK_ARM)
+    #elif defined(WOLFSSL_MDK_ARM)|| defined(WOLFSSL_FREERTOS_PLUS)
         typedef unsigned int  THREAD_RETURN;
         typedef int           THREAD_TYPE;
         #define WOLFSSL_THREAD
@@ -510,7 +516,7 @@ static INLINE void tcp_socket(SOCKET_T* sockfd, int udp)
         if (res < 0)
             err_sys("setsockopt SO_NOSIGPIPE failed\n");
     }
-#elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS)
+#elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS) || defined(WOLFSSL_FREERTOS_PLUS)
     /* nothing to define */
 #else  /* no S_NOSIGPIPE */
     signal(SIGPIPE, SIG_IGN);
@@ -558,7 +564,7 @@ enum {
 };
 
 
-#if !defined(WOLFSSL_MDK_ARM) && !defined(WOLFSSL_TIRTOS)
+#if !defined(WOLFSSL_MDK_ARM) && !defined(WOLFSSL_TIRTOS) && !defined(WOLFSSL_FREERTOS_PLUS)
 static INLINE int tcp_select(SOCKET_T socketfd, int to_sec)
 {
     fd_set recvfds, errfds;
@@ -584,7 +590,7 @@ static INLINE int tcp_select(SOCKET_T socketfd, int to_sec)
 
     return TEST_SELECT_FAIL;
 }
-#elif defined(WOLFSSL_TIRTOS)
+#elif defined(WOLFSSL_TIRTOS) || defined(WOLFSSL_FREERTOS_PLUS)
 static INLINE int tcp_select(SOCKET_T socketfd, int to_sec)
 {
     return TEST_RECV_READY;
@@ -618,7 +624,7 @@ static INLINE void tcp_listen(SOCKET_T* sockfd, word16* port, int useAnyAddr,
         if (listen(*sockfd, 5) != 0)
             err_sys("tcp listen failed");
     }
-    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS)
+    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS) && !defined(WOLFSSL_FREERTOS_PLUS)
         if (*port == 0) {
             socklen_t len = sizeof(addr);
             if (getsockname(*sockfd, (struct sockaddr*)&addr, &len) == 0) {
@@ -678,7 +684,7 @@ static INLINE void udp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
     if (bind(*sockfd, (const struct sockaddr*)&addr, sizeof(addr)) != 0)
         err_sys("tcp bind failed");
 
-    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS)
+    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS) && !defined(WOLFSSL_FREERTOS_PLUS)
         if (port == 0) {
             socklen_t len = sizeof(addr);
             if (getsockname(*sockfd, (struct sockaddr*)&addr, &len) == 0) {
@@ -771,13 +777,13 @@ static INLINE void tcp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
 
 static INLINE void tcp_set_nonblocking(SOCKET_T* sockfd)
 {
-    #ifdef USE_WINDOWS_API 
+    #ifdef USE_WINDOWS_API
         unsigned long blocking = 1;
         int ret = ioctlsocket(*sockfd, FIONBIO, &blocking);
         if (ret == SOCKET_ERROR)
             err_sys("ioctlsocket failed");
-    #elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS)
-         /* non blocking not suppported, for now */ 
+    #elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS) || defined(WOLFSSL_FREERTOS_PLUS)
+         /* non blocking not suppported, for now */
     #else
         int flags = fcntl(*sockfd, F_GETFL, 0);
         if (flags < 0)
@@ -863,7 +869,7 @@ static INLINE unsigned int my_psk_server_cb(WOLFSSL* ssl, const char* identity,
     extern double current_time();
 #else
 
-#if !defined(WOLFSSL_MDK_ARM)
+#if !defined(WOLFSSL_MDK_ARM) && !defined(WOLFSSL_FREERTOS_PLUS)
     #include <sys/time.h>
 
     static INLINE double current_time(void)

@@ -111,7 +111,7 @@
     #endif
 #elif defined(MICRIUM)
     /* do nothing, just don't pick Unix */
-#elif defined(FREERTOS) || defined(WOLFSSL_SAFERTOS)
+#elif defined(FREERTOS)  || defined(WOLFSSL_FREERTOS_PLUS) || defined(WOLFSSL_SAFERTOS)
     /* do nothing */
 #elif defined(EBSNET)
     /* do nothing */
