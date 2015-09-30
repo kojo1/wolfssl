@@ -27,11 +27,17 @@
 
 #include <wolfssl/wolfcrypt/settings.h>
 
+#ifndef WOLFCRYPT_ONLY
+
 #include <wolfssl/internal.h>
 #include <wolfssl/error-ssl.h>
 #if defined(SHOW_SECRETS) || defined(CHACHA_AEAD_TEST)
     #ifdef FREESCALE_MQX
-        #include <fio.h>
+        #if MQX_USE_IO_OLD
+            #include <fio.h>
+        #else
+            #include <nio.h>
+        #endif
     #else
         #include <stdio.h>
     #endif
@@ -1751,6 +1757,23 @@ int SetCipherSpecs(WOLFSSL* ssl)
         break;
 #endif
 
+#ifdef BUILD_SSL_RSA_WITH_IDEA_CBC_SHA
+        case SSL_RSA_WITH_IDEA_CBC_SHA :
+            ssl->specs.bulk_cipher_algorithm = wolfssl_idea;
+            ssl->specs.cipher_type           = block;
+            ssl->specs.mac_algorithm         = sha_mac;
+            ssl->specs.kea                   = rsa_kea;
+            ssl->specs.sig_algo              = rsa_sa_algo;
+            ssl->specs.hash_size             = SHA_DIGEST_SIZE;
+            ssl->specs.pad_size              = PAD_SHA;
+            ssl->specs.static_ecdh           = 0;
+            ssl->specs.key_size              = IDEA_KEY_SIZE;
+            ssl->specs.block_size            = IDEA_BLOCK_SIZE;
+            ssl->specs.iv_size               = IDEA_IV_SIZE;
+            
+            break;
+#endif
+
     default:
         WOLFSSL_MSG("Unsupported cipher suite, SetCipherSpecs");
         return UNSUPPORTED_SUITE;
@@ -2273,6 +2296,55 @@ static int SetKeys(Ciphers* enc, Ciphers* dec, Keys* keys, CipherSpecs* specs,
     }
 #endif
 
+#ifdef HAVE_IDEA
+    if (specs->bulk_cipher_algorithm == wolfssl_idea) {
+        int ideaRet;
+
+        if (enc && enc->idea == NULL)
+            enc->idea = (Idea*)XMALLOC(sizeof(Idea), heap, DYNAMIC_TYPE_CIPHER);
+        if (enc && enc->idea == NULL)
+            return MEMORY_E;
+
+        if (dec && dec->idea == NULL)
+            dec->idea = (Idea*)XMALLOC(sizeof(Idea), heap, DYNAMIC_TYPE_CIPHER);
+        if (dec && dec->idea == NULL)
+            return MEMORY_E;
+
+        if (side == WOLFSSL_CLIENT_END) {
+            if (enc) {
+                ideaRet = wc_IdeaSetKey(enc->idea, keys->client_write_key,
+                                        specs->key_size, keys->client_write_IV,
+                                        IDEA_ENCRYPTION);
+                if (ideaRet != 0) return ideaRet;
+            }
+            if (dec) {
+                ideaRet = wc_IdeaSetKey(dec->idea, keys->server_write_key,
+                                        specs->key_size, keys->server_write_IV,
+                                        IDEA_DECRYPTION);
+                if (ideaRet != 0) return ideaRet;
+            }
+        }
+        else {
+            if (enc) {
+                ideaRet = wc_IdeaSetKey(enc->idea, keys->server_write_key,
+                                        specs->key_size, keys->server_write_IV,
+                                        IDEA_ENCRYPTION);
+                if (ideaRet != 0) return ideaRet;
+            }
+            if (dec) {
+                ideaRet = wc_IdeaSetKey(dec->idea, keys->client_write_key,
+                                        specs->key_size, keys->client_write_IV,
+                                        IDEA_DECRYPTION);
+                if (ideaRet != 0) return ideaRet;
+            }
+        }
+        if (enc)
+            enc->setup = 1;
+        if (dec)
+            dec->setup = 1;
+    }
+#endif
+
 #ifdef HAVE_NULL_CIPHER
     if (specs->bulk_cipher_algorithm == wolfssl_cipher_null) {
         if (enc)
@@ -2630,9 +2702,9 @@ static int MakeSslMasterSecret(WOLFSSL* ssl)
         printf("\n");
     }
 #endif
-    
+
 #ifdef WOLFSSL_SMALL_STACK
-    shaOutput = (byte*)XMALLOC(SHA_DIGEST_SIZE, 
+    shaOutput = (byte*)XMALLOC(SHA_DIGEST_SIZE,
                                             NULL, DYNAMIC_TYPE_TMP_BUFFER);
     md5Input  = (byte*)XMALLOC(ENCRYPT_LEN + SHA_DIGEST_SIZE,
                                             NULL, DYNAMIC_TYPE_TMP_BUFFER);
@@ -2708,7 +2780,7 @@ static int MakeSslMasterSecret(WOLFSSL* ssl)
     XFREE(md5,       NULL, DYNAMIC_TYPE_TMP_BUFFER);
     XFREE(sha,       NULL, DYNAMIC_TYPE_TMP_BUFFER);
 #endif
-    
+
     if (ret == 0)
         ret = CleanPreMaster(ssl);
     else
@@ -2722,6 +2794,48 @@ static int MakeSslMasterSecret(WOLFSSL* ssl)
 /* Master wrapper, doesn't use SSL stack space in TLS mode */
 int MakeMasterSecret(WOLFSSL* ssl)
 {
+    /* append secret to premaster : premaster | SerSi | CliSi */
+#ifdef HAVE_QSH
+    word32 offset = 0;
+
+    if (ssl->peerQSHKeyPresent) {
+        offset += ssl->arrays->preMasterSz;
+        ssl->arrays->preMasterSz += ssl->QSH_secret->CliSi->length +
+                                                 ssl->QSH_secret->SerSi->length;
+        /* test and set flag if QSH has been used */
+        if (ssl->QSH_secret->CliSi->length > 0 ||
+                ssl->QSH_secret->SerSi->length > 0)
+            ssl->isQSH = 1;
+
+        /* append secrets to the premaster */
+        if (ssl->QSH_secret->SerSi != NULL) {
+            XMEMCPY(ssl->arrays->preMasterSecret + offset,
+                ssl->QSH_secret->SerSi->buffer, ssl->QSH_secret->SerSi->length);
+        }
+        offset += ssl->QSH_secret->SerSi->length;
+        if (ssl->QSH_secret->CliSi != NULL) {
+            XMEMCPY(ssl->arrays->preMasterSecret + offset,
+                ssl->QSH_secret->CliSi->buffer, ssl->QSH_secret->CliSi->length);
+        }
+
+        /* show secret SerSi and CliSi */
+        #ifdef SHOW_SECRETS
+            word32 j;
+            printf("QSH generated secret material\n");
+            printf("SerSi        : ");
+            for (j = 0; j < ssl->QSH_secret->SerSi->length; j++) {
+                printf("%02x", ssl->QSH_secret->SerSi->buffer[j]);
+            }
+            printf("\n");
+            printf("CliSi        : ");
+            for (j = 0; j < ssl->QSH_secret->CliSi->length; j++) {
+                printf("%02x", ssl->QSH_secret->CliSi->buffer[j]);
+            }
+            printf("\n");
+        #endif
+    }
+#endif
+
 #ifdef NO_OLD_TLS
     return MakeTlsMasterSecret(ssl);
 #elif !defined(NO_TLS)
@@ -2732,4 +2846,6 @@ int MakeMasterSecret(WOLFSSL* ssl)
     return MakeSslMasterSecret(ssl);
 #endif
 }
+
+#endif /* WOLFCRYPT_ONLY */
 

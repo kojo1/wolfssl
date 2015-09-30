@@ -120,7 +120,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
@@ -132,7 +132,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;BUILDING_WOLFSSL;WOLFSSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;BUILDING_WOLFSSL;CYASSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -140,12 +140,15 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4206;4214;4706;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
@@ -157,15 +160,17 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;BUILDING_WOLFSSL;WOLFSSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;BUILDING_WOLFSSL;CYASSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+	  <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4206;4214;4706;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -173,11 +178,12 @@
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|Win32'">
@@ -185,23 +191,27 @@
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;BUILDING_WOLFSSL;WOLFSSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;BUILDING_WOLFSSL;CYASSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Release|x64'">
@@ -209,12 +219,16 @@
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./;../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;BUILDING_WOLFSSL;WOLFSSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_EXTRA;HAVE_THREAD_LS;WOLFSSL_KEY_GEN;BUILDING_WOLFSSL;CYASSL_DLL;HAVE_FIPS;HAVE_AESGCM;HAVE_HASHDRBG;WOLFSSL_SHA384;WOLFSSL_SHA512;NO_PSK;NO_HC128;NO_RC4;NO_RABBIT;NO_DSA;NO_MD4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ctaocrypt\src\wolfcrypt_first.c">
@@ -246,6 +260,10 @@
     </ClCompile>
     <ClCompile Include="..\..\ctaocrypt\src\fips.c">
       <ObjectFileName>$(IntDir)ctaocrypt\</ObjectFileName>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</WholeProgramOptimization>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</WholeProgramOptimization>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</WholeProgramOptimization>
     </ClCompile>
     <ClCompile Include="..\..\ctaocrypt\src\fips_test.c">
       <ObjectFileName>$(IntDir)ctaocrypt\</ObjectFileName>
@@ -254,39 +272,33 @@
       <ObjectFileName>$(IntDir)ctaocrypt\</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\..\wolfcrypt\src\aes.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\arc4.c" />
     <ClCompile Include="..\..\wolfcrypt\src\asn.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\blake2b.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\camellia.c" />
     <ClCompile Include="..\..\wolfcrypt\src\coding.c" />
     <ClCompile Include="..\..\src\crl.c" />
     <ClCompile Include="..\..\wolfcrypt\src\des3.c" />
     <ClCompile Include="..\..\wolfcrypt\src\dh.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\dsa.c" />
     <ClCompile Include="..\..\wolfcrypt\src\ecc.c" />
     <ClCompile Include="..\..\wolfcrypt\src\error.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\hc128.c" />
+    <ClCompile Include="..\..\wolfcrypt\src\hash.c" />
     <ClCompile Include="..\..\wolfcrypt\src\hmac.c" />
     <ClCompile Include="..\..\wolfcrypt\src\integer.c" />
     <ClCompile Include="..\..\src\internal.c" />
     <ClCompile Include="..\..\src\io.c" />
     <ClCompile Include="..\..\src\keys.c" />
     <ClCompile Include="..\..\wolfcrypt\src\logging.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\md4.c" />
     <ClCompile Include="..\..\wolfcrypt\src\md5.c" />
     <ClCompile Include="..\..\wolfcrypt\src\memory.c" />
     <ClCompile Include="..\..\src\ocsp.c" />
     <ClCompile Include="..\..\wolfcrypt\src\wc_port.c" />
     <ClCompile Include="..\..\wolfcrypt\src\pwdbased.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\rabbit.c" />
     <ClCompile Include="..\..\wolfcrypt\src\random.c" />
-    <ClCompile Include="..\..\wolfcrypt\src\ripemd.c" />
     <ClCompile Include="..\..\wolfcrypt\src\rsa.c" />
     <ClCompile Include="..\..\wolfcrypt\src\sha.c" />
     <ClCompile Include="..\..\wolfcrypt\src\sha256.c" />
     <ClCompile Include="..\..\wolfcrypt\src\sha512.c" />
     <ClCompile Include="..\..\src\ssl.c" />
     <ClCompile Include="..\..\src\tls.c" />
+	<ClCompile Include="..\..\wolfcrypt\src\wc_encrypt.c" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\wolfcrypt\src\aes_asm.asm">

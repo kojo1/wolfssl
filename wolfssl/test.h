@@ -41,6 +41,26 @@
     #include <arpa/inet.h>
     #include <sys/socket.h>
     #include <ti/sysbios/knl/Task.h>
+    struct hostent {
+    	char *h_name; /* official name of host */
+    	char **h_aliases; /* alias list */
+    	int h_addrtype; /* host address type */
+    	int h_length; /* length of address */
+    	char **h_addr_list; /* list of addresses from name server */
+    };
+    #define SOCKET_T int
+#elif defined(WOLFSSL_VXWORKS)
+    #include <hostLib.h>
+    #include <sockLib.h>
+    #include <arpa/inet.h>
+    #include <string.h>
+    #include <selectLib.h>
+    #include <sys/types.h>
+    #include <netinet/in.h>
+    #include <fcntl.h>
+    #include <sys/time.h>
+    #include <netdb.h>
+	#include <pthread.h>
     #define SOCKET_T int
 #else
     #include <string.h>
@@ -154,6 +174,11 @@
 #define CLIENT_DEFAULT_VERSION 3
 #define CLIENT_DTLS_DEFAULT_VERSION (-2)
 #define CLIENT_INVALID_VERSION (-99)
+#if !defined(NO_FILESYSTEM) && defined(WOLFSSL_MAX_STRENGTH)
+    #define DEFAULT_MIN_DHKEY_BITS 2048
+#else
+    #define DEFAULT_MIN_DHKEY_BITS 1024
+#endif
 
 /* all certs relative to wolfSSL home directory now */
 #define caCert     "./certs/ca-cert.pem"
@@ -356,6 +381,7 @@ static INLINE void showPeer(WOLFSSL* ssl)
         ShowX509(peer, "peer's cert info:");
     else
         printf("peer has no cert!\n");
+    wolfSSL_FreeX509(peer);
 #endif
     printf("SSL version is %s\n", wolfSSL_get_version(ssl));
 
@@ -405,6 +431,10 @@ static INLINE void build_addr(SOCKADDR_IN_T* addr, const char* peer,
         #ifdef WOLFSSL_MDK_ARM
             int err;
             struct hostent* entry = gethostbyname(peer, &err);
+        #elif defined(WOLFSSL_TIRTOS)
+            struct hostent* entry = DNSGetHostByName(peer);
+        #elif defined(WOLFSSL_VXWORKS)
+            struct hostent* entry = (struct hostent*)hostGetByName(peer);
         #else
             struct hostent* entry = gethostbyname(peer);
         #endif
@@ -604,7 +634,7 @@ static INLINE void tcp_listen(SOCKET_T* sockfd, word16* port, int useAnyAddr,
         if (listen(*sockfd, 5) != 0)
             err_sys("tcp listen failed");
     }
-    #if defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)
+    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS)
         if (*port == 0) {
             socklen_t len = sizeof(addr);
             if (getsockname(*sockfd, (struct sockaddr*)&addr, &len) == 0) {
@@ -619,6 +649,7 @@ static INLINE void tcp_listen(SOCKET_T* sockfd, word16* port, int useAnyAddr,
 }
 
 
+#if 0
 static INLINE int udp_read_connect(SOCKET_T sockfd)
 {
     SOCKADDR_IN_T cliaddr;
@@ -638,6 +669,7 @@ static INLINE int udp_read_connect(SOCKET_T sockfd)
 
     return sockfd;
 }
+#endif
 
 static INLINE void udp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
                               int useAnyAddr, word16 port, func_args* args)
@@ -662,7 +694,7 @@ static INLINE void udp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
     if (bind(*sockfd, (const struct sockaddr*)&addr, sizeof(addr)) != 0)
         err_sys("tcp bind failed");
 
-    #if defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)
+    #if (defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API)) && !defined(WOLFSSL_TIRTOS)
         if (port == 0) {
             socklen_t len = sizeof(addr);
             if (getsockname(*sockfd, (struct sockaddr*)&addr, &len) == 0) {
@@ -692,7 +724,7 @@ static INLINE void udp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
     ready->port = port;
 #endif
 
-    *clientfd = udp_read_connect(*sockfd);
+    *clientfd = *sockfd;
 }
 
 static INLINE void tcp_accept(SOCKET_T* sockfd, SOCKET_T* clientfd,
@@ -760,7 +792,8 @@ static INLINE void tcp_set_nonblocking(SOCKET_T* sockfd)
         int ret = ioctlsocket(*sockfd, FIONBIO, &blocking);
         if (ret == SOCKET_ERROR)
             err_sys("ioctlsocket failed");
-    #elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS)
+    #elif defined(WOLFSSL_MDK_ARM) || defined (WOLFSSL_TIRTOS)  \
+        || defined(WOLFSSL_VXWORKS)
          /* non blocking not suppported, for now */ 
     #else
         int flags = fcntl(*sockfd, F_GETFL, 0);
@@ -1506,6 +1539,8 @@ static INLINE int myDecryptVerifyCb(WOLFSSL* ssl,
 
     /* decrypt */
     ret = wc_AesCbcDecrypt(&decCtx->aes, decOut, decIn, decSz);
+    if (ret != 0)
+        return ret;
 
     if (wolfSSL_GetCipherType(ssl) == WOLFSSL_AEAD_TYPE) {
         *padSz = wolfSSL_GetAeadMacSize(ssl);
@@ -1592,7 +1627,7 @@ static INLINE void FreeAtomicUser(WOLFSSL* ssl)
 static INLINE int myEccSign(WOLFSSL* ssl, const byte* in, word32 inSz,
         byte* out, word32* outSz, const byte* key, word32 keySz, void* ctx)
 {
-    RNG     rng;
+    WC_RNG  rng;
     int     ret;
     word32  idx = 0;
     ecc_key myKey;
@@ -1643,7 +1678,7 @@ static INLINE int myEccVerify(WOLFSSL* ssl, const byte* sig, word32 sigSz,
 static INLINE int myRsaSign(WOLFSSL* ssl, const byte* in, word32 inSz,
         byte* out, word32* outSz, const byte* key, word32 keySz, void* ctx)
 {
-    RNG     rng;
+    WC_RNG  rng;
     int     ret;
     word32  idx = 0;
     RsaKey  myKey;
@@ -1701,7 +1736,7 @@ static INLINE int myRsaEnc(WOLFSSL* ssl, const byte* in, word32 inSz,
     int     ret;
     word32  idx = 0;
     RsaKey  myKey;
-    RNG     rng;
+    WC_RNG  rng;
 
     (void)ssl;
     (void)ctx;
@@ -1806,8 +1841,8 @@ static INLINE const char* mymktemp(char *tempfn, int len, int num)
     int x, size;
     static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                                    "abcdefghijklmnopqrstuvwxyz";
-    RNG rng;
-    byte out;
+    WC_RNG rng;
+    byte   out;
 
     if (tempfn == NULL || len < 1 || num < 1 || len <= num) {
         printf("Bad input\n");
@@ -1848,7 +1883,7 @@ static INLINE const char* mymktemp(char *tempfn, int len, int num)
     } key_ctx;
 
     static key_ctx myKey_ctx;
-    static RNG rng;
+    static WC_RNG rng;
 
     static INLINE int TicketInit(void)
     {
@@ -1873,9 +1908,11 @@ static INLINE const char* mymktemp(char *tempfn, int len, int num)
                              byte key_name[WOLFSSL_TICKET_NAME_SZ],
                              byte iv[WOLFSSL_TICKET_IV_SZ],
                              byte mac[WOLFSSL_TICKET_MAC_SZ],
-                             int enc, byte* ticket, int inLen, int* outLen)
+                             int enc, byte* ticket, int inLen, int* outLen,
+                             void* userCtx)
     {
         (void)ssl;
+        (void)userCtx;
 
         int ret;
         word16 sLen = htons(inLen);

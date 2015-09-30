@@ -66,7 +66,7 @@ int UnLockMutex(wolfSSL_Mutex *m)
 
 #else /* MULTI_THREAD */
 
-    #if defined(FREERTOS)
+    #if defined(FREERTOS)  || defined(FREERTOS_TCP)
 
         int InitMutex(wolfSSL_Mutex* m)
         {
@@ -353,17 +353,20 @@ int UnLockMutex(wolfSSL_Mutex *m)
         }
 
     #elif defined (WOLFSSL_TIRTOS)
-
+        #include <xdc/runtime/Error.h>
         int InitMutex(wolfSSL_Mutex* m)
         {
            Semaphore_Params params;
-
+           Error_Block eb;
+           Error_init(&eb);
            Semaphore_Params_init(&params);
            params.mode = Semaphore_Mode_BINARY;
 
-           *m = Semaphore_create(1, &params, NULL);
-
-           return 0;
+           *m = Semaphore_create(1, &params, &eb);
+           if( Error_check( &eb )  )
+           {
+               Error_raise( &eb, Error_E_generic, "Failed to Create the semaphore.",NULL);
+           } else return 0;
         }
 
         int FreeMutex(wolfSSL_Mutex* m)
@@ -388,6 +391,7 @@ int UnLockMutex(wolfSSL_Mutex *m)
         }
 
     #elif defined(WOLFSSL_uITRON4)
+				#include "stddef.h"
         #include "kernel.h"
         int InitMutex(wolfSSL_Mutex* m)
         {
@@ -398,7 +402,7 @@ int UnLockMutex(wolfSSL_Mutex *m)
             m->sem.name    = NULL ;
 
             m->id = acre_sem(&m->sem);
-            if( m->id != NULL )
+            if( m->id != E_OK )
                 iReturn = 0;
             else
                 iReturn = BAD_MUTEX_E;
@@ -457,7 +461,7 @@ int UnLockMutex(wolfSSL_Mutex *m)
           if(p) {
               ercd = get_mpl(ID_wolfssl_MPOOL, sz, (VP)&newp);
               if (ercd == E_OK) {
-                  memcpy(newp, p, sz) ;
+                  XMEMCPY(newp, p, sz) ;
                   ercd = rel_mpl(ID_wolfssl_MPOOL, (VP)p);
                   if (ercd == E_OK) {
                       return newp;
@@ -548,7 +552,7 @@ int UnLockMutex(wolfSSL_Mutex *m)
           if(p) {
               ercd = tk_get_mpl(ID_wolfssl_MPOOL, sz, (VP)&newp, TMO_FEVR);
               if (ercd == E_OK) {
-                  memcpy(newp, p, sz) ;
+                  XMEMCPY(newp, p, sz) ;
                   ercd = tk_rel_mpl(ID_wolfssl_MPOOL, (VP)p);
                   if (ercd == E_OK) {
                       return newp;
@@ -649,4 +653,8 @@ int UnLockMutex(wolfSSL_Mutex *m)
     #endif /* USE_WINDOWS_API */
 
 #endif /* SINGLE_THREADED */
-
+        
+#if defined(WOLFSSL_TI_CRYPT) ||  defined(WOLFSSL_TI_HASH)
+    #include <wolfcrypt/src/port/ti/ti-ccm.c>  /* initialize and Mutex for TI Crypt Engine */
+    #include <wolfcrypt/src/port/ti/ti-hash.c> /* md5, sha1, sha224, sha256 */
+#endif

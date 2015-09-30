@@ -29,11 +29,11 @@
     #include <cyassl/ctaocrypt/ecc.h>   /* ecc_fp_free */
 #endif
 
-#if defined(CYASSL_MDK_ARM)
+#if defined(WOLFSSL_MDK_ARM)
         #include <stdio.h>
         #include <string.h>
 
-        #if defined(CYASSL_MDK5)
+        #if defined(WOLFSSL_MDK5)
             #include "cmsis_os.h"
             #include "rl_fs.h" 
             #include "rl_net.h" 
@@ -41,7 +41,7 @@
             #include "rtl.h"
         #endif
 
-        #include "cyassl_MDK_ARM.h"
+        #include "wolfssl_MDK_ARM.h"
 #endif
 
 #include <cyassl/ssl.h>
@@ -83,7 +83,7 @@ THREAD_RETURN CYASSL_THREAD echoserver_test(void* args)
     int    outCreated = 0;
     int    shutDown = 0;
     int    useAnyAddr = 0;
-    word16 port = yasslPort;
+    word16 port = wolfSSLPort;
     int    argc = ((func_args*)args)->argc;
     char** argv = ((func_args*)args)->argv;
 
@@ -114,7 +114,7 @@ THREAD_RETURN CYASSL_THREAD echoserver_test(void* args)
 #endif
 
     #if defined(NO_MAIN_DRIVER) && !defined(USE_WINDOWS_API) && \
-        !defined(CYASSL_SNIFFER) && !defined(CYASSL_MDK_SHELL) && \
+        !defined(CYASSL_SNIFFER) && !defined(WOLFSSL_MDK_SHELL) && \
         !defined(CYASSL_TIRTOS)
         port = 0;
     #endif
@@ -132,8 +132,10 @@ THREAD_RETURN CYASSL_THREAD echoserver_test(void* args)
     method  = CyaDTLSv1_2_server_method();
 #elif  !defined(NO_TLS)
     method = CyaSSLv23_server_method();
-#else
+#elif defined(WOLFSSL_ALLOW_SSLV3)
     method = CyaSSLv3_server_method();
+#else
+    #error "no valid server method built in"
 #endif
     ctx    = CyaSSL_CTX_new(method);
     /* CyaSSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_OFF); */
@@ -208,6 +210,8 @@ THREAD_RETURN CYASSL_THREAD echoserver_test(void* args)
         CyaSSL_CTX_use_psk_identity_hint(ctx, "cyassl server");
         #ifdef HAVE_NULL_CIPHER
             defaultCipherList = "PSK-NULL-SHA256";
+        #elif defined(HAVE_AESGCM) && !defined(NO_DH)
+            defaultCipherList = "DHE-PSK-AES128-GCM-SHA256";
         #else
             defaultCipherList = "PSK-AES128-CBC-SHA256";
         #endif
@@ -225,20 +229,33 @@ THREAD_RETURN CYASSL_THREAD echoserver_test(void* args)
         int     clientfd;
         int     firstRead = 1;
         int     gotFirstG = 0;
-                
-#ifndef CYASSL_DTLS 
         SOCKADDR_IN_T client;
         socklen_t     client_len = sizeof(client);
+#ifndef CYASSL_DTLS
         clientfd = accept(sockfd, (struct sockaddr*)&client,
                          (ACCEPT_THIRD_T)&client_len);
 #else
-        clientfd = udp_read_connect(sockfd);
+        clientfd = sockfd;
+        {
+            /* For DTLS, peek at the next datagram so we can get the client's
+             * address and set it into the ssl object later to generate the
+             * cookie. */
+            int n;
+            byte b[1500];
+            n = (int)recvfrom(clientfd, (char*)b, sizeof(b), MSG_PEEK,
+                              (struct sockaddr*)&client, &client_len);
+            if (n <= 0)
+                err_sys("recvfrom failed");
+        }
 #endif
         if (clientfd == -1) err_sys("tcp accept failed");
 
         ssl = CyaSSL_new(ctx);
         if (ssl == NULL) err_sys("SSL_new failed");
         CyaSSL_set_fd(ssl, clientfd);
+        #ifdef CYASSL_DTLS
+            wolfSSL_dtls_set_peer(ssl, &client, client_len);
+        #endif
         #if !defined(NO_FILESYSTEM) && !defined(NO_DH) && !defined(NO_ASN)
             CyaSSL_SetTmpDH_file(ssl, dhParam, SSL_FILETYPE_PEM);
         #elif !defined(NO_DH)

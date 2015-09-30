@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #reusme.test
 
@@ -6,15 +6,26 @@
 resume_port=11112
 no_pid=-1
 server_pid=$no_pid
+counter=0
+
+
+remove_ready_file() {
+    if test -e /tmp/wolfssl_server_ready; then
+        echo -e "removing exisitng server_ready file"
+        rm /tmp/wolfssl_server_ready
+    fi
+}
+
 
 do_cleanup() {
     echo "in cleanup"
 
-    if  [[ $server_pid != $no_pid ]]
+    if  [ $server_pid != $no_pid ]
     then
         echo "killing server"
         kill -9 $server_pid
     fi
+    remove_ready_file
 }
 
 do_trap() {
@@ -27,22 +38,20 @@ trap do_trap INT TERM
 
 echo -e "\nStarting example server for resume test...\n"
 
-if test -e /tmp/wolfssl_server_ready; then
-    echo -e "removing exisitng server_ready file"
-    rm /tmp/wolfssl_server_ready
-fi
+remove_ready_file
 ./examples/server/server -r -R -p $resume_port &
 server_pid=$!
 
-while [ ! -s /tmp/wolfssl_server_ready ]; do
+while [ ! -s /tmp/wolfssl_server_ready -a "$counter" -lt 20 ]; do
     echo -e "waiting for server_ready file..."
     sleep 0.1
+    counter=$((counter+ 1))
 done
 
 ./examples/client/client -r -p $resume_port
 client_result=$?
 
-if [[ $client_result != 0 ]] ;
+if [ $client_result != 0 ]
 then
     echo -e "client failed!"
     do_cleanup
@@ -51,8 +60,9 @@ fi
 
 wait $server_pid
 server_result=$?
+remove_ready_file
 
-if [[ $server_result != 0 ]] ;
+if [ $server_result != 0 ]
 then
     echo -e "client failed!"
     exit 1

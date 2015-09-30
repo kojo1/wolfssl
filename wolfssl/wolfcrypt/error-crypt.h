@@ -27,8 +27,6 @@
 
 #ifdef HAVE_FIPS
 	#include <cyassl/ctaocrypt/error-crypt.h>
-	#define wc_ErrorString    CTaoCryptErrorString
-	#define wc_GetErrorString CTaoCryptGetErrorString
 #endif /* HAVE_FIPS */
 
 #ifdef __cplusplus
@@ -148,6 +146,20 @@ enum {
 
     MAC_CMP_FAILED_E    = -213,  /* MAC comparison failed */
     IS_POINT_E          = -214,  /* ECC is point on curve failed */
+    ECC_INF_E           = -215,  /* ECC point infinity error */
+    ECC_PRIV_KEY_E      = -216,  /* ECC private key not valid error */
+
+    SRP_CALL_ORDER_E    = -217,  /* SRP function called in the wrong order. */
+    SRP_VERIFY_E        = -218,  /* SRP proof verification failed. */
+    SRP_BAD_KEY_E       = -219,  /* SRP bad ephemeral values. */
+
+    ASN_NO_SKID         = -220,  /* ASN no Subject Key Identifier found */
+    ASN_NO_AKID         = -221,  /* ASN no Authority Key Identifier found */
+    ASN_NO_KEYUSAGE     = -223,  /* ASN no Key Usage found */
+    SKID_E              = -224,  /* setting Subject Key Identifier error */
+    AKID_E              = -225,  /* setting Authority Key Identifier error */
+    KEYUSAGE_E          = -226,  /* Bad Key Usage value */
+    CERTPOLICIES_E      = -227,  /* setting Certificate Policies error */
 
     MIN_CODE_E          = -300   /* errors -101 - -299 */
 };
@@ -161,5 +173,3 @@ WOLFSSL_API const char* wc_GetErrorString(int error);
     } /* extern "C" */
 #endif
 #endif /* WOLF_CRYPT_ERROR_H */
-
-

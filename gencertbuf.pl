@@ -20,10 +20,14 @@ my $outputFile = "./wolfssl/certs_test.h";
 
 my @fileList_1024 = (
         [ "./certs/1024/client-key.der", "client_key_der_1024" ],
+        [ "./certs/1024/client-keyPub.der", "client_keypub_der_1024" ],
         [ "./certs/1024/client-cert.der", "client_cert_der_1024" ],
         [ "./certs/1024/dh1024.der", "dh_key_der_1024" ],
         [ "./certs/1024/dsa1024.der", "dsa_key_der_1024" ],
-        [ "./certs/1024/rsa1024.der", "rsa_key_der_1024" ]
+        [ "./certs/1024/rsa1024.der", "rsa_key_der_1024" ],
+        [ "./certs/1024/ca-cert.der", "ca_cert_der_1024" ],
+        [ "./certs/1024/server-key.der", "server_key_der_1024" ],
+        [ "./certs/1024/server-cert.der", "server_cert_der_1024" ]
         );
 
 # 2048-bit certs/keys to be converted
@@ -31,6 +35,7 @@ my @fileList_1024 = (
 
 my @fileList_2048 = (
         [ "./certs/client-key.der", "client_key_der_2048" ],
+        [ "./certs/client-keyPub.der", "client_keypub_der_2048" ],
         [ "./certs/client-cert.der", "client_cert_der_2048" ],
         [ "./certs/dh2048.der", "dh_key_der_2048" ],
         [ "./certs/dsa2048.der", "dsa_key_der_2048" ],
@@ -140,6 +145,6 @@ sub file_to_hex {
 
     print OUT_FILE "\n";
 
-    close($fp); 
+    close($fp);
 }
 

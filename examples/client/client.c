@@ -130,6 +130,10 @@ static void Usage(void)
     printf("-c <file>   Certificate file,           default %s\n", cliCert);
     printf("-k <file>   Key file,                   default %s\n", cliKey);
     printf("-A <file>   Certificate Authority file, default %s\n", caCert);
+#ifndef NO_DH
+    printf("-Z <num>    Minimum DH key bits,        default %d\n",
+                                 DEFAULT_MIN_DHKEY_BITS);
+#endif
     printf("-b <num>    Benchmark <num> connections and print stats\n");
     printf("-s          Use pre Shared keys\n");
     printf("-t          Track wolfSSL memory use\n");
@@ -199,8 +203,10 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
 
     word16 port   = wolfSSLPort;
     char* host   = (char*)wolfSSLIP;
-    const char* domain = "www.wolfssl.com";
-
+    const char* domain = "localhost";  /* can't default to www.wolfssl.com
+                                          because can't tell if we're really
+                                          going there to detect old chacha-poly
+                                       */
     int    ch;
     int    version = CLIENT_INVALID_VERSION;
     int    usePsk   = 0;
@@ -224,6 +230,7 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     int    atomicUser    = 0;
     int    pkCallbacks   = 0;
     int    overrideDateErrors = 0;
+    int    minDhKeyBits  = DEFAULT_MIN_DHKEY_BITS;
     char*  cipherList = NULL;
     const char* verifyCert = caCert;
     const char* ourCert    = cliCert;
@@ -269,11 +276,12 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     (void)useClientCert;
     (void)overrideDateErrors;
     (void)disableCRL;
+    (void)minDhKeyBits;
 
     StackTrap();
 
     while ((ch = mygetopt(argc, argv,
-                          "?gdDusmNrwRitfxXUPCh:p:v:l:A:c:k:b:zS:L:ToO:a"))
+                          "?gdDusmNrwRitfxXUPCh:p:v:l:A:c:k:Z:b:zS:L:ToO:a"))
                                                                         != -1) {
         switch (ch) {
             case '?' :
@@ -293,7 +301,9 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
                 break;
 
             case 'C' :
-                disableCRL = 1;
+                #ifdef HAVE_CRL
+                    disableCRL = 1;
+                #endif
                 break;
 
             case 'u' :
@@ -373,6 +383,16 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
 
             case 'k' :
                 ourKey = myoptarg;
+                break;
+
+            case 'Z' :
+                #ifndef NO_DH
+                    minDhKeyBits = atoi(myoptarg);
+                    if (minDhKeyBits <= 0 || minDhKeyBits > 16000) {
+                        Usage();
+                        exit(MY_EX_USAGE);
+                    }
+                #endif
                 break;
 
             case 'b' :
@@ -477,6 +497,22 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
             done = 1;
         #endif
 
+        #ifdef NO_SHA
+            done = 1;  /* external cert chain most likely has SHA */
+        #endif
+
+        #if !defined(HAVE_ECC) && !defined(WOLFSSL_STATIC_RSA)
+            if (!XSTRNCMP(domain, "www.google.com", 14) ||
+                !XSTRNCMP(domain, "www.wolfssl.com", 15)) {
+                done = 1;  /* google/wolfssl need ECDHE or static RSA */
+            }
+        #endif
+
+        #if !defined(HAVE_AESGCM) && defined(NO_AES) && \
+            !(defined(HAVE_CHACHA) && defined(HAVE_POLY1305))
+            done = 1;  /* need at least on of these for external tests */
+        #endif
+
         if (done) {
             printf("external test can't be run in this mode");
 
@@ -503,16 +539,17 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
 
 #ifdef USE_WOLFSSL_MEMORY
     if (trackMemory)
-        InitMemoryTracker(); 
+        InitMemoryTracker();
 #endif
 
     switch (version) {
 #ifndef NO_OLD_TLS
+    #ifdef WOLFSSL_ALLOW_SSLV3
         case 0:
             method = wolfSSLv3_client_method();
             break;
-                
-                
+    #endif
+
     #ifndef NO_TLS
         case 1:
             method = wolfTLSv1_client_method();
@@ -522,9 +559,9 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
             method = wolfTLSv1_1_client_method();
             break;
     #endif /* NO_TLS */
-                
+
 #endif  /* NO_OLD_TLS */
-                
+
 #ifndef NO_TLS
         case 3:
             method = wolfTLSv1_2_client_method();
@@ -569,6 +606,10 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
 
     if (fewerPackets)
         wolfSSL_CTX_set_group_messages(ctx);
+
+#ifndef NO_DH
+    wolfSSL_CTX_SetMinDhKey_Sz(ctx, (word16)minDhKeyBits);
+#endif
 
     if (usePsk) {
 #ifndef NO_PSK
@@ -751,8 +792,9 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     }
 
 #ifdef HAVE_POLY1305
-    /* use old poly to connect with google server */
-    if (!XSTRNCMP(domain, "www.google.com", 14)) {
+    /* use old poly to connect with google and wolfssl.com server */
+    if (!XSTRNCMP(domain, "www.google.com", 14) ||
+        !XSTRNCMP(domain, "www.wolfssl.com", 15)) {
         if (wolfSSL_use_old_poly(ssl, 1) != 0)
             err_sys("unable to set to old poly");
     }

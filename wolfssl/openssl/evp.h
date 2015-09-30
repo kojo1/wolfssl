@@ -41,6 +41,7 @@
 #include <wolfssl/openssl/ripemd.h>
 #include <wolfssl/openssl/rsa.h>
 #include <wolfssl/openssl/dsa.h>
+#include <wolfssl/openssl/ec.h>
 
 #include <wolfssl/wolfcrypt/aes.h>
 #include <wolfssl/wolfcrypt/des3.h>
@@ -72,6 +73,7 @@ WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_aes_256_ctr(void);
 WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_des_cbc(void);
 WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_des_ede3_cbc(void);
 WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_rc4(void);
+WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_idea_cbc(void);
 WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_enc_null(void);
 
 
@@ -108,6 +110,9 @@ typedef union {
     Des3 des3;
 #endif
     Arc4 arc4;
+#ifdef HAVE_IDEA
+    Idea idea;
+#endif
 } WOLFSSL_Cipher;
 
 
@@ -124,6 +129,8 @@ enum {
     NULL_CIPHER_TYPE  = 10,
     EVP_PKEY_RSA      = 11,
     EVP_PKEY_DSA      = 12,
+	EVP_PKEY_EC		  = 13,
+    IDEA_CBC_TYPE     = 14,
     NID_sha1          = 64,
     NID_md5           =  4
 };
@@ -182,6 +189,7 @@ WOLFSSL_API const WOLFSSL_EVP_MD* wolfSSL_EVP_get_digestbynid(int);
 
 WOLFSSL_API WOLFSSL_RSA* wolfSSL_EVP_PKEY_get1_RSA(WOLFSSL_EVP_PKEY*);
 WOLFSSL_API WOLFSSL_DSA* wolfSSL_EVP_PKEY_get1_DSA(WOLFSSL_EVP_PKEY*);
+WOLFSSL_API WOLFSSL_EC_KEY *wolfSSL_EVP_PKEY_get1_EC_KEY(WOLFSSL_EVP_PKEY *key);
 
 /* these next ones don't need real OpenSSL type, for OpenSSH compat only */
 WOLFSSL_API void* wolfSSL_EVP_X_STATE(const WOLFSSL_EVP_CIPHER_CTX* ctx);
@@ -221,6 +229,7 @@ typedef WOLFSSL_EVP_CIPHER_CTX EVP_CIPHER_CTX;
 #define EVP_des_cbc      wolfSSL_EVP_des_cbc
 #define EVP_des_ede3_cbc wolfSSL_EVP_des_ede3_cbc
 #define EVP_rc4          wolfSSL_EVP_rc4
+#define EVP_idea_cbc     wolfSSL_EVP_idea_cbc
 #define EVP_enc_null     wolfSSL_EVP_enc_null
 
 #define EVP_MD_size        wolfSSL_EVP_MD_size
@@ -244,6 +253,8 @@ typedef WOLFSSL_EVP_CIPHER_CTX EVP_CIPHER_CTX;
 
 #define EVP_PKEY_get1_RSA   wolfSSL_EVP_PKEY_get1_RSA
 #define EVP_PKEY_get1_DSA   wolfSSL_EVP_PKEY_get1_DSA
+#define EVP_PKEY_get1_EC_KEY wolfSSL_EVP_PKEY_get1_EC_KEY
+
 
 #ifndef EVP_MAX_MD_SIZE
     #define EVP_MAX_MD_SIZE   64     /* sha512 */

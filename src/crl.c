@@ -27,13 +27,17 @@
 
 #include <wolfssl/wolfcrypt/settings.h>
 
+#ifndef WOLFCRYPT_ONLY
 #ifdef HAVE_CRL
 
 #include <wolfssl/internal.h>
 #include <wolfssl/error-ssl.h>
 
-#include <dirent.h>
-#include <sys/stat.h>
+#ifndef NO_FILESYSTEM
+    #include <dirent.h>
+    #include <sys/stat.h>
+#endif
+
 #include <string.h>
 
 #ifdef HAVE_CRL_MONITOR
@@ -66,8 +70,8 @@ static int InitCRL_Entry(CRL_Entry* crle, DecodedCRL* dcrl)
 {
     WOLFSSL_ENTER("InitCRL_Entry");
 
-    XMEMCPY(crle->issuerHash, dcrl->issuerHash, SHA_DIGEST_SIZE);
-    /* XMEMCPY(crle->crlHash, dcrl->crlHash, SHA_DIGEST_SIZE);
+    XMEMCPY(crle->issuerHash, dcrl->issuerHash, CRL_DIGEST_SIZE);
+    /* XMEMCPY(crle->crlHash, dcrl->crlHash, CRL_DIGEST_SIZE);
      *   copy the hash here if needed for optimized comparisons */
     XMEMCPY(crle->lastDate, dcrl->lastDate, MAX_DATE_SIZE);
     XMEMCPY(crle->nextDate, dcrl->nextDate, MAX_DATE_SIZE);
@@ -152,11 +156,19 @@ int CheckCertCRL(WOLFSSL_CRL* crl, DecodedCert* cert)
     crle = crl->crlList;
 
     while (crle) {
-        if (XMEMCMP(crle->issuerHash, cert->issuerHash, SHA_DIGEST_SIZE) == 0) {
+        if (XMEMCMP(crle->issuerHash, cert->issuerHash, CRL_DIGEST_SIZE) == 0) {
+            int doNextDate = 1;
+
             WOLFSSL_MSG("Found CRL Entry on list");
             WOLFSSL_MSG("Checking next date validity");
 
-            if (!ValidateDate(crle->nextDate, crle->nextDateFormat, AFTER)) {
+            #ifdef WOLFSSL_NO_CRL_NEXT_DATE
+                if (crle->nextDateFormat == ASN_OTHER_TYPE)
+                    doNextDate = 0;  /* skip */
+            #endif
+
+            if (doNextDate && !ValidateDate(crle->nextDate,
+                                            crle->nextDateFormat, AFTER)) {
                 WOLFSSL_MSG("CRL next date is no longer valid");
                 ret = ASN_AFTER_DATE_E;
             }
@@ -679,6 +691,8 @@ static int StartMonitorCRL(WOLFSSL_CRL* crl)
 
 #else /* HAVE_CRL_MONITOR */
 
+#ifndef NO_FILESYSTEM
+
 static int StartMonitorCRL(WOLFSSL_CRL* crl)
 {
     (void)crl;
@@ -689,8 +703,11 @@ static int StartMonitorCRL(WOLFSSL_CRL* crl)
     return NOT_COMPILED_IN;
 }
 
+#endif /* NO_FILESYSTEM */
+
 #endif  /* HAVE_CRL_MONITOR */
 
+#ifndef NO_FILESYSTEM
 
 /* Load CRL path files of type, SSL_SUCCESS on ok */ 
 int LoadCRL(WOLFSSL_CRL* crl, const char* path, int type, int monitor)
@@ -787,4 +804,7 @@ int LoadCRL(WOLFSSL_CRL* crl, const char* path, int type, int monitor)
     return ret;
 }
 
+#endif /* NO_FILESYSTEM */
+
 #endif /* HAVE_CRL */
+#endif /* !WOLFCRYPT_ONLY */

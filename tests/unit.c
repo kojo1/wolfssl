@@ -1,4 +1,23 @@
-/* unit.c unit tests driver */
+/* unit.c API unit tests driver
+ *
+ * Copyright (C) 2006-2015 wolfSSL Inc.
+ *
+ * This file is part of wolfSSL. (formerly known as CyaSSL)
+ *
+ * wolfSSL is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * wolfSSL is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+ */
 
 /* Name change compatibility layer no longer need to be included here */
 
@@ -31,6 +50,9 @@ int unit_test(int argc, char** argv)
     (void)argv;
     printf("starting unit tests...\n");
 
+#if defined(DEBUG_WOLFSSL) && !defined(HAVE_VALGRIND)
+    wolfSSL_Debugging_ON();
+#endif
 #ifdef HAVE_CAVIUM
     ret = OpenNitroxDevice(CAVIUM_DIRECT, CAVIUM_DEV_ID);
     if (ret != 0)
@@ -58,6 +80,8 @@ int unit_test(int argc, char** argv)
     }
 #endif
 
+    SrpTest();
+
 #ifdef HAVE_CAVIUM
         CspShutdown(CAVIUM_DEV_ID);
 #endif
@@ -73,7 +97,7 @@ void wait_tcp_ready(func_args* args)
     (void)args;
 #elif defined(_POSIX_THREADS) && !defined(__MINGW32__)
     pthread_mutex_lock(&args->signal->mutex);
-    
+
     if (!args->signal->ready)
         pthread_cond_wait(&args->signal->cond, &args->signal->mutex);
     args->signal->ready = 0; /* reset */
@@ -157,4 +181,3 @@ void FreeTcpReady(tcp_ready* ready)
     (void)ready;
 #endif
 }
-

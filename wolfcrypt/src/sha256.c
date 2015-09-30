@@ -49,15 +49,11 @@ int wc_Sha256Final(Sha256* sha, byte* out)
 }
 
 
-int wc_Sha256Hash(const byte* data, word32 len, byte* out)
-{
-    return Sha256Hash(data, len, out);
-}
-
 #else /* else build without fips */
 
-#if !defined(NO_SHA256) && !defined(WOLFSSL_TI_HASH)
-    /* defined in port/ti/ti_hash.c */
+#if !defined(NO_SHA256) && defined(WOLFSSL_TI_HASH)
+    /* #include <wolfcrypt/src/port/ti/ti-hash.c> included by wc_port.c */
+#else
 
 #if !defined (ALIGN32)
     #if defined (__GNUC__)
@@ -544,37 +540,6 @@ int wc_Sha256Final(Sha256* sha256, byte* hash)
 
 
 
-int wc_Sha256Hash(const byte* data, word32 len, byte* hash)
-{
-    int ret = 0;
-#ifdef WOLFSSL_SMALL_STACK
-    Sha256* sha256;
-#else
-    Sha256 sha256[1];
-#endif
-
-#ifdef WOLFSSL_SMALL_STACK
-    sha256 = (Sha256*)XMALLOC(sizeof(Sha256), NULL, DYNAMIC_TYPE_TMP_BUFFER);
-    if (sha256 == NULL)
-        return MEMORY_E;
-#endif
-
-    if ((ret = wc_InitSha256(sha256)) != 0) {
-        WOLFSSL_MSG("InitSha256 failed");
-    }
-    else if ((ret = wc_Sha256Update(sha256, data, len)) != 0) {
-        WOLFSSL_MSG("Sha256Update failed");
-    }
-    else if ((ret = wc_Sha256Final(sha256, hash)) != 0) {
-        WOLFSSL_MSG("Sha256Final failed");
-    }
-
-#ifdef WOLFSSL_SMALL_STACK
-    XFREE(sha256, NULL, DYNAMIC_TYPE_TMP_BUFFER);
-#endif
-
-    return ret;
-}
 
 #if defined(HAVE_INTEL_AVX1) || defined(HAVE_INTEL_AVX2)
 
@@ -1757,9 +1722,9 @@ static int Transform_AVX2(Sha256* sha256)
 
 #endif   /* HAVE_INTEL_AVX2 */
 
-#endif   /* WOLFSSL_TI_HAHS */
-
 #endif   /* HAVE_FIPS */
+
+#endif   /* WOLFSSL_TI_HAHS */
 
 #endif /* NO_SHA256 */
 

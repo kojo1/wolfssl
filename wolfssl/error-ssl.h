@@ -133,6 +133,10 @@ enum wolfSSL_ErrorCodes {
     BAD_TICKET_MSG_SZ       = -399,        /* Bad session ticket msg size    */
     BAD_TICKET_ENCRYPT      = -400,        /* Bad user ticket encrypt        */
 
+    DH_KEY_SIZE_E           = -401,        /* DH Key too small */
+    SNI_ABSENT_ERROR        = -402,        /* No SNI request. */
+    RSA_SIGN_FAULT          = -403,        /* RSA Sign fault */
+
     /* add strings to SetErrorString !!!!! */
 
     /* begin negotiation parameter errors */
@@ -163,5 +167,3 @@ void SetErrorString(int err, char* buff);
 
 
 #endif /* wolfSSL_ERROR_H */
-
-
