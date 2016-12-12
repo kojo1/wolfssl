@@ -133,9 +133,11 @@ WOLFSSL_API int  wc_AesCbcDecrypt(Aes* aes, byte* out,
 #if defined(WOLFSSL_AES_DIRECT)
  WOLFSSL_API void wc_AesEncryptDirect(Aes* aes, byte* out, const byte* in);
  WOLFSSL_API void wc_AesDecryptDirect(Aes* aes, byte* out, const byte* in);
+#endif
+
  WOLFSSL_API int  wc_AesSetKeyDirect(Aes* aes, const byte* key, word32 len,
                                 const byte* iv, int dir);
-#endif
+
 #ifdef HAVE_AESGCM
  WOLFSSL_API int  wc_AesGcmSetKey(Aes* aes, const byte* key, word32 len);
  WOLFSSL_API int  wc_AesGcmEncrypt(Aes* aes, byte* out,

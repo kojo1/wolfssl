@@ -421,7 +421,7 @@ void wc_AesAsyncFree(Aes* aes)
     #endif /* HAVE_AES_DECRYPT */
 #elif defined(WOLFSSL_PIC32MZ_CRYPT)
     /* NOTE: no support for AES-CCM/Direct */
-    #define DEBUG_WOLFSSL
+    /* #define DEBUG_WOLFSSL */
     #include "wolfssl/wolfcrypt/port/pic32/pic32mz-crypt.h"
 #elif defined(HAVE_CAVIUM)
     /* still leave SW crypto available */
@@ -1399,7 +1399,8 @@ static void wc_AesEncrypt(Aes* aes, const byte* inBlock, byte* outBlock)
 }
 #endif /* HAVE_AES_CBC || WOLFSSL_AES_DIRECT || HAVE_AESGCM */
 
-#ifdef HAVE_AES_DECRYPT
+#if defined(HAVE_AES_DECRYPT) && !defined(WOLFSSL_PIC32MZ_CRYPT) 
+                                 /* pic32mz has its own for HW engine */ 
 #if defined(HAVE_AES_CBC) || defined(WOLFSSL_AES_DIRECT)
 
 /* load 4 Td Tables into cache by cache line stride */
@@ -2619,7 +2620,6 @@ int wc_InitAes_h(Aes* aes, void* h)
 
         volatile securityAssociation sa __attribute__((aligned (8)));
         volatile bufferDescriptor bd __attribute__((aligned (8)));
-        volatile int k ;
 
         /* get uncached address */
         sa_p = KVA0_TO_KVA1(&sa) ;
@@ -2988,12 +2988,12 @@ int wc_InitAes_h(Aes* aes, void* h)
         void wc_AesCtrEncrypt(Aes* aes, byte* out, const byte* in, word32 sz)
         {
             int i ;
-            char out_block[AES_BLOCK_SIZE] ;
+            byte out_block[AES_BLOCK_SIZE] ;
             int odd ;
             int even ;
-            char *tmp ; /* (char *)aes->tmp, for short */
+            byte *tmp ; /* (char *)aes->tmp, for short */
 
-            tmp = (char *)aes->tmp ;
+            tmp = (byte *)aes->tmp ;
             if(aes->left) {
                 if((aes->left + sz) >= AES_BLOCK_SIZE){
                     odd = AES_BLOCK_SIZE - aes->left ;
@@ -4227,7 +4227,9 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
     word32 partial = sz % AES_BLOCK_SIZE;
     const byte* p = in;
     byte* c = out;
+#ifndef WOLFSSL_PIC32MZ_CRYPT
     byte counter[AES_BLOCK_SIZE];
+#endif
     byte initialCounter[AES_BLOCK_SIZE];
     byte *ctr ;
     byte scratch[AES_BLOCK_SIZE];
@@ -4245,7 +4247,7 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
 #endif
 
 #ifdef WOLFSSL_PIC32MZ_CRYPT
-    ctr = (char *)aes->iv_ce ;
+    ctr = (byte *)aes->iv_ce ;
 #else
     ctr = counter ;
 #endif
@@ -4322,7 +4324,9 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
     word32 partial = sz % AES_BLOCK_SIZE;
     const byte* c = in;
     byte* p = out;
+#ifndef WOLFSSL_PIC32MZ_CRYPT
     byte counter[AES_BLOCK_SIZE];
+#endif
     byte initialCounter[AES_BLOCK_SIZE];
     byte *ctr ;
     byte scratch[AES_BLOCK_SIZE];
@@ -4341,7 +4345,7 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
 #endif
 
 #ifdef WOLFSSL_PIC32MZ_CRYPT
-    ctr = (char *)aes->iv_ce ;
+    ctr = (byte *)aes->iv_ce ;
 #else
     ctr = counter ;
 #endif

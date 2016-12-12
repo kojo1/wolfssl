@@ -1003,8 +1003,7 @@ int  wc_Des3_SetIV(Des3* des, const byte* iv);
         byte *out_p, *out_l ;
         volatile securityAssociation sa __attribute__((aligned (8)));
         volatile bufferDescriptor bd __attribute__((aligned (8)));
-        volatile int k ;
-
+        
         /* get uncached address */
 
         in_l = in;

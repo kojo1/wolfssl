@@ -110,11 +110,22 @@ typedef struct bufferDescriptor {
 #define SHA256_HASH_SIZE 32
 #define PIC32_HASH_SIZE 32
 
+#ifndef PIC32_BLOCK_SIZE
+#define PIC32_BLOCK_SIZE 2048
+#endif
+#define PIC32MZ_MAX_BLOCK (32*1024)
+
+#ifndef PIC32MZ_MAX_BD
 #define PIC32MZ_MAX_BD   2
-typedef struct {      /* Crypt Engine descriptor */
-    int bdCount ;
+#endif
+
+typedef struct {      /* Crypt Engine descripter */
+    int currBd ;
     int err   ;
-    volatile bufferDescriptor 
+    unsigned int msgSize ;
+    uint32_t processed ;
+    uint32_t dbPtr ;
+        volatile bufferDescriptor 
         bd[PIC32MZ_MAX_BD] __attribute__((aligned (8), coherent));
     securityAssociation 
         sa                 __attribute__((aligned (8), coherent));

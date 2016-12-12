@@ -1221,10 +1221,8 @@ int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
 #ifdef MICROCHIP_MPLAB_HARMONY
     #define PIC32_SEED_COUNT _CP0_GET_COUNT
 #else
-    #if !defined(WOLFSSL_MICROCHIP_PIC32MZ)
-        #include <peripheral/timer.h>
-    #endif
     #define PIC32_SEED_COUNT ReadCoreTimer
+    extern  word32 PIC32_SEED_COUNT(void) ;
 #endif
     #ifdef WOLFSSL_MIC32MZ_RNG
         #include "xc.h"
