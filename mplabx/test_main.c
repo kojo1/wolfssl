@@ -28,13 +28,13 @@
 
 #if defined(WOLFSSL_MICROCHIP_PIC32MZ)
     #define MICROCHIP_PIC32
+    #define  SYSTEMConfigPerformance(a) /* void out SYSTEMConfigPerformance(); */
     #include <xc.h>
     #pragma config ICESEL = ICS_PGx2
             /* ICE/ICD Comm Channel Select (Communicate on PGEC2/PGED2) */
     #include <stdio.h>
     #include <stdlib.h>
     #include "PIC32MZ-serial.h"
-    #define  SYSTEMConfigPerformance(a) /* void out SYSTEMConfigPerformance(); */
 #else
     #define PIC32_STARTER_KIT
     #include <stdio.h>
