@@ -556,7 +556,8 @@ typedef WOLFSSL_X509_NAME_ENTRY X509_NAME_ENTRY;
 #define NID_stateOrProvinceName    0x08,   /* ST */
 #define NID_organizationName       0x0a,   /* O  */
 #define NID_organizationalUnitName 0x0b,   /* OU */
-
+#define NID_domainComponent 0x10
+                            /* matchs ASN_DOMAIN_COMPONENT in asn.h */
 /* NIDs */
 enum {
     NID_des    = 66,
