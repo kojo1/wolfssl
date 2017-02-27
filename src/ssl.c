@@ -11444,7 +11444,7 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
         ctx->bufUsed = 0;
         ctx->lastUsed = 0;
         ctx->flags   = 0;
-        ret = 0;S
+        ret = 0;
 #ifndef NO_AES
         if (ctx->cipherType == AES_128_CBC_TYPE ||
             (type && XSTRNCMP(type, EVP_AES_128_CBC, EVP_AES_SIZE) == 0)) {
