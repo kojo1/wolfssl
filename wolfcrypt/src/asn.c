@@ -3803,8 +3803,8 @@ static int GetName(DecodedCert* cert, int nameType)
                    copy = TRUE;
                 }
                 #ifdef OPENSSL_EXTRA
-                    dName->snIdx = cert->srcIdx;
-                    dName->snLen = strLen;
+                    dName->dcIdx = cert->srcIdx;
+                    dName->dcLen = strLen;
                 #endif /* OPENSSL_EXTRA */
             }
             if (copy && !tooBig) {

@@ -423,6 +423,8 @@ struct DecodedName {
     int     uidLen;
     int     serialIdx;
     int     serialLen;
+    int     dcIdx;
+    int     dcLen;
 };
 
 
