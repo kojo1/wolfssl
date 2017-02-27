@@ -12979,6 +12979,9 @@ static void ExternalFreeX509(WOLFSSL_X509* x509)
                 case ASN_COMMON_NAME:
                     ret = name->fullName.cnIdx;
                     break;
+                case ASN_DOMAIN_COMPONENT:
+                    ret = name->fullName.dcIdx;
+                    break;
                 default:
                     WOLFSSL_MSG("NID not yet implemented");
                     break;
