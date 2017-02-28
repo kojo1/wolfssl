@@ -15697,14 +15697,30 @@ WOLFSSL_X509_REVOKED* wolfSSL_sk_X509_REVOKED_value(
     return 0;
 }
 
-
-
 WOLFSSL_ASN1_INTEGER* wolfSSL_X509_get_serialNumber(WOLFSSL_X509* x509)
 {
-    (void)x509;
-    return 0;
-}
+    WOLFSSL_ASN1_INTEGER* a;
+    int i = 0;
 
+    WOLFSSL_ENTER("wolfSSL_X509_get_serialNumber");
+
+    a = (WOLFSSL_ASN1_INTEGER*)XMALLOC(sizeof(WOLFSSL_ASN1_INTEGER), NULL,
+                                       DYNAMIC_TYPE_OPENSSL);
+    if (a == NULL)
+        return NULL;
+
+    /* Make sure there is space for the data, ASN.1 type and length. */
+    if (x509->serialSz > (int)(sizeof(WOLFSSL_ASN1_INTEGER) - 2)) {
+        XFREE(a, NULL, DYNAMIC_TYPE_OPENSSL);
+        return NULL;
+    }
+
+    a->data[i++] = ASN_INTEGER;
+    a->data[i++] = (unsigned char)x509->serialSz;
+    XMEMCPY(&a->data[i], x509->serial, x509->serialSz);
+
+    return a;
+}
 
 int wolfSSL_ASN1_TIME_print(WOLFSSL_BIO* bio, const WOLFSSL_ASN1_TIME* asnTime)
 {
