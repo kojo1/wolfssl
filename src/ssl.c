@@ -24180,16 +24180,50 @@ int wolfSSL_PEM_write_bio_X509_AUX(WOLFSSL_BIO *bp, WOLFSSL_X509 *x)
 }
 #endif /* WOLFSSL_CERT_GEN */
 
+int wolfSSL_PEM_write_bio_X509(WOLFSSL_BIO *bio, WOLFSSL_X509 *cert)
+{
+    byte* certDer;
+    int derSz;
+    int pemSz;
+    int ret;
 
-int wolfSSL_PEM_write_bio_X509(WOLFSSL_BIO *bp, WOLFSSL_X509 *x) {
-    (void)bp;
-    (void)x;
     WOLFSSL_ENTER("wolfSSL_PEM_write_bio_X509");
-    WOLFSSL_STUB("wolfSSL_PEM_write_bio_X509");
 
-    return 0;
+    if (bio == NULL || cert == NULL) {
+        return SSL_FAILURE;
+    }
+
+    if (bio->type != WOLFSSL_BIO_MEMORY) {
+        WOLFSSL_MSG("BIO type not supported for writing X509 as PEM");
+        return SSL_FAILURE;
+    }
+
+    certDer = cert->derCert->buffer;
+    derSz   = cert->derCert->length;
+
+    /* Get PEM encoded length and allocate memory for it. */
+    pemSz = wc_DerToPem(certDer, derSz, NULL, 0, CERT_TYPE);
+    if (pemSz < 0) {
+        WOLFSSL_LEAVE("wolfSSL_PEM_write_bio_X509", pemSz);
+        return SSL_FAILURE;
+    }
+    if (bio->mem != NULL) {
+        XFREE(bio->mem, NULL, DYNAMIC_TYPE_OPENSSL);
+    }
+    bio->mem = (byte*)XMALLOC(pemSz, NULL, DYNAMIC_TYPE_OPENSSL);
+    if (bio->mem == NULL) {
+        return SSL_FAILURE;
+    }
+    bio->memLen = pemSz;
+
+    ret = wc_DerToPemEx(certDer, derSz, bio->mem, bio->memLen, NULL, CERT_TYPE);
+    if (ret < 0) {
+        WOLFSSL_LEAVE("wolfSSL_PEM_write_bio_X509", ret);
+        return SSL_FAILURE;
+    }
+
+    return SSL_SUCCESS;
 }
-
 
 #if defined(OPENSSL_EXTRA) && !defined(NO_DH)
 /* Intialize ctx->dh with dh's params. Return SSL_SUCCESS on ok */
