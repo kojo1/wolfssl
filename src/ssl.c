@@ -23946,21 +23946,127 @@ WOLFSSL_BIO *wolfSSL_BIO_new_file(const char *name, const char *m) {
 }
 #endif /* NO_FILESYSTEM */
 
-
-WOLFSSL_DH *wolfSSL_PEM_read_bio_DHparams(WOLFSSL_BIO *bp, WOLFSSL_DH **x,
+#ifndef NO_DH
+WOLFSSL_DH *wolfSSL_PEM_read_bio_DHparams(WOLFSSL_BIO *bio, WOLFSSL_DH **x,
         pem_password_cb *cb, void *u)
 {
-    (void) bp;
-    (void) x;
-    (void) cb;
-    (void) u;
+#ifndef NO_FILESYSTEM
+    WOLFSSL_DH* localDh = NULL;
+    unsigned char* mem  = NULL;
+    word32 size;
+    long   sz;
+    int    ret;
+    DerBuffer *der = NULL;
+    byte*  p = NULL;
+    byte*  g = NULL;
+    word32 pSz = MAX_DH_SIZE;
+    word32 gSz = MAX_DH_SIZE;
+    int    memAlloced = 0;
 
     WOLFSSL_ENTER("wolfSSL_PEM_read_bio_DHparams");
-    WOLFSSL_STUB("wolfSSL_PEM_read_bio_DHparams");
+    (void)cb;
+    (void)u;
 
+    if (bio == NULL) {
+        WOLFSSL_MSG("Bad Function Argument bio is NULL");
+        return NULL;
+    }
+
+    if (bio->type == WOLFSSL_BIO_MEMORY) {
+        /* Use the buffer directly. */
+        ret = wolfSSL_BIO_get_mem_data(bio, (const unsigned char**)&mem);
+        if (mem == NULL || ret <= 0) {
+            WOLFSSL_MSG("Failed to get data from bio struct");
+            goto end;
+        }
+        size = ret;
+    }
+    else if (bio->type == WOLFSSL_BIO_FILE) {
+        /* Read whole file into a new buffer. */
+        XFSEEK(bio->file, 0, SEEK_END);
+        sz = XFTELL(bio->file);
+        XFSEEK(bio->file, 0, SEEK_SET);
+        if (sz <= 0L)
+            goto end;
+        mem = (unsigned char*)XMALLOC(sz, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+        if (mem == NULL)
+            goto end;
+        memAlloced = 1;
+
+        if (wolfSSL_BIO_read(bio, (char *)mem, (int)sz) <= 0)
+            goto end;
+        size = (word32)sz;
+    }
+    else {
+        WOLFSSL_MSG("BIO type not supported for reading DH parameters");
+        goto end;
+    }
+
+    ret = PemToDer(mem, size, DH_PARAM_TYPE, &der, NULL, NULL, NULL);
+    if (ret != 0)
+        goto end;
+
+    /* Use the object passed in, otherwise allocate a new object */
+    if (x != NULL)
+        localDh = *x;
+    if (localDh == NULL) {
+        localDh = (WOLFSSL_DH*)XMALLOC(sizeof(WOLFSSL_DH), NULL,
+                                       DYNAMIC_TYPE_OPENSSL);
+        if (localDh == NULL)
+            goto end;
+        XMEMSET(localDh, 0, sizeof(WOLFSSL_DH));
+    }
+
+    /* Load data in manually */
+    p = (byte*)XMALLOC(pSz, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    g = (byte*)XMALLOC(gSz, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    if (p == NULL || g == NULL)
+        goto end;
+
+    /* Extract the p and g as data from the DER encoded DH parameters. */
+    ret = wc_DhParamsLoad(der->buffer, der->length, p, &pSz, g, &gSz);
+    if (ret != 0) {
+        if (x != NULL && localDh != *x)
+            XFREE(localDh, NULL, DYNAMIC_TYPE_OPENSSL);
+        localDh = NULL;
+        goto end;
+    }
+
+    if (x != NULL)
+        *x = localDh;
+
+    /* Put p and g in as big numbers. */
+    if (localDh->p != NULL) {
+        wolfSSL_BN_free(localDh->p);
+        localDh->p = NULL;
+    }
+    if (localDh->g != NULL) {
+        wolfSSL_BN_free(localDh->g);
+        localDh->g = NULL;
+    }
+    localDh->p = wolfSSL_BN_bin2bn(p, pSz, NULL);
+    localDh->g = wolfSSL_BN_bin2bn(g, gSz, NULL);
+    if (localDh->p == NULL || localDh->g == NULL) {
+        if (x != NULL && localDh != *x)
+            wolfSSL_DH_free(localDh);
+        localDh = NULL;
+    }
+
+end:
+    if (memAlloced) XFREE(mem, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    if (der != NULL) FreeDer(&der);
+    XFREE(p, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    XFREE(g, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    return localDh;
+#else
+    (void)bio;
+    (void)x;
+    (void)cb;
+    (void)u;
     return NULL;
+#endif
 }
-
+#endif
 
 #ifdef WOLFSSL_CERT_GEN
 
