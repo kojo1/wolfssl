@@ -12948,7 +12948,8 @@ static void ExternalFreeX509(WOLFSSL_X509* x509)
                 textSz = name->fullName.dcLen;
             break;
             default:
-                break;
+                WOLFSSL_MSG("Entry type not found");
+                return SSL_FATAL_ERROR;
         }
 
         if (buf != NULL && text != NULL) {

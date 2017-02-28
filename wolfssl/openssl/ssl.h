@@ -548,7 +548,6 @@ typedef WOLFSSL_X509_NAME_ENTRY X509_NAME_ENTRY;
 #endif
 
  /* matchs ASN_..._NAME in asn.h */
-#define NID_commonName   0x03  /* CN */
 #define NID_surname      0x04,   /* SN */
 #define NID_serialNumber 0x05,   /* serialNumber */
 #define NID_countryName  0x06,   /* C  */
@@ -556,8 +555,6 @@ typedef WOLFSSL_X509_NAME_ENTRY X509_NAME_ENTRY;
 #define NID_stateOrProvinceName    0x08,   /* ST */
 #define NID_organizationName       0x0a,   /* O  */
 #define NID_organizationalUnitName 0x0b,   /* OU */
-#define NID_domainComponent 0x10
-                            /* matchs ASN_DOMAIN_COMPONENT in asn.h */
 /* NIDs */
 enum {
     NID_des    = 66,
@@ -748,6 +745,9 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define NID_policy_constraints        150
 #define NID_inhibit_any_policy        168 /* 2.5.29.54 */
 #define NID_tlsfeature                92  /* id-pe 24 */
+#define NID_commonName 0x03 /* matchs ASN_COMMON_NAME in asn.h */
+#define NID_domainComponent 0x19
+                            /* matchs ASN_DOMAIN_COMPONENT in asn.h */
 
 
 #define SSL_CTX_set_msg_callback        wolfSSL_CTX_set_msg_callback
