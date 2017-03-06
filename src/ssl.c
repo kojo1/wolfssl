@@ -11710,6 +11710,7 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
             WOLFSSL_MSG("ARC4");
             ctx->cipherType = ARC4_TYPE;
             ctx->flags      = WOLFSSL_EVP_CIPH_STREAM_CIPHER;
+            ctx->block_size = 1;
             if (ctx->keyLen == 0)  /* user may have already set */
                 ctx->keyLen = 16;  /* default to 128 */
             if (key)
@@ -11724,6 +11725,7 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
             ctx->cipherType = IDEA_CBC_TYPE;
             ctx->flags      = WOLFSSL_EVP_CIPH_CBC_MODE;
             ctx->keyLen     = IDEA_KEY_SIZE;
+            ctx->block_size = 8;
             if (enc == 0 || enc == 1)
                 ctx->enc = enc ? 1 : 0;
             if (key) {
@@ -11743,6 +11745,7 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
             WOLFSSL_MSG("NULL cipher");
             ctx->cipherType = NULL_CIPHER_TYPE;
             ctx->keyLen = 0;
+            ctx->block_size = 16;
             ret = 0;  /* success */
         }
 

@@ -228,6 +228,14 @@ static int evpCipherBlock(WOLFSSL_EVP_CIPHER_CTX *ctx,
             break;
         #endif
     #endif
+    #ifndef NO_RC4
+        case ARC4_TYPE:
+        if (ctx->enc)
+            wc_Arc4Process(&ctx->cipher.arc4, out, in, inl);
+        else
+            wc_Arc4Process(&ctx->cipher.arc4, out, in, inl);
+        break;
+    #endif
         default:
             return 0;
         }
@@ -281,8 +289,8 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
         /* process blocks */
         if (evpCipherBlock(ctx, out, in, blocks * ctx->block_size) == 0)
             return 0;
-        PRINT_BUF(in, ctx->block_size);
-        PRINT_BUF(out,ctx->block_size);
+        PRINT_BUF(in, ctx->block_size*blocks);
+        PRINT_BUF(out,ctx->block_size*blocks);
         inl  -= ctx->block_size * blocks;
         in   += ctx->block_size * blocks;
         if(ctx->enc == 0){
