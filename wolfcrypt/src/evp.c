@@ -244,9 +244,11 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
     int blocks;
     int fill;
 
-    if (ctx == NULL) return BAD_FUNC_ARG;
-    WOLFSSL_ENTER("wolfSSL_EVP_CipherUpdate");
     *outl = 0;
+    if ((ctx == NULL) || (inl < 0))return BAD_FUNC_ARG;
+    WOLFSSL_ENTER("wolfSSL_EVP_CipherUpdate");
+
+    if(inl == 0)return 0;
     if (ctx->bufUsed > 0) { /* concatinate them if there is anything */
         fill = fillBuff(ctx, in, inl);
         inl -= fill;
@@ -284,8 +286,7 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
         inl  -= ctx->block_size * blocks;
         in   += ctx->block_size * blocks;
         if(ctx->enc == 0){
-            if ((ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING) ||
-               ((inl % ctx->block_size) == 0)){
+            if ((ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING)){
                 ctx->lastUsed = 0;
                 XMEMCPY(ctx->lastBlock, &out[ctx->block_size * blocks], ctx->block_size);
                 *outl+= ctx->block_size * blocks;
@@ -337,11 +338,12 @@ WOLFSSL_API int  wolfSSL_EVP_CipherFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
     if (ctx == NULL) return BAD_FUNC_ARG;
     WOLFSSL_ENTER("wolfSSL_EVP_CipherFinal");
     if (ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING) {
+        if(ctx->bufUsed != 0)return 0;
         *outl = 0;
         return 1;
     }
     if (ctx->enc) {
-        if (ctx->bufUsed > 0) {
+        if (ctx->bufUsed >= 0) {
             padBlock(ctx);
             PRINT_BUF(ctx->buf, ctx->block_size);
             if (evpCipherBlock(ctx, out, ctx->buf, ctx->block_size) == 0)
