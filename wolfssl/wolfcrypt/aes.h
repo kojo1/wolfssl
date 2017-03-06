@@ -93,7 +93,7 @@ typedef struct Aes {
         AesType type;                       /* aes key type */
     #endif
 #endif /* WOLFSSL_ASYNC_CRYPT */
-#ifdef WOLFSSL_AES_COUNTER
+#if defined(WOLFSSL_AES_COUNTER) || defined(HAVE_AES_CFB)
     word32  left;            /* unused bytes left from last call */
 #endif
 #ifdef WOLFSSL_PIC32MZ_CRYPT
@@ -123,6 +123,15 @@ WOLFSSL_API int  wc_AesCbcEncrypt(Aes* aes, byte* out,
                                   const byte* in, word32 sz);
 WOLFSSL_API int  wc_AesCbcDecrypt(Aes* aes, byte* out,
                                   const byte* in, word32 sz);
+
+#ifdef HAVE_AES_CFB
+WOLFSSL_API int wc_AesCfbEncrypt(Aes* aes, byte* out,
+                                    const byte* in, word32 sz);
+#ifdef HAVE_AES_DECRYPT
+WOLFSSL_API int wc_AesCfbDecrypt(Aes* aes, byte* out,
+                                    const byte* in, word32 sz);
+#endif /* HAVE_AES_DECRYPT */
+#endif /* HAVE_AES_CFB */
 
 #ifdef HAVE_AES_ECB
 WOLFSSL_API int wc_AesEcbEncrypt(Aes* aes, byte* out,
