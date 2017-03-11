@@ -6162,7 +6162,7 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PrivateKey(int type, WOLFSSL_EVP_PKEY** out,
 
 long wolfSSL_ctrl(WOLFSSL* ssl, int cmd, long opt, void* pt)
 {
-    WOLFSSL_STUB("wolfSSL_ctrl");
+    WOLFSSL_STUB("SSL_ctrl");
     (void)ssl;
     (void)cmd;
     (void)opt;
@@ -12754,7 +12754,7 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
         /* TODO: maybe? */
         (void)ctx;
         (void)m;
-        WOLFSSL_STUB("SL_CTX_set_default_read_ahead");
+        WOLFSSL_STUB("SSL_CTX_set_default_read_ahead");
     }
 
 
@@ -15252,6 +15252,7 @@ WOLFSSL_ASN1_TIME* wolfSSL_X509_CRL_get_lastUpdate(WOLFSSL_X509_CRL* crl)
 WOLFSSL_ASN1_TIME* wolfSSL_X509_CRL_get_nextUpdate(WOLFSSL_X509_CRL* crl)
 {
     (void)crl;
+    WOLFSSL_STUB("X509_CRL_get_nextUpdate");
     return 0;
 }
 
@@ -15290,6 +15291,7 @@ int wolfSSL_X509_CRL_verify(WOLFSSL_X509_CRL* crl, WOLFSSL_EVP_PKEY* key)
 {
     (void)crl;
     (void)key;
+    WOLFSSL_STUB("X509_CRL_verify");
     return 0;
 }
 
@@ -15305,6 +15307,7 @@ void wolfSSL_X509_STORE_CTX_set_error(WOLFSSL_X509_STORE_CTX* ctx, int err)
 void wolfSSL_X509_OBJECT_free_contents(WOLFSSL_X509_OBJECT* obj)
 {
     (void)obj;
+    WOLFSSL_STUB("X509_OBJECT_free_contents");
 }
 
 
@@ -15362,6 +15365,7 @@ WOLFSSL_X509_REVOKED* wolfSSL_sk_X509_REVOKED_value(
 {
     (void)revoked;
     (void)value;
+    WOLFSSL_STUB("sk_X509_REVOKED_value");
     return 0;
 }
 
@@ -15633,6 +15637,7 @@ unsigned long wolfSSL_get_options(const WOLFSSL* ssl)
 WOLFSSL_API long wolfSSL_clear_num_renegotiations(WOLFSSL *s)
 {
     (void)s;
+    WOLFSSL_STUB("SSL_clear_num_renegotiations");
     return 0;
 }
 
@@ -15640,6 +15645,7 @@ WOLFSSL_API long wolfSSL_clear_num_renegotiations(WOLFSSL *s)
 WOLFSSL_API long wolfSSL_total_renegotiations(WOLFSSL *s)
 {
     (void)s;
+    WOLFSSL_STUB("SSL_total_renegotiations");
     return 0;
 }
 
@@ -16143,7 +16149,7 @@ void wolfSSL_DES_set_key_unchecked(WOLFSSL_const_DES_cblock* myDes,
 void wolfSSL_DES_set_odd_parity(WOLFSSL_DES_cblock* myDes)
 {
     (void)myDes;
-    WOLFSSL_STUB("wolfSSL_DES_set_odd_parity");
+    WOLFSSL_STUB("DES_set_odd_parity");
 }
 
 
@@ -16188,6 +16194,7 @@ int wolfSSL_BIO_printf(WOLFSSL_BIO* bio, const char* format, ...)
 {
     (void)bio;
     (void)format;
+    WOLFSSL_STUB("BIO_printf");
     return 0;
 }
 
@@ -16738,7 +16745,6 @@ WOLFSSL_BN_CTX* wolfSSL_BN_CTX_new(void)
     static int ctx;  /* wolfcrypt doesn't now need ctx */
 
     WOLFSSL_MSG("wolfSSL_BN_CTX_new");
-    WOLFSSL_STUB("SSL_BN_CTX_new");
     return (WOLFSSL_BN_CTX*)&ctx;
 
 }
@@ -16747,7 +16753,6 @@ void wolfSSL_BN_CTX_init(WOLFSSL_BN_CTX* ctx)
 {
     (void)ctx;
     WOLFSSL_MSG("wolfSSL_BN_CTX_init");
-    WOLFSSL_STUB("SSL_BN_CTX_init");
 }
 
 
@@ -16755,7 +16760,6 @@ void wolfSSL_BN_CTX_free(WOLFSSL_BN_CTX* ctx)
 {
     (void)ctx;
     WOLFSSL_MSG("wolfSSL_BN_CTX_free");
-    WOLFSSL_STUB("SSL_BN_CTX_free");
     /* do free since static ctx that does nothing */
 }
 
@@ -17046,7 +17050,7 @@ int wolfSSL_mask_bits(WOLFSSL_BIGNUM* bn, int n)
     (void)bn;
     (void)n;
     WOLFSSL_ENTER("wolfSSL_BN_mask_bits");
-    WOLFSSL_STUB("SSL_BN_mask_bits");
+    WOLFSSL_STUB("BN_mask_bits");
     return SSL_FAILURE;
 }
 
@@ -17556,7 +17560,7 @@ void wolfSSL_BN_CTX_start(WOLFSSL_BN_CTX *ctx)
     (void)ctx;
 
     WOLFSSL_ENTER("wolfSSL_BN_CTX_start");
-    WOLFSSL_STUB("SSL_BN_CTX_start");
+    WOLFSSL_STUB("BN_CTX_start");
     WOLFSSL_MSG("wolfSSL_BN_CTX_start TBD");
 }
 
@@ -19110,7 +19114,7 @@ WOLFSSL_DSA* wolfSSL_EVP_PKEY_get1_DSA(WOLFSSL_EVP_PKEY* key)
 {
     (void)key;
     WOLFSSL_MSG("wolfSSL_EVP_PKEY_get1_DSA not implemented");
-
+    WOLFSSL_STUB("EVP_PKEY_get1_DSA");
     return NULL;
 }
 
@@ -20138,7 +20142,7 @@ void wolfSSL_EC_KEY_set_asn1_flag(WOLFSSL_EC_KEY *key, int asn1_flag)
     (void)asn1_flag;
 
     WOLFSSL_ENTER("wolfSSL_EC_KEY_set_asn1_flag");
-    WOLFSSL_STUB("wolfSSL_EC_KEY_set_asn1_flag");
+    WOLFSSL_STUB("EC_KEY_set_asn1_flag");
 }
 
 /* return code compliant with OpenSSL :
@@ -21937,7 +21941,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     {
         (void) *d; (void) n; (void) *md;
         WOLFSSL_ENTER("wolfSSL_SHA1");
-        WOLFSSL_STUB("wolfssl_SHA1");
+        WOLFSSL_STUB("SHA1");
 
         return NULL;
     }
@@ -22005,7 +22009,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     int wolfSSL_OBJ_obj2nid(const WOLFSSL_ASN1_OBJECT *o) {
         (void)o;
         WOLFSSL_ENTER("wolfSSL_OBJ_obj2nid");
-        WOLFSSL_STUB("wolfSSL_OBJ_obj2nid");
+        WOLFSSL_STUB("OBJ_obj2nid");
 
         return 0;
     }
@@ -22034,7 +22038,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
         (void)ctx;
         (void)depth;
         WOLFSSL_ENTER("wolfSSL_CTX_set_verify_depth");
-        WOLFSSL_STUB("wolfSSL_CTX_set_verify_depth");
+        WOLFSSL_STUB("SSL_CTX_set_verify_depth");
 
     }
 
@@ -22106,14 +22110,14 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
         (void) sk;
         (void) f;
         WOLFSSL_ENTER("wolfSSL_sk_X509_NAME_pop_free");
-        WOLFSSL_STUB("wolfSSL_sk_X509_NAME_pop_free");
+        WOLFSSL_STUB("sk_X509_NAME_pop_free");
     }
 
     int wolfSSL_X509_check_private_key(WOLFSSL_X509 *x509, WOLFSSL_EVP_PKEY *key){
         (void) x509;
         (void) key;
         WOLFSSL_ENTER("wolfSSL_X509_check_private_key");
-        WOLFSSL_STUB("wolfSSL_X509_check_private_key");
+        WOLFSSL_STUB("X509_check_private_key");
 
         return SSL_SUCCESS;
     }
@@ -22121,7 +22125,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     STACK_OF(WOLFSSL_X509_NAME) *wolfSSL_dup_CA_list( STACK_OF(WOLFSSL_X509_NAME) *sk ){
         (void) sk;
         WOLFSSL_ENTER("wolfSSL_dup_CA_list");
-        WOLFSSL_STUB("wolfSSL_dup_CA_list");
+        WOLFSSL_STUB("SSL_dup_CA_list");
 
         return NULL;
     }
@@ -22379,7 +22383,7 @@ WOLFSSL_DSA *wolfSSL_PEM_read_bio_DSAparams(WOLFSSL_BIO *bp, WOLFSSL_DSA **x,
 char * wolfSSL_OBJ_nid2ln(int n) {
     (void)n;
     WOLFSSL_ENTER("wolfSSL_OBJ_nid2ln");
-    WOLFSSL_STUB("wolfSSL_OBJ_nid2ln");
+    WOLFSSL_STUB("OBJ_nid2ln");
 
     return NULL;
 }
@@ -22387,7 +22391,7 @@ char * wolfSSL_OBJ_nid2ln(int n) {
 int wolfSSL_OBJ_txt2nid(const char* s) {
     (void)s;
     WOLFSSL_ENTER("wolfSSL_OBJ_txt2nid");
-    WOLFSSL_STUB("wolfSSL_OBJ_txt2nid");
+    WOLFSSL_STUB("OBJ_txt2nid");
 
     return 0;
 }
@@ -22701,7 +22705,7 @@ int wolfSSL_CRYPTO_set_mem_ex_functions(void *(*m) (size_t, const char *, int),
     (void) r;
     (void) f;
     WOLFSSL_ENTER("wolfSSL_CRYPTO_set_mem_ex_functions");
-    WOLFSSL_STUB("wolfSSL_CRYPTO_set_mem_ex_functions");
+    WOLFSSL_STUB("CRYPTO_set_mem_ex_functions");
 
     return SSL_FAILURE;
 }
@@ -22965,7 +22969,6 @@ int wolfSSL_X509_NAME_get_sz(WOLFSSL_X509_NAME* name)
 const byte* wolfSSL_SESSION_get_id(WOLFSSL_SESSION* sess, unsigned int* idLen)
 {
     WOLFSSL_ENTER("wolfSSL_SESSION_get_id");
-    WOLFSSL_STUB("SSL_SESSION_get_id");
     if(!sess || !idLen) {
         WOLFSSL_MSG("Bad func args. Please provide idLen");
         return NULL;
@@ -23062,7 +23065,7 @@ void wolfSSL_THREADID_set_callback(void(*threadid_func)(void*))
 void wolfSSL_THREADID_set_numeric(void* id, unsigned long val)
 {
     WOLFSSL_ENTER("wolfSSL_THREADID_set_numeric");
-    WOLFSSL_STUB("wolfSSL_THREADID_set_numeric");
+    WOLFSSL_STUB("CRYPTO_THREADID_set_numeric");
     (void)id;
     (void)val;
     return;
@@ -23073,7 +23076,7 @@ STACK_OF(WOLFSSL_X509)* wolfSSL_X509_STORE_get1_certs(WOLFSSL_X509_STORE_CTX* ct
                                                 WOLFSSL_X509_NAME* name)
 {
     WOLFSSL_ENTER("wolfSSL_X509_STORE_get1_certs");
-    WOLFSSL_STUB("wolfSSL_X509_STORE_get1_certs");
+    WOLFSSL_STUB("X509_STORE_get1_certs");
     (void)ctx;
     (void)name;
     return NULL;
