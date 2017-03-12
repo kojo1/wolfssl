@@ -4279,7 +4279,7 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
                    byte* authTag, word32 authTagSz,
                    const byte* authIn, word32 authInSz)
 {
-#if defined(FREESCALE_LTC_AES_GCM) || defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)
+#if defined(FREESCALE_LTC_AES_GCM) ||((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
     byte *key;
     uint32_t keySize;
     int  status;
@@ -4296,7 +4296,7 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
 
     return (status == kStatus_Success) ? 0 : AES_GCM_AUTH_E;
 
-    #elif defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)
+    #elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
 //#define DEBUG_AES
 #ifdef  DEBUG_AES
     #include "stdio.h"
@@ -4489,13 +4489,13 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
 }
 
 
-#if defined(HAVE_AES_DECRYPT) || defined(HAVE_AESGCM_DECRYPT)
+#if (defined(HAVE_AES_DECRYPT) || defined(HAVE_AESGCM_DECRYPT))
 int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
                    const byte* iv, word32 ivSz,
                    const byte* authTag, word32 authTagSz,
                    const byte* authIn, word32 authInSz)
 {
-#if defined(FREESCALE_LTC_AES_GCM) || defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)
+#if defined(FREESCALE_LTC_AES_GCM) ||((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
     byte *key;
     uint32_t keySize;
     int  status;
@@ -4513,7 +4513,7 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
 
     return (status == kStatus_Success) ? 0 : AES_GCM_AUTH_E;
 
-    #elif defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)
+    #elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
     {
         byte tag[STM32_TAGSZ];
         byte scratch[AES_BLOCK_SIZE];
