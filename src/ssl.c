@@ -15869,7 +15869,7 @@ void wolfSSL_CTX_set_info_callback(WOLFSSL_CTX* ctx,
 {
     (void)ctx;
     (void)f;
-    WOLFSSL_STUB("CTX_set_info_callback");
+    WOLFSSL_STUB("SSL_CTX_set_info_callback");
 
 }
 #endif
@@ -16854,7 +16854,7 @@ void wolfSSL_CTX_sess_set_get_cb(WOLFSSL_CTX* ctx,
 {
     (void)ctx;
     (void)f;
-    WOLFSSL_STUB("CTX_sess_set_get_cb");
+    WOLFSSL_STUB("SSL_CTX_sess_set_get_cb");
 }
 #endif
 
@@ -16864,7 +16864,7 @@ void wolfSSL_CTX_sess_set_new_cb(WOLFSSL_CTX* ctx,
 {
     (void)ctx;
     (void)f;
-    WOLFSSL_STUB("CTX_sess_set_new_cb");
+    WOLFSSL_STUB("SSL_CTX_sess_set_new_cb");
 }
 #endif
 
@@ -16874,7 +16874,7 @@ void wolfSSL_CTX_sess_set_remove_cb(WOLFSSL_CTX* ctx, void (*f)(WOLFSSL_CTX*,
 {
     (void)ctx;
     (void)f;
-    WOLFSSL_STUB("CTX_sess_set_remove_cb");
+    WOLFSSL_STUB("SSL_CTX_sess_set_remove_cb");
 }
 #endif
 
