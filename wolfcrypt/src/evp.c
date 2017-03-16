@@ -351,7 +351,7 @@ WOLFSSL_API int  wolfSSL_EVP_CipherFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
         return 1;
     }
     if (ctx->enc) {
-        if (ctx->bufUsed >= 0) {
+        if ((ctx->bufUsed >= 0) && (ctx->block_size != 1)) {
             padBlock(ctx);
             PRINT_BUF(ctx->buf, ctx->block_size);
             if (evpCipherBlock(ctx, out, ctx->buf, ctx->block_size) == 0)
@@ -507,6 +507,10 @@ unsigned long WOLFSSL_CIPHER_mode(const WOLFSSL_EVP_CIPHER *cipher)
         case DES_ECB_TYPE:
         case DES_EDE3_ECB_TYPE:
             return WOLFSSL_EVP_CIPH_ECB_MODE ;
+    #endif
+    #ifndef NO_RC4
+        case ARC4_TYPE:
+            return EVP_CIPH_STREAM_CIPHER;
     #endif
         default:
             return 0;
