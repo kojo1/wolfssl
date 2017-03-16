@@ -17093,36 +17093,27 @@ int wolfSSL_RAND_bytes(unsigned char* buf, int num)
     return ret;
 }
 
-#ifndef NO_WOLFSSL_STUB
 WOLFSSL_BN_CTX* wolfSSL_BN_CTX_new(void)
 {
     static int ctx;  /* wolfcrypt doesn't now need ctx */
 
     WOLFSSL_MSG("wolfSSL_BN_CTX_new");
-    WOLFSSL_STUB("BN_CTX_new");
     return (WOLFSSL_BN_CTX*)&ctx;
 
 }
-#endif
 
-#ifndef NO_WOLFSSL_STUB
 void wolfSSL_BN_CTX_init(WOLFSSL_BN_CTX* ctx)
 {
     (void)ctx;
     WOLFSSL_MSG("wolfSSL_BN_CTX_init");
-    WOLFSSL_STUB("BN_CTX_init");
 }
-#endif
 
-#ifndef NO_WOLFSSL_STUB
 void wolfSSL_BN_CTX_free(WOLFSSL_BN_CTX* ctx)
 {
     (void)ctx;
     WOLFSSL_MSG("wolfSSL_BN_CTX_free");
-    WOLFSSL_STUB("BN_CTX_free");
     /* do free since static ctx that does nothing */
 }
-#endif
 
 static void InitwolfSSL_BigNum(WOLFSSL_BIGNUM* bn)
 {
@@ -23702,16 +23693,6 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
         }
         return NULL;
     }
-
-    #ifndef NO_WOLFSSL_STUB
-    int wolfSSL_OBJ_obj2nid(const WOLFSSL_ASN1_OBJECT *o) {
-        (void)o;
-        WOLFSSL_ENTER("wolfSSL_OBJ_obj2nid");
-        WOLFSSL_STUB("OBJ_obj2nid");
-
-        return 0;
-    }
-    #endif
 
     int wolfSSL_OBJ_sn2nid(const char *sn) {
         int i;
