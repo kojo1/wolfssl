@@ -1,4 +1,4 @@
-/* err.h
+/* objects.h
  *
  * Copyright (C) 2006-2016 wolfSSL Inc.
  *
@@ -19,14 +19,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-#ifndef WOLFSSL_OPENSSL_ERR_
-#define WOLFSSL_OPENSSL_ERR_
 
+#ifndef WOLFSSL_OBJECTS_H_
+#define WOLFSSL_OBJECTS_H_
+
+#include <wolfssl/wolfcrypt/settings.h>
 #include <wolfssl/openssl/ssl.h>
 
-#define ERR_load_crypto_strings          wolfSSL_ERR_load_crypto_strings
-#define ERR_peek_last_error              wolfSSL_ERR_peek_last_error
-#define ERR_remove_state                 wolfSSL_ERR_remove_state
+#ifdef __cplusplus
+    extern "C" {
+#endif
 
-#endif /* WOLFSSL_OPENSSL_ERR_ */
+#define OBJ_nid2sn  wolfSSL_OBJ_nid2sn
+#define OBJ_obj2nid wolfSSL_OBJ_obj2nid
+#define OBJ_sn2nid  wolfSSL_OBJ_sn2nid
+#define OBJ_nid2ln  wolfSSL_OBJ_nid2ln
+#define OBJ_txt2nid wolfSSL_OBJ_txt2nid
+#define OBJ_nid2obj wolfSSL_OBJ_nid2obj
+#define OBJ_obj2txt wolfSSL_OBJ_obj2txt
+#define OBJ_cleanup wolfSSL_OBJ_cleanup
+#define ASN1_OBJECT_free wolfSSL_ASN1_OBJECT_free
 
+
+#ifdef __cplusplus
+    }  /* extern "C" */
+#endif
+
+#endif /* WOLFSSL_OBJECTS_H_ */

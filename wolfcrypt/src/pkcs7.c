@@ -2808,32 +2808,32 @@ static int wc_PKCS7_DecryptContent(int encryptOID, byte* key, int keySz,
 static int wc_PKCS7_GenerateIV(WC_RNG* rng, byte* iv, word32 ivSz)
 {
     int ret;
-    WC_RNG* random = NULL;
+    WC_RNG* rnd = NULL;
 
     if (iv == NULL || ivSz == 0)
         return BAD_FUNC_ARG;
 
     /* input RNG is optional, init local one if input rng is NULL */
     if (rng == NULL) {
-        random = (WC_RNG*)XMALLOC(sizeof(WC_RNG), NULL, DYNAMIC_TYPE_RNG);
-        if (random == NULL)
+        rnd = (WC_RNG*)XMALLOC(sizeof(WC_RNG), NULL, DYNAMIC_TYPE_RNG);
+        if (rnd == NULL)
             return MEMORY_E;
 
-        ret = wc_InitRng(random);
+        ret = wc_InitRng(rnd);
         if (ret != 0) {
-            XFREE(random, NULL, DYNAMIC_TYPE_RNG);
+            XFREE(rnd, NULL, DYNAMIC_TYPE_RNG);
             return ret;
         }
 
     } else {
-        random = rng;
+        rnd = rng;
     }
 
-    ret = wc_RNG_GenerateBlock(random, iv, ivSz);
+    ret = wc_RNG_GenerateBlock(rnd, iv, ivSz);
 
     if (rng == NULL) {
-        wc_FreeRng(random);
-        XFREE(random, NULL, DYNAMIC_TYPE_RNG);
+        wc_FreeRng(rnd);
+        XFREE(rnd, NULL, DYNAMIC_TYPE_RNG);
     }
 
     return ret;

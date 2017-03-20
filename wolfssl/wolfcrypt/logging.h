@@ -55,6 +55,8 @@ WOLFSSL_API int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb log_function);
             const char **reason, int *line);
     WOLFSSL_LOCAL void wc_RemoveErrorNode(int index);
     WOLFSSL_LOCAL void wc_ClearErrorNodes(void);
+    WOLFSSL_LOCAL int wc_PullErrorNode(const char **file, const char **reason,
+                            int *line);
     WOLFSSL_API   int wc_SetLoggingHeap(void* h);
     WOLFSSL_API   int wc_ERR_remove_state(void);
     #if !defined(NO_FILESYSTEM) && !defined(NO_STDIO_FILESYSTEM)

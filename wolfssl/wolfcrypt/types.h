@@ -399,6 +399,7 @@
         DYNAMIC_TYPE_ASYNC        = 66,
         DYNAMIC_TYPE_ASYNC_NUMA   = 67,
         DYNAMIC_TYPE_ASYNC_NUMA64 = 68,
+        DYNAMIC_TYPE_NAME_ENTRY   = 68,
 	};
 
 	/* max error buffer string size */

@@ -228,6 +228,14 @@ static int evpCipherBlock(WOLFSSL_EVP_CIPHER_CTX *ctx,
             break;
         #endif
     #endif
+    #ifndef NO_RC4
+        case ARC4_TYPE:
+        if (ctx->enc)
+            wc_Arc4Process(&ctx->cipher.arc4, out, in, inl);
+        else
+            wc_Arc4Process(&ctx->cipher.arc4, out, in, inl);
+        break;
+    #endif
         default:
             return 0;
         }
@@ -244,9 +252,11 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
     int blocks;
     int fill;
 
-    if (ctx == NULL) return BAD_FUNC_ARG;
-    WOLFSSL_ENTER("wolfSSL_EVP_CipherUpdate");
     *outl = 0;
+    if ((ctx == NULL) || (inl < 0))return BAD_FUNC_ARG;
+    WOLFSSL_ENTER("wolfSSL_EVP_CipherUpdate");
+
+    if(inl == 0)return 0;
     if (ctx->bufUsed > 0) { /* concatinate them if there is anything */
         fill = fillBuff(ctx, in, inl);
         inl -= fill;
@@ -258,7 +268,7 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
         *outl+= ctx->block_size;
         out  += ctx->block_size;
     }
-    if ((ctx->bufUsed == ctx->block_size) || (ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING)){
+    if (ctx->bufUsed == ctx->block_size){
         /* the buff is full, flash out */
         PRINT_BUF(ctx->buf, ctx->block_size);
         if (evpCipherBlock(ctx, out, ctx->buf, ctx->block_size) == 0)
@@ -277,16 +287,22 @@ WOLFSSL_API int wolfSSL_EVP_CipherUpdate(WOLFSSL_EVP_CIPHER_CTX *ctx,
     blocks = inl / ctx->block_size;
     if (blocks > 0) {
         /* process blocks */
-        if (evpCipherBlock(ctx, out, in, blocks*ctx->block_size) == 0)
+        if (evpCipherBlock(ctx, out, in, blocks * ctx->block_size) == 0)
             return 0;
-        PRINT_BUF(ctx->buf, ctx->block_size);
-        PRINT_BUF(out,      ctx->block_size);
+        PRINT_BUF(in, ctx->block_size*blocks);
+        PRINT_BUF(out,ctx->block_size*blocks);
         inl  -= ctx->block_size * blocks;
         in   += ctx->block_size * blocks;
         if(ctx->enc == 0){
-            ctx->lastUsed = 1;
-            XMEMCPY(ctx->lastBlock, &out[ctx->block_size * (blocks-1)], ctx->block_size);
-            *outl+= ctx->block_size * (blocks-1);
+            if ((ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING)){
+                ctx->lastUsed = 0;
+                XMEMCPY(ctx->lastBlock, &out[ctx->block_size * blocks], ctx->block_size);
+                *outl+= ctx->block_size * blocks;
+            } else {
+                ctx->lastUsed = 1;
+                XMEMCPY(ctx->lastBlock, &out[ctx->block_size * (blocks-1)], ctx->block_size);
+                *outl+= ctx->block_size * (blocks-1);
+            }
         } else {
             *outl+= ctx->block_size * blocks;
         }
@@ -330,11 +346,12 @@ WOLFSSL_API int  wolfSSL_EVP_CipherFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
     if (ctx == NULL || out == NULL) return BAD_FUNC_ARG;
     WOLFSSL_ENTER("wolfSSL_EVP_CipherFinal");
     if (ctx->flags & WOLFSSL_EVP_CIPH_NO_PADDING) {
+        if(ctx->bufUsed != 0)return 0;
         *outl = 0;
         return 1;
     }
     if (ctx->enc) {
-        if (ctx->bufUsed > 0) {
+        if ((ctx->bufUsed >= 0) && (ctx->block_size != 1)) {
             padBlock(ctx);
             PRINT_BUF(ctx->buf, ctx->block_size);
             if (evpCipherBlock(ctx, out, ctx->buf, ctx->block_size) == 0)
@@ -491,6 +508,10 @@ unsigned long WOLFSSL_CIPHER_mode(const WOLFSSL_EVP_CIPHER *cipher)
         case DES_EDE3_ECB_TYPE:
             return WOLFSSL_EVP_CIPH_ECB_MODE ;
     #endif
+    #ifndef NO_RC4
+        case ARC4_TYPE:
+            return EVP_CIPH_STREAM_CIPHER;
+    #endif
         default:
             return 0;
         }
@@ -532,4 +553,282 @@ WOLFSSL_API int wolfSSL_EVP_add_digest(const WOLFSSL_EVP_MD *digest)
     (void)digest;
     /* nothing to do */
     return 0;
+}
+
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_CTX_free(WOLFSSL_EVP_PKEY_CTX *ctx)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_CTX_free");
+    XFREE(ctx, NULL, DYNAMIC_TYPE_PUBLIC_KEY);
+    return 1;
+}
+
+WOLFSSL_API WOLFSSL_EVP_PKEY_CTX *wolfSSL_EVP_PKEY_CTX_new(WOLFSSL_EVP_PKEY *pkey, WOLFSSL_ENGINE *e)
+{
+    WOLFSSL_EVP_PKEY_CTX* ctx;
+
+    if (pkey == NULL)return 0;
+    if (e != NULL)   return 0;
+    WOLFSSL_ENTER("EVP_PKEY_CTX_new");
+
+    ctx = (WOLFSSL_EVP_PKEY_CTX*)XMALLOC(sizeof(WOLFSSL_EVP_PKEY_CTX), NULL,
+            DYNAMIC_TYPE_PUBLIC_KEY);
+    if(ctx == NULL)return NULL;
+    XMEMSET(ctx, 0, sizeof(WOLFSSL_EVP_PKEY_CTX));
+    ctx->pkey = pkey ;
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    ctx->padding = RSA_PKCS1_PADDING;
+#endif
+
+    return ctx;
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_CTX_set_rsa_padding(WOLFSSL_EVP_PKEY_CTX *ctx, int padding)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_CTX_set_rsa_padding");
+    ctx->padding = padding;
+    return 1;
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_decrypt(WOLFSSL_EVP_PKEY_CTX *ctx,
+                     unsigned char *out, size_t *outlen,
+                     const unsigned char *in, size_t inlen)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_decrypt");
+
+    (void)out;
+    (void)outlen;
+    (void)in;
+    (void)inlen;
+
+    switch(ctx->pkey->type){
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        *outlen = wolfSSL_RSA_private_decrypt((int)inlen, (unsigned char*)in, out,
+              ctx->pkey->rsa, ctx->padding);
+        if(*outlen > 0)
+            return 1;
+        else
+            return 0;
+#endif /* NO_RSA */
+
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+        return 0;
+    }
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_decrypt_init(WOLFSSL_EVP_PKEY_CTX *ctx)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_decrypt_init");
+    switch(ctx->pkey->type){
+    case EVP_PKEY_RSA:
+        ctx->op = EVP_PKEY_OP_ENCRYPT;
+        return 1;
+
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+
+        return 0;
+    }
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_encrypt(WOLFSSL_EVP_PKEY_CTX *ctx,
+                     unsigned char *out, size_t *outlen,
+                     const unsigned char *in, size_t inlen)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_encrypt");
+    if(ctx->op != EVP_PKEY_OP_ENCRYPT)return 0;
+
+    (void)out;
+    (void)outlen;
+    (void)in;
+    (void)inlen;
+
+    switch(ctx->pkey->type){
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        *outlen = wolfSSL_RSA_public_encrypt((int)inlen, (unsigned char *)in, out,
+                  ctx->pkey->rsa, ctx->padding);
+        return (int)*outlen;
+#endif /* NO_RSA */
+
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+        return 0;
+    }
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_encrypt_init(WOLFSSL_EVP_PKEY_CTX *ctx)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_encrypt_init");
+
+    switch(ctx->pkey->type){
+    case EVP_PKEY_RSA:
+        ctx->op = EVP_PKEY_OP_ENCRYPT;
+        return 1;
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+
+        return 0;
+    }
+
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_bits(const WOLFSSL_EVP_PKEY *pkey)
+{
+    int bytes;
+
+    if (pkey == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_bits");
+    if((bytes = wolfSSL_EVP_PKEY_size((WOLFSSL_EVP_PKEY*)pkey)) ==0)return 0;
+    return bytes*8 ;
+}
+
+WOLFSSL_API int wolfSSL_EVP_PKEY_size(WOLFSSL_EVP_PKEY *pkey)
+{
+    if (pkey == NULL)return 0;
+    WOLFSSL_ENTER("EVP_PKEY_size");
+
+    switch(pkey->type){
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        return (int)wolfSSL_RSA_size((const WOLFSSL_RSA*)(pkey->rsa));
+#endif /* NO_RSA */
+
+    case EVP_PKEY_EC:
+#ifdef HAVE_ECC
+        if (pkey->ecc == NULL || pkey->ecc->internal == NULL) {
+            WOLFSSL_MSG("No ECC key has been set");
+            return 0;
+        }
+        return wc_ecc_size((ecc_key*)(pkey->ecc->internal));
+#endif /* HAVE_ECC */
+
+    default:
+        return 0;
+    }
+}
+
+WOLFSSL_API int wolfSSL_EVP_SignInit(WOLFSSL_EVP_MD_CTX *ctx, const WOLFSSL_EVP_MD *type)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_SignInit");
+    return wolfSSL_EVP_DigestInit(ctx,type);
+}
+
+WOLFSSL_API int wolfSSL_EVP_SignUpdate(WOLFSSL_EVP_MD_CTX *ctx, const void *data, size_t len)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_SignUpdate(");
+    return wolfSSL_EVP_DigestUpdate(ctx, data, len);
+}
+
+/* macro gaurd because currently only used with RSA */
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+static int md2nid(int md)
+{
+    const char * d ;
+    d = (const char *)wolfSSL_EVP_get_md((const unsigned char)md);
+    if(XSTRNCMP(d, "SHA", 3) == 0)return NID_sha1;
+    if(XSTRNCMP(d, "MD5", 3) == 0)return NID_md5;
+    return 0;
+}
+#endif /* NO_RSA */
+
+WOLFSSL_API int wolfSSL_EVP_SignFinal(WOLFSSL_EVP_MD_CTX *ctx, unsigned char *sigret,
+                  unsigned int *siglen, WOLFSSL_EVP_PKEY *pkey)
+{
+    unsigned int mdsize;
+    unsigned char md[MAX_DIGEST_SIZE];
+    int ret;
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_SignFinal");
+
+    ret = wolfSSL_EVP_DigestFinal(ctx, md, &mdsize);
+    if(ret <= 0)return ret;
+
+    (void)sigret;
+    (void)siglen;
+
+    switch(pkey->type){
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        {
+        int nid = md2nid(ctx->macType);
+        if(nid < 0)return 0;
+        return wolfSSL_RSA_sign(nid, md, mdsize, sigret,
+                                siglen, pkey->rsa);
+        }
+#endif /* NO_RSA */
+
+    case EVP_PKEY_DSA:
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+        return 0;
+    }
+}
+
+WOLFSSL_API int wolfSSL_EVP_VerifyInit(WOLFSSL_EVP_MD_CTX *ctx, const WOLFSSL_EVP_MD *type)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_VerifyInit");
+    return wolfSSL_EVP_DigestInit(ctx,type);
+}
+
+WOLFSSL_API int wolfSSL_EVP_VerifyUpdate(WOLFSSL_EVP_MD_CTX *ctx, const void *data, size_t len)
+{
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_VerifyUpdate");
+    return wolfSSL_EVP_DigestUpdate(ctx, data, len);
+}
+
+WOLFSSL_API int wolfSSL_EVP_VerifyFinal(WOLFSSL_EVP_MD_CTX *ctx,
+        unsigned char*sig, unsigned int siglen, WOLFSSL_EVP_PKEY *pkey)
+{
+    int ret;
+    unsigned char md[MAX_DIGEST_SIZE];
+    unsigned int mdsize;
+
+    if (ctx == NULL)return 0;
+    WOLFSSL_ENTER("EVP_VerifyFinal");
+    ret = wolfSSL_EVP_DigestFinal(ctx, md, &mdsize);
+    if(ret <= 0)return ret;
+
+    (void)sig;
+    (void)siglen;
+
+    switch(pkey->type){
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:{
+        int nid = md2nid(ctx->macType);
+        if(nid < 0)return 0;
+        return wolfSSL_RSA_verify(nid, md, mdsize, sig,
+                (unsigned int)siglen, pkey->rsa);
+    }
+#endif /* NO_RSA */
+
+    case EVP_PKEY_DSA:
+    case EVP_PKEY_EC:
+        WOLFSSL_MSG("not implemented");
+        /* not implemented */
+    default:
+        return 0;
+    }
 }

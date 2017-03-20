@@ -1,4 +1,4 @@
-/* err.h
+/* buffer.h
  *
  * Copyright (C) 2006-2016 wolfSSL Inc.
  *
@@ -19,14 +19,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
-#ifndef WOLFSSL_OPENSSL_ERR_
-#define WOLFSSL_OPENSSL_ERR_
 
+#ifndef WOLFSSL_BUFFER_H_
+#define WOLFSSL_BUFFER_H_
+
+#include <wolfssl/wolfcrypt/settings.h>
 #include <wolfssl/openssl/ssl.h>
 
-#define ERR_load_crypto_strings          wolfSSL_ERR_load_crypto_strings
-#define ERR_peek_last_error              wolfSSL_ERR_peek_last_error
-#define ERR_remove_state                 wolfSSL_ERR_remove_state
+#ifdef __cplusplus
+    extern "C" {
+#endif
 
-#endif /* WOLFSSL_OPENSSL_ERR_ */
+struct WOLFSSL_BUF_MEM {
+    char*  data;
+    size_t length; /* current length */
+    size_t max;    /* maximum length */
+};
 
+
+WOLFSSL_API WOLFSSL_BUF_MEM* wolfSSL_BUF_MEM_new(void);
+WOLFSSL_API int wolfSSL_BUF_MEM_grow(WOLFSSL_BUF_MEM* buf, size_t len);
+WOLFSSL_API void wolfSSL_BUF_MEM_free(WOLFSSL_BUF_MEM* buf);
+
+
+#define BUF_MEM_new  wolfSSL_BUF_MEM_new
+#define BUF_MEM_grow wolfSSL_BUF_MEM_grow
+#define BUF_MEM_free wolfSSL_BUF_MEM_free
+
+/* error codes */
+#define ERR_R_MALLOC_FAILURE  MEMORY_E
+
+
+#ifdef __cplusplus
+    }  /* extern "C" */
+#endif
+
+#endif /* WOLFSSL_BUFFER_H_ */
