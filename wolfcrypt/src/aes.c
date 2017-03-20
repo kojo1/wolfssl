@@ -4332,9 +4332,7 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
             XMEMCPY(initialCounter, iv, ivSz);
             initialCounter[AES_BLOCK_SIZE - 1] = 1;
         }
-        else {
-            GHASH(aes, NULL, 0, iv, ivSz, initialCounter, AES_BLOCK_SIZE);
-        }
+        else goto err_exit;
         IncrementGcmCounter(initialCounter);
 
         XMEMCPY(ctr, initialCounter, AES_BLOCK_SIZE);
@@ -4537,9 +4535,8 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
             XMEMCPY(initialCounter, iv, ivSz);
             initialCounter[AES_BLOCK_SIZE - 1] = 1;
         }
-        else {
-            GHASH(aes, NULL, 0, iv, ivSz, initialCounter, AES_BLOCK_SIZE);
-        }
+        else goto err_exit;
+        
         IncrementGcmCounter(initialCounter);
 
         ByteReverseWords((word32 *)k, (word32 *)key, keySize);
