@@ -653,6 +653,9 @@ WOLFSSL_API WOLFSSL_X509* wolfSSL_X509_STORE_CTX_get_current_cert(
 WOLFSSL_API int   wolfSSL_X509_STORE_CTX_get_error(WOLFSSL_X509_STORE_CTX*);
 WOLFSSL_API int   wolfSSL_X509_STORE_CTX_get_error_depth(WOLFSSL_X509_STORE_CTX*);
 
+WOLFSSL_API int wolfSSL_i2d_X509_NAME(WOLFSSL_X509_NAME* n,
+                                                           unsigned char** out);
+WOLFSSL_API int wolfSSL_X509_print(WOLFSSL_BIO* bio, WOLFSSL_X509* x509);
 WOLFSSL_API char*       wolfSSL_X509_NAME_oneline(WOLFSSL_X509_NAME*, char*, int);
 WOLFSSL_API WOLFSSL_X509_NAME*  wolfSSL_X509_get_issuer_name(WOLFSSL_X509*);
 WOLFSSL_API WOLFSSL_X509_NAME*  wolfSSL_X509_get_subject_name(WOLFSSL_X509*);
@@ -721,6 +724,8 @@ WOLFSSL_API WOLFSSL_PKCS8_PRIV_KEY_INFO* wolfSSL_d2i_PKCS8_PKEY_bio(
         WOLFSSL_BIO* bio, WOLFSSL_PKCS8_PRIV_KEY_INFO** pkey);
 WOLFSSL_API WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY_bio(WOLFSSL_BIO* bio,
                                          WOLFSSL_EVP_PKEY** out);
+WOLFSSL_API WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY(WOLFSSL_EVP_PKEY** key,
+        unsigned char** in, long inSz);
 WOLFSSL_API WOLFSSL_EVP_PKEY* wolfSSL_d2i_PrivateKey(int type,
         WOLFSSL_EVP_PKEY** out, const unsigned char **in, long inSz);
 WOLFSSL_API WOLFSSL_EVP_PKEY* wolfSSL_PKEY_new_ex(void* heap);
@@ -1216,6 +1221,7 @@ WOLFSSL_API WOLFSSL_X509* wolfSSL_d2i_X509(WOLFSSL_X509** x509,
         const unsigned char** in, int len);
 WOLFSSL_API WOLFSSL_X509*
     wolfSSL_X509_d2i(WOLFSSL_X509** x509, const unsigned char* in, int len);
+WOLFSSL_API int wolfSSL_i2d_X509(WOLFSSL_X509* x509, unsigned char** out);
 #ifndef NO_FILESYSTEM
     #ifndef NO_STDIO_FILESYSTEM
     WOLFSSL_API WOLFSSL_X509*
@@ -2080,6 +2086,9 @@ WOLFSSL_API WOLFSSL_X509_NAME_ENTRY* wolfSSL_X509_NAME_ENTRY_create_by_NID(
             unsigned char* data, int dataSz);
 WOLFSSL_API int wolfSSL_X509_NAME_add_entry(WOLFSSL_X509_NAME* name,
                               WOLFSSL_X509_NAME_ENTRY* entry, int idx, int set);
+WOLFSSL_API int wolfSSL_X509_NAME_cmp(const WOLFSSL_X509_NAME* x,
+            const WOLFSSL_X509_NAME* y);
+WOLFSSL_API WOLFSSL_X509_NAME* wolfSSL_X509_NAME_new(void);
 WOLFSSL_API int wolfSSL_check_private_key(const WOLFSSL* ssl);
 WOLFSSL_API void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                                                      int nid, int* c, int* idx);
@@ -2201,6 +2210,8 @@ typedef int (*CallbackSniRecv)(WOLFSSL *ssl, int *ret, void* exArg);
 
 WOLFSSL_API int wolfSSL_CRYPTO_set_mem_ex_functions(void *(*m) (size_t, const char *, int),
     void *(*r) (void *, size_t, const char *, int), void (*f) (void *));
+    
+WOLFSSL_API void wolfSSL_CRYPTO_cleanup_all_ex_data(void);
 
 WOLFSSL_API WOLFSSL_DH *wolfSSL_DH_generate_parameters(int prime_len, int generator,
     void (*callback) (int, int, void *), void *cb_arg);

@@ -48,6 +48,7 @@
 
 #ifdef OPENSSL_EXTRA
     #include <wolfssl/openssl/ssl.h>
+    #include <wolfssl/openssl/crypto.h>
     #include <wolfssl/openssl/pkcs12.h>
     #include <wolfssl/openssl/evp.h>
     #include <wolfssl/openssl/dh.h>
@@ -2310,12 +2311,73 @@ static int test_wolfSSL_UseOCSPStaplingV2(void)
  *----------------------------------------------------------------------------*/
 
 
+static void test_wolfSSL_X509_NAME(void)
+{
+    #if defined(OPENSSL_EXTRA) && !defined(NO_CERTS) && !defined(NO_FILESYSTEM) \
+        && !defined(NO_RSA) && defined(WOLFSSL_CERT_GEN)
+    X509* x509;
+    const unsigned char* c;
+    unsigned char buf[4096];
+    int bytes;
+    FILE* f;
+    const X509_NAME* a;
+    const X509_NAME* b;
+    int sz;
+    unsigned char* tmp;
+    char file[] = "./certs/ca-cert.der";
+
+    printf(testingFmt, "wolfSSL_X509_NAME()");
+
+    /* test compile of depricated function, returns 0 */
+    AssertIntEQ(CRYPTO_thread_id(), 0);
+
+    AssertNotNull(a = X509_NAME_new());
+    X509_NAME_free((X509_NAME*)a);
+
+    f = fopen(file, "rb");
+    AssertNotNull(f);
+    bytes = (int)fread(buf, 1, sizeof(buf), f);
+    fclose(f);
+
+    c = buf;
+    AssertNotNull(x509 = wolfSSL_X509_load_certificate_buffer(c, bytes,
+                SSL_FILETYPE_ASN1));
+
+    /* test cmp function */
+    AssertNotNull(a = X509_get_issuer_name(x509));
+    AssertNotNull(b = X509_get_subject_name(x509));
+
+    AssertIntEQ(X509_NAME_cmp(a, b), 0); /* self signed should be 0 */
+
+    tmp = buf;
+    AssertIntGT((sz = i2d_X509_NAME((X509_NAME*)a, &tmp)), 0);
+    if (tmp == buf) {
+        printf("\nERROR - %s line %d failed with:", __FILE__, __LINE__);           \
+        printf(" Expected pointer to be incremented\n");
+        abort();
+    }
+
+    /* retry but with the function creating a buffer */
+    tmp = NULL;
+    AssertIntGT((sz = i2d_X509_NAME((X509_NAME*)b, &tmp)), 0);
+    XFREE(tmp, NULL, DYNAMIC_TYPE_OPENSSL);
+
+    X509_free(x509);
+
+    printf(resultFmt, passed);
+    #endif /* defined(OPENSSL_EXTRA) && !defined(NO_DES3) */
+}
+
+
 static void test_wolfSSL_DES(void)
 {
     #if defined(OPENSSL_EXTRA) && !defined(NO_DES3)
     const_DES_cblock myDes;
+    DES_cblock iv;
     DES_key_schedule key;
     word32 i;
+    DES_LONG dl;
+    unsigned char msg[] = "hello wolfssl";
 
     printf(testingFmt, "wolfSSL_DES()");
 
@@ -2329,7 +2391,7 @@ static void test_wolfSSL_DES(void)
     AssertIntNE(key[0], myDes[0]); /* should not have copied over key */
 
     /* set odd parity for success case */
-    myDes[0] = 4;
+    DES_set_odd_parity(&myDes);
     AssertIntEQ(DES_set_key_checked(&myDes, &key), 0);
     for (i = 0; i < sizeof(DES_key_schedule); i++) {
         AssertIntEQ(key[i], myDes[i]);
@@ -2351,7 +2413,7 @@ static void test_wolfSSL_DES(void)
     AssertIntEQ(DES_is_weak_key(&myDes), 1);
 
     /* check DES_key_sched API */
-    XMEMSET(key, 1, sizeof(DES_key_schedule));
+    XMEMSET(myDes, 1, sizeof(const_DES_cblock));
     AssertIntEQ(DES_key_sched(&myDes, NULL), 0);
     AssertIntEQ(DES_key_sched(NULL, &key),   0);
     AssertIntEQ(DES_key_sched(&myDes, &key), 0);
@@ -2359,6 +2421,13 @@ static void test_wolfSSL_DES(void)
     for (i = 0; i < sizeof(DES_key_schedule); i++) {
         AssertIntEQ(key[i], myDes[i]);
     }
+
+    /* DES_cbc_cksum should return the last 4 of the last 8 bytes after
+     * DES_cbc_encrypt on the input */
+    XMEMSET(iv, 0, sizeof(DES_cblock));
+    XMEMSET(myDes, 5, sizeof(const_DES_cblock));
+    AssertIntGT((dl = DES_cbc_cksum(msg, &key, sizeof(msg), &myDes, &iv)), 0);
+    AssertIntEQ(dl, 480052723);
 
     printf(resultFmt, passed);
     #endif /* defined(OPENSSL_EXTRA) && !defined(NO_DES3) */
@@ -4003,6 +4072,7 @@ void ApiTest(void)
     AssertIntEQ(test_wolfSSL_UseOCSPStaplingV2(), SSL_SUCCESS);
 
     /* compatibility tests */
+    test_wolfSSL_X509_NAME();
     test_wolfSSL_DES();
     test_wolfSSL_certs();
     test_wolfSSL_private_keys();

@@ -192,6 +192,7 @@ void bench_aescbc(int);
 void bench_aesgcm(int);
 void bench_aesccm(void);
 void bench_aesctr(void);
+void bench_aescfb(void);
 void bench_poly1305(void);
 void bench_camellia(void);
 
@@ -705,6 +706,9 @@ static void* benchmarks_do(void* args)
     #if defined(WOLFSSL_ASYNC_CRYPT) && defined(WC_ASYNC_ENABLE_AES)
         bench_aesgcm(1);
     #endif
+#endif
+#ifdef HAVE_AES_CFB
+    bench_aescfb();
 #endif
 #ifdef WOLFSSL_AES_COUNTER
     bench_aesctr();
@@ -1243,6 +1247,41 @@ exit:
 }
 #endif /* HAVE_AESGCM */
 
+
+#ifdef HAVE_AES_CFB 
+void bench_aescfb(void)
+{
+    Aes    enc;
+    double start, total, persec;
+    int    i;
+    int    ret;
+
+    ret = wc_AesSetKey(&enc, key, AES_BLOCK_SIZE, iv, AES_ENCRYPTION);
+    if (ret != 0) {
+        printf("AesSetKey failed, ret = %d\n", ret);
+        return;
+    }
+    start = current_time(1);
+    BEGIN_INTEL_CYCLES
+
+    for(i = 0; i < numBlocks; i++)
+        wc_AesCfbEncrypt(&enc, plain, cipher, sizeof(plain));
+
+    END_INTEL_CYCLES
+    total = current_time(0) - start;
+
+    persec = 1 / total * numBlocks;
+#ifdef BENCH_EMBEDDED
+    /* since using kB, convert to MB/s */
+    persec = persec / 1024;
+#endif
+
+    printf("AES-CFB  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
+                                              blockType, total, persec);
+    SHOW_INTEL_CYCLES
+    printf("\n");
+}
+#endif /* HAVE_AES_CFB */
 
 #ifdef WOLFSSL_AES_COUNTER
 void bench_aesctr(void)

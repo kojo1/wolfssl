@@ -293,12 +293,15 @@
 	        #define XSTRNCASECMP(s1,s2,n) _strnicmp((s1),(s2),(n))
 	    #endif
 
-        #if defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(WOLFSSL_NGINX)
-	        #ifndef USE_WINDOWS_API
-	            #define XSNPRINTF snprintf
-	        #else
-	            #define XSNPRINTF _snprintf
-	        #endif
+        #if defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(OPENSSL_EXTRA) || \
+            defined(WOLFSSL_NGINX)
+            #ifndef NO_FILESYSTEM
+	            #ifndef USE_WINDOWS_API
+	                #define XSNPRINTF snprintf
+	            #else
+	                #define XSNPRINTF _snprintf
+	            #endif
+            #endif
         #endif /* WOLFSSL_MYSQL_COMPATIBLE */
 
         #if defined(WOLFSSL_CERT_EXT) || defined(HAVE_ALPN)

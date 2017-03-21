@@ -32,42 +32,61 @@
 #include <wolfssl/wolfcrypt/settings.h>
 
 #ifndef NO_AES
-#ifdef WOLFSSL_AES_DIRECT
+#include <wolfssl/openssl/ssl.h> /* for size_t */
 
 #ifdef __cplusplus
     extern "C" {
 #endif
 
+/* This structure wrapper is done because there is no aes_new function with
+ * OpenSSL compatibility layer. This makes code working with an AES structure
+ * to need the size of the structure. */
+typedef struct WOLFSSL_AES_KEY {
+    /* aligned and big enough for Aes from wolfssl/wolfcrypt/aes.h */
+    ALIGN16 unsigned int holder[90];
+    #ifdef WOLFSSL_ASYNC_CRYPT
+        unsigned char additional[64]; /* async uses additional memory */
+    #endif
+    #ifdef GCM_TABLE
+    /* key-based fast multiplication table. */
+    ALIGN16 word32 M0[1024];
+    #endif /* GCM_TABLE */
+} WOLFSSL_AES_KEY;
+typedef WOLFSSL_AES_KEY AES_KEY;
 
-typedef struct Aes AES_KEY;
+#define AES_ENCRYPT 1
+#define AES_DECRYPT 0
 
 WOLFSSL_API void wolfSSL_AES_set_encrypt_key
     (const unsigned char *, const int bits, AES_KEY *);
 WOLFSSL_API void wolfSSL_AES_set_decrypt_key
     (const unsigned char *, const int bits, AES_KEY *);
+WOLFSSL_API void wolfSSL_AES_cbc_encrypt
+    (const unsigned char *in, unsigned char* out, size_t len,
+     AES_KEY *key, unsigned char* iv, const int enc);
+WOLFSSL_API void wolfSSL_AES_cfb128_encrypt
+    (const unsigned char *in, unsigned char* out, size_t len,
+     AES_KEY *key, unsigned char* iv, int* num, const int enc);
+
+#define AES_cbc_encrypt     wolfSSL_AES_cbc_encrypt
+#define AES_cfb128_encrypt  wolfSSL_AES_cfb128_encrypt
+#define AES_set_encrypt_key wolfSSL_AES_set_encrypt_key
+#define AES_set_decrypt_key wolfSSL_AES_set_decrypt_key
+
+#ifdef WOLFSSL_AES_DIRECT
 WOLFSSL_API void wolfSSL_AES_encrypt
     (const unsigned char* input, unsigned char* output, AES_KEY *);
 WOLFSSL_API void wolfSSL_AES_decrypt
     (const unsigned char* input, unsigned char* output, AES_KEY *);
 
-#define AES_set_encrypt_key wolfSSL_AES_set_encrypt_key
-#define AES_set_decrypt_key wolfSSL_AES_set_decrypt_key
 #define AES_encrypt         wolfSSL_AES_encrypt
 #define AES_decrypt         wolfSSL_AES_decrypt
-
-#define wolfSSL_AES_set_encrypt_key(key, bits, aes) \
-    wc_AesSetKey(aes, key, ((bits)/8), NULL, AES_ENCRYPTION)
-#define wolfSSL_AES_set_decrypt_key(key, bits, aes) \
-    wc_AesSetKey(aes, key, ((bits)/8), NULL, AES_DECRYPTION)
-
-#define wolfSSL_AES_encrypt(in, out, aes) wc_AesEncryptDirect(aes, out, in)
-#define wolfSSL_AES_decrypt(in, out, aes) wc_AesDecryptDirect(aes, out, in)
+#endif /* HAVE_AES_DIRECT */
 
 #ifdef __cplusplus
     } /* extern "C" */
 #endif
 
-#endif /* HAVE_AES_DIRECT */
 #endif /* NO_AES */
 
 #endif /* WOLFSSL_DES_H_ */

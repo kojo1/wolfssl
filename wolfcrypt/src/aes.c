@@ -1629,6 +1629,9 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
     #ifndef WOLFSSL_STM32_CUBEMX
         ByteReverseWords(rk, rk, keylen);
     #endif
+    #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+        aes->left = 0;
+    #endif
 
         return wc_AesSetIV(aes, iv);
     }
@@ -1699,6 +1702,10 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
         if (iv)
             XMEMCPY(aes->reg, iv, AES_BLOCK_SIZE);
 
+    #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+        aes->left = 0;
+    #endif
+
         return 0;
     }
 #elif defined(FREESCALE_LTC)
@@ -1711,9 +1718,9 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
         aes->rounds = keylen/4 + 6;
         XMEMCPY(aes->key, userKey, keylen);
 
-        #ifdef WOLFSSL_AES_COUNTER
-            aes->left = 0;
-        #endif /* WOLFSSL_AES_COUNTER */
+    #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+        aes->left = 0;
+    #endif
 
         return wc_AesSetIV(aes, iv);
     }
@@ -1738,9 +1745,9 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
         if (rk == NULL)
             return BAD_FUNC_ARG;
 
-        #ifdef WOLFSSL_AES_COUNTER
-            aes->left = 0;
-        #endif /* WOLFSSL_AES_COUNTER */
+    #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+        aes->left = 0;
+    #endif
 
         aes->keylen = keylen;
         aes->rounds = keylen/4 + 6;
@@ -1778,6 +1785,10 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
         aes->rounds = keylen/4 + 6;
         ret = nrf51_aes_set_key(userKey);
 
+    #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+        aes->left = 0;
+    #endif
+
         return ret;
     }
 
@@ -1794,12 +1805,12 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
         word32 temp, *rk = aes->key;
         unsigned int i = 0;
 
-    #ifdef WOLFSSL_AESNI
-        aes->use_aesni = 0;
-    #endif /* WOLFSSL_AESNI */
-    #ifdef WOLFSSL_AES_COUNTER
-        aes->left = 0;
-    #endif /* WOLFSSL_AES_COUNTER */
+        #ifdef WOLFSSL_AESNI
+            aes->use_aesni = 0;
+        #endif /* WOLFSSL_AESNI */
+        #if defined(HAVE_AES_CFB) || defined(WOLFSSL_AES_COUNTER)
+            aes->left = 0;
+        #endif
 
         aes->keylen = keylen;
         aes->rounds = keylen/4 + 6;
@@ -1983,7 +1994,7 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
             checkAESNI = 1;
         }
         if (haveAESNI) {
-            #ifdef WOLFSSL_AES_COUNTER
+            #if defined(WOLFSSL_AES_COUNTER) || defined(HAVE_AES_CFB)
                 aes->left = 0;
             #endif /* WOLFSSL_AES_COUNTER */
             aes->use_aesni = 1;
@@ -2887,6 +2898,111 @@ int wc_AesSetIV(Aes* aes, const byte* iv)
 
 #endif /* AES-CBC block */
 #endif /* HAVE_AES_CBC */
+
+#ifdef HAVE_AES_CFB
+/* CFB 128 */
+int wc_AesCfbEncrypt(Aes* aes, byte* out, const byte* in, word32 sz)
+{
+    byte*  tmp = NULL;
+    byte*  reg = NULL;
+
+    WOLFSSL_ENTER("wc_AesCfbEncrypt");
+
+    if (aes == NULL || out == NULL || in == NULL) {
+        return BAD_FUNC_ARG;
+    }
+
+    if (aes->left && sz) {
+        reg = (byte*)aes->reg + AES_BLOCK_SIZE - aes->left;
+    }
+
+    /* consume any unused bytes left in aes->tmp */
+    tmp = (byte*)aes->tmp + AES_BLOCK_SIZE - aes->left;
+    while (aes->left && sz) {
+        *(out++) = *(reg++) = *(in++) ^ *(tmp++);
+        aes->left--;
+        sz--;
+    }
+
+    while (sz >= AES_BLOCK_SIZE) {
+        wc_AesEncrypt(aes, (byte*)aes->reg, out);
+        xorbuf(out, in, AES_BLOCK_SIZE);
+        XMEMCPY(aes->reg, out, AES_BLOCK_SIZE);
+        out += AES_BLOCK_SIZE;
+        in  += AES_BLOCK_SIZE;
+        sz  -= AES_BLOCK_SIZE;
+        aes->left = 0;
+    }
+
+    /* encrypt left over data */
+    if (sz) {
+        wc_AesEncrypt(aes, (byte*)aes->reg, (byte*)aes->tmp);
+        aes->left = AES_BLOCK_SIZE;
+        tmp = (byte*)aes->tmp;
+        reg = (byte*)aes->reg;
+
+        while (sz--) {
+            *(out++) = *(reg++) = *(in++) ^ *(tmp++);
+            aes->left--;
+        }
+    }
+
+    return 0;
+}
+
+
+#ifdef HAVE_AES_DECRYPT
+int wc_AesCfbDecrypt(Aes* aes, byte* out, const byte* in, word32 sz)
+{
+    byte*  tmp;
+
+    WOLFSSL_ENTER("wc_AesCfbDecrypt");
+
+    if (aes == NULL || out == NULL || in == NULL) {
+        return BAD_FUNC_ARG;
+    }
+
+    /* check if more input needs copied over to aes->reg */
+    if (aes->left && sz) {
+        int size = min(aes->left, sz);
+        XMEMCPY((byte*)aes->reg + AES_BLOCK_SIZE - aes->left, in, size);
+    }
+
+    /* consume any unused bytes left in aes->tmp */
+    tmp = (byte*)aes->tmp + AES_BLOCK_SIZE - aes->left;
+    while (aes->left && sz) {
+        *(out++) = *(in++) ^ *(tmp++);
+        aes->left--;
+        sz--;
+    }
+
+    while (sz > AES_BLOCK_SIZE) {
+        wc_AesEncrypt(aes, (byte*)aes->reg, out);
+        xorbuf(out, in, AES_BLOCK_SIZE);
+        XMEMCPY(aes->reg, in, AES_BLOCK_SIZE);
+        out += AES_BLOCK_SIZE;
+        in  += AES_BLOCK_SIZE;
+        sz  -= AES_BLOCK_SIZE;
+        aes->left = 0;
+    }
+
+    /* decrypt left over data */
+    if (sz) {
+        wc_AesEncrypt(aes, (byte*)aes->reg, (byte*)aes->tmp);
+        XMEMCPY(aes->reg, in, sz);
+        aes->left = AES_BLOCK_SIZE;
+        tmp = (byte*)aes->tmp;
+
+        while (sz--) {
+            *(out++) = *(in++) ^ *(tmp++);
+            aes->left--;
+        }
+    }
+
+    return 0;
+}
+#endif /* HAVE_AES_DECRYPT */
+#endif /* HAVE_AES_CFB */
 
 #ifdef HAVE_AES_ECB
 int wc_AesEcbEncrypt(Aes* aes, byte* out, const byte* in, word32 sz)

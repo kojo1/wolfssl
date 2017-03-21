@@ -323,6 +323,9 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define X509_NAME_ENTRY_free          wolfSSL_X509_NAME_ENTRY_free
 #define X509_NAME_ENTRY_create_by_NID wolfSSL_X509_NAME_ENTRY_create_by_NID
 #define X509_NAME_add_entry           wolfSSL_X509_NAME_add_entry
+#define X509_print                    wolfSSL_X509_print
+#define X509_NAME_cmp                 wolfSSL_X509_NAME_cmp
+#define i2d_X509_NAME                 wolfSSL_i2d_X509_NAME
 #define X509_NAME_oneline             wolfSSL_X509_NAME_oneline
 #define X509_get_issuer_name          wolfSSL_X509_get_issuer_name
 #define X509_get_subject_name         wolfSSL_X509_get_subject_name
@@ -347,6 +350,9 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define X509_CRL_verify           wolfSSL_X509_CRL_verify
 #define X509_STORE_CTX_set_error  wolfSSL_X509_STORE_CTX_set_error
 #define X509_OBJECT_free_contents wolfSSL_X509_OBJECT_free_contents
+#define EVP_PKEY_new              wolfSSL_PKEY_new
+#define EVP_PKEY_free             wolfSSL_EVP_PKEY_free
+#define d2i_PUBKEY                wolfSSL_d2i_PUBKEY
 #define X509_cmp_current_time     wolfSSL_X509_cmp_current_time
 #define sk_X509_REVOKED_num       wolfSSL_sk_X509_REVOKED_num
 #define X509_CRL_get_REVOKED      wolfSSL_X509_CRL_get_REVOKED
@@ -486,6 +492,7 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define i2d_X509_bio wolfSSL_i2d_X509_bio
 #define d2i_X509_bio wolfSSL_d2i_X509_bio
 #define d2i_X509     wolfSSL_d2i_X509
+#define i2d_X509     wolfSSL_i2d_X509
 
 #define SSL_CTX_get_ex_data wolfSSL_CTX_get_ex_data
 #define SSL_CTX_set_ex_data wolfSSL_CTX_set_ex_data
@@ -518,12 +525,13 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 /* yassl had set the default to be 500 */
 #define SSL_get_default_timeout(ctx) 500
 
+#define X509_NAME_free wolfSSL_X509_NAME_free
+#define X509_NAME_new  wolfSSL_X509_NAME_new
 /* Lighthttp compatibility */
 
 typedef WOLFSSL_X509_NAME_ENTRY X509_NAME_ENTRY;
 #if defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL)
 
-#define X509_NAME_free wolfSSL_X509_NAME_free
 #define SSL_CTX_use_certificate wolfSSL_CTX_use_certificate
 #define SSL_CTX_use_PrivateKey wolfSSL_CTX_use_PrivateKey
 #define BIO_read_filename wolfSSL_BIO_read_filename
@@ -750,6 +758,10 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define NID_policy_constraints        150
 #define NID_inhibit_any_policy        168 /* 2.5.29.54 */
 #define NID_tlsfeature                92  /* id-pe 24 */
+#define NID_commonName 0x03 /* matchs ASN_COMMON_NAME in asn.h */
+#define NID_domainComponent 0x19
+                            /* matchs ASN_DOMAIN_COMPONENT in asn.h */
+
 
 
 #define SSL_CTX_set_msg_callback        wolfSSL_CTX_set_msg_callback
