@@ -358,7 +358,7 @@ WOLFSSL_API int  wolfSSL_EVP_CipherFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
                 return 0;
             PRINT_BUF(out, ctx->block_size);
             *outl = ctx->block_size;
-        }
+        } else *outl = 0;
     } else {
         if (ctx->lastUsed){
             PRINT_BUF(ctx->lastBlock, ctx->block_size);
@@ -366,7 +366,7 @@ WOLFSSL_API int  wolfSSL_EVP_CipherFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
                 XMEMCPY(out, ctx->lastBlock, fl);
                 *outl = fl;
             } else return 0;
-        }
+        } else *outl = 0;
     }
     return 1;
 }
