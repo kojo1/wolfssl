@@ -188,7 +188,7 @@ enum {
 };
 
 
-typedef struct DRBG {
+struct DRBG {
     word32 reseedCtr;
     word32 lastBlock;
     byte V[DRBG_SEED_LEN];
@@ -198,7 +198,7 @@ typedef struct DRBG {
     int devId;
 #endif
     byte   matchCount;
-} DRBG;
+};
 
 
 static int wc_RNG_HealthTestLocal(int reseed);
@@ -279,7 +279,7 @@ static int Hash_df(DRBG* drbg, byte* out, word32 outSz, byte type,
 }
 
 /* Returns: DRBG_SUCCESS or DRBG_FAILURE */
-static int Hash_DRBG_Reseed(DRBG* drbg, const byte* entropy, word32 entropySz)
+int Hash_DRBG_Reseed(DRBG* drbg, const byte* entropy, word32 entropySz)
 {
     byte seed[DRBG_SEED_LEN];
 

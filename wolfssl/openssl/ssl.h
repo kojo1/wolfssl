@@ -106,6 +106,10 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 
 #define CRYPTO_free   XFREE
 #define CRYPTO_malloc XMALLOC
+#define CRYPTO_EX_new  WOLFSSL_CRYPTO_EX_new
+#define CRYPTO_EX_dup  WOLFSSL_CRYPTO_EX_dup
+#define CRYPTO_EX_free WOLFSSL_CRYPTO_EX_free
+
 
 #define SSL_get_client_random(ssl,out,outSz) \
                                   wolfSSL_get_client_random((ssl),(out),(outSz))
@@ -298,7 +302,10 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 
 #define SSL_get_ex_new_index wolfSSL_get_ex_new_index
 
+/* depreciated */
+#define CRYPTO_thread_id       wolfSSL_thread_id
 #define CRYPTO_set_id_callback wolfSSL_set_id_callback
+
 #define CRYPTO_set_locking_callback wolfSSL_set_locking_callback
 #define CRYPTO_set_dynlock_create_callback wolfSSL_set_dynlock_create_callback
 #define CRYPTO_set_dynlock_lock_callback wolfSSL_set_dynlock_lock_callback
@@ -787,6 +794,14 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define NID_inhibit_any_policy        168 /* 2.5.29.54 */
 #define NID_tlsfeature                92  /* id-pe 24 */
 
+/* Nginx uses this to determine if reached end of certs in file.
+ * PEM_read_bio_X509 is called and the return error is lost.
+ * The error that needs to be detected is: SSL_NO_PEM_HEADER.
+ */
+#define ERR_GET_LIB(l)  (int)((((unsigned long)l)>>24L)&0xffL)
+#define PEM_R_NO_START_LINE     108
+#define ERR_LIB_PEM             9
+
 #ifdef WOLFSSL_NGINX
 #include <wolfssl/error-ssl.h>
 
@@ -816,14 +831,6 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define SSL_R_UNKNOWN_PROTOCOL                     VERSION_ERROR
 #define SSL_R_WRONG_VERSION_NUMBER                 VERSION_ERROR
 #define SSL_R_DECRYPTION_FAILED_OR_BAD_RECORD_MAC  ENCRYPT_ERROR
-
-/* Nginx uses this to determine if reached end of certs in file.
- * PEM_read_bio_X509 is called and the return error is lost.
- * The error that needs to be detected is: SSL_NO_PEM_HEADER.
- */
-#define ERR_GET_LIB(l)  (int)((((unsigned long)l)>>24L)&0xffL)
-#define PEM_R_NO_START_LINE     108
-#define ERR_LIB_PEM             9
 
 #ifdef HAVE_SESSION_TICKET
 #define SSL_CTRL_SET_TLSEXT_TICKET_KEY_CB 72

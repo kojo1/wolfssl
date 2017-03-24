@@ -1268,6 +1268,7 @@ struct WOLFSSL_BIO {
     int         memLen;        /* memory buffer length */
     int         fd;            /* possible file descriptor */
     int         eof;           /* eof flag */
+    int         flags;
     byte        type;          /* method type */
     byte        close;         /* close flag */
 };
@@ -1982,7 +1983,10 @@ struct WOLFSSL_CTX {
     short       minEccKeySz;      /* minimum ECC key size */
 #endif
 #ifdef OPENSSL_EXTRA
+    byte              sessionCtx[ID_LEN]; /* app session context ID */
     unsigned long     mask;       /* store SSL_OP_ flags */
+    byte              sessionCtxSz;
+    CallbackInfoState* CBIS;      /* used to get info about SSL state */
 #endif
     CallbackIORecv CBIORecv;
     CallbackIOSend CBIOSend;
@@ -2828,6 +2832,7 @@ struct WOLFSSL {
     Keys            keys;
     Options         options;
 #ifdef OPENSSL_EXTRA
+    CallbackInfoState* CBIS;             /* used to get info about SSL state */
     WOLFSSL_BIO*     biord;              /* socket bio read  to free/close */
     WOLFSSL_BIO*     biowr;              /* socket bio write to free/close */
     unsigned long    peerVerifyRet;

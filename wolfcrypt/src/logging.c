@@ -481,6 +481,7 @@ int wc_AddErrorNode(int error, int line, char* buf, char* file)
 
     return 0;
 }
+#endif /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
 
 /* Removes the error node at the specified index.
  * index : if -1 then the most recent node is looked at, otherwise search
@@ -488,6 +489,7 @@ int wc_AddErrorNode(int error, int line, char* buf, char* file)
  */
 void wc_RemoveErrorNode(int index)
 {
+#if defined(DEBUG_WOLFSSL) || defined(WOLFSSL_NGINX)
     struct wc_error_queue* current;
 
     if (wc_LockMutex(&debug_mutex) != 0) {
@@ -513,12 +515,16 @@ void wc_RemoveErrorNode(int index)
     }
 
     wc_UnLockMutex(&debug_mutex);
+#else /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
+    (void)index; /* not compiled in */
+#endif /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
 }
 
 /* Clears out the list of error nodes.
  */
 void wc_ClearErrorNodes(void)
 {
+#if defined(DEBUG_WOLFSSL) || defined(WOLFSSL_NGINX)
     if (wc_LockMutex(&debug_mutex) != 0) {
         WOLFSSL_MSG("Lock debug mutex failed");
         return;
@@ -540,8 +546,8 @@ void wc_ClearErrorNodes(void)
     wc_errors    = NULL;
     wc_last_node = NULL;
     wc_UnLockMutex(&debug_mutex);
-}
 #endif /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
+}
 
 
 int wc_SetLoggingHeap(void* h)
