@@ -69,12 +69,6 @@ typedef WOLFSSL_X509_CHAIN X509_CHAIN;
 
 typedef WOLFSSL_EVP_PKEY       EVP_PKEY;
 typedef WOLFSSL_EVP_PKEY       PKCS8_PRIV_KEY_INFO;
-typedef WOLFSSL_RSA            RSA;
-typedef WOLFSSL_DSA            DSA;
-typedef WOLFSSL_EC_KEY         EC_KEY;
-typedef WOLFSSL_EC_GROUP       EC_GROUP;
-typedef WOLFSSL_EC_POINT       EC_POINT;
-typedef WOLFSSL_ECDSA_SIG	   ECDSA_SIG;
 typedef WOLFSSL_BIO            BIO;
 typedef WOLFSSL_BIO_METHOD     BIO_METHOD;
 typedef WOLFSSL_CIPHER         SSL_CIPHER;
@@ -85,7 +79,6 @@ typedef WOLFSSL_X509_EXTENSION X509_EXTENSION;
 typedef WOLFSSL_ASN1_TIME      ASN1_TIME;
 typedef WOLFSSL_ASN1_INTEGER   ASN1_INTEGER;
 typedef WOLFSSL_ASN1_OBJECT    ASN1_OBJECT;
-typedef WOLFSSL_ASN1_STRING    ASN1_STRING;
 typedef WOLFSSL_dynlock_value  CRYPTO_dynlock_value;
 typedef WOLFSSL_BUF_MEM        BUF_MEM;
 
