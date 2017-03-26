@@ -6052,7 +6052,7 @@ if (type == EVP_PKEY_RSA && local != NULL){
 
 /* advance pointer with success */
 if (local != NULL) {
-    if ((idx + local->pkey_sz) <= inSz) {
+    if ((idx + local->pkey_sz) <= (word32)inSz) {
         *in = *in + idx + local->pkey_sz;
     }
 }
