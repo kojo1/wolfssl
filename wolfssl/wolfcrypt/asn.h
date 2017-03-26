@@ -697,6 +697,8 @@ WOLFSSL_LOCAL void    FreeTrustedPeerTable(TrustedPeerCert**, int, void*);
 #endif /* WOLFSSL_TRUST_PEER_CERT */
 
 WOLFSSL_ASN_API int ToTraditional(byte* buffer, word32 length);
+WOLFSSL_LOCAL int ToTraditionalInline(const byte* input, word32* inOutIdx,
+                                      word32 length);
 WOLFSSL_LOCAL int ToTraditionalEnc(byte* buffer, word32 length,const char*,int);
 WOLFSSL_ASN_API int UnTraditionalEnc(byte* key, word32 keySz, byte* out,
         word32* outSz, const char* password, int passwordSz, int vPKCS,

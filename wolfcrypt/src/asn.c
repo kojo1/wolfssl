@@ -1611,6 +1611,46 @@ int wc_RsaPrivateKeyDecode(const byte* input, word32* inOutIdx, RsaKey* key,
 #endif /* HAVE_USER_RSA */
 #endif /* NO_RSA */
 
+/* Remove PKCS8 header, place inOutIdx at beginning of traditional,
+ * return traditional length on success, negative on error */
+int ToTraditionalInline(const byte* input, word32* inOutIdx, word32 sz)
+{
+    word32 idx, oid;
+    int    version, length;
+
+    if (input == NULL || inOutIdx == NULL)
+        return BAD_FUNC_ARG;
+
+    idx = *inOutIdx;
+
+    if (GetSequence(input, &idx, &length, sz) < 0)
+        return ASN_PARSE_E;
+
+    if (GetMyVersion(input, &idx, &version, sz) < 0)
+        return ASN_PARSE_E;
+
+    if (GetAlgoId(input, &idx, &oid, oidKeyType, sz) < 0)
+        return ASN_PARSE_E;
+
+    if (input[idx] == ASN_OBJECT_ID) {
+        /* pkcs8 ecc uses slightly different format */
+        idx++;  /* past id */
+        if (GetLength(input, &idx, &length, sz) < 0)
+            return ASN_PARSE_E;
+        idx += length;  /* over sub id, key input will verify */
+    }
+
+    if (input[idx++] != ASN_OCTET_STRING)
+        return ASN_PARSE_E;
+
+    if (GetLength(input, &idx, &length, sz) < 0)
+        return ASN_PARSE_E;
+
+    *inOutIdx = idx;
+
+    return length;
+}
+
 /* Remove PKCS8 header, move beginning of traditional to beginning of input */
 int ToTraditional(byte* input, word32 sz)
 {
