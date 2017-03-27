@@ -367,7 +367,7 @@ int wolfSSL_CryptHwMutexUnLock(void) {
 /* ---------------------------------------------------------------------------*/
 /* Mutex Ports */
 /* ---------------------------------------------------------------------------*/
-#ifdef OPENSSL_EXTRA
+#if defined(OPENSSL_EXTRA) || defined(HAVE_WEBSERVER)
     static mutex_cb*     compat_mutex_cb = NULL;
 
     /* Function that locks or unlocks a mutex based on the flag passed in.
@@ -399,7 +399,7 @@ int wolfSSL_CryptHwMutexUnLock(void) {
         compat_mutex_cb = cb;
         return 0;
     }
-#endif
+#endif /* defined(OPENSSL_EXTRA) || defined(HAVE_WEBSERVER) */
 #ifdef SINGLE_THREADED
 
     int wc_InitMutex(wolfSSL_Mutex* m)
