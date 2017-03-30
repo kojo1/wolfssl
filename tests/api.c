@@ -3771,9 +3771,9 @@ static void test_wolfSSL_SESSION(void)
     printf(testingFmt, "wolfSSL_SESSION()");
     AssertNotNull(ctx = wolfSSL_CTX_new(wolfSSLv23_client_method()));
 
-    AssertTrue(wolfSSL_CTX_use_certificate_file(ctx, cliCert, SSL_FILETYPE_PEM));
-    AssertTrue(wolfSSL_CTX_use_PrivateKey_file(ctx, cliKey, SSL_FILETYPE_PEM));
-    AssertIntEQ(wolfSSL_CTX_load_verify_locations(ctx, caCert, 0), SSL_SUCCESS);
+    AssertTrue(wolfSSL_CTX_use_certificate_file(ctx, cliCertFile, SSL_FILETYPE_PEM));
+    AssertTrue(wolfSSL_CTX_use_PrivateKey_file(ctx, cliKeyFile, SSL_FILETYPE_PEM));
+    AssertIntEQ(wolfSSL_CTX_load_verify_locations(ctx, caCertFile, 0), SSL_SUCCESS);
     wolfSSL_CTX_set_default_passwd_cb(ctx, PasswordCallBack);
 
 

@@ -315,7 +315,7 @@ int wc_LoggingCleanup(void)
  * Returns a negative value in error case, on success returns the nodes error
  * value which is positve (absolute value)
  */
-int wc_PeekErrorNode(int index, const char **file, const char **reason,
+int wc_PeekErrorNode(int ind, const char **file, const char **reason,
         int *line)
 {
     struct wc_error_queue* err;
@@ -325,7 +325,7 @@ int wc_PeekErrorNode(int index, const char **file, const char **reason,
         return BAD_MUTEX_E;
     }
 
-    if (index < 0) {
+    if (ind < 0) {
         err = wc_last_node;
         if (err == NULL) {
             WOLFSSL_MSG("No Errors in queue");
@@ -337,7 +337,7 @@ int wc_PeekErrorNode(int index, const char **file, const char **reason,
         int i;
 
         err = (struct wc_error_queue*)wc_errors;
-        for (i = 0; i < index; i++) {
+        for (i = 0; i < ind; i++) {
             if (err == NULL) {
                 WOLFSSL_MSG("Error node not found. Bad index?");
                 wc_UnLockMutex(&debug_mutex);
@@ -487,7 +487,7 @@ int wc_AddErrorNode(int error, int line, char* buf, char* file)
  * index : if -1 then the most recent node is looked at, otherwise search
  *         through queue for node at the given index
  */
-void wc_RemoveErrorNode(int index)
+void wc_RemoveErrorNode(int ind)
 {
 #if defined(DEBUG_WOLFSSL) || defined(WOLFSSL_NGINX)
     struct wc_error_queue* current;
@@ -497,11 +497,11 @@ void wc_RemoveErrorNode(int index)
         return;
     }
 
-    if (index == -1)
+    if (ind == -1)
         current = wc_last_node;
     else {
         current = (struct wc_error_queue*)wc_errors;
-        for (; current != NULL && index > 0; index--)
+        for (; current != NULL && ind > 0; ind--)
              current = current->next;
     }
     if (current != NULL) {
@@ -516,7 +516,7 @@ void wc_RemoveErrorNode(int index)
 
     wc_UnLockMutex(&debug_mutex);
 #else /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
-    (void)index; /* not compiled in */
+    (void)ind; /* not compiled in */
 #endif /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
 }
 
