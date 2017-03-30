@@ -16720,10 +16720,14 @@ int wolfSSL_ASN1_TIME_print(WOLFSSL_BIO* bio, const WOLFSSL_ASN1_TIME* asnTime)
     if (bio == NULL || asnTime == NULL)
         return BAD_FUNC_ARG;
 
-    wolfSSL_ASN1_TIME_to_string((WOLFSSL_ASN1_TIME*)asnTime, buf, sizeof(buf));
-    wolfSSL_BIO_write(bio, buf, (int)XSTRLEN(buf));
+    if (wolfSSL_ASN1_TIME_to_string((WOLFSSL_ASN1_TIME*)asnTime, buf,
+                sizeof(buf)) != NULL) {
+        if (wolfSSL_BIO_write(bio, buf, (int)XSTRLEN(buf)) > 0) {
+            return SSL_SUCCESS;
+        }
+    }
 
-    return 0;
+    return SSL_FAILURE;
 }
 #endif
 
