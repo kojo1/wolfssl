@@ -110,9 +110,9 @@ void FreeOCSP(WOLFSSL_OCSP* ocsp, int dynamic)
 }
 
 
-static int xstat2err(int stat)
+static int xstat2err(int state)
 {
-    switch (stat) {
+    switch (state) {
         case CERT_GOOD:
             return 0;
         case CERT_REVOKED:
@@ -823,4 +823,3 @@ WOLFSSL_OCSP_ONEREQ* wolfSSL_OCSP_request_add0_id(OcspRequest *req,
 
 #endif /* HAVE_OCSP */
 #endif /* WOLFCRYPT_ONLY */
-
