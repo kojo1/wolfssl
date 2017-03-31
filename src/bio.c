@@ -79,6 +79,10 @@ static int wolfSSL_BIO_MEMORY_read(WOLFSSL_BIO* bio, void* buf, int len)
                 XFREE(bio->mem, bio->heap, DYNAMIC_TYPE_OPENSSL);
                 bio->mem    = tmp;
                 bio->memLen = memSz-sz;
+                if (bio->mem_buf != NULL) {
+                    bio->mem_buf->data = (char*)bio->mem;
+                    bio->mem_buf->length = bio->memLen;
+                }
             }
             bio->wrSz  -= sz;
         }
@@ -292,6 +296,10 @@ static int wolfSSL_BIO_MEMORY_write(WOLFSSL_BIO* bio, const void* data,
             return SSL_FAILURE;
         }
         bio->memLen = len;
+        if (bio->mem_buf != NULL) {
+            bio->mem_buf->data = (char*)bio->mem;
+            bio->mem_buf->length = bio->memLen;
+        }
     }
 
     /* check if will fit in current buffer size */
@@ -307,6 +315,10 @@ static int wolfSSL_BIO_MEMORY_write(WOLFSSL_BIO* bio, const void* data,
                 return SSL_FAILURE;
             }
             bio->memLen = sz + len;
+            if (bio->mem_buf != NULL) {
+                bio->mem_buf->data = (char*)bio->mem;
+                bio->mem_buf->length = bio->memLen;
+            }
         }
     }
 
@@ -637,7 +649,8 @@ long wolfSSL_BIO_get_mem_ptr(WOLFSSL_BIO *bio, WOLFSSL_BUF_MEM **ptr)
         return SSL_FAILURE;
     }
 
-    *ptr = (WOLFSSL_BUF_MEM*)(bio->mem);
+    *ptr = bio->mem_buf;
+
     return SSL_SUCCESS;
 }
 
@@ -685,6 +698,10 @@ int wolfSSL_BIO_set_write_buf_size(WOLFSSL_BIO *bio, long size)
     bio->memLen = bio->wrSz;
     bio->wrIdx = 0;
     bio->rdIdx = 0;
+    if (bio->mem_buf != NULL) {
+        bio->mem_buf->data = (char*)bio->mem;
+        bio->mem_buf->length = bio->memLen;
+    }
 
     return SSL_SUCCESS;
 }

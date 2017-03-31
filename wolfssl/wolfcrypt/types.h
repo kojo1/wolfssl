@@ -293,6 +293,13 @@
 	        #define XSTRNCASECMP(s1,s2,n) _strnicmp((s1),(s2),(n))
 	    #endif
 
+
+        #ifdef OPENSSL_EXTRA
+            #ifndef XGETENV
+                #include <stdlib.h>
+                #define XGETENV getenv
+            #endif
+        #endif /* OPENSSL_EXTRA */
         #if defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(OPENSSL_EXTRA) || \
             defined(WOLFSSL_NGINX)
             #ifndef NO_FILESYSTEM

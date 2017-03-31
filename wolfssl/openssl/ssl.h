@@ -103,6 +103,8 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define CRYPTO_EX_dup  WOLFSSL_CRYPTO_EX_dup
 #define CRYPTO_EX_free WOLFSSL_CRYPTO_EX_free
 
+/* this function was used to set the default malloc, free, and realloc */
+#define CRYPTO_malloc_init() /* CRYPTO_malloc_init is not needed */
 
 #define SSL_get_client_random(ssl,out,outSz) \
                                   wolfSSL_get_client_random((ssl),(out),(outSz))
@@ -582,7 +584,8 @@ enum {
 #define PEM_write_bio_X509_AUX wolfSSL_PEM_write_bio_X509_AUX
 
 #if defined(HAVE_STUNNEL) || defined(HAVE_LIGHTY) \
-    || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(WOLFSSL_NGINX)
+    || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(WOLFSSL_NGINX) \
+    || defined(OPENSSL_EXTRA)
 
 #define PEM_read_bio_DHparams wolfSSL_PEM_read_bio_DHparams
 #define PEM_read_bio_DSAparams wolfSSL_PEM_read_bio_DSAparams
