@@ -26479,6 +26479,10 @@ int wolfSSL_SESSION_set_ex_data(WOLFSSL_SESSION* session, int idx, void* data)
         session->ex_data[idx] = data;
         return SSL_SUCCESS;
     }
+#else
+    (void) session;
+    (void) idx;
+    (void) data;
 #endif
     return SSL_FAILURE;
 }
@@ -26508,6 +26512,9 @@ void* wolfSSL_SESSION_get_ex_data(const WOLFSSL_SESSION* session, int idx)
 #ifdef HAVE_EX_DATA
     if (session != NULL && idx < MAX_EX_DATA && idx >= 0)
         return session->ex_data[idx];
+#else
+    (void) session;
+    (void) idx;
 #endif
     return NULL;
 }
