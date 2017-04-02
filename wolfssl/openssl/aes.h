@@ -57,9 +57,9 @@ typedef WOLFSSL_AES_KEY AES_KEY;
 #define AES_ENCRYPT 1
 #define AES_DECRYPT 0
 
-WOLFSSL_API void wolfSSL_AES_set_encrypt_key
+WOLFSSL_API int wolfSSL_AES_set_encrypt_key
     (const unsigned char *, const int bits, AES_KEY *);
-WOLFSSL_API void wolfSSL_AES_set_decrypt_key
+WOLFSSL_API int wolfSSL_AES_set_decrypt_key
     (const unsigned char *, const int bits, AES_KEY *);
 WOLFSSL_API void wolfSSL_AES_cbc_encrypt
     (const unsigned char *in, unsigned char* out, size_t len,
