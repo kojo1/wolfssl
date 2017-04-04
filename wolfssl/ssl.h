@@ -2242,7 +2242,7 @@ typedef int (*CallbackSniRecv)(WOLFSSL *ssl, int *ret, void* exArg);
 
 WOLFSSL_API int wolfSSL_CRYPTO_set_mem_ex_functions(void *(*m) (size_t, const char *, int),
     void *(*r) (void *, size_t, const char *, int), void (*f) (void *));
-    
+
 WOLFSSL_API void wolfSSL_CRYPTO_cleanup_all_ex_data(void);
 
 WOLFSSL_API WOLFSSL_DH *wolfSSL_DH_generate_parameters(int prime_len, int generator,
@@ -2360,11 +2360,12 @@ WOLFSSL_API int wolfSSL_CTX_set_msg_callback(WOLFSSL_CTX *ctx, SSL_Msg_Cb cb);
 WOLFSSL_API int wolfSSL_set_msg_callback(WOLFSSL *ssl, SSL_Msg_Cb cb);
 WOLFSSL_API int wolfSSL_CTX_set_msg_callback_arg(WOLFSSL_CTX *ctx, void* arg);
 WOLFSSL_API int wolfSSL_set_msg_callback_arg(WOLFSSL *ssl, void* arg);
-#endif
-
-#ifdef OPENSSL_EXTRA
 WOLFSSL_API unsigned long wolfSSL_ERR_peek_error_line_data(const char **file,
     int *line, const char **data, int *flags);
+#endif
+
+#if defined(WOLFSSL_NGINX) || defined(OPENSSL_EXTRA)
+WOLFSSL_API void wolfSSL_OPENSSL_config(char *config_name);
 #endif
 
 #ifdef WOLFSSL_NGINX
