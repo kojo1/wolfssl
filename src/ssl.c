@@ -11579,7 +11579,8 @@ const WOLFSSL_EVP_MD *wolfSSL_EVP_get_digestbyname(const char *name)
     } alias_tbl[] =
     {
         {"MD5", "ssl3-md5"},
-        {"SHA1", "ssl3-sha1"},
+        {"SHA", "ssl3-sha1"},
+        {"SHA", "SHA1"},
         { NULL, NULL}
     };
 
