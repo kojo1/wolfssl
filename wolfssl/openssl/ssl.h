@@ -532,7 +532,8 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 /* Lighthttp compatibility */
 
 typedef WOLFSSL_X509_NAME_ENTRY X509_NAME_ENTRY;
-#if defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL)
+#if defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || \
+    defined(HAVE_STUNNEL) || defined(OPENSSL_EXTRA)
 
 #define SSL_CTX_use_certificate wolfSSL_CTX_use_certificate
 #define SSL_CTX_use_PrivateKey wolfSSL_CTX_use_PrivateKey
@@ -848,7 +849,6 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define X509_check_host                   wolfSSL_X509_check_host
 #define i2a_ASN1_INTEGER                  wolfSSL_i2a_ASN1_INTEGER
 #define ERR_peek_error_line_data          wolfSSL_ERR_peek_error_line_data
-#define OPENSSL_config                    wolfSSL_OPENSSL_config
 #define SSL_CTX_set_tlsext_ticket_key_cb  wolfSSL_CTX_set_tlsext_ticket_key_cb
 #define X509_email_free                   wolfSSL_X509_email_free
 #define X509_get1_ocsp                    wolfSSL_X509_get1_ocsp
