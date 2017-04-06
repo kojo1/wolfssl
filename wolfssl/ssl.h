@@ -276,7 +276,9 @@ typedef struct WOLFSSL_X509_STORE_CTX {
 
 typedef char* WOLFSSL_STRING;
 
-/* Valid Alert types from page 16/17 */
+/* Valid Alert types from page 16/17
+ * Add alert string to the function wolfSSL_alert_type_string_long in src/ssl.c
+ */
 enum AlertDescription {
     close_notify                    =   0,
     unexpected_message              =  10,
@@ -802,9 +804,9 @@ WOLFSSL_API void wolfSSL_CTX_set_info_callback(WOLFSSL_CTX*,
 WOLFSSL_API unsigned long wolfSSL_ERR_peek_error(void);
 WOLFSSL_API int           wolfSSL_GET_REASON(int);
 
-WOLFSSL_API char* wolfSSL_alert_type_string_long(int);
-WOLFSSL_API char* wolfSSL_alert_desc_string_long(int);
-WOLFSSL_API char* wolfSSL_state_string_long(const WOLFSSL*);
+WOLFSSL_API const char* wolfSSL_alert_type_string_long(int);
+WOLFSSL_API const char* wolfSSL_alert_desc_string_long(int);
+WOLFSSL_API const char* wolfSSL_state_string_long(const WOLFSSL*);
 
 WOLFSSL_API WOLFSSL_RSA* wolfSSL_RSA_generate_key(int, unsigned long,
                                                void(*)(int, int, void*), void*);
@@ -924,6 +926,7 @@ enum {
 
     SSL_ST_CONNECT = 0x1000,
     SSL_ST_ACCEPT  = 0x2000,
+    SSL_ST_MASK    = 0x0FFF,
 
     SSL_CB_LOOP = 0x01,
     SSL_CB_EXIT = 0x02,
@@ -2233,7 +2236,7 @@ WOLFSSL_API long wolfSSL_CTX_get_options(WOLFSSL_CTX* ctx);
 #endif /* HAVE_STUNNEL || HAVE_LIGHTY */
 
 
-#if defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
+#if defined(OPENSSL_EXTRA) || defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
 
 #include <wolfssl/openssl/crypto.h>
 
