@@ -6214,7 +6214,7 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY_bio(WOLFSSL_BIO* bio,
         return NULL;
     }
 
-    if (wolfSSL_BIO_read(bio, mem, memSz) == memSz) {
+    if (wolfSSL_BIO_read(bio, mem, (int)memSz) == memSz) {
         pkey = wolfSSL_d2i_PUBKEY(NULL, &mem, memSz);
         if (out != NULL && pkey != NULL) {
             *out = pkey;
@@ -6231,7 +6231,7 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY(WOLFSSL_EVP_PKEY** out, unsigned char** in,
 {
     WOLFSSL_EVP_PKEY* pkey;
     const unsigned char* mem = *in;
-    int memSz = inSz;
+    long memSz = inSz;
 
     WOLFSSL_ENTER("wolfSSL_d2i_PUBKEY");
 
@@ -6252,7 +6252,7 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY(WOLFSSL_EVP_PKEY** out, unsigned char** in,
 
         /* test if RSA key */
         if (wc_InitRsaKey(&rsa, NULL) == 0 &&
-            wc_RsaPublicKeyDecode(mem, &keyIdx, &rsa, memSz) == 0) {
+            wc_RsaPublicKeyDecode(mem, &keyIdx, &rsa, (word32)memSz) == 0) {
             wc_FreeRsaKey(&rsa);
             pkey = wolfSSL_PKEY_new();
             if (pkey != NULL) {
@@ -6296,7 +6296,7 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY(WOLFSSL_EVP_PKEY** out, unsigned char** in,
         ecc_key ecc;
 
         if (wc_ecc_init(&ecc) == 0 &&
-            wc_EccPublicKeyDecode(mem, &keyIdx, &ecc, memSz) == 0) {
+            wc_EccPublicKeyDecode(mem, &keyIdx, &ecc, (word32)memSz) == 0) {
             wc_ecc_free(&ecc);
             pkey = wolfSSL_PKEY_new();
             if (pkey != NULL) {
@@ -21871,7 +21871,7 @@ WOLFSSL_RSA* wolfSSL_EVP_PKEY_get1_RSA(WOLFSSL_EVP_PKEY* key)
         wolfSSL_RSA_free(local);
         local = NULL;
     }
-
+    key->rsa = local;
     return local;
 }
 
