@@ -6267,7 +6267,6 @@ WOLFSSL_EVP_PKEY* wolfSSL_d2i_PUBKEY(WOLFSSL_EVP_PKEY** out, unsigned char** in,
                 pkey->type = EVP_PKEY_RSA;
                 if (out != NULL) {
                     *out = pkey;
-                    pkey->rsa = (WOLFSSL_RSA*)pkey->pkey.ptr;
                 }
 
                 pkey->ownRsa = 1;
