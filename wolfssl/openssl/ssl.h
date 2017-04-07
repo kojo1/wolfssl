@@ -136,6 +136,7 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define SSLv23_method       wolfSSLv23_method
 #define SSLv3_server_method wolfSSLv3_server_method
 #define SSLv3_client_method wolfSSLv3_client_method
+#define TLSv1_method        wolfTLSv1_method
 #define TLSv1_server_method wolfTLSv1_server_method
 #define TLSv1_client_method wolfTLSv1_client_method
 #define TLSv1_1_server_method wolfTLSv1_1_server_method
@@ -580,7 +581,6 @@ enum {
     NID_anyExtendedKeyUsage = 76,
 };
 
-
 #define PEM_write_bio_X509_REQ wolfSSL_PEM_write_bio_X509_REQ
 #define PEM_write_bio_X509_AUX wolfSSL_PEM_write_bio_X509_AUX
 
@@ -684,6 +684,7 @@ enum {
 #define X509_V_FLAG_CRL_CHECK     WOLFSSL_CRL_CHECK
 #define X509_V_FLAG_CRL_CHECK_ALL WOLFSSL_CRL_CHECKALL
 
+#define SSL3_RANDOM_SIZE                 32 /* same as RAN_LEN in internal.h */
 #if defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
 #include <wolfssl/openssl/asn1.h>
 
@@ -799,6 +800,7 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 #define ERR_GET_LIB(l)  (int)((((unsigned long)l)>>24L)&0xffL)
 #define PEM_R_NO_START_LINE     108
 #define ERR_LIB_PEM             9
+#define ERR_LIB_X509            10
 
 #ifdef WOLFSSL_NGINX
 #include <wolfssl/error-ssl.h>

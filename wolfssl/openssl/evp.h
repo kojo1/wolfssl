@@ -229,6 +229,7 @@ WOLFSSL_API int  wolfSSL_EVP_CIPHER_CTX_cleanup(WOLFSSL_EVP_CIPHER_CTX* ctx);
 
 WOLFSSL_API int  wolfSSL_EVP_CIPHER_CTX_iv_length(const WOLFSSL_EVP_CIPHER_CTX*);
 WOLFSSL_API int  wolfSSL_EVP_CIPHER_iv_length(const WOLFSSL_EVP_CIPHER*);
+WOLFSSL_API int wolfSSL_EVP_Cipher_key_length(const WOLFSSL_EVP_CIPHER* c);
 
 
 WOLFSSL_API int  wolfSSL_EVP_CipherInit(WOLFSSL_EVP_CIPHER_CTX* ctx,
@@ -417,6 +418,7 @@ typedef WOLFSSL_EVP_PKEY_CTX   EVP_PKEY_CTX;
 #define EVP_CIPHER_CTX_mode           wolfSSL_EVP_CIPHER_CTX_mode
 
 #define EVP_CIPHER_iv_length          wolfSSL_EVP_CIPHER_iv_length
+#define EVP_CIPHER_key_length         wolfSSL_EVP_Cipher_key_length
 
 #define EVP_CipherInit                wolfSSL_EVP_CipherInit
 #define EVP_CipherInit_ex             wolfSSL_EVP_CipherInit_ex

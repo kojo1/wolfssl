@@ -14682,6 +14682,52 @@ void wolfSSL_sk_X509_free(STACK_OF(WOLFSSL_X509_NAME)* sk) {
 }
 #endif /* NO_CERTS && OPENSSL_EXTRA */
 
+#ifdef OPENSSL_EXTRA
+
+/* Returns the general name at index i from the stack
+ *
+ * sk stack to get general name from
+ * i  index to get
+ *
+ * return a pointer to the internal node of the stack
+ */
+WOLFSSL_ASN1_OBJECT* wolfSSL_sk_GENERAL_NAME_value(WOLFSSL_STACK* sk, int i)
+{
+    WOLFSSL_STACK* cur;
+    int j;
+
+    WOLFSSL_ENTER("wolfSSL_sk_GENERAL_NAME_value");
+
+    if (i < 0 || sk == NULL) {
+        return NULL;
+    }
+
+    cur = sk;
+    for (j = 0; j < i && cur != NULL; j++) {
+        cur = cur->next;
+    }
+
+    return cur->data.obj;
+}
+
+
+/* Gets the number of nodes in the stack
+ *
+ * sk  stack to get the number of nodes from
+ *
+ * returns the number of nodes
+ */
+int wolfSSL_sk_GENERAL_NAME_num(WOLFSSL_STACK* sk)
+{
+    WOLFSSL_ENTER("wolfSSL_sk_GENERAL_NAME_num");
+
+    if (sk == NULL) {
+        return 0;
+    }
+
+    return (int)sk->num;
+}
+#endif /* OPENSSL_EXTRA */
 
 WOLFSSL_X509* wolfSSL_d2i_X509(WOLFSSL_X509** x509, const unsigned char** in,
         int len)
