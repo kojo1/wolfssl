@@ -643,9 +643,14 @@ size_t wolfSSL_BIO_ctrl_pending(WOLFSSL_BIO *bio)
 
 long wolfSSL_BIO_get_mem_ptr(WOLFSSL_BIO *bio, WOLFSSL_BUF_MEM **ptr)
 {
-    WOLFSSL_ENTER("BIO_get_mem_ptr");
+    WOLFSSL_ENTER("wolfSSL_BIO_get_mem_ptr");
 
     if (bio == NULL || ptr == NULL) {
+        return SSL_FAILURE;
+    }
+
+    if (bio->type == WOLFSSL_BIO_FILE) {
+        WOLFSSL_MSG("NO memory buffer for FILE type");
         return SSL_FAILURE;
     }
 

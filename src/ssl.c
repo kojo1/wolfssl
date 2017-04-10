@@ -6530,7 +6530,7 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
 
         case ALT_NAMES_OID:
             {
-                DNS_entry* dns;
+                DNS_entry* dns = NULL;
 
                 if (x509->subjAltNameSet && x509->altNames != NULL) {
                     /* alt names are DNS_entry structs */
@@ -6546,8 +6546,12 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                     dns = x509->altNames;
                     while (dns != NULL) {
                         obj = wolfSSL_ASN1_OBJECT_new();
-                        obj->type = ALT_NAMES_OID;
+                        obj->type = dns->type;
                         obj->obj  = (byte*)dns->name;
+
+                        /* set app derefrenced pointers */
+                        obj->d.ia5_internal.data   = dns->name;
+                        obj->d.ia5_internal.length = XSTRLEN(dns->name);
                         dns = dns->next;
                         /* last dns in list add at end of function */
                         if (dns != NULL) {
@@ -10928,14 +10932,16 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
             XMEMSET(bio, 0, sizeof(WOLFSSL_BIO));
             bio->type   = method->type;
             bio->close  = BIO_CLOSE; /* default to close things */
-            bio->mem_buf = (WOLFSSL_BUF_MEM*)XMALLOC(sizeof(WOLFSSL_BUF_MEM),
+            if (method->type != WOLFSSL_BIO_FILE) {
+                bio->mem_buf =(WOLFSSL_BUF_MEM*)XMALLOC(sizeof(WOLFSSL_BUF_MEM),
                                                        0, DYNAMIC_TYPE_OPENSSL);
-            if (bio->mem_buf == NULL) {
-                WOLFSSL_MSG("Memory error");
-                wolfSSL_BIO_free(bio);
-                return NULL;
+                if (bio->mem_buf == NULL) {
+                    WOLFSSL_MSG("Memory error");
+                    wolfSSL_BIO_free(bio);
+                    return NULL;
+                }
+                bio->mem_buf->data = (char*)bio->mem;
             }
-            bio->mem_buf->data = (char*)bio->mem;
         }
         return bio;
     }
@@ -11020,9 +11026,17 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
         #endif
 
             if (bio->close != BIO_NOCLOSE) {
-                if (bio->mem_buf->data != (char*)bio->mem && bio->mem != NULL) {
-                    XFREE(bio->mem, bio->heap, DYNAMIC_TYPE_OPENSSL);
-                    bio->mem = NULL;
+                if (bio->mem != NULL) {
+                    if (bio->mem_buf != NULL) {
+                        if (bio->mem_buf->data != (char*)bio->mem) {
+                            XFREE(bio->mem, bio->heap, DYNAMIC_TYPE_OPENSSL);
+                            bio->mem = NULL;
+                        }
+                    }
+                    else {
+                        XFREE(bio->mem, bio->heap, DYNAMIC_TYPE_OPENSSL);
+                        bio->mem = NULL;
+                    }
                 }
                 if (bio->mem_buf != NULL) {
                     wolfSSL_BUF_MEM_free(bio->mem_buf);
@@ -14727,6 +14741,43 @@ int wolfSSL_sk_GENERAL_NAME_num(WOLFSSL_STACK* sk)
 
     return (int)sk->num;
 }
+
+/* Frees all nodes in a GENERAL NAME stack
+ *
+ * sk stack of nodes to free
+ * f  free function to use, not called with wolfSSL
+ */
+void wolfSSL_sk_GENERAL_NAME_pop_free(WOLFSSL_STACK* sk,
+        void f (WOLFSSL_ASN1_OBJECT*))
+{
+    WOLFSSL_STACK* node;
+
+    WOLFSSL_ENTER("wolfSSL_sk_GENERAL_NAME_pop_free");
+
+    (void)f;
+    if (sk == NULL) {
+        return;
+    }
+
+    /* parse through stack freeing each node */
+    node = sk->next;
+    while (sk->num > 1) {
+        WOLFSSL_STACK* tmp = node;
+        node = node->next;
+
+        wolfSSL_ASN1_OBJECT_free(tmp->data.obj);
+        XFREE(tmp, NULL, DYNAMIC_TYPE_ASN1);
+        sk->num -= 1;
+    }
+
+    /* free head of stack */
+    if (sk->num == 1) {
+	    wolfSSL_ASN1_OBJECT_free(sk->data.obj);
+    }
+    XFREE(sk, NULL, DYNAMIC_TYPE_ASN1);
+
+
+}
 #endif /* OPENSSL_EXTRA */
 
 WOLFSSL_X509* wolfSSL_d2i_X509(WOLFSSL_X509** x509, const unsigned char** in,
@@ -15093,6 +15144,7 @@ WOLFSSL_ASN1_OBJECT* wolfSSL_ASN1_OBJECT_new(void)
     }
 
     XMEMSET(obj, 0, sizeof(WOLFSSL_ASN1_OBJECT));
+    obj->d.ia5 = &(obj->d.ia5_internal);
     return obj;
 }
 
