@@ -21602,12 +21602,15 @@ int wolfSSL_RSA_sign_ex(int type, const unsigned char* m,
         }
         else {
             show("Encoded Message", encodedSig, signSz);
-            if(flag != 0){
-                *sigLen = wc_RsaSSL_Sign(encodedSig, signSz, sigRet, outLen,
+            if (flag != 0) {
+                ret = wc_RsaSSL_Sign(encodedSig, signSz, sigRet, outLen,
                                 (RsaKey*)rsa->internal, rng);
-                if (*sigLen <= 0)
+                if (ret <= 0) {
                     WOLFSSL_MSG("Bad Rsa Sign");
-                else{
+                    ret = 0;
+                }
+                else {
+                    *sigLen = ret;
                     ret = SSL_SUCCESS;
                     show("Signature", sigRet, *sigLen);
                 }
