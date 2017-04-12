@@ -6646,7 +6646,7 @@ int CopyDecodedToX509(WOLFSSL_X509* x509, DecodedCert* dCert)
         while (cur != NULL) {
             if (cur->type == ASN_RFC822_TYPE) {
                 DNS_entry* dnsEntry;
-                int strLen = XSTRLEN(cur->name);
+                int strLen = (int)XSTRLEN(cur->name);
 
                 dnsEntry = (DNS_entry*)XMALLOC(sizeof(DNS_entry), x509->heap,
                                         DYNAMIC_TYPE_ALTNAME);
