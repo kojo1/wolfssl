@@ -69,7 +69,8 @@ int wolfSSL_EVP_Cipher_key_length(const WOLFSSL_EVP_CIPHER* c)
 
 WOLFSSL_API int  wolfSSL_EVP_EncryptInit(WOLFSSL_EVP_CIPHER_CTX* ctx,
                                         const WOLFSSL_EVP_CIPHER* type,
-                                        unsigned char* key, unsigned char* iv)
+                                        const unsigned char* key,
+                                        const unsigned char* iv)
 {
     return wolfSSL_EVP_CipherInit(ctx, type, key, iv, 1);
 }
@@ -77,7 +78,8 @@ WOLFSSL_API int  wolfSSL_EVP_EncryptInit(WOLFSSL_EVP_CIPHER_CTX* ctx,
 WOLFSSL_API int  wolfSSL_EVP_EncryptInit_ex(WOLFSSL_EVP_CIPHER_CTX* ctx,
                                         const WOLFSSL_EVP_CIPHER* type,
                                         WOLFSSL_ENGINE *impl,
-                                        unsigned char* key, unsigned char* iv)
+                                        const unsigned char* key,
+                                        const unsigned char* iv)
 {
     (void) impl;
     return wolfSSL_EVP_CipherInit(ctx, type, key, iv, 1);
@@ -85,7 +87,8 @@ WOLFSSL_API int  wolfSSL_EVP_EncryptInit_ex(WOLFSSL_EVP_CIPHER_CTX* ctx,
 
 WOLFSSL_API int  wolfSSL_EVP_DecryptInit(WOLFSSL_EVP_CIPHER_CTX* ctx,
                                         const WOLFSSL_EVP_CIPHER* type,
-                                        unsigned char* key, unsigned char* iv)
+                                        const unsigned char* key,
+                                        const unsigned char* iv)
 {
     WOLFSSL_ENTER("wolfSSL_EVP_CipherInit");
     return wolfSSL_EVP_CipherInit(ctx, type, key, iv, 0);
@@ -94,7 +97,8 @@ WOLFSSL_API int  wolfSSL_EVP_DecryptInit(WOLFSSL_EVP_CIPHER_CTX* ctx,
 WOLFSSL_API int  wolfSSL_EVP_DecryptInit_ex(WOLFSSL_EVP_CIPHER_CTX* ctx,
                                         const WOLFSSL_EVP_CIPHER* type,
                                         WOLFSSL_ENGINE *impl,
-                                        unsigned char* key, unsigned char* iv)
+                                        const unsigned char* key,
+                                        const unsigned char* iv)
 {
     (void) impl;
     WOLFSSL_ENTER("wolfSSL_EVP_DecryptInit");
@@ -142,7 +146,8 @@ WOLFSSL_API int  wolfSSL_EVP_EncryptFinal(WOLFSSL_EVP_CIPHER_CTX *ctx,
 WOLFSSL_API int  wolfSSL_EVP_CipherInit_ex(WOLFSSL_EVP_CIPHER_CTX* ctx,
                                     const WOLFSSL_EVP_CIPHER* type,
                                     WOLFSSL_ENGINE *impl,
-                                    unsigned char* key, unsigned char* iv,
+                                    const unsigned char* key,
+                                    const unsigned char* iv,
                                     int enc)
 {
     (void)impl;
