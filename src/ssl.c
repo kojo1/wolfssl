@@ -11603,6 +11603,7 @@ const WOLFSSL_EVP_MD *wolfSSL_EVP_get_digestbyname(const char *name)
         const char *alias;
     } alias_tbl[] =
     {
+        {"MD4", "ssl3-md4"},
         {"MD5", "ssl3-md5"},
         {"SHA", "ssl3-sha1"},
         {"SHA", "SHA1"},
@@ -11648,6 +11649,18 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
     }
     return 0;
 }
+
+
+    #ifndef NO_MD4
+
+    /* return a pointer to MD4 EVP type */
+    const WOLFSSL_EVP_MD* wolfSSL_EVP_md4(void)
+    {
+        WOLFSSL_ENTER("wolfSSL_EVP_md4");
+        return EVP_get_digestbyname("MD4");
+    }
+
+    #endif /* NO_MD4 */
 
 
     #ifndef NO_MD5
@@ -12572,6 +12585,12 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
              wolfSSL_SHA512_Init(&(ctx->hash.sha512));
         }
     #endif
+    #ifndef NO_MD4
+        else if (XSTRNCMP(type, "MD4", 3) == 0) {
+            ctx->macType = MD4;
+            wolfSSL_MD4_Init(&(ctx->hash.md4));
+        }
+    #endif
     #ifndef NO_MD5
         else if (XSTRNCMP(type, "MD5", 3) == 0) {
             ctx->macType = MD5;
@@ -12599,6 +12618,12 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
         WOLFSSL_ENTER("EVP_DigestUpdate");
 
         switch (ctx->macType) {
+#ifndef NO_MD4
+            case MD4:
+                wolfSSL_MD4_Update((MD4_CTX*)&ctx->hash, data,
+                                  (unsigned long)sz);
+                break;
+#endif
 #ifndef NO_MD5
             case MD5:
                 wolfSSL_MD5_Update((MD5_CTX*)&ctx->hash, data,
@@ -12649,6 +12674,12 @@ int wolfSSL_EVP_MD_type(const WOLFSSL_EVP_MD *md)
     {
         WOLFSSL_ENTER("EVP_DigestFinal");
         switch (ctx->macType) {
+#ifndef NO_MD4
+            case MD4:
+                wolfSSL_MD4_Final(md, (MD4_CTX*)&ctx->hash);
+                if (s) *s = MD4_DIGEST_SIZE;
+                break;
+#endif
 #ifndef NO_MD5
             case MD5:
                 wolfSSL_MD5_Final(md, (MD5_CTX*)&ctx->hash);

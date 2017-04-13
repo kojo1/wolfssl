@@ -35,6 +35,9 @@
 #include "prefix_evp.h"
 #endif
 
+#ifndef NO_MD4
+    #include <wolfssl/openssl/md4.h>
+#endif
 #ifndef NO_MD5
     #include <wolfssl/openssl/md5.h>
 #endif
@@ -62,6 +65,9 @@ typedef struct WOLFSSL_EVP_PKEY WOLFSSL_EVP_PKEY;
 #define WOLFSSL_EVP_TYPE_DEFINED
 #endif
 
+#ifndef NO_MD4
+    WOLFSSL_API const WOLFSSL_EVP_MD* wolfSSL_EVP_md4(void);
+#endif
 #ifndef NO_MD5
     WOLFSSL_API const WOLFSSL_EVP_MD* wolfSSL_EVP_md5(void);
 #endif
@@ -91,6 +97,9 @@ WOLFSSL_API const WOLFSSL_EVP_CIPHER* wolfSSL_EVP_enc_null(void);
 
 
 typedef union {
+    #ifndef NO_MD4
+        WOLFSSL_MD4_CTX    md4;
+    #endif
     #ifndef NO_MD5
         WOLFSSL_MD5_CTX    md5;
     #endif
@@ -367,6 +376,9 @@ typedef WOLFSSL_EVP_MD_CTX     EVP_MD_CTX;
 typedef WOLFSSL_EVP_CIPHER_CTX EVP_CIPHER_CTX;
 typedef WOLFSSL_EVP_PKEY_CTX   EVP_PKEY_CTX;
 
+#ifndef NO_MD4
+    #define EVP_md4       wolfSSL_EVP_md4
+#endif
 #ifndef NO_MD5
     #define EVP_md5       wolfSSL_EVP_md5
 #endif
