@@ -372,6 +372,8 @@ int wc_PeekErrorNode(int ind, const char **file, const char **reason,
  * file   pointer to file that error was in. Can be NULL to return no file.
  * reason error string giving reason for error. Can be NULL to return no reason.
  * line   retrun line number of where error happened.
+ *
+ * Return error value or when no more errors are in the queue then return 0
  */
 int wc_PullErrorNode(const char **file, const char **reason, int *line)
 {
@@ -387,7 +389,7 @@ int wc_PullErrorNode(const char **file, const char **reason, int *line)
     if (err == NULL) {
         WOLFSSL_MSG("No Errors in queue");
         wc_UnLockMutex(&debug_mutex);
-        return BAD_STATE_E;
+        return 0;
     }
 
     if (file != NULL) {
