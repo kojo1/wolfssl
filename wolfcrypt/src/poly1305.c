@@ -68,9 +68,9 @@
         } word128;
 
         #define MUL(out, x, y) out.lo = _umul128((x), (y), &out.hi)
-        #define ADD(out, in) { word64 t = out.lo; out.lo += in.lo;
+        #define ADD(out, in) { word64 t = out.lo; out.lo += in.lo; \
                                out.hi += (out.lo < t) + in.hi; }
-        #define ADDLO(out, in) { word64 t = out.lo; out.lo += in;
+        #define ADDLO(out, in) { word64 t = out.lo; out.lo += in; \
                                  out.hi += (out.lo < t); }
         #define SHR(in, shift) (__shiftright128(in.lo, in.hi, (shift)))
         #define LO(in) (in.lo)
@@ -600,7 +600,7 @@ int wc_Poly1305_MAC(Poly1305* ctx, byte* additional, word32 addSz,
     if ((ret = wc_Poly1305Update(ctx, additional, addSz)) != 0) {
         return ret;
     }
-    paddingLen = -addSz & (WC_POLY1305_PAD_SZ - 1);
+    paddingLen = -((int)addSz) & (WC_POLY1305_PAD_SZ - 1);
     if (paddingLen) {
         if ((ret = wc_Poly1305Update(ctx, padding, paddingLen)) != 0) {
             return ret;
@@ -611,7 +611,7 @@ int wc_Poly1305_MAC(Poly1305* ctx, byte* additional, word32 addSz,
     if ((ret = wc_Poly1305Update(ctx, input, sz)) != 0) {
         return ret;
     }
-    paddingLen = -sz & (WC_POLY1305_PAD_SZ - 1);
+    paddingLen = -((int)sz) & (WC_POLY1305_PAD_SZ - 1);
     if (paddingLen) {
         if ((ret = wc_Poly1305Update(ctx, padding, paddingLen)) != 0) {
             return ret;

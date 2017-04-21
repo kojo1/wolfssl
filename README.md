@@ -38,6 +38,78 @@ wolfSSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, 0);
 before calling wolfSSL_new();  Though it's not recommended.
 ```
 
+# wolfSSL (Formerly CyaSSL) Release 3.10.2 (2/10/2017)
+
+## Release 3.10.2 of wolfSSL has bug fixes and new features including:
+
+- Poly1305 Windows macros fix. Thanks to GitHub user Jay Satiro
+- Compatibility layer expanded with multiple functions added
+- Improve fp_copy performance with ALT_ECC_SIZE
+- OCSP updates and improvements
+- Fixes for IAR EWARM 8 compiler warnings
+- Reduce stack usage with ECC_CACHE_CURVE disabled
+- Added ECC export raw for public and private key
+- Fix for NO_ASN_TIME build
+- Supported curves extensions now populated by default
+- Add DTLS build without big integer math
+- Fix for static memory feature with wc_ecc_verify_hash_ex and not SHAMIR
+- Added PSK interoperability testing to script bundled with wolfSSL
+- Fix for Python wrapper random number generation. Compiler optimizations with Python could place the random number in same buffer location each time. Thanks to GitHub user Erik Bray (embray)
+- Fix for tests on unaligned memory with static memory feature
+- Add macro WOLFSSL_NO_OCSP_OPTIONAL_CERTS to skip optional OCSP certificates
+- Sanity checks on NULL arguments added to wolfSSL_set_fd and wolfSSL_DTLS_SetCookieSecret
+- mp_jacobi stack use reduced, thanks to Szabi Tolnai for providing a solution to reduce stack usage
+
+
+This release of wolfSSL fixes 2 low and 1 medium level security vulnerability.
+
+Low level fix of buffer overflow for when loading in a malformed temporary DH file. Thanks to Yueh-Hsun Lin and Peng Li from KNOX Security, Samsung Research America for the report.
+
+Medium level fix for processing of OCSP response. If using OCSP without hard faults enforced and no alternate revocation checks like OCSP stapling then it is recommended to update.
+
+Low level fix for potential cache attack on RSA operations. If using wolfSSL RSA on a server that other users can have access to monitor the cache, then it is recommended to update wolfSSL. Thanks to Andreas Zankl, Johann Heyszl and Georg Sigl at Fraunhofer AISEC for the initial report.
+
+See INSTALL file for build instructions.
+More info can be found on-line at http://wolfssl.com/wolfSSL/Docs.html
+
+
+# wolfSSL (Formerly CyaSSL) Release 3.10.0 (12/21/2016)
+
+## Release 3.10.0 of wolfSSL has bug fixes and new features including:
+
+- Added support for SHA224
+- Added scrypt feature
+- Build for Intel SGX use, added in directory IDE/WIN-SGX
+- Fix for ChaCha20-Poly1305 ECDSA certificate type request
+- Enhance PKCS#7 with ECC enveloped data and AES key wrap support
+- Added support for RIOT OS
+- Add support for parsing PKCS#12 files
+- ECC performance increased with custom curves
+- ARMv8 expanded to AArch32 and performance increased
+- Added ANSI-X9.63-KDF support
+- Port to STM32 F2/F4 CubeMX
+- Port to Atmel ATECC508A board
+- Removed fPIE by default when wolfSSL library is compiled
+- Update to Python wrapper, dropping DES and adding wc_RSASetRNG
+- Added support for NXP K82 hardware acceleration
+- Added SCR client and server verify check
+- Added a disable rng option with autoconf
+- Added more tests vectors to test.c with AES-CTR
+- Updated DTLS session export version number
+- Updated DTLS for 64 bit sequence numbers
+- Fix for memory management with TI and WOLFSSL_SMALL_STACK
+- Hardening RSA CRT to be constant time
+- Fix uninitialized warning with IAR compiler
+- Fix for C# wrapper example IO hang on unexpected connection termination
+
+
+This release of wolfSSL fixes a low level security vulnerability. The vulnerability reported was a potential cache attack on RSA operations. If using wolfSSL RSA on a server that other users can have access to monitor the cache, then it is recommended to update wolfSSL. Thanks to Andreas Zankl, Johann Heyszl and Georg Sigl at Fraunhofer AISEC for the report. More information will be available on our site:
+
+https://wolfssl.com/wolfSSL/security/vulnerabilities.php
+
+See INSTALL file for build instructions.
+More info can be found on-line at http://wolfssl.com/wolfSSL/Docs.html
+
 
 # wolfSSL (Formerly CyaSSL) Release 3.9.10 (9/23/2016)
 

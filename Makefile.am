@@ -38,11 +38,34 @@ CLEANFILES+= cert.der \
              othercert.der \
              othercert.pem \
              pkcs7cert.der \
+             pkcs7encryptedDataAES128CBC.der \
+             pkcs7encryptedDataAES192CBC.der \
+             pkcs7encryptedDataAES256CBC_attribs.der \
+             pkcs7encryptedDataAES256CBC.der \
+             pkcs7encryptedDataAES256CBC_multi_attribs.der \
+             pkcs7encryptedDataDES3.der \
+             pkcs7encryptedDataDES.der \
+             pkcs7envelopedDataAES256CBC_ECDH.der \
+             pkcs7envelopedDataAES128CBC_ECDH_SHA1KDF.der \
+             pkcs7envelopedDataAES256CBC_ECDH_SHA256KDF.der \
+             pkcs7envelopedDataAES256CBC_ECDH_SHA512KDF.der \
+             pkcs7envelopedDataAES256CBC_ECDH_SHA512KDF_ukm.der \
              pkcs7envelopedDataDES3.der \
              pkcs7envelopedDataAES128CBC.der \
              pkcs7envelopedDataAES192CBC.der \
              pkcs7envelopedDataAES256CBC.der \
-             pkcs7signedData.der
+             pkcs7signedData_RSA_SHA.der \
+             pkcs7signedData_RSA_SHA_noattr.der \
+             pkcs7signedData_RSA_SHA224.der \
+             pkcs7signedData_RSA_SHA256.der \
+             pkcs7signedData_RSA_SHA384.der \
+             pkcs7signedData_RSA_SHA512.der \
+             pkcs7signedData_ECDSA_SHA.der \
+             pkcs7signedData_ECDSA_SHA_noattr.der \
+             pkcs7signedData_ECDSA_SHA224.der \
+             pkcs7signedData_ECDSA_SHA256.der \
+             pkcs7signedData_ECDSA_SHA384.der \
+             pkcs7signedData_ECDSA_SHA512.der
 
 exampledir = $(docdir)/example
 dist_example_DATA=
@@ -88,6 +111,9 @@ include testsuite/include.am
 include tests/include.am
 include sslSniffer/sslSnifferTest/include.am
 include rpm/include.am
+
+# Exclude references to non-DFSG sources from build files
+if !BUILD_DISTRO
 include mqx/util_lib/Sources/include.am
 include mqx/wolfcrypt_benchmark/Sources/include.am
 include mqx/wolfcrypt_test/Sources/include.am
@@ -103,8 +129,9 @@ include mcapi/wolfcrypt_test.X/nbproject/include.am
 include mcapi/wolfssl.X/nbproject/include.am
 include mcapi/zlib.X/nbproject/include.am
 include tirtos/include.am
-include scripts/include.am
 include IDE/include.am
+endif
+include scripts/include.am
 
 if USE_VALGRIND
 TESTS_ENVIRONMENT=./valgrind-error.sh

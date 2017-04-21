@@ -81,17 +81,23 @@
 #ifdef WOLFSSL_SHA512
     #include <wolfssl/wolfcrypt/sha512.h>
 #endif
-
 #ifdef HAVE_AESGCM
     #include <wolfssl/wolfcrypt/sha512.h>
 #endif
-
 #ifdef WOLFSSL_RIPEMD
     #include <wolfssl/wolfcrypt/ripemd.h>
 #endif
-
 #ifdef HAVE_IDEA
     #include <wolfssl/wolfcrypt/idea.h>
+#endif
+#ifndef NO_RSA
+    #include <wolfssl/wolfcrypt/rsa.h>
+#endif
+#ifdef HAVE_ECC
+    #include <wolfssl/wolfcrypt/ecc.h>
+#endif
+#ifndef NO_DH
+    #include <wolfssl/wolfcrypt/dh.h>
 #endif
 
 #include <wolfssl/wolfcrypt/hash.h>
@@ -140,6 +146,8 @@
 #elif defined(MBED)
 #elif defined(WOLFSSL_TIRTOS)
     /* do nothing */
+#elif defined(INTIME_RTOS)
+    #include <rt.h>
 #else
     #ifndef SINGLE_THREADED
         #define WOLFSSL_PTHREADS
@@ -148,6 +156,11 @@
     #if defined(OPENSSL_EXTRA) || defined(GOAHEAD_WS)
         #include <unistd.h>      /* for close of BIO */
     #endif
+#endif
+
+#ifndef CHAR_BIT
+    /* Needed for DTLS without big math */
+    #include <limits.h>
 #endif
 
 
@@ -162,12 +175,6 @@
 #ifdef _MSC_VER
     /* 4996 warning to use MS extensions e.g., strcpy_s instead of strncpy */
     #pragma warning(disable: 4996)
-#endif
-
-#ifdef NO_AES
-    #if !defined (ALIGN16)
-        #define ALIGN16
-    #endif
 #endif
 
 #ifdef NO_SHA
@@ -185,13 +192,6 @@
 
 #ifdef __cplusplus
     extern "C" {
-#endif
-
-
-#ifdef USE_WINDOWS_API
-    typedef unsigned int SOCKET_T;
-#else
-    typedef int SOCKET_T;
 #endif
 
 
@@ -675,8 +675,9 @@ typedef byte word24[3];
     #define BUILD_DES3
 #endif
 
-#ifdef NO_AES
+#if defined(NO_AES) || defined(NO_AES_DECRYPT)
     #define AES_BLOCK_SIZE 16
+    #undef  BUILD_AES
 #else
     #undef  BUILD_AES
     #define BUILD_AES
@@ -924,7 +925,6 @@ enum Misc {
     LENGTH_SZ      =  2,       /* length field for HMAC, data only */
     VERSION_SZ     =  2,       /* length of proctocol version */
     SEQ_SZ         =  8,       /* 64 bit sequence number  */
-    BYTE3_LEN      =  3,       /* up to 24 bit byte lengths */
     ALERT_SIZE     =  2,       /* level + description     */
     VERIFY_HEADER  =  2,       /* always use 2 bytes      */
     EXT_ID_SZ      =  2,       /* always use 2 bytes      */
@@ -1059,13 +1059,12 @@ enum Misc {
 
     MAX_WOLFSSL_FILE_SIZE = 1024 * 1024 * 4,  /* 4 mb file size alloc limit */
 
-#if defined(FORTRESS) || defined (HAVE_STUNNEL)
-    MAX_EX_DATA        =   3,  /* allow for three items of ex_data */
+#if defined(HAVE_EX_DATA) || defined(FORTRESS)
+    MAX_EX_DATA        =   5,  /* allow for five items of ex_data */
 #endif
 
     MAX_X509_SIZE      = 2048, /* max static x509 buffer size */
     CERT_MIN_SIZE      =  256, /* min PEM cert size with header/footer */
-    MAX_FILENAME_SZ    =  256, /* max file name length */
     FILE_BUFFER_SIZE   = 1024, /* default static file buffer size for input,
                                   will use dynamic buffer if not big enough */
 
@@ -1249,7 +1248,9 @@ enum BIO_TYPE {
     BIO_BUFFER = 1,
     BIO_SOCKET = 2,
     BIO_SSL    = 3,
-    BIO_MEMORY = 4
+    BIO_MEMORY = 4,
+    BIO_BIO    = 5,
+    BIO_FILE   = 6
 };
 
 
@@ -1261,15 +1262,24 @@ struct WOLFSSL_BIO_METHOD {
 
 /* wolfSSL BIO type */
 struct WOLFSSL_BIO {
-    byte        type;          /* method type */
-    byte        close;         /* close flag */
-    byte        eof;           /* eof flag */
     WOLFSSL*     ssl;           /* possible associated ssl */
-    byte*       mem;           /* memory buffer */
-    int         memLen;        /* memory buffer length */
-    int         fd;            /* possible file descriptor */
+#ifndef NO_FILESYSTEM
+    XFILE        file;
+#endif
     WOLFSSL_BIO* prev;          /* previous in chain */
     WOLFSSL_BIO* next;          /* next in chain */
+    WOLFSSL_BIO* pair;          /* BIO paired with */
+    void*        heap;          /* user heap hint */
+    byte*        mem;           /* memory buffer */
+    int         wrSz;          /* write buffer size (mem) */
+    int         wrIdx;         /* current index for write buffer */
+    int         rdIdx;         /* current read index */
+    int         readRq;        /* read request */
+    int         memLen;        /* memory buffer length */
+    int         fd;            /* possible file descriptor */
+    int         eof;           /* eof flag */
+    byte        type;          /* method type */
+    byte        close;         /* close flag */
 };
 
 
@@ -1397,7 +1407,7 @@ WOLFSSL_LOCAL
 void InitSuites(Suites*, ProtocolVersion, word16, word16, word16, word16,
                 word16, word16, word16, int);
 WOLFSSL_LOCAL
-int  SetCipherList(Suites*, const char* list);
+int  SetCipherList(WOLFSSL_CTX*, Suites*, const char* list);
 
 #ifndef PSK_TYPES_DEFINED
     typedef unsigned int (*wc_psk_client_callback)(WOLFSSL*, const char*, char*,
@@ -1409,11 +1419,6 @@ int  SetCipherList(Suites*, const char* list);
     typedef int (*wc_dtls_export)(WOLFSSL* ssl,
                    unsigned char* exportBuffer, unsigned int sz, void* userCtx);
 #endif
-
-#ifdef HAVE_NETX
-    WOLFSSL_LOCAL int NetX_Receive(WOLFSSL *ssl, char *buf, int sz, void *ctx);
-    WOLFSSL_LOCAL int NetX_Send(WOLFSSL *ssl, char *buf, int sz, void *ctx);
-#endif /* HAVE_NETX */
 
 
 /* wolfSSL Cipher type just points back to SSL */
@@ -1453,6 +1458,9 @@ struct WOLFSSL_OCSP {
     WOLFSSL_CERT_MANAGER* cm;            /* pointer back to cert manager */
     OcspEntry*            ocspList;      /* OCSP response list */
     wolfSSL_Mutex         ocspLock;      /* OCSP list lock */
+#ifdef WOLFSSL_NGINX
+    int(*statusCb)(WOLFSSL*, void*);
+#endif
 };
 
 #ifndef MAX_DATE_SIZE
@@ -1495,10 +1503,6 @@ struct CRL_Monitor {
 };
 
 
-#ifndef HAVE_CRL
-    typedef struct WOLFSSL_CRL WOLFSSL_CRL;
-#endif
-
 #if defined(HAVE_CRL) && defined(NO_FILESYSTEM)
     #undef HAVE_CRL_MONITOR
 #endif
@@ -1507,6 +1511,9 @@ struct CRL_Monitor {
 struct WOLFSSL_CRL {
     WOLFSSL_CERT_MANAGER* cm;            /* pointer back to cert manager */
     CRL_Entry*            crlList;       /* our CRL list */
+#ifdef HAVE_CRL_IO
+    CbCrlIO               crlIOCb;
+#endif
     wolfSSL_Mutex         crlLock;       /* CRL list lock */
     CRL_Monitor           monitors[2];   /* PEM and DER possible */
 #ifdef HAVE_CRL_MONITOR
@@ -1777,7 +1784,7 @@ typedef struct {
 } CertificateStatusRequest;
 
 WOLFSSL_LOCAL int   TLSX_UseCertificateStatusRequest(TLSX** extensions,
-                                    byte status_type, byte options, void* heap);
+                                    byte status_type, byte options, void* heap, int devId);
 WOLFSSL_LOCAL int   TLSX_CSR_InitRequest(TLSX* extensions, DecodedCert* cert,
                                                                     void* heap);
 WOLFSSL_LOCAL void* TLSX_CSR_GetRequest(TLSX* extensions);
@@ -1799,7 +1806,7 @@ typedef struct CSRIv2 {
 } CertificateStatusRequestItemV2;
 
 WOLFSSL_LOCAL int   TLSX_UseCertificateStatusRequestV2(TLSX** extensions,
-                                    byte status_type, byte options, void* heap);
+                                    byte status_type, byte options, void* heap, int devId);
 WOLFSSL_LOCAL int   TLSX_CSR2_InitRequests(TLSX* extensions, DecodedCert* cert,
                                                        byte isPeer, void* heap);
 WOLFSSL_LOCAL void* TLSX_CSR2_GetRequest(TLSX* extensions, byte status_type,
@@ -1934,11 +1941,18 @@ struct WOLFSSL_CTX {
     DerBuffer*  certificate;
     DerBuffer*  certChain;
                  /* chain after self, in DER, with leading size for each cert */
+    #ifdef OPENSSL_EXTRA
+    STACK_OF(WOLFSSL_X509_NAME)* ca_names;
+    #endif
+    #ifdef WOLFSSL_NGINX
+    STACK_OF(WOLFSSL_X509)* x509Chain;
+    #endif
     DerBuffer*  privateKey;
     WOLFSSL_CERT_MANAGER* cm;      /* our cert manager, ctx owns SSL will use */
 #endif
 #ifdef KEEP_OUR_CERT
     WOLFSSL_X509*    ourCert;     /* keep alive a X509 struct of cert */
+    int              ownOurCert;  /* Dispose of certificate if we own */
 #endif
     Suites*     suites;           /* make dynamic, user may not need/set */
     void*       heap;             /* for user memory overrides */
@@ -1948,6 +1962,9 @@ struct WOLFSSL_CTX {
     byte        failNoCertxPSK;   /* fail if no cert with the exception of PSK*/
     byte        sessionCacheOff;
     byte        sessionCacheFlushOff;
+#ifdef HAVE_EXT_CACHE
+    byte        internalCacheOff;
+#endif
     byte        sendVerify;       /* for client side */
     byte        haveRSA;          /* RSA available */
     byte        haveECC;          /* ECC available */
@@ -1960,6 +1977,7 @@ struct WOLFSSL_CTX {
     byte        groupMessages;    /* group handshake messages before sending */
     byte        minDowngrade;     /* minimum downgrade version */
     byte        haveEMS;          /* have extended master secret extension */
+    byte        useClientOrder;   /* Use client's cipher preference order */
 #if defined(WOLFSSL_SCTP) && defined(WOLFSSL_DTLS)
     byte        dtlsSctp;         /* DTLS-over-SCTP mode */
     word16      dtlsMtuSz;        /* DTLS MTU size */
@@ -1972,6 +1990,9 @@ struct WOLFSSL_CTX {
 #endif
 #ifdef HAVE_ECC
     short       minEccKeySz;      /* minimum ECC key size */
+#endif
+#ifdef OPENSSL_EXTRA
+    unsigned long     mask;       /* store SSL_OP_ flags */
 #endif
     CallbackIORecv CBIORecv;
     CallbackIOSend CBIOSend;
@@ -1987,6 +2008,7 @@ struct WOLFSSL_CTX {
     word32          timeout;            /* session timeout */
 #ifdef HAVE_ECC
     word16          eccTempKeySz;       /* in octets 20 - 66 */
+    word32          ecdhCurveOID;       /* curve Ecc_Sum */
     word32          pkCurveOID;         /* curve Ecc_Sum */
 #endif
 #ifndef NO_PSK
@@ -1999,11 +2021,20 @@ struct WOLFSSL_CTX {
     byte        haveAnon;               /* User wants to allow Anon suites */
 #endif /* HAVE_ANON */
 #if defined(OPENSSL_EXTRA) || defined(HAVE_WEBSERVER)
-    pem_password_cb passwd_cb;
+    pem_password_cb* passwd_cb;
     void*           userdata;
+    WOLFSSL_X509_STORE x509_store; /* points to ctx->cm */
+    byte            readAhead;
+    void*           userPRFArg; /* passed to prf callback */
 #endif /* OPENSSL_EXTRA */
-#ifdef HAVE_STUNNEL
+#ifdef HAVE_EX_DATA
     void*           ex_data[MAX_EX_DATA];
+#endif
+#if defined(HAVE_ALPN) && defined(WOLFSSL_NGINX)
+    CallbackALPNSelect alpnSelect;
+    void*              alpnSelectArg;
+#endif
+#if defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
     CallbackSniRecv sniRecvCb;
     void*           sniRecvCbArg;
 #endif
@@ -2027,6 +2058,9 @@ struct WOLFSSL_CTX {
         void*              ticketEncCtx;  /* session encrypt context */
         int                ticketHint;    /* ticket hint in seconds */
     #endif
+    #ifdef HAVE_SUPPORTED_CURVES
+        byte userCurves;                  /* indicates user called wolfSSL_CTX_UseSupportedCurve */
+    #endif
 #endif
 #ifdef ATOMIC_USER
     CallbackMacEncrypt    MacEncryptCb;    /* Atomic User Mac/Encrypt Cb */
@@ -2048,6 +2082,11 @@ struct WOLFSSL_CTX {
 #ifdef HAVE_WOLF_EVENT
         WOLF_EVENT_QUEUE event_queue;
 #endif /* HAVE_WOLF_EVENT */
+#ifdef HAVE_EXT_CACHE
+        WOLFSSL_SESSION*(*get_sess_cb)(WOLFSSL*, unsigned char*, int, int*);
+        int (*new_sess_cb)(WOLFSSL*, WOLFSSL_SESSION*);
+        void (*rem_sess_cb)(WOLFSSL_CTX*, WOLFSSL_SESSION*);
+#endif
 };
 
 
@@ -2175,6 +2214,10 @@ typedef struct Ciphers {
 #endif
 #if defined(BUILD_AES) || defined(BUILD_AESGCM)
     Aes*    aes;
+    #if defined(BUILD_AESGCM) || defined(HAVE_AESCCM)
+        byte* additional;
+        byte* nonce;
+    #endif
 #endif
 #ifdef HAVE_CAMELLIA
     Camellia* cam;
@@ -2191,6 +2234,7 @@ typedef struct Ciphers {
 #ifdef HAVE_IDEA
     Idea* idea;
 #endif
+    byte    state;
     byte    setup;       /* have we set it up flag for detection */
 } Ciphers;
 
@@ -2213,10 +2257,12 @@ WOLFSSL_LOCAL void FreeCiphers(WOLFSSL* ssl);
 
 /* hashes type */
 typedef struct Hashes {
-    #ifndef NO_OLD_TLS
+    #if !defined(NO_MD5) && !defined(NO_OLD_TLS)
         byte md5[MD5_DIGEST_SIZE];
     #endif
-    byte sha[SHA_DIGEST_SIZE];
+    #if !defined(NO_SHA)
+        byte sha[SHA_DIGEST_SIZE];
+    #endif
     #ifndef NO_SHA256
         byte sha256[SHA256_DIGEST_SIZE];
     #endif
@@ -2245,30 +2291,33 @@ struct WOLFSSL_X509_CHAIN {
 
 /* wolfSSL session type */
 struct WOLFSSL_SESSION {
-    word32          bornOn;                        /* create time in seconds   */
-    word32          timeout;                       /* timeout in seconds       */
-    byte            sessionID[ID_LEN];             /* id for protocol */
-    byte            sessionIDSz;
-    byte            masterSecret[SECRET_LEN];      /* stored secret */
-    word16          haveEMS;                       /* ext master secret flag */
+    word32             bornOn;                    /* create time in seconds   */
+    word32             timeout;                   /* timeout in seconds       */
+    byte               sessionID[ID_LEN];         /* id for protocol          */
+    byte               sessionIDSz;
+    byte               masterSecret[SECRET_LEN];  /* stored secret            */
+    word16             haveEMS;                   /* ext master secret flag   */
 #ifdef SESSION_CERTS
-    WOLFSSL_X509_CHAIN chain;                    /* peer cert chain, static  */
-    ProtocolVersion version;                    /* which version was used */
-    byte            cipherSuite0;               /* first byte, normally 0 */
-    byte            cipherSuite;                /* 2nd byte, actual suite */
+    WOLFSSL_X509_CHAIN chain;                     /* peer cert chain, static  */
+    ProtocolVersion    version;                   /* which version was used   */
+    byte               cipherSuite0;              /* first byte, normally 0   */
+    byte               cipherSuite;               /* 2nd byte, actual suite   */
 #endif
 #ifndef NO_CLIENT_CACHE
-    word16          idLen;                         /* serverID length */
-    byte            serverID[SERVER_ID_LEN];       /* for easier client lookup */
+    word16             idLen;                     /* serverID length          */
+    byte               serverID[SERVER_ID_LEN];   /* for easier client lookup */
 #endif
 #ifdef HAVE_SESSION_TICKET
-    byte*           ticket;
-    word16          ticketLen;
-    byte            staticTicket[SESSION_TICKET_LEN];
-    byte            isDynamic;
+    byte*              ticket;
+    word16             ticketLen;
+    byte               staticTicket[SESSION_TICKET_LEN];
+    byte               isDynamic;
 #endif
-#ifdef HAVE_STUNNEL
-    void*           ex_data[MAX_EX_DATA];
+#ifdef HAVE_EXT_CACHE
+    byte               isAlloced;
+#endif
+#ifdef HAVE_EX_DATA
+    void*              ex_data[MAX_EX_DATA];
 #endif
 };
 
@@ -2318,16 +2367,6 @@ enum AcceptState {
     ACCEPT_THIRD_REPLY_DONE
 };
 
-/* sub-states for send/do key share (key exchange) */
-enum KeyShareState {
-    KEYSHARE_BEGIN = 0,
-    KEYSHARE_BUILD,
-    KEYSHARE_DO,
-    KEYSHARE_VERIFY,
-    KEYSHARE_FINALIZE,
-    KEYSHARE_END
-};
-
 /* buffers for struct WOLFSSL */
 typedef struct Buffers {
     bufferStatic    inputBuffer;
@@ -2349,6 +2388,7 @@ typedef struct Buffers {
     buffer          serverDH_G;            /* WOLFSSL_CTX owns, unless we own */
     buffer          serverDH_Pub;
     buffer          serverDH_Priv;
+    DhKey*          serverDH_Key;
 #endif
 #ifndef NO_CERTS
     DerBuffer*      certificate;           /* WOLFSSL_CTX owns, unless we own */
@@ -2378,11 +2418,17 @@ typedef struct Options {
     wc_psk_server_callback server_psk_cb;
     word16            havePSK:1;            /* psk key set by user */
 #endif /* NO_PSK */
+#ifdef OPENSSL_EXTRA
+    unsigned long     mask; /* store SSL_OP_ flags */
+#endif
 
     /* on/off or small bit flags, optimize layout */
     word16            sendVerify:2;     /* false = 0, true = 1, sendBlank = 2 */
     word16            sessionCacheOff:1;
     word16            sessionCacheFlushOff:1;
+#ifdef HAVE_EXT_CACHE
+    word16            internalCacheOff:1;
+#endif
     word16            side:1;             /* client or server end */
     word16            verifyPeer:1;
     word16            verifyNone:1;
@@ -2437,6 +2483,11 @@ typedef struct Options {
 #endif
 #endif
     word16            haveEMS:1;          /* using extended master secret */
+#if defined(HAVE_TLS_EXTENSIONS) && defined(HAVE_SUPPORTED_CURVES)
+    word16            userCurves:1;       /* indicates user called wolfSSL_UseSupportedCurve */
+#endif
+    word16            keepResources:1;    /* Keep resources after handshake */
+    word16            useClientOrder:1;   /* Use client's cipher order */
 
     /* need full byte values for this section */
     byte            processReply;           /* nonblocking resume */
@@ -2449,8 +2500,8 @@ typedef struct Options {
     byte            minDowngrade;       /* minimum downgrade version */
     byte            connectState;       /* nonblocking resume */
     byte            acceptState;        /* nonblocking resume */
-    byte            keyShareState;      /* sub-state for key share (key exchange).
-                                           See enum KeyShareState. */
+    byte            asyncState;         /* sub-state for enum asyncState */
+    byte            buildMsgState;      /* sub-state for enum buildMsgState */
 #ifndef NO_DH
     word16          minDhKeySz;         /* minimum DH key size */
     word16          dhKeySz;            /* actual DH key size */
@@ -2466,6 +2517,7 @@ typedef struct Options {
 
 typedef struct Arrays {
     byte*           pendingMsg;         /* defrag buffer */
+    byte*           preMasterSecret;
     word32          preMasterSz;        /* differs for DH, actual size */
     word32          pendingMsgSz;       /* defrag buffer size */
     word32          pendingMsgOffset;   /* current offset into defrag buffer */
@@ -2479,7 +2531,6 @@ typedef struct Arrays {
     byte            serverRandom[RAN_LEN];
     byte            sessionID[ID_LEN];
     byte            sessionIDSz;
-    byte            preMasterSecret[ENCRYPT_LEN];
     byte            masterSecret[SECRET_LEN];
 #ifdef WOLFSSL_DTLS
     byte            cookie[MAX_COOKIE_LEN];
@@ -2500,8 +2551,11 @@ struct WOLFSSL_STACK {
     unsigned long num; /* number of nodes in stack
                         * (saftey measure for freeing and shortcut for count) */
     union {
-        WOLFSSL_X509* x509;
-        WOLFSSL_BIO*  bio;
+        WOLFSSL_X509*        x509;
+        WOLFSSL_X509_NAME*   name;
+        WOLFSSL_BIO*         bio;
+        WOLFSSL_ASN1_OBJECT* obj;
+        char*                string;
     } data;
     WOLFSSL_STACK* next;
 };
@@ -2565,9 +2619,24 @@ struct WOLFSSL_X509 {
     void*            heap;                           /* heap hint */
     byte             dynamicMemory;                  /* dynamic memory flag */
     byte             isCa;
+#ifdef WOLFSSL_CERT_EXT
+    char             certPolicies[MAX_CERTPOL_NB][MAX_CERTPOL_SZ];
+    int              certPoliciesNb;
+#endif /* WOLFSSL_CERT_EXT */
 #ifdef OPENSSL_EXTRA
+#ifdef HAVE_EX_DATA
+    void*            ex_data[MAX_EX_DATA];
+#endif
     word32           pathLength;
     word16           keyUsage;
+    byte             CRLdistSet;
+    byte             CRLdistCrit;
+    byte*            CRLInfo;
+    int              CRLInfoSz;
+    byte             authInfoSet;
+    byte             authInfoCrit;
+    byte*            authInfo;
+    int              authInfoSz;
     byte             basicConstSet;
     byte             basicConstCrit;
     byte             basicConstPlSet;
@@ -2583,6 +2652,10 @@ struct WOLFSSL_X509 {
     word32           subjKeyIdSz;
     byte             keyUsageSet;
     byte             keyUsageCrit;
+    byte             extKeyUsageCrit;
+    byte*            extKeyUsageSrc;
+    word32           extKeyUsageSz;
+    word32           extKeyUsageCount;
 #endif /* OPENSSL_EXTRA */
 };
 
@@ -2661,14 +2734,12 @@ typedef struct MsgsReceived {
 typedef struct HS_Hashes {
     Hashes          verifyHashes;
     Hashes          certHashes;         /* for cert verify */
-#ifndef NO_OLD_TLS
 #ifndef NO_SHA
     Sha             hashSha;            /* sha hash of handshake msgs */
 #endif
-#ifndef NO_MD5
+#if !defined(NO_MD5) && !defined(NO_OLD_TLS)
     Md5             hashMd5;            /* md5 hash of handshake msgs */
 #endif
-#endif /* NO_OLD_TLS */
 #ifndef NO_SHA256
     Sha256          hashSha256;         /* sha256 hash of handshake msgs */
 #endif
@@ -2679,6 +2750,33 @@ typedef struct HS_Hashes {
     Sha512          hashSha512;         /* sha512 hash of handshake msgs */
 #endif
 } HS_Hashes;
+
+
+#ifdef WOLFSSL_ASYNC_CRYPT
+    #define MAX_ASYNC_ARGS 16
+    typedef void (*FreeArgsCb)(struct WOLFSSL* ssl, void* pArgs);
+
+    struct WOLFSSL_ASYNC {
+        WC_ASYNC_DEV* dev;
+        FreeArgsCb    freeArgs; /* function pointer to cleanup args */
+        word32        args[MAX_ASYNC_ARGS]; /* holder for current args */
+    };
+#endif
+
+#ifdef HAVE_WRITE_DUP
+
+    #define WRITE_DUP_SIDE 1
+    #define READ_DUP_SIDE 2
+
+    typedef struct WriteDup {
+        wolfSSL_Mutex   dupMutex;       /* reference count mutex */
+        int             dupCount;       /* reference count */
+        int             dupErr;         /* under dupMutex, pass to other side */
+    } WriteDup;
+
+    WOLFSSL_LOCAL void FreeWriteDup(WOLFSSL* ssl);
+    WOLFSSL_LOCAL int  NotifyWriteSide(WOLFSSL* ssl, int err);
+#endif /* HAVE_WRITE_DUP */
 
 
 /* wolfSSL ssl type */
@@ -2693,6 +2791,11 @@ struct WOLFSSL {
     void*           verifyCbCtx;        /* cert verify callback user ctx*/
     VerifyCallback  verifyCallback;     /* cert verification callback */
     void*           heap;               /* for user overrides */
+#ifdef HAVE_WRITE_DUP
+    WriteDup*       dupWrite;           /* valid pointer indicates ON */
+             /* side that decrements dupCount to zero frees overall structure */
+    byte            dupSide;            /* write side or read side */
+#endif
 #ifdef WOLFSSL_STATIC_MEMORY
     WOLFSSL_HEAP_HINT heap_hint;
 #endif
@@ -2701,18 +2804,19 @@ struct WOLFSSL {
     void*           hsDoneCtx;         /*  user handshake cb context  */
 #endif
 #ifdef WOLFSSL_ASYNC_CRYPT
-    AsyncCryptSSLState  async;
-    AsyncCryptDev       asyncDev;
+    struct WOLFSSL_ASYNC async;
 #endif
-    void*           sigKey;             /* RsaKey or ecc_key allocated from heap */
-    word32          sigType;            /* Type of sigKey */
-    word32          sigLen;             /* Actual signature length */
+    void*           hsKey;              /* Handshake key (RsaKey or ecc_key) allocated from heap */
+    word32          hsType;             /* Type of Handshake key (hsKey) */
     WOLFSSL_CIPHER  cipher;
     hmacfp          hmac;
     Ciphers         encrypt;
     Ciphers         decrypt;
     Buffers         buffers;
     WOLFSSL_SESSION session;
+#ifdef HAVE_EXT_CACHE
+    WOLFSSL_SESSION* extSession;
+#endif
     WOLFSSL_ALERT_HISTORY alert_history;
     int             error;
     int             rfd;                /* read  file descriptor */
@@ -2732,6 +2836,11 @@ struct WOLFSSL {
 #ifdef OPENSSL_EXTRA
     WOLFSSL_BIO*     biord;              /* socket bio read  to free/close */
     WOLFSSL_BIO*     biowr;              /* socket bio write to free/close */
+    unsigned long    peerVerifyRet;
+    byte             readAhead;
+#ifdef HAVE_PK_CALLBACKS
+    void*            loggingCtx;         /* logging callback argument */
+#endif
 #endif
 #ifndef NO_RSA
     RsaKey*         peerRsaKey;
@@ -2758,7 +2867,9 @@ struct WOLFSSL {
     ecc_key*        peerEccKey;              /* peer's  ECDHE key */
     ecc_key*        peerEccDsaKey;           /* peer's  ECDSA key */
     ecc_key*        eccTempKey;              /* private ECDHE key */
+    int             eccVerifyRes;
     word32          pkCurveOID;              /* curve Ecc_Sum     */
+    word32          ecdhCurveOID;            /* curve Ecc_Sum     */
     word16          eccTempKeySz;            /* in octets 20 - 66 */
     byte            peerEccKeyPresent;
     byte            peerEccDsaKeyPresent;
@@ -2803,8 +2914,8 @@ struct WOLFSSL {
                                             flag found in buffers.weOwnCert) */
 #endif
     byte             keepCert;           /* keep certificate after handshake */
-#if defined(FORTRESS) || defined(HAVE_STUNNEL)
-    void*           ex_data[MAX_EX_DATA]; /* external data, for Fortress */
+#if defined(HAVE_EX_DATA) || defined(FORTRESS)
+    void*            ex_data[MAX_EX_DATA]; /* external data, for Fortress */
 #endif
     int              devId;             /* async device id to use */
 #ifdef HAVE_ONE_TIME_AUTH
@@ -2830,6 +2941,10 @@ struct WOLFSSL {
     #endif                                         /* user turned on */
     #ifdef HAVE_ALPN
         char*   alpn_client_list;  /* keep the client's list */
+        #ifdef WOLFSSL_NGINX
+            CallbackALPNSelect alpnSelect;
+            void*              alpnSelectArg;
+        #endif
     #endif                         /* of accepted protocols */
     #if !defined(NO_WOLFSSL_CLIENT) && defined(HAVE_SESSION_TICKET)
         CallbackSessionTicket session_ticket_cb;
@@ -2837,6 +2952,13 @@ struct WOLFSSL {
         byte                  expect_session_ticket;
     #endif
 #endif /* HAVE_TLS_EXTENSIONS */
+#ifdef OPENSSL_EXTRA
+    byte*           ocspResp;
+    int             ocspRespSz;
+#ifdef WOLFSSL_NGINX
+    char*           url;
+#endif
+#endif
 #ifdef HAVE_NETX
     NetX_Ctx        nxCtx;             /* NetX IO Context */
 #endif
@@ -2867,16 +2989,13 @@ struct WOLFSSL {
 #ifdef WOLFSSL_JNI
         void* jObjectRef;     /* reference to WolfSSLSession in JNI wrapper */
 #endif /* WOLFSSL_JNI */
-#ifdef HAVE_WOLF_EVENT
-    WOLF_EVENT event;
-#endif /* HAVE_WOLF_EVENT */
 };
 
 
 WOLFSSL_LOCAL
-int  SetSSL_CTX(WOLFSSL*, WOLFSSL_CTX*);
+int  SetSSL_CTX(WOLFSSL*, WOLFSSL_CTX*, int);
 WOLFSSL_LOCAL
-int  InitSSL(WOLFSSL*, WOLFSSL_CTX*);
+int  InitSSL(WOLFSSL*, WOLFSSL_CTX*, int);
 WOLFSSL_LOCAL
 void FreeSSL(WOLFSSL*, void* heap);
 WOLFSSL_API void SSL_ResourceFree(WOLFSSL*);   /* Micrium uses */
@@ -2913,6 +3032,11 @@ typedef struct EncryptedInfo {
     WOLFSSL_LOCAL int ProcessFile(WOLFSSL_CTX* ctx, const char* fname, int format,
                                  int type, WOLFSSL* ssl, int userChain,
                                 WOLFSSL_CRL* crl);
+
+    #ifdef OPENSSL_EXTRA
+    WOLFSSL_LOCAL int CheckHostName(DecodedCert* dCert, char *domainName,
+                                    size_t domainNameLen);
+    #endif
 #endif
 
 
@@ -3126,7 +3250,7 @@ WOLFSSL_LOCAL word32  LowResTimer(void);
     WOLFSSL_LOCAL int  CopyDecodedToX509(WOLFSSL_X509*, DecodedCert*);
 #endif
 
-/* used by ssl.c and wolfssl_int.c */
+/* used by ssl.c and internal.c */
 WOLFSSL_LOCAL void c32to24(word32 in, word24 out);
 
 WOLFSSL_LOCAL const char* const* GetCipherNames(void);
@@ -3146,19 +3270,14 @@ WOLFSSL_LOCAL int SetKeysSide(WOLFSSL*, enum encrypt_side);
 
 
 #ifndef NO_DH
-    WOLFSSL_LOCAL int DhGenKeyPair(WOLFSSL* ssl,
-        byte* p, word32 pSz,
-        byte* g, word32 gSz,
+    WOLFSSL_LOCAL int DhGenKeyPair(WOLFSSL* ssl, DhKey* dhKey,
         byte* priv, word32* privSz,
         byte* pub, word32* pubSz);
-    WOLFSSL_LOCAL int DhAgree(WOLFSSL* ssl,
-        byte* p, word32 pSz,
-        byte* g, word32 gSz,
-        byte* priv, word32* privSz,
-        byte* pub, word32* pubSz,
+    WOLFSSL_LOCAL int DhAgree(WOLFSSL* ssl, DhKey* dhKey,
+        const byte* priv, word32 privSz,
         const byte* otherPub, word32 otherPubSz,
         byte* agree, word32* agreeSz);
-#endif
+#endif /* !NO_DH */
 
 #ifdef HAVE_ECC
     WOLFSSL_LOCAL int EccMakeKey(WOLFSSL* ssl, ecc_key* key, ecc_key* peer);
@@ -3166,7 +3285,17 @@ WOLFSSL_LOCAL int SetKeysSide(WOLFSSL*, enum encrypt_side);
 
 WOLFSSL_LOCAL int BuildMessage(WOLFSSL* ssl, byte* output, int outSz,
                         const byte* input, int inSz, int type, int hashOutput,
-                        int sizeOnly);
+                        int sizeOnly, int asyncOkay);
+
+WOLFSSL_LOCAL int AllocKey(WOLFSSL* ssl, int type, void** pKey);
+WOLFSSL_LOCAL void FreeKey(WOLFSSL* ssl, int type, void** pKey);
+
+#ifdef WOLFSSL_ASYNC_CRYPT
+    WOLFSSL_LOCAL int wolfSSL_AsyncPop(WOLFSSL* ssl, byte* state);
+    WOLFSSL_LOCAL int wolfSSL_AsyncPush(WOLFSSL* ssl, WC_ASYNC_DEV* asyncDev,
+                                        word32 flags);
+#endif
+
 
 #ifdef __cplusplus
     }  /* extern "C" */
