@@ -654,6 +654,8 @@ WOLFSSL_API int wolfSSL_EVP_PKEY_decrypt(WOLFSSL_EVP_PKEY_CTX *ctx,
                      unsigned char *out, size_t *outlen,
                      const unsigned char *in, size_t inlen)
 {
+    int len;
+
     if (ctx == NULL)return 0;
     WOLFSSL_ENTER("EVP_PKEY_decrypt");
 
@@ -661,7 +663,7 @@ WOLFSSL_API int wolfSSL_EVP_PKEY_decrypt(WOLFSSL_EVP_PKEY_CTX *ctx,
     (void)outlen;
     (void)in;
     (void)inlen;
-    int len;
+    (void)len;
 
     switch(ctx->pkey->type){
 #if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
