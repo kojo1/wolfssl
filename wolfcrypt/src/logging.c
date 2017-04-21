@@ -30,7 +30,10 @@
 
 #include <wolfssl/wolfcrypt/logging.h>
 #include <wolfssl/wolfcrypt/error-crypt.h>
-
+#if defined(OPENSSL_EXTRA) && !defined(WOLFCRYPT_ONLY)
+/* avoid adding WANT_READ and WANT_WRITE to error queue */
+#include <wolfssl/error-ssl.h>
+#endif
 
 #ifdef __cplusplus
     extern "C" {
@@ -247,6 +250,11 @@ void WOLFSSL_ERROR(int error)
                 sprintf(buffer, "wolfSSL error occurred, error = %d", error);
             }
             else {
+                #if defined(OPENSSL_EXTRA) && !defined(WOLFCRYPT_ONLY)
+                /* If running in compatibility mode do not add want read and
+                   want right to error queue */
+                if (error != WANT_READ && error != WANT_WRITE) {
+                #endif
                 if (error < 0) error = error - (2*error); /*get absolute value*/
                 sprintf(buffer, "wolfSSL error occurred, error = %d line:%d file:%s",
                     error, line, file);
@@ -255,6 +263,9 @@ void WOLFSSL_ERROR(int error)
                     /* with void function there is no return here, continue on
                      * to unlock mutex and log what buffer was created. */
                 }
+                #if defined(OPENSSL_EXTRA) && !defined(WOLFCRYPT_ONLY)
+                }
+                #endif
 
                 wc_UnLockMutex(&debug_mutex);
             }
@@ -303,7 +314,6 @@ int wc_LoggingCleanup(void)
 }
 
 
-#if defined(DEBUG_WOLFSSL) || defined(WOLFSSL_NGINX)
 /* peek at an error node
  *
  * index : if -1 then the most recent node is looked at, otherwise search
@@ -483,7 +493,6 @@ int wc_AddErrorNode(int error, int line, char* buf, char* file)
 
     return 0;
 }
-#endif /* DEBUG_WOLFSSL || WOLFSSL_NGINX */
 
 /* Removes the error node at the specified index.
  * index : if -1 then the most recent node is looked at, otherwise search

@@ -2019,6 +2019,7 @@ struct WOLFSSL_CTX {
     pem_password_cb* passwd_cb;
     void*           userdata;
     WOLFSSL_X509_STORE x509_store; /* points to ctx->cm */
+    WOLFSSL_X509_STORE* x509_store_pt; /* take ownership of external store */
     byte            readAhead;
     void*           userPRFArg; /* passed to prf callback */
 #endif /* OPENSSL_EXTRA */
@@ -2799,6 +2800,8 @@ struct WOLFSSL {
              /* side that decrements dupCount to zero frees overall structure */
     byte            dupSide;            /* write side or read side */
 #endif
+    CallbackIORecv  CBIORecv;
+    CallbackIOSend  CBIOSend;
 #ifdef WOLFSSL_STATIC_MEMORY
     WOLFSSL_HEAP_HINT heap_hint;
 #endif

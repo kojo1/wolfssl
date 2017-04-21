@@ -10493,9 +10493,20 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
 
     void wolfSSL_set_bio(WOLFSSL* ssl, WOLFSSL_BIO* rd, WOLFSSL_BIO* wr)
     {
-        WOLFSSL_ENTER("SSL_set_bio");
-        wolfSSL_set_rfd(ssl, rd->fd);
-        wolfSSL_set_wfd(ssl, wr->fd);
+        WOLFSSL_ENTER("wolfSSL_set_bio");
+
+        if (ssl == NULL) {
+            WOLFSSL_MSG("Bad argument, ssl was NULL");
+            return;
+        }
+
+        /* if WOLFSSL_BIO is socket type then set WOLFSSL socket to use */
+        if (rd != NULL && rd->type == WOLFSSL_BIO_SOCKET) {
+            wolfSSL_set_rfd(ssl, rd->fd);
+        }
+        if (wr != NULL && wr->type == WOLFSSL_BIO_SOCKET) {
+            wolfSSL_set_wfd(ssl, wr->fd);
+        }
 
         /* free any existing WOLFSSL_BIOs in use */
         if (ssl->biord != NULL) {
@@ -10512,6 +10523,14 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
 
         ssl->biord = rd;
         ssl->biowr = wr;
+
+        /* set SSL to use BIO callbacks instead */
+        if (rd->type != WOLFSSL_BIO_SOCKET) {
+            ssl->CBIORecv = BioReceive;
+        }
+        if (wr->type != WOLFSSL_BIO_SOCKET) {
+            ssl->CBIOSend = BioSend;
+        }
     }
 
 
@@ -10785,6 +10804,8 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
         }
         ctx->cm               = str->cm;
         ctx->x509_store.cache = str->cache;
+        ctx->x509_store_pt    = str; /* take ownership of store and free it
+                                        with CTX free */
     }
 
 
@@ -11159,8 +11180,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
             wc_RemoveErrorNode(-1);
             return ret;
         }
-#elif defined(DEBUG_WOLFSSL) && \
-        (defined(OPENSSL_EXTRA) || defined(DEBUG_WOLFSSL_VERBOSE))
+#elif (defined(OPENSSL_EXTRA) || defined(DEBUG_WOLFSSL_VERBOSE))
         return wc_PullErrorNode(NULL, NULL, NULL);
 #else
         return (unsigned long)(0 - NOT_COMPILED_IN);
@@ -26039,7 +26059,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     }
 
 
-#if defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
+#if defined(OPENSSL_EXTRA) || defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
 
 #ifndef NO_WOLFSSL_STUB
     unsigned char *wolfSSL_SHA1(const unsigned char *d, size_t n, unsigned char *md)
@@ -27155,6 +27175,9 @@ int wolfSSL_CIPHER_get_bits(const WOLFSSL_CIPHER *c, int *alg_bits)
     }
     return ret;
 }
+#endif /* #if defined(OPENSSL_EXTRA) && (defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)) */
+
+#if defined(OPENSSL_EXTRA) || (defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX))
 
 int wolfSSL_sk_X509_NAME_num(const STACK_OF(WOLFSSL_X509_NAME) *s)
 {
@@ -27173,6 +27196,10 @@ int wolfSSL_sk_X509_num(const STACK_OF(WOLFSSL_X509) *s)
         return -1;
     return (int)s->num;
 }
+#endif
+
+/* stunnel compatibility functions*/
+#if defined(OPENSSL_EXTRA) && (defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX))
 
 int wolfSSL_X509_NAME_print_ex(WOLFSSL_BIO* bio, WOLFSSL_X509_NAME* name,
                 int indent, unsigned long flags)
