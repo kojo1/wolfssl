@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>../user_settings.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -33,10 +34,10 @@
         <targetDevice>PIC32MX795F512L</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>PKOBSKDEPlatformTool</platformTool>
+        <platformTool>SKDEPIC32PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion></languageToolchainVersion>
-        <platform>4</platform>
+        <languageToolchainVersion>1.40</languageToolchainVersion>
+        <platform>3</platform>
       </toolsSet>
       <compileType>
         <linkerTool>
@@ -78,23 +79,22 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <C32>
-        <property key="additional-warnings" value="false"/>
+        <property key="additional-warnings" value="true"/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
-        <property key="extra-include-directories" value="../../"/>
+        <property key="extra-include-directories" value="../../;../"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="make-warnings-into-errors" value="false"/>
-        <property key="optimization-level" value="-O1"/>
+        <property key="optimization-level" value="-O3"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros"
-                  value="NO_MAIN_DRIVER;USE_CERT_BUFFERS_1024;BENCH_EMBEDDED;HAVE_ECC;WOLFSSL_SHA512"/>
+        <property key="preprocessor-macros" value="WOLFSSL_USER_SETTINGS"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="use-cci" value="false"/>
@@ -201,7 +201,6 @@
         <property key="memories.programmemory.end" value="0x1d07ffff"/>
         <property key="memories.programmemory.start" value="0x1d000000"/>
         <property key="memories.userotp" value="true"/>
-        <property key="poweroptions.powerenable" value="false"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
@@ -211,8 +210,10 @@
         <property key="programoptions.preserveprogramrange.start" value="0x1d000000"/>
         <property key="programoptions.usehighvoltageonmclr" value="false"/>
         <property key="programoptions.uselvpprogramming" value="false"/>
-        <property key="voltagevalue" value="3.25"/>
       </PKOBSKDEPlatformTool>
+      <SKDEPIC32PlatformTool>
+        <property key="whatToProgram" value="all"/>
+      </SKDEPIC32PlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

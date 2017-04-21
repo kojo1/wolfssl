@@ -95,6 +95,21 @@ typedef union {
     #define WC_MAX_DIGEST_SIZE 64 /* default to max size of 64 */
 #endif
 
+#ifdef WOLFSSL_PIC32MZ_HASH  /* Only Software Hash benchmark */
+    #define wc_InitMd5   wc_InitMd5_sw
+    #define wc_Md5Update wc_Md5Update_sw
+    #define wc_Md5Final  wc_Md5Final_sw
+
+    #define wc_InitSha   wc_InitSha_sw
+    #define wc_ShaUpdate wc_ShaUpdate_sw
+    #define wc_ShaFinal  wc_ShaFinal_sw
+
+    #define wc_InitSha256   wc_InitSha256_sw
+    #define wc_Sha256Update wc_Sha256Update_sw
+    #define wc_Sha256Final  wc_Sha256Final_sw
+#endif
+
+
 #if !defined(NO_ASN) || !defined(NO_DH) || defined(HAVE_ECC)
 WOLFSSL_API int wc_HashGetOID(enum wc_HashType hash_type);
 #endif

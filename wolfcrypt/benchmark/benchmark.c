@@ -3237,10 +3237,10 @@ exit_ed_verify:
     #if defined(WOLFSSL_MICROCHIP_PIC32MZ)
         #define CLOCK 80000000.0
     #else
-        #include <peripheral/timer.h>
         #define CLOCK 40000000.0
     #endif
-
+    extern void WriteCoreTimer(word32 t);
+    extern word32 ReadCoreTimer(void);
     double current_time(int reset)
     {
         unsigned int ns;

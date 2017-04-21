@@ -28,18 +28,20 @@
 
 #if defined(WOLFSSL_MICROCHIP_PIC32MZ)
     #define MICROCHIP_PIC32
+    #define  SYSTEMConfigPerformance(a) /* void out SYSTEMConfigPerformance(); */
     #include <xc.h>
     #pragma config ICESEL = ICS_PGx2
             /* ICE/ICD Comm Channel Select (Communicate on PGEC2/PGED2) */
     #include <stdio.h>
     #include <stdlib.h>
     #include "PIC32MZ-serial.h"
-    #define  SYSTEMConfigPerformance /* void out SYSTEMConfigPerformance(); */
 #else
     #define PIC32_STARTER_KIT
     #include <stdio.h>
     #include <stdlib.h>
     #include <p32xxxx.h>
+    #define _SUPPRESS_PLIB_WARNING
+    #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
     #include <plib.h>
     #include <sys/appio.h>
     #define init_serial()  /* void out init_serial() */
@@ -52,11 +54,12 @@ typedef struct func_args {
     int    return_code;
 } func_args;
 
+void  wolfcrypt_test(func_args *args);
+
 /*
  * Main driver for WolfCrypt tests.
  */
 int main(int argc, char** argv) {
-    int i ;
 
     init_serial() ;  /* initialize PIC32MZ serial I/O */
     SYSTEMConfigPerformance(80000000);

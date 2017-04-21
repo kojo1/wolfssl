@@ -209,6 +209,8 @@
     #define USE_FAST_MATH
     #define TFM_TIMING_RESISTANT
     #define NEED_AES_TABLES
+    #define HAVE_AES_DECRYPT
+    #define HAVE_AES_CBC
     #define WOLFSSL_HAVE_MIN
 #endif
 
