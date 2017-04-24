@@ -201,7 +201,11 @@
 
 /* Define AES implementation includes and functions */
 #if defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)
-     /* STM32F2/F4 hardware AES support for CBC, CTR modes */
+    /* STM32F2/F4 hardware AES support for CBC, CTR modes */
+    /* STM32F4 GCM supported */
+
+    #define STM32_TAGSZ 16
+    #define STM32_IVSZ 16
 
 #if defined(WOLFSSL_AES_DIRECT) || defined(HAVE_AESGCM) || defined(HAVE_AESCCM)
     static int wc_AesEncrypt(Aes* aes, const byte* inBlock, byte* outBlock)
@@ -232,7 +236,7 @@
         HAL_CRYP_Init(&hcryp);
 
         if (HAL_CRYP_AESECB_Encrypt(&hcryp, (uint8_t*)inBlock, AES_BLOCK_SIZE,
-                                                outBlock, STM32_HAL_TIMEOUT) != HAL_OK) {
+                                    outBlock, STM32_HAL_TIMEOUT) != HAL_OK) {
             ret = WC_TIMEOUT_E;
         }
 
@@ -356,7 +360,7 @@
 
         HAL_CRYP_DeInit(&hcryp);
     #else
-        #warning AES Decrypt not implemented for STM32 StdPeri lib
+        #error AES Decrypt not implemented for STM32 StdPeri lib
     #endif /* WOLFSSL_STM32_CUBEMX */
         return ret;
     }
@@ -4279,109 +4283,144 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
                    byte* authTag, word32 authTagSz,
                    const byte* authIn, word32 authInSz)
 {
-#if defined(FREESCALE_LTC_AES_GCM) ||((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
+#if defined(FREESCALE_LTC_AES_GCM)
     byte *key;
     uint32_t keySize;
-    int  status;
-    
+    status_t status;
+
+    /* argument checks */
+    if (aes == NULL || out == NULL || in == NULL || sz == 0 || iv == NULL ||
+        authTag == NULL || authIn == NULL || authTagSz > AES_BLOCK_SIZE) {
+        return BAD_FUNC_ARG;
+    }
+
     key = (byte*)aes->key;
+
+    if (authTagSz < WOLFSSL_MIN_AUTH_TAG_SZ) {
+        WOLFSSL_MSG("GcmEncrypt authTagSz too small error");
+        return BAD_FUNC_ARG;
+    }
 
     status = wc_AesGetKeySize(aes, &keySize);
     if (status != 0) {
         return status;
     }
-    #if defined(FREESCALE_LTC_AES_GCM)
+
     status = LTC_AES_EncryptTagGcm(LTC_BASE, in, out, sz,
         iv, ivSz, authIn, authInSz, key, keySize, authTag, authTagSz);
 
     return (status == kStatus_Success) ? 0 : AES_GCM_AUTH_E;
 
-    #elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
-//#define DEBUG_AES
-#ifdef  DEBUG_AES
-    #include "stdio.h"
-    #define PRINT(title, data, size) { int len = size; const unsigned char *ch=data; printf("%s: ",title); for( ; len > 0; len--, ch++)printf("%02x,",*ch); printf("\n");}
-#else
-    #define PRINT(title, data, size)
-#endif
+#elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
+    byte *key;
+    uint32_t keySize;
+    int status;
+    byte tag[STM32_TAGSZ];
+    byte scratch[AES_BLOCK_SIZE];
+    byte *dummy = NULL; /* Dummy buffer for gcm decrypt */
+    word32 blocks = sz / AES_BLOCK_SIZE;
+    word32 partial = sz % AES_BLOCK_SIZE;
+    byte *a = NULL;
+    int i;
+    byte initialCounter[AES_BLOCK_SIZE];
+    byte ctr[AES_BLOCK_SIZE];
+    byte k[AES_BLOCK_SIZE*2];
 
-    {
-        #define STM32_TAGSZ 16
-        #define STM32_IVSZ 16
-        byte tag[STM32_TAGSZ];
-        byte scratch[AES_BLOCK_SIZE];
-        byte *dummy; /* Dummy buffer for gcm decrypt */
-        word32 blocks = sz / AES_BLOCK_SIZE;
-        word32 partial = sz % AES_BLOCK_SIZE;
-        byte *a;
-        int i;
-        byte initialCounter[AES_BLOCK_SIZE];
-        byte ctr[AES_BLOCK_SIZE];
-        byte k[AES_BLOCK_SIZE*2];
-        
-        dummy = XMALLOC((sz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        if(dummy == NULL)goto err_exit;
-        a = XMALLOC((authInSz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        if(a == NULL)goto err_exit;
-        XMEMSET(a, 0, (authInSz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE);
-        XMEMCPY(a, authIn, authInSz);
-        XMEMSET(dummy, 0, (sz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE);
-        XMEMSET(initialCounter, 0, AES_BLOCK_SIZE);
-
-        if (ivSz == NONCE_SZ) {
-            XMEMCPY(initialCounter, iv, ivSz);
-            initialCounter[AES_BLOCK_SIZE - 1] = 1;
-        }
-        else goto err_exit;
-        IncrementGcmCounter(initialCounter);
-
-        XMEMCPY(ctr, initialCounter, AES_BLOCK_SIZE);
-        ByteReverseWords((word32 *)k, (word32 *)key, keySize);
-
-        /* CRYPT_AES_GCM requirs partial block padding of encrypted message
-                                           for deriving correct Auth Tag value */
-        /* For the reasone, AES-GCM here is broken down into AES-CTR(Block Encrypt,
-          partial block with padding), and AES-GCM(Decrypt) for generating AuthTag */
-
-        /* Block AES-CTR Encryption */
-        status = CRYP_AES_CTR(MODE_ENCRYPT, (uint8_t *)initialCounter, (uint8_t *)k, keySize*8,
-                     (uint8_t *)in, blocks*AES_BLOCK_SIZE, out);
-        if(status != SUCCESS)goto err_exit;
-
-        for(i=0; i<blocks; i++) {
-            IncrementGcmCounter(ctr);
-        }
-
-        /* Tail partial block encryption and padding zero */
-        if (partial != 0) {
-            status = CRYP_AES_CTR(MODE_ENCRYPT, (uint8_t *)ctr, (uint8_t *)k, keySize*8,
-                         (uint8_t *)in+AES_BLOCK_SIZE*blocks, AES_BLOCK_SIZE, scratch);
-            if(status != SUCCESS)goto err_exit;
-            XMEMCPY(out+AES_BLOCK_SIZE*blocks, scratch, partial);
-        }
-
-
-        /* Derive auth tag, with dummy decrytion */
-        //printf("=== Check Before CRYP_AES_GCM(MODE_DECRYP)\n");
-        XMEMCPY(dummy, out, sz);
-        XMEMSET(tag, 0, 16);
-        status = CRYP_AES_GCM(MODE_DECRYPT, (uint8_t *)initialCounter, (uint8_t *)k, keySize*8,
-                     (uint8_t *)dummy, sz, (uint8_t *)a, authInSz, dummy, tag);
-        if(status != SUCCESS)goto err_exit;
-        XMEMCPY(authTag, tag, authTagSz);
-
-        XFREE(dummy, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        XFREE(a,     aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        return 0;
-
-        err_exit:
-            if(dummy != NULL)XFREE(dummy, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            if(a     != NULL)XFREE(a,     aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            return AES_GCM_AUTH_E;
+    /* argument checks */
+    if (aes == NULL || out == NULL || in == NULL || sz == 0 || iv == NULL ||
+        authTag == NULL || authIn == NULL || authTagSz > AES_BLOCK_SIZE) {
+        return BAD_FUNC_ARG;
     }
-    #endif
 
-#else /* FREESCALE_LTC_AES_GCM */
+    key = (byte*)aes->key;
+
+    if (authTagSz < WOLFSSL_MIN_AUTH_TAG_SZ) {
+        WOLFSSL_MSG("GcmEncrypt authTagSz too small error");
+        return BAD_FUNC_ARG;
+    }
+
+    status = wc_AesGetKeySize(aes, &keySize);
+    if (status != 0) {
+        return status;
+    }
+
+    dummy = XMALLOC((sz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE, aes->heap,
+        DYNAMIC_TYPE_TMP_BUFFER);
+    a = XMALLOC((authInSz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE, aes->heap,
+        DYNAMIC_TYPE_TMP_BUFFER);
+    if (dummy == NULL || a == NULL) {
+        ret = MEMORY_E;
+        goto err_exit;
+    }
+
+    XMEMSET(a, 0, (authInSz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE);
+    XMEMCPY(a, authIn, authInSz);
+    XMEMSET(dummy, 0, (sz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE);
+    XMEMSET(initialCounter, 0, AES_BLOCK_SIZE);
+
+    if (ivSz == NONCE_SZ) {
+        XMEMCPY(initialCounter, iv, ivSz);
+        initialCounter[AES_BLOCK_SIZE - 1] = 1;
+    }
+    else {
+        ret = BAD_FUNC_ARG;
+        goto err_exit;
+    }
+    IncrementGcmCounter(initialCounter);
+
+    XMEMCPY(ctr, initialCounter, AES_BLOCK_SIZE);
+    ByteReverseWords((word32 *)k, (word32 *)key, keySize);
+
+    /* CRYPT_AES_GCM requirs partial block padding of encrypted message
+                                       for deriving correct Auth Tag value */
+    /* For the reasone, AES-GCM here is broken down into AES-CTR(Block Encrypt,
+      partial block with padding), and AES-GCM(Decrypt) for generating AuthTag */
+
+    /* Block AES-CTR Encryption */
+    status = CRYP_AES_CTR(MODE_ENCRYPT, (uint8_t*)initialCounter, (uint8_t*)k,
+        keySize*8, (uint8_t*)in, blocks * AES_BLOCK_SIZE, out);
+    if (status != SUCCESS) {
+        ret = AES_GCM_AUTH_E;
+        goto err_exit;
+    }
+
+    for (i=0; i<blocks; i++) {
+        IncrementGcmCounter(ctr);
+    }
+
+    /* Tail partial block encryption and padding zero */
+    if (partial != NULL) {
+        status = CRYP_AES_CTR(MODE_ENCRYPT, (uint8_t*)ctr, (uint8_t*)k,
+            keySize*8, (uint8_t*)in + (AES_BLOCK_SIZE * blocks),
+            AES_BLOCK_SIZE, scratch);
+        if (status != SUCCESS) {
+            ret = AES_GCM_AUTH_E;
+            goto err_exit;
+        }
+        XMEMCPY(out+AES_BLOCK_SIZE*blocks, scratch, partial);
+    }
+
+    /* Derive auth tag, with dummy decrytion */
+    XMEMCPY(dummy, out, sz);
+    XMEMSET(tag, 0, 16);
+    status = CRYP_AES_GCM(MODE_DECRYPT, (uint8_t*)initialCounter, (uint8_t*)k,
+        keySize*8, (uint8_t*)dummy, sz, (uint8_t*)a, authInSz, dummy, tag);
+    if (status != SUCCESS) {
+        ret = AES_GCM_AUTH_E;
+        goto err_exit;
+    }
+    XMEMCPY(authTag, tag, authTagSz);
+    ret = 0; /* success */
+
+err_exit:
+
+    if (dummy != NULL)
+        XFREE(dummy, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    if (a != NULL)
+        XFREE(a,     aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    return ret;
+
+#else
 
     word32 blocks = sz / AES_BLOCK_SIZE;
     word32 partial = sz % AES_BLOCK_SIZE;
@@ -4392,9 +4431,11 @@ int wc_AesGcmEncrypt(Aes* aes, byte* out, const byte* in, word32 sz,
     byte *ctr;
     byte scratch[AES_BLOCK_SIZE];
 
-    /* Sanity check for XMEMCPY in GHASH function and local xorbuf call */
-    if (authTagSz > AES_BLOCK_SIZE)
+    /* argument checks */
+    if (aes == NULL || out == NULL || in == NULL || sz == 0 || iv == NULL ||
+        authTag == NULL || authIn == NULL || authTagSz > AES_BLOCK_SIZE) {
         return BAD_FUNC_ARG;
+    }
 
     if (authTagSz < WOLFSSL_MIN_AUTH_TAG_SZ) {
         WOLFSSL_MSG("GcmEncrypt authTagSz too small error");
@@ -4493,10 +4534,16 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
                    const byte* authTag, word32 authTagSz,
                    const byte* authIn, word32 authInSz)
 {
-#if defined(FREESCALE_LTC_AES_GCM) ||((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
+#if defined(FREESCALE_LTC_AES_GCM)
     byte *key;
     uint32_t keySize;
-    int  status;
+    status_t status;
+
+    /* argument checks */
+    if (aes == NULL || out == NULL || in == NULL || sz == 0 || iv == NULL ||
+        authTag == NULL || authIn == NULL || authTagSz > AES_BLOCK_SIZE) {
+        return BAD_FUNC_ARG;
+    }
 
     key = (byte*)aes->key;
 
@@ -4505,61 +4552,87 @@ int  wc_AesGcmDecrypt(Aes* aes, byte* out, const byte* in, word32 sz,
         return status;
     }
 
-    #if defined(FREESCALE_LTC_AES_GCM)
     status = LTC_AES_DecryptTagGcm(LTC_BASE, in, out, sz,
         iv, ivSz, authIn, authInSz, key, keySize, authTag, authTagSz);
 
     return (status == kStatus_Success) ? 0 : AES_GCM_AUTH_E;
 
-    #elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
-    {
-        byte tag[STM32_TAGSZ];
-        byte scratch[AES_BLOCK_SIZE];
-        byte *c; /* multiple of Block size cipher buffer */
-        word32 blocks = sz / AES_BLOCK_SIZE;
-        byte *a;
-        int i;
-        byte initialCounter[AES_BLOCK_SIZE];
-        byte k[AES_BLOCK_SIZE*2];
-        
-        c = XMALLOC((sz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        if(c == NULL)goto err_exit;
-        XMEMSET(c, 0, (sz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE);
-        a = XMALLOC((authInSz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-        if(a == NULL)goto err_exit;
-        XMEMSET(a, 0, (authInSz/AES_BLOCK_SIZE+1)*AES_BLOCK_SIZE);
-        XMEMCPY(a, authIn, authInSz);
+#elif ((defined(STM32F2_CRYPTO) || defined(STM32F4_CRYPTO)) && !defined(WOLFSSL_STM32_CUBEMX))
+    byte *key;
+    uint32_t keySize;
+    int  status;
+    byte tag[STM32_TAGSZ];
+    byte scratch[AES_BLOCK_SIZE];
+    byte *c = NULL; /* multiple of Block size cipher buffer */
+    word32 blocks = sz / AES_BLOCK_SIZE;
+    byte *a = NULL;
+    int i;
+    byte initialCounter[AES_BLOCK_SIZE];
+    byte k[AES_BLOCK_SIZE*2];
 
-        XMEMSET(initialCounter, 0, AES_BLOCK_SIZE);
-        if (ivSz == NONCE_SZ) {
-            XMEMCPY(initialCounter, iv, ivSz);
-            initialCounter[AES_BLOCK_SIZE - 1] = 1;
-        }
-        else goto err_exit;
-        
-        IncrementGcmCounter(initialCounter);
-
-        ByteReverseWords((word32 *)k, (word32 *)key, keySize);
-
-        XMEMCPY(c, in, sz);
-        status = CRYP_AES_GCM(MODE_DECRYPT, (uint8_t *)initialCounter, (uint8_t *)k, keySize*8,
-                     (uint8_t *)c, sz, (uint8_t *)a, authInSz, c, tag);
-
-        if(status != SUCCESS)goto err_exit;
-        XMEMCPY(out, c, sz) ;
-        if(XMEMCMP(authTag, tag, authTagSz) == 0){
-            XFREE(c, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            XFREE(a, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            return 0;
-        }
-
-        err_exit:
-            if(c != NULL)XFREE(c, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            if(a != NULL)XFREE(a, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
-            return AES_GCM_AUTH_E;
+    /* argument checks */
+    if (aes == NULL || out == NULL || in == NULL || sz == 0 || iv == NULL ||
+        authTag == NULL || authIn == NULL || authTagSz > AES_BLOCK_SIZE) {
+        return BAD_FUNC_ARG;
     }
-    #endif
-#else /* FREESCALE_LTC_AES_GCM */
+
+    key = (byte*)aes->key;
+
+    status = wc_AesGetKeySize(aes, &keySize);
+    if (status != 0) {
+        return status;
+    }
+
+    c = XMALLOC((sz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE, aes->heap,
+        DYNAMIC_TYPE_TMP_BUFFER);
+    a = XMALLOC((authInSz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE, aes->heap,
+        DYNAMIC_TYPE_TMP_BUFFER);
+    if (c == NULL || a == NULL) {
+        ret = MEMORY_E;
+        goto err_exit;
+    }
+    XMEMSET(c, 0, (sz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE);
+    XMEMSET(a, 0, (authInSz / AES_BLOCK_SIZE + 1) * AES_BLOCK_SIZE);
+    XMEMCPY(a, authIn, authInSz);
+
+    XMEMSET(initialCounter, 0, AES_BLOCK_SIZE);
+    if (ivSz == NONCE_SZ) {
+        XMEMCPY(initialCounter, iv, ivSz);
+        initialCounter[AES_BLOCK_SIZE - 1] = 1;
+    }
+    else {
+        ret = BAD_FUNC_ARG;
+        goto err_exit;
+    }
+
+    IncrementGcmCounter(initialCounter);
+
+    ByteReverseWords((word32*)k, (word32*)key, keySize);
+
+    XMEMCPY(c, in, sz);
+    status = CRYP_AES_GCM(MODE_DECRYPT, (uint8_t*)initialCounter, (uint8_t*)k,
+        keySize * 8, (uint8_t*)c, sz, (uint8_t*)a, authInSz, c, tag);
+    if (status != SUCCESS) {
+        ret = AES_GCM_AUTH_E;
+        goto err_exit;
+    }
+
+    XMEMCPY(out, c, sz);
+    if (XMEMCMP(authTag, tag, authTagSz) == 0) {
+        ret = 0;
+    }
+    else {
+        ret = AES_GCM_AUTH_E;
+    }
+
+err_exit:
+    if (c != NULL)
+        XFREE(c, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    if (a != NULL)
+        XFREE(a, aes->heap, DYNAMIC_TYPE_TMP_BUFFER);
+    return ret;
+
+#else
 
     word32 blocks = sz / AES_BLOCK_SIZE;
     word32 partial = sz % AES_BLOCK_SIZE;

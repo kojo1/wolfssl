@@ -270,6 +270,8 @@ extern "C" {
 /* Allows custom "custom_time()" function to be used for benchmark */
 #define WOLFSSL_USER_CURRTIME
 #define USER_TICKS
+extern unsigned long ksdk_time(unsigned long* timer);
+#define XTIME ksdk_time
 
 
 /* ------------------------------------------------------------------------- */
