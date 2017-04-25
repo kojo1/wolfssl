@@ -2449,6 +2449,12 @@ static void test_wolfSSL_certs(void)
     AssertNotNull(ctx = SSL_CTX_new(wolfSSLv23_server_method()));
     AssertTrue(SSL_CTX_use_certificate_file(ctx, svrCertFile, SSL_FILETYPE_PEM));
     AssertTrue(SSL_CTX_use_PrivateKey_file(ctx, svrKeyFile, SSL_FILETYPE_PEM));
+    #ifndef HAVE_USER_RSA
+    AssertTrue(SSL_CTX_use_PrivateKey_file(ctx, cliKeyFile, SSL_FILETYPE_PEM));
+    AssertIntEQ(SSL_CTX_check_private_key(ctx), SSL_FAILURE);
+    AssertTrue(SSL_CTX_use_PrivateKey_file(ctx, svrKeyFile, SSL_FILETYPE_PEM));
+    AssertIntEQ(SSL_CTX_check_private_key(ctx), SSL_SUCCESS);
+    #endif
     AssertNotNull(ssl = SSL_new(ctx));
 
     AssertIntEQ(wolfSSL_check_private_key(ssl), SSL_SUCCESS);
