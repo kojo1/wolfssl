@@ -6067,13 +6067,31 @@ int wolfSSL_CTX_use_PrivateKey_file(WOLFSSL_CTX* ctx, const char* file,
 }
 
 
+/* Sets the max chain depth when verifying a certificate chain. Default depth
+ * is set to MAX_CHAIN_DEPTH.
+ *
+ * ctx   WOLFSSL_CTX structure to set depth in
+ * depth max depth
+ */
+void wolfSSL_CTX_set_verify_depth(WOLFSSL_CTX *ctx, int depth) {
+    WOLFSSL_ENTER("wolfSSL_CTX_set_verify_depth");
+
+    if (depth < 0 || depth > MAX_CHAIN_DEPTH) {
+        WOLFSSL_MSG("Bad depth argument, too large or less than 0");
+        return;
+    }
+
+    ctx->verifyDepth = depth;
+}
+
+
 /* get cert chaining depth using ssl struct */
 long wolfSSL_get_verify_depth(WOLFSSL* ssl)
 {
     if(ssl == NULL) {
         return BAD_FUNC_ARG;
     }
-    return MAX_CHAIN_DEPTH;
+    return ssl->verifyDepth;
 }
 
 
@@ -6083,7 +6101,7 @@ long wolfSSL_CTX_get_verify_depth(WOLFSSL_CTX* ctx)
     if(ctx == NULL) {
         return BAD_FUNC_ARG;
     }
-    return MAX_CHAIN_DEPTH;
+    return ctx->verifyDepth;
 }
 
 
@@ -26429,17 +26447,6 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     {
         WOLFSSL_ENTER("wolfSSL_OBJ_cleanup()");
     }
-
-
-    #ifndef NO_WOLFSSL_STUB
-    void wolfSSL_CTX_set_verify_depth(WOLFSSL_CTX *ctx, int depth) {
-        (void)ctx;
-        (void)depth;
-        WOLFSSL_ENTER("wolfSSL_CTX_set_verify_depth");
-        WOLFSSL_STUB("SSL_CTX_set_verify_depth");
-
-    }
-    #endif
 
     #ifndef NO_WOLFSSL_STUB
     void wolfSSL_set_verify_depth(WOLFSSL *ssl, int depth) {

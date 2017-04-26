@@ -1445,6 +1445,7 @@ int InitSSL_Ctx(WOLFSSL_CTX* ctx, WOLFSSL_METHOD* method, void* heap)
 #endif /* HAVE_WOLF_EVENT */
 
     ctx->heap = heap; /* wolfSSL_CTX_load_static_memory sets */
+    ctx->verifyDepth = MAX_CHAIN_DEPTH;
 
     return ret;
 }
@@ -3370,6 +3371,7 @@ int SetSSL_CTX(WOLFSSL* ssl, WOLFSSL_CTX* ctx, int writeDup)
 #ifdef OPENSSL_EXTRA
     ssl->readAhead = ctx->readAhead;
 #endif
+    ssl->verifyDepth = ctx->verifyDepth;
 
     return SSL_SUCCESS;
 }
@@ -6894,7 +6896,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             while (listSz) {
                 word32 certSz;
 
-                if (args->totalCerts >= MAX_CHAIN_DEPTH) {
+                if (args->totalCerts >= ssl->verifyDepth) {
                 #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_ERR_CERT_CHAIN_TOO_LONG;
                 #endif

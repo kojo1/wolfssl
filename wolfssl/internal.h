@@ -1948,6 +1948,7 @@ struct WOLFSSL_CTX {
 #endif
     Suites*     suites;           /* make dynamic, user may not need/set */
     void*       heap;             /* for user memory overrides */
+    int         verifyDepth;
     byte        verifyPeer;
     byte        verifyNone;
     byte        failNoCert;
@@ -2824,6 +2825,7 @@ struct WOLFSSL {
     WOLFSSL_SESSION* extSession;
 #endif
     WOLFSSL_ALERT_HISTORY alert_history;
+    int             verifyDepth;
     int             error;
     int             rfd;                /* read  file descriptor */
     int             wfd;                /* write file descriptor */
