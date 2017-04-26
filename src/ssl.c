@@ -26451,26 +26451,6 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     }
     #endif
 
-    #ifndef NO_WOLFSSL_STUB
-    void* wolfSSL_get_app_data( const WOLFSSL *ssl)
-    {
-        /* checkout exdata stuff... */
-        (void)ssl;
-        WOLFSSL_ENTER("wolfSSL_get_app_data");
-        WOLFSSL_STUB("SSL_get_app_data");
-
-        return 0;
-    }
-    #endif
-
-    #ifndef NO_WOLFSSL_STUB
-    void wolfSSL_set_app_data(WOLFSSL *ssl, void *arg) {
-        (void)ssl;
-        (void)arg;
-        WOLFSSL_ENTER("wolfSSL_set_app_data");
-        WOLFSSL_STUB("SSL_set_app_data");
-    }
-    #endif
 
     #ifndef NO_WOLFSSL_STUB
     WOLFSSL_ASN1_OBJECT * wolfSSL_X509_NAME_ENTRY_get_object(WOLFSSL_X509_NAME_ENTRY *ne) {
@@ -26666,6 +26646,33 @@ int wolfSSL_CTX_set_ex_data(WOLFSSL_CTX* ctx, int idx, void* data)
 }
 
 
+/* Returns char* to app data stored in ex[0].
+ *
+ * ssl WOLFSSL structure to get app data from
+ */
+void* wolfSSL_get_app_data(const WOLFSSL *ssl)
+{
+    /* checkout exdata stuff... */
+    WOLFSSL_ENTER("wolfSSL_get_app_data");
+
+    return wolfSSL_get_ex_data(ssl, 0);
+}
+
+
+/* Set ex array 0 to have app data
+ *
+ * ssl WOLFSSL struct to set app data in
+ * arg data to be stored
+ *
+ * Returns SSL_SUCCESS on sucess and SSL_FAILURE on failure
+ */
+int wolfSSL_set_app_data(WOLFSSL *ssl, void* arg) {
+    WOLFSSL_ENTER("wolfSSL_set_app_data");
+
+    return wolfSSL_set_ex_data(ssl, 0, arg);
+}
+
+
 int wolfSSL_set_ex_data(WOLFSSL* ssl, int idx, void* data)
 {
     WOLFSSL_ENTER("wolfSSL_set_ex_data");
@@ -26676,6 +26683,7 @@ int wolfSSL_set_ex_data(WOLFSSL* ssl, int idx, void* data)
         return SSL_SUCCESS;
     }
 #else
+    WOLFSSL_MSG("HAVE_EX_DATA macro is not defined");
     (void)ssl;
     (void)idx;
     (void)data;
@@ -26692,6 +26700,7 @@ void* wolfSSL_get_ex_data(const WOLFSSL* ssl, int idx)
     if (ssl != NULL && idx < MAX_EX_DATA && idx >= 0)
         return ssl->ex_data[idx];
 #else
+    WOLFSSL_MSG("HAVE_EX_DATA macro is not defined");
     (void)ssl;
     (void)idx;
 #endif

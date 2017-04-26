@@ -3140,6 +3140,7 @@ static void test_wolfSSL_set_options(void)
        !defined(NO_FILESYSTEM) && !defined(NO_RSA)
     SSL*     ssl;
     SSL_CTX* ctx;
+    char appData[] = "extra msg";
 
     printf(testingFmt, "wolfSSL_set_options()");
 
@@ -3147,6 +3148,15 @@ static void test_wolfSSL_set_options(void)
     AssertTrue(SSL_CTX_use_certificate_file(ctx, svrCertFile, SSL_FILETYPE_PEM));
     AssertTrue(SSL_CTX_use_PrivateKey_file(ctx, svrKeyFile, SSL_FILETYPE_PEM));
     AssertNotNull(ssl = SSL_new(ctx));
+#if defined(HAVE_EX_DATA) || defined(FORTRESS)
+    AssertIntEQ(SSL_set_app_data(ssl, (void*)appData), SSL_SUCCESS);
+    AssertNotNull(SSL_get_app_data((const WOLFSSL*)ssl));
+    AssertIntEQ(XMEMCMP(SSL_get_app_data((const WOLFSSL*)ssl),
+                appData, sizeof(appData)), 0);
+#else
+    AssertIntEQ(SSL_set_app_data(ssl, (void*)appData), SSL_FAILURE);
+    AssertNull(SSL_get_app_data((const WOLFSSL*)ssl));
+#endif
 
     AssertTrue(SSL_set_options(ssl, SSL_OP_NO_TLSv1) == SSL_OP_NO_TLSv1);
     AssertTrue(SSL_get_options(ssl) == SSL_OP_NO_TLSv1);
