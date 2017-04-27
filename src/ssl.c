@@ -10830,6 +10830,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
     }
 
 
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA) && !defined(HAVE_FAST_RSA)
     /* Generates a RSA key of length len
      *
      * len  length of RSA key i.e. 2048
@@ -10884,6 +10885,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
 
         return rsa;
     }
+#endif /* NO_RSA */
 
 
     WOLFSSL_X509_STORE* wolfSSL_CTX_get_cert_store(WOLFSSL_CTX* ctx)
