@@ -594,7 +594,7 @@ enum {
 
 #if defined(HAVE_STUNNEL) || defined(HAVE_LIGHTY) \
     || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(WOLFSSL_NGINX) \
-    || defined(OPENSSL_EXTRA)
+    || defined(OPENSSL_EXTRA) || defined(HAVE_POCO_LIB)
 
 #define PEM_read_bio_DHparams wolfSSL_PEM_read_bio_DHparams
 #define PEM_read_bio_DSAparams wolfSSL_PEM_read_bio_DSAparams

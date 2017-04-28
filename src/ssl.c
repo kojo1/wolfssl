@@ -26355,7 +26355,9 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     }
 
 
-#if defined(OPENSSL_EXTRA) || defined(HAVE_LIGHTY) || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL) || defined(WOLFSSL_NGINX)
+#if defined(OPENSSL_EXTRA) || defined(HAVE_LIGHTY) || \
+    defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL) || \
+    defined(WOLFSSL_NGINX) || defined(HAVE_POCO_LIB)
 
 #ifndef NO_WOLFSSL_STUB
     unsigned char *wolfSSL_SHA1(const unsigned char *d, size_t n, unsigned char *md)
@@ -26825,7 +26827,6 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     #endif
 
 #endif /* HAVE_LIGHTY || WOLFSSL_MYSQL_COMPATIBLE || HAVE_STUNNEL || WOLFSSL_NGINX || HAVE_POCO_LIB */
-#endif /* OPENSSL_EXTRA */
 
 /* wolfSSL uses negative values for error states. This function returns an
  * unsigned type so the value returned is the absolute value of the error.
@@ -27174,6 +27175,8 @@ void wolfSSL_BUF_MEM_free(WOLFSSL_BUF_MEM* buf)
     }
 }
 /* End Functions for openssl/buffer.h */
+
+#endif /* OPENSSL_EXTRA */
 
 #if defined(HAVE_LIGHTY) || defined(HAVE_STUNNEL) \
     || defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(OPENSSL_EXTRA)
