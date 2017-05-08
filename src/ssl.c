@@ -29257,15 +29257,30 @@ int wolfSSL_CTX_set_msg_callback(WOLFSSL_CTX *ctx, SSL_Msg_Cb cb)
     return SSL_FAILURE;
 }
 #endif
-#ifndef NO_WOLFSSL_STUB
+
+
+/* Sets a callback for when sending and receiving protocol messages.
+ *
+ * ssl WOLFSSL structure to set callback in
+ * cb  callback to use
+ *
+ * return SSL_SUCCESS on success and SSL_FAILURE with error case
+ */
 int wolfSSL_set_msg_callback(WOLFSSL *ssl, SSL_Msg_Cb cb)
 {
-    WOLFSSL_STUB("SSL_set_msg_callback");
-    (void)ssl;
-    (void)cb;
-    return SSL_FAILURE;
+    WOLFSSL_ENTER("wolfSSL_set_msg_callback");
+
+    if (ssl == NULL) {
+        return SSL_FAILURE;
+    }
+
+    if (cb != NULL) {
+        ssl->toInfoOn = 1;
+    }
+
+    ssl->protoMsgCb = cb;
+    return SSL_SUCCESS;
 }
-#endif
 #ifndef NO_WOLFSSL_STUB
 int wolfSSL_CTX_set_msg_callback_arg(WOLFSSL_CTX *ctx, void* arg)
 {
