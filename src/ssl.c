@@ -22414,25 +22414,35 @@ int wolfSSL_HMAC_Final(WOLFSSL_HMAC_CTX* ctx, unsigned char* hash,
                     *len = MD5_DIGEST_SIZE;
                     break;
 
+                #ifndef NO_SHA
                 case SHA:
                     *len = SHA_DIGEST_SIZE;
                     break;
+                #endif
 
+                #ifdef WOLFSSL_SHA224
                 case SHA224:
                     *len = SHA224_DIGEST_SIZE;
                     break;
+                #endif
 
+                #ifndef NO_SHA256
                 case SHA256:
                     *len = SHA256_DIGEST_SIZE;
                     break;
+                #endif
 
+                #ifdef WOLFSSL_SHA384
                 case SHA384:
                     *len = SHA384_DIGEST_SIZE;
                     break;
+                #endif
 
+                #ifdef WOLFSSL_SHA512
                 case SHA512:
                     *len = SHA512_DIGEST_SIZE;
                     break;
+                #endif
 
                 default:
                     WOLFSSL_MSG("bad hmac type");
@@ -26488,6 +26498,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
     defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(HAVE_STUNNEL) || \
     defined(WOLFSSL_NGINX) || defined(HAVE_POCO_LIB)
 
+#ifndef NO_SHA
     /* One shot SHA1 hash of message.
      *
      * d  message to hash
@@ -26531,6 +26542,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
             return (unsigned char*)dig;
         }
     }
+#endif /* ! NO_SHA */
 
     char wolfSSL_CTX_use_certificate(WOLFSSL_CTX *ctx, WOLFSSL_X509 *x)
     {
