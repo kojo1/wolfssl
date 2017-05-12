@@ -5063,6 +5063,10 @@ static int HashInput(WOLFSSL* ssl, const byte* input, int sz)
     }
 #endif
 
+    if (ssl->hsHashes == NULL) {
+        return BAD_FUNC_ARG;
+    }
+
 #ifndef NO_OLD_TLS
 #ifndef NO_SHA
     wc_ShaUpdate(&ssl->hsHashes->hashSha, adj, sz);
