@@ -25646,11 +25646,11 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
 #if defined(WOLFSSL_CERT_GEN) && !defined(NO_RSA)
 /* needed SetName function from asn.c is wrapped by NO_RSA */
     /* helper function for CopyX509NameToCertName() */
-    static int CopyX509NameEntry(char* out, int max, char* in, int inLen)
+    static int CopyX509NameEntry(char* out, int mx, char* in, int inLen)
     {
-        if (inLen > max) {
+        if (inLen > mx) {
             WOLFSSL_MSG("Name too long");
-            XMEMCPY(out, in, max);
+            XMEMCPY(out, in, mx);
         }
         else {
             XMEMCPY(out, in, inLen);
@@ -25658,7 +25658,7 @@ void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl)
         }
 
         /* make sure is null terminated */
-        out[max-1] = '\0';
+        out[mx-1] = '\0';
 
         return SSL_SUCCESS;
     }
@@ -27314,7 +27314,7 @@ WOLFSSL_BUF_MEM* wolfSSL_BUF_MEM_new(void)
 int wolfSSL_BUF_MEM_grow(WOLFSSL_BUF_MEM* buf, size_t len)
 {
     int len_int = (int)len;
-    int max;
+    int mx;
 
     /* verify provided arguments */
     if (buf == NULL || len_int < 0) {
@@ -27337,15 +27337,15 @@ int wolfSSL_BUF_MEM_grow(WOLFSSL_BUF_MEM* buf, size_t len)
     }
 
     /* expand size, to handle growth */
-    max = (len_int + 3) / 3 * 4;
+    mx = (len_int + 3) / 3 * 4;
 
     /* use realloc */
-    buf->data = (char*)XREALLOC(buf->data, max, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    buf->data = (char*)XREALLOC(buf->data, mx, NULL, DYNAMIC_TYPE_TMP_BUFFER);
     if (buf->data == NULL) {
         return 0; /* ERR_R_MALLOC_FAILURE; */
     }
 
-    buf->max = max;
+    buf->max = mx;
     XMEMSET(&buf->data[buf->length], 0, len - buf->length);
     buf->length = len;
 

@@ -2209,7 +2209,7 @@ void bench_rsaKeyGen(int doAsync)
 {
     RsaKey genKey[BENCH_MAX_PENDING];
     double start;
-    int    ret, i, count = 0, times;
+    int    ret = 0, i, count = 0, times;
     int    k, keySz;
     const int  keySizes[2] = {1024, 2048};
     const long rsa_e_val = 65537;
@@ -2793,7 +2793,7 @@ void bench_ntruKeyGen(void)
 
 void bench_eccMakeKey(int doAsync)
 {
-    int ret, i, times, count;
+    int ret=0, i, times, count;
     const int keySize = BENCH_ECC_SIZE;
     ecc_key genKey[BENCH_MAX_PENDING];
     double start;

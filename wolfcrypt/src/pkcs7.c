@@ -1220,7 +1220,7 @@ static int wc_PKCS7_EcdsaVerify(PKCS7* pkcs7, byte* sig, int sigSz,
                                 byte* hash, word32 hashSz)
 {
     int ret = 0;
-    int stat = 0;
+    int state = 0;
 #ifdef WOLFSSL_SMALL_STACK
     byte* digest;
     ecc_key* key;
@@ -1267,11 +1267,11 @@ static int wc_PKCS7_EcdsaVerify(PKCS7* pkcs7, byte* sig, int sigSz,
         return PUBLIC_KEY_E;
     }
 
-    ret = wc_ecc_verify_hash(sig, sigSz, hash, hashSz, &stat, key);
+    ret = wc_ecc_verify_hash(sig, sigSz, hash, hashSz, &state, key);
 
     wc_ecc_free(key);
 
-    if (ret == 0 && stat != 1) {
+    if (ret == 0 && state != 1) {
         ret = SIG_VERIFY_E;
     }
 
