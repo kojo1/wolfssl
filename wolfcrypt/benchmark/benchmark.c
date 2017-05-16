@@ -1256,18 +1256,16 @@ void bench_aescfb(void)
     int    i;
     int    ret;
 
-    ret = wc_AesSetKey(&enc, key, AES_BLOCK_SIZE, iv, AES_ENCRYPTION);
+    ret = wc_AesSetKey(&enc, bench_key, AES_BLOCK_SIZE, bench_iv, AES_ENCRYPTION);
     if (ret != 0) {
         printf("AesSetKey failed, ret = %d\n", ret);
         return;
     }
     start = current_time(1);
-    BEGIN_INTEL_CYCLES
 
     for(i = 0; i < numBlocks; i++)
-        wc_AesCfbEncrypt(&enc, plain, cipher, sizeof(plain));
+        wc_AesCfbEncrypt(&enc, bench_plain, bench_cipher, sizeof(bench_plain));
 
-    END_INTEL_CYCLES
     total = current_time(0) - start;
 
     persec = 1 / total * numBlocks;
@@ -1278,7 +1276,6 @@ void bench_aescfb(void)
 
     printf("AES-CFB  %d %s took %5.3f seconds, %8.3f MB/s", numBlocks,
                                               blockType, total, persec);
-    SHOW_INTEL_CYCLES
     printf("\n");
 }
 #endif /* HAVE_AES_CFB */
