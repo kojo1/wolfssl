@@ -645,7 +645,7 @@ long wolfSSL_BIO_get_mem_ptr(WOLFSSL_BIO *bio, WOLFSSL_BUF_MEM **ptr)
         return SSL_FAILURE;
     }
 
-    if (bio->type == WOLFSSL_BIO_FILE) {
+    if (bio->type == WOLFSSL_BIO_FILE || bio->type == WOLFSSL_BIO_SOCKET) {
         WOLFSSL_MSG("NO memory buffer for FILE type");
         return SSL_FAILURE;
     }
