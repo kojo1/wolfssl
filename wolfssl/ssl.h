@@ -282,6 +282,7 @@ typedef struct WOLFSSL_BUFFER_INFO {
 typedef struct WOLFSSL_X509_STORE_CTX {
     WOLFSSL_X509_STORE* store;    /* Store full of a CA cert chain */
     WOLFSSL_X509* current_cert;   /* stunnel dereference */
+    WOLFSSL_X509_CHAIN* sesChain; /* pointer to WOLFSSL_SESSION peer chain */
     WOLFSSL_STACK* chain;
     char* domain;                /* subject CN domain name */
     void* ex_data;               /* external data, for fortress build */
