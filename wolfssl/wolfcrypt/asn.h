@@ -402,6 +402,7 @@ struct Base_entry {
     byte        type;   /* Name base type (DNS or RFC822) */
 };
 
+#define DOMAIN_COMPONENT_MAX 10
 
 struct DecodedName {
     char*   fullName;
@@ -427,8 +428,10 @@ struct DecodedName {
     int     uidLen;
     int     serialIdx;
     int     serialLen;
-    int     dcIdx;
-    int     dcLen;
+    int     dcIdx[DOMAIN_COMPONENT_MAX];
+    int     dcLen[DOMAIN_COMPONENT_MAX];
+    int     dcNum;
+    int     dcMode;
 };
 
 enum SignatureState {
