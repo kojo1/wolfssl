@@ -7279,9 +7279,9 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                             ret = wolfSSL_AsyncPush(ssl,
                                 args->dCert->sigCtx.asyncDev,
                                 WC_ASYNC_FLAG_CALL_AGAIN);
+                                goto exit_dc;
                         }
                     #endif
-                        goto exit_dc;
                     }
                 }
 
