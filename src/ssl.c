@@ -18578,7 +18578,7 @@ void wolfSSL_DES_set_odd_parity(WOLFSSL_DES_cblock* myDes)
 
     for (i = 0; i < sz; i++) {
         unsigned char c = *((unsigned char*)myDes + i);
-        if (((c & 0x01) ^
+        if ((
             ((c >> 1) & 0x01) ^
             ((c >> 2) & 0x01) ^
             ((c >> 3) & 0x01) ^
@@ -18587,14 +18587,14 @@ void wolfSSL_DES_set_odd_parity(WOLFSSL_DES_cblock* myDes)
             ((c >> 6) & 0x01) ^
             ((c >> 7) & 0x01)) != 1) {
             WOLFSSL_MSG("Setting odd parity bit");
-            *((unsigned char*)myDes + i) = *((unsigned char*)myDes + i) | 0x80;
+            *((unsigned char*)myDes + i) = *((unsigned char*)myDes + i) | 0x01;
         }
     }
 }
 
 
 #ifdef WOLFSSL_DES_ECB
-/* Encrpyt or decrypt input message desa with key and get output in desb. 
+/* Encrpyt or decrypt input message desa with key and get output in desb.
  * if enc is DES_ENCRYPT,input message is encrypted or
  * if enc is DES_DECRYPT,input message is decrypted.
  * */
