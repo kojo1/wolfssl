@@ -7305,16 +7305,41 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     ssl->peerVerifyRet = X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE;
                 #endif
                     if (ssl->verifyCallback) {
-                        WOLFSSL_MSG(
-                            "\tCallback override available, will continue");
-                        fatal = 0;
+                    #ifdef WOLFSSL_SMALL_STACK
+                        WOLFSSL_X509_STORE_CTX* store = (WOLFSSL_X509_STORE_CTX*)XMALLOC(
+                                    sizeof(WOLFSSL_X509_STORE_CTX), ssl->heap,
+                                                    DYNAMIC_TYPE_TMP_BUFFER);
+                        if (store == NULL) {
+                            ERROR_OUT(MEMORY_E, exit_dc);
+                        }
+                    #else
+                        WOLFSSL_X509_STORE_CTX  store[1];
+                    #endif
+        
+                        XMEMSET(store, 0, sizeof(WOLFSSL_X509_STORE_CTX));    
+                        int ok;
+                    
+                        store->discardSessionCerts = 0;
+                        store->domain = args->domain;
+                        store->userCtx = ssl->verifyCbCtx;
+                        store->certs = args->certs;
+                        store->totalCerts = args->totalCerts;
+                        ok = ssl->verifyCallback(0, store);
+                        if (!ok) {
+                            WOLFSSL_MSG("Verify callback overriding valid certificate!");
+                            ret = -1;
+                            SendAlert(ssl, alert_fatal, bad_certificate);
+                            ssl->options.isClosed = 1;
+                        } else {
+                            WOLFSSL_MSG("Verify callback overriding invalid certificate!");
+                            ret = 0;
+                        }
                     }
                     else {
                         WOLFSSL_MSG("\tNo callback override available, fatal");
                         fatal = 1;
                     }
                 }
-
             #ifdef HAVE_SECURE_RENEGOTIATION
                 if (fatal == 0 && ssl->secure_renegotiation
                                && ssl->secure_renegotiation->enabled) {
