@@ -7304,6 +7304,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                 #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE;
                 #endif
+                    fatal = 1;
                     if (ssl->verifyCallback) {
                     #ifdef WOLFSSL_SMALL_STACK
                         WOLFSSL_X509_STORE_CTX* store = (WOLFSSL_X509_STORE_CTX*)XMALLOC(
@@ -7315,10 +7316,12 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     #else
                         WOLFSSL_X509_STORE_CTX  store[1];
                     #endif
-        
-                        XMEMSET(store, 0, sizeof(WOLFSSL_X509_STORE_CTX));    
+
+                        XMEMSET(store, 0, sizeof(WOLFSSL_X509_STORE_CTX));
                         int ok;
-                    
+
+                        store->error = ret;
+                        store->error_depth = args->certIdx;
                         store->discardSessionCerts = 0;
                         store->domain = args->domain;
                         store->userCtx = ssl->verifyCbCtx;
@@ -20675,7 +20678,7 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             else
                 *inOutIdx = begin + helloSz; /* skip extensions */
         }
-		
+
 		ssl->options.clientState   = CLIENT_HELLO_COMPLETE;
 		ssl->options.haveSessionId = 1;
 
