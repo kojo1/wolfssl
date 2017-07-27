@@ -6764,6 +6764,8 @@ typedef struct DoCertArgs {
     int    count;
     int    dCertInit;
     int    certIdx;
+    int    fatal;
+    int    lastErr;
 #ifdef WOLFSSL_TRUST_PEER_CERT
     byte haveTrustPeer; /* was cert verified by loaded trusted peer cert */
 #endif
@@ -6796,7 +6798,7 @@ static void FreeDoCertArgs(WOLFSSL* ssl, void* pArgs)
 static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                                                                 word32 size)
 {
-    int ret = 0, lastErr = 0;
+    int ret = 0;
 #ifdef WOLFSSL_ASYNC_CRYPT
     DoCertArgs* args = (DoCertArgs*)ssl->async.args;
     typedef char args_test[sizeof(ssl->async.args) >= sizeof(*args) ? 1 : -1];
@@ -7075,8 +7077,9 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                         DerBuffer* add = NULL;
                         ret = AllocDer(&add, args->certs[args->certIdx].length,
                                                             CA_TYPE, ssl->heap);
-                        if (ret < 0)
+                        if (ret < 0) {
                             goto exit_dc;
+                        }
 
                         WOLFSSL_MSG("Adding CA from chain");
 
@@ -7205,8 +7208,9 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     }
             #endif /* WOLFSSL_ALWAYS_VERIFY_CB */
 
-                    if (ret != 0 && lastErr == 0) {
-                        lastErr = ret;   /* save error from last time */
+                    if (ret != 0 && args->lastErr == 0) {
+                        args->lastErr = ret;   /* save error from last time */
+                        ret = 0; /* reset error */
                     }
 
                     FreeDecodedCert(args->dCert);
@@ -7228,8 +7232,6 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
         {
             /* peer's, may not have one if blank client cert sent by TLSv1.2 */
             if (args->count > 0) {
-                int fatal  = 0;
-
                 WOLFSSL_MSG("Verifying Peer's cert");
 
                 args->certIdx = 0;
@@ -7264,21 +7266,20 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                 #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_OK;
                 #endif
-                    fatal = 0;
+                    args->fatal = 0;
         #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
         #endif
                 }
                 else if (ret == ASN_PARSE_E) {
                     WOLFSSL_MSG("Got Peer cert ASN PARSE ERROR, fatal");
-                    fatal = 1;
+                    args->fatal = 1;
                 }
                 else {
                     WOLFSSL_MSG("Failed to verify Peer's cert");
                 #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_ERR_UNABLE_TO_VERIFY_LEAF_SIGNATURE;
                 #endif
-                    fatal = 1;
                     if (ssl->verifyCallback) {
                     #ifdef WOLFSSL_SMALL_STACK
                         WOLFSSL_X509_STORE_CTX* store = (WOLFSSL_X509_STORE_CTX*)XMALLOC(
@@ -7314,11 +7315,11 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     }
                     else {
                         WOLFSSL_MSG("\tNo callback override available, fatal");
-                        fatal = 1;
+                        args->fatal = 1;
                     }
                 }
             #ifdef HAVE_SECURE_RENEGOTIATION
-                if (fatal == 0 && ssl->secure_renegotiation
+                if (args->fatal == 0 && ssl->secure_renegotiation
                                && ssl->secure_renegotiation->enabled) {
 
                     if (IsEncryptionOn(ssl, 0)) {
@@ -7328,13 +7329,13 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                                     SHA_DIGEST_SIZE) != 0) {
                             WOLFSSL_MSG(
                                 "Peer sent different cert during scr, fatal");
-                            fatal = 1;
+                            args->fatal = 1;
                             ret   = SCR_DIFFERENT_CERT_E;
                         }
                     }
 
                     /* cache peer's hash */
-                    if (fatal == 0) {
+                    if (args->fatal == 0) {
                         XMEMCPY(ssl->secure_renegotiation->subject_hash,
                                 args->dCert->subjectHash, SHA_DIGEST_SIZE);
                     }
@@ -7342,20 +7343,20 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             #endif /* HAVE_SECURE_RENEGOTIATION */
 
             #if defined(HAVE_OCSP) || defined(HAVE_CRL)
-                if (fatal == 0) {
+                if (args->fatal == 0) {
                     int doLookup = 1;
 
                     if (ssl->options.side == WOLFSSL_CLIENT_END) {
                 #ifdef HAVE_CERTIFICATE_STATUS_REQUEST
                         if (ssl->status_request) {
-                            fatal = TLSX_CSR_InitRequest(ssl->extensions,
+                            args->fatal = TLSX_CSR_InitRequest(ssl->extensions,
                                                     args->dCert, ssl->heap);
                             doLookup = 0;
                         }
                 #endif /* HAVE_CERTIFICATE_STATUS_REQUEST */
                 #ifdef HAVE_CERTIFICATE_STATUS_REQUEST_V2
                         if (ssl->status_request_v2) {
-                            fatal = TLSX_CSR2_InitRequests(ssl->extensions,
+                            args->fatal = TLSX_CSR2_InitRequests(ssl->extensions,
                                                     args->dCert, 1, ssl->heap);
                             doLookup = 0;
                         }
@@ -7370,7 +7371,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                         doLookup = (ret == OCSP_CERT_UNKNOWN);
                         if (ret != 0) {
                             WOLFSSL_MSG("\tOCSP Lookup not ok");
-                            fatal = 0;
+                            args->fatal = 0;
                         #ifdef OPENSSL_EXTRA
                             ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
                         #endif
@@ -7384,7 +7385,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                         ret = CheckCertCRL(ssl->ctx->cm->crl, args->dCert);
                         if (ret != 0) {
                             WOLFSSL_MSG("\tCRL check not ok");
-                            fatal = 0;
+                            args->fatal = 0;
                         #ifdef OPENSSL_EXTRA
                             ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
                         #endif
@@ -7400,8 +7401,9 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     /* set X509 format for peer cert even if fatal */
                     int copyRet = CopyDecodedToX509(&ssl->peerCert,
                                                                 args->dCert);
-                    if (copyRet == MEMORY_E)
-                        fatal = 1;
+                    if (copyRet == MEMORY_E) {
+                        args->fatal = 1;
+                    }
                 }
             #endif /* KEEP_PEER_CERT */
 
@@ -7439,7 +7441,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                 }
             #endif /* IGNORE_KEY_EXTENSIONS */
 
-                if (fatal) {
+                if (args->fatal) {
                     ssl->error = ret;
                 #ifdef OPENSSL_EXTRA
                     ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
@@ -7451,7 +7453,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             } /* if (count > 0) */
 
             /* Check for error */
-            if (ret != 0) {
+            if (args->fatal && ret != 0) {
                 goto exit_dc;
             }
 
@@ -7635,7 +7637,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             } /* if (count > 0) */
 
             /* Check for error */
-            if (ret != 0) {
+            if (args->fatal && ret != 0) {
                 goto exit_dc;
             }
 
@@ -7659,8 +7661,8 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             XMEMSET(store, 0, sizeof(WOLFSSL_X509_STORE_CTX));
 
             /* load last error */
-            if (lastErr != 0 && ret == 0) {
-                ret = lastErr;
+            if (args->lastErr != 0 && ret == 0) {
+                ret = args->lastErr;
             }
 
             if (ret != 0) {
@@ -8704,12 +8706,10 @@ static int DoHandShakeMsg(WOLFSSL* ssl, byte* input, word32* inOutIdx,
 
             return BUFFER_ERROR;
         }
-        else {
-            XMEMCPY(ssl->arrays->pendingMsg + ssl->arrays->pendingMsgOffset,
-                    input + *inOutIdx, inputLength);
-            ssl->arrays->pendingMsgOffset += inputLength;
-            *inOutIdx += inputLength;
-        }
+        XMEMCPY(ssl->arrays->pendingMsg + ssl->arrays->pendingMsgOffset,
+                input + *inOutIdx, inputLength);
+        ssl->arrays->pendingMsgOffset += inputLength;
+        *inOutIdx += inputLength;
 
         if (ssl->arrays->pendingMsgOffset == ssl->arrays->pendingMsgSz)
         {
