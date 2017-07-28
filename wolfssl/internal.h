@@ -2832,6 +2832,7 @@ struct WOLFSSL {
 #endif
     WOLFSSL_ALERT_HISTORY alert_history;
     int             verifyDepth;
+    int             certErr_ovrdn;      /* overriden by VerifyCallback */
     int             error;
     int             rfd;                /* read  file descriptor */
     int             wfd;                /* write file descriptor */
