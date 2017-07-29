@@ -6829,7 +6829,6 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
         XMEMSET(args, 0, sizeof(DoCertArgs));
         args->idx = *inOutIdx;
         args->begin = *inOutIdx;
-        ssl->certErr_ovrdn = 0;
     #ifdef WOLFSSL_ASYNC_CRYPT
         ssl->async.freeArgs = FreeDoCertArgs;
     #endif
@@ -7312,7 +7311,6 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                         } else {
                             WOLFSSL_MSG("Verify callback overriding invalid certificate!");
                             ret = 0;
-                            ssl->certErr_ovrdn = 1;
                         }
                     }
                     else {
@@ -7719,7 +7717,7 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             }
         #ifdef WOLFSSL_ALWAYS_VERIFY_CB
             else {
-                if (ssl->verifyCallback && !ssl->certErr_ovrdn) {
+                if (ssl->verifyCallback) {
                     int ok;
 
                     store->error = ret;
@@ -20940,11 +20938,7 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             } /* case TLS_ASYNC_BUILD */
 
             case TLS_ASYNC_DO:
-            if(ssl->certErr_ovrdn){
-                ssl->options.asyncState = TLS_ASYNC_FINALIZE;
-                ret = 0;
-            }
-            else {
+            {
             #ifndef NO_RSA
                 if (ssl->peerRsaKey != NULL && ssl->peerRsaKeyPresent != 0) {
                     WOLFSSL_MSG("Doing RSA peer cert verify");
@@ -21103,9 +21097,6 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
 
             case TLS_ASYNC_END:
             {
-                if(ssl->certErr_ovrdn){
-                    ret = 0;
-                }
                 break;
             }
             default:
