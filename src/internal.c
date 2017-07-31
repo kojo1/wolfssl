@@ -20121,6 +20121,7 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         word16          i, j;
         ProtocolVersion pv;
         Suites          clSuites;
+        int ret = -1;
 
         (void)inSz;
         WOLFSSL_MSG("Got old format client hello");
@@ -20256,7 +20257,6 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         ssl->options.haveSessionId = 1;
         /* DoClientHello uses same resume code */
         if (ssl->options.resuming) {  /* let's try */
-            int ret = -1;
             WOLFSSL_SESSION* session = GetSession(ssl,
                                                   ssl->arrays->masterSecret, 1);
             #ifdef HAVE_SESSION_TICKET
@@ -20298,7 +20298,9 @@ int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             }
         }
 
-        return MatchSuite(ssl, &clSuites);
+        ret = MatchSuite(ssl, &clSuites);
+        if (ret != 0)return ret;
+        return SanityCheckMsgReceived(ssl, client_hello);
     }
 
 #endif /* OLD_HELLO_ALLOWED */
