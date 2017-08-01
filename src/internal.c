@@ -11572,17 +11572,21 @@ int SendCertificate(WOLFSSL* ssl)
         return 0;  /* not needed */
 
     if (ssl->options.sendVerify == SEND_BLANK_CERT) {
+    #ifdef OPENSSL_EXTRA
 	    if (ssl->version.major == SSLv3_MAJOR
 		    && ssl->version.minor == SSLv3_MINOR){
             SendAlert(ssl, alert_warning, no_certificate);
 		    return 0;
 		} else {
+    #endif
 	        certSz = 0;
 		    certChainSz = 0;
 		    headerSz = CERT_HEADER_SZ;
 		    length = CERT_HEADER_SZ;
 		    listSz = 0;
+    #ifdef OPENSSL_EXTRA
 		}
+	#endif
 	}
     else {
         if (!ssl->buffers.certificate) {
@@ -15435,7 +15439,11 @@ static void PickHashSigAlgo(WOLFSSL* ssl,
         if (ssl->buffers.certificate && ssl->buffers.certificate->buffer &&
             ssl->buffers.key && ssl->buffers.key->buffer)
             ssl->options.sendVerify = SEND_CERT;
-        else
+	#ifdef OPENSSL_EXTRA
+		else
+	#else
+        else if (IsTLS(ssl))
+	#endif
             ssl->options.sendVerify = SEND_BLANK_CERT;
 
         if (IsEncryptionOn(ssl, 0))
