@@ -1057,8 +1057,6 @@ static int CheckBitString(const byte* input, word32* inOutIdx, int* len,
     if (b != 0) {
         if ((byte)(input[idx + length - 1] << (8 - b)) != 0)
             return ASN_PARSE_E;
-        if (((input[idx + length - 1] >> b) & 0x01) != 0x01)
-            return ASN_PARSE_E;
     }
     idx++;
     length--;

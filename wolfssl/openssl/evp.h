@@ -357,7 +357,7 @@ WOLFSSL_API int  wolfSSL_EVP_add_digest(const WOLFSSL_EVP_MD *digest);
 #define EVP_CIPH_GCM_MODE WOLFSSL_EVP_CIPH_GCM_MODE
 #define EVP_CIPH_CCM_MODE WOLFSSL_EVP_CIPH_CCM_MODE
 
-#define WOLFSSL_EVP_CIPH_MODE           0x0007
+#define WOLFSSL_EVP_CIPH_MODE            0x0007
 #define WOLFSSL_EVP_CIPH_STREAM_CIPHER      0x0
 #define WOLFSSL_EVP_CIPH_ECB_MODE           0x1
 #define WOLFSSL_EVP_CIPH_CBC_MODE           0x2
@@ -367,6 +367,7 @@ WOLFSSL_API int  wolfSSL_EVP_add_digest(const WOLFSSL_EVP_MD *digest);
 #define WOLFSSL_EVP_CIPH_GCM_MODE           0x6
 #define WOLFSSL_EVP_CIPH_CCM_MODE           0x7
 #define WOLFSSL_EVP_CIPH_NO_PADDING       0x100
+#define WOLFSSL_EVP_CIPH_TYPE_INIT         0xff
 
 /* end OpenSSH compat */
 
