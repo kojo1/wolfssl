@@ -4017,7 +4017,7 @@ static void test_wolfSSL_DES_ecb_encrypt(void)
 
     /* Decrypt messages */
     int ret1 = 0;
-    int ret2 = 0; 
+    int ret2 = 0;
     wolfSSL_DES_ecb_encrypt(&output1,&back1,&key,DES_DECRYPT);
     ret1 = memcmp((unsigned char *) back1,(unsigned char *) input1,sizeof(WOLFSSL_DES_cblock));
     AssertIntEQ(ret1,0);
@@ -4184,9 +4184,16 @@ static int test_HMAC_CTX_helper(const EVP_MD* type, unsigned char* digest)
 
     unsigned char key[] = "\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b"
                           "\x0b\x0b\x0b\x0b\x0b\x0b\x0b";
+    unsigned char long_key[] =
+        "0123456789012345678901234567890123456789"
+        "0123456789012345678901234567890123456789"
+        "0123456789012345678901234567890123456789"
+        "0123456789012345678901234567890123456789";
+
     unsigned char msg[] = "message to hash";
     unsigned int  digestSz = 64;
     int keySz = sizeof(key);
+    int long_keySz = sizeof(long_key);
     int msgSz = sizeof(msg);
 
     unsigned char digest2[64];
@@ -4206,6 +4213,74 @@ static int test_HMAC_CTX_helper(const EVP_MD* type, unsigned char* digest)
     AssertIntEQ(HMAC_Final(&ctx2, digest2, &digestSz2), SSL_SUCCESS);
     HMAC_CTX_cleanup(&ctx2);
 
+    AssertIntEQ(digestSz, digestSz2);
+    AssertIntEQ(XMEMCMP(digest, digest2, digestSz), 0);
+
+    /* test HMAC_Init with NULL key */
+
+    /* init after copy */
+    printf("test HMAC_Init with NULL key (0)\n");
+    HMAC_CTX_init(&ctx1);
+    AssertIntEQ(HMAC_Init(&ctx1, (const void*)key, keySz, type), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_CTX_copy(&ctx2, &ctx1), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Init(&ctx1, NULL, 0, NULL), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx1, digest, &digestSz), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Init(&ctx2, NULL, 0, NULL), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx2, digest2, &digestSz), SSL_SUCCESS);
+
+    HMAC_CTX_cleanup(&ctx2);
+    AssertIntEQ(digestSz, digestSz2);
+    AssertIntEQ(XMEMCMP(digest, digest2, digestSz), 0);
+
+    /* long key */
+    printf("test HMAC_Init with NULL key (1)\n");
+    HMAC_CTX_init(&ctx1);
+    AssertIntEQ(HMAC_Init(&ctx1, (const void*)long_key, long_keySz, type), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_CTX_copy(&ctx2, &ctx1), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Init(&ctx1, NULL, 0, NULL), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx1, digest, &digestSz), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Init(&ctx2, NULL, 0, NULL), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx2, digest2, &digestSz), SSL_SUCCESS);
+
+    HMAC_CTX_cleanup(&ctx2);
+    AssertIntEQ(digestSz, digestSz2);
+    AssertIntEQ(XMEMCMP(digest, digest2, digestSz), 0);
+
+    /* init before copy */
+    printf("test HMAC_Init with NULL key (2)\n");
+    HMAC_CTX_init(&ctx1);
+    AssertIntEQ(HMAC_Init(&ctx1, (const void*)key, keySz, type), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Init(&ctx1, NULL, 0, NULL), SSL_SUCCESS);
+    AssertIntEQ(HMAC_CTX_copy(&ctx2, &ctx1), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx1, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx1, digest, &digestSz), SSL_SUCCESS);
+
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Update(&ctx2, msg, msgSz), SSL_SUCCESS);
+    AssertIntEQ(HMAC_Final(&ctx2, digest2, &digestSz), SSL_SUCCESS);
+
+    HMAC_CTX_cleanup(&ctx2);
     AssertIntEQ(digestSz, digestSz2);
     AssertIntEQ(XMEMCMP(digest, digest2, digestSz), 0);
 
@@ -4270,13 +4345,13 @@ static void test_wolfSSL_HMAC_CTX(void)
 }
 
 #if defined(OPENSSL_EXTRA)
-static void sslMsgCb(int write, int version, int type, const void* buf,
+static void sslMsgCb(int rw, int version, int type, const void* buf,
         size_t sz, SSL* ssl, void* arg)
 {
     int i;
     unsigned char* pt = (unsigned char*)buf;
 
-    printf("%s %d bytes of version %d , type %d : ", (write)?"Writing":"Reading",
+    printf("%s %d bytes of version %d , type %d : ", (rw)?"Writing":"Reading",
             (int)sz, version, type);
     for (i = 0; i < (int)sz; i++) printf("%02X", pt[i]);
     printf("\n");

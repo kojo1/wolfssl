@@ -7268,13 +7268,13 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     ssl->peerVerifyRet = X509_V_OK;
                 #endif
                     args->fatal = 0;
-        #ifdef OPENSSL_EXTRA
-                    ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
-        #endif
                 }
                 else if (ret == ASN_PARSE_E) {
                     WOLFSSL_MSG("Got Peer cert ASN PARSE ERROR, fatal");
                     SendAlert(ssl, alert_fatal, bad_certificate);
+                #ifdef OPENSSL_EXTRA
+                        ssl->peerVerifyRet = X509_V_ERR_CERT_REJECTED;
+                #endif
                     args->fatal = 1;
                 }
                 else {
@@ -7412,6 +7412,16 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             #endif /* KEEP_PEER_CERT */
 
             #ifndef IGNORE_KEY_EXTENSIONS
+                #if defined(OPENSSL_EXTRA)
+                  /* when compatibility layer is turned on and no verify is
+                   * set then ignore the certificate key extension */
+                    if (args->dCert->extKeyUsageSet &&
+                          args->dCert->extKeyUsageCrit == 0 &&
+                          ssl->options.verifyNone) {
+                        WOLFSSL_MSG("Not verifying certificate key usage");
+                    }
+                    else
+                #endif
                 if (args->dCert->extKeyUsageSet) {
                     if ((ssl->specs.kea == rsa_kea) &&
                         (ssl->options.side == WOLFSSL_CLIENT_END) &&
@@ -7427,6 +7437,16 @@ static int DoCertificate(WOLFSSL* ssl, byte* input, word32* inOutIdx,
                     }
                 }
 
+                #if defined(OPENSSL_EXTRA)
+                    /* when compatibility layer is turned on and no verify is
+                     * set then ignore the certificate key extension */
+                    if (args->dCert->extExtKeyUsageSet &&
+                            args->dCert->extExtKeyUsageCrit == 0 &&
+                          ssl->options.verifyNone) {
+                                WOLFSSL_MSG("Not verifying certificate ext key usage");
+                    }
+                    else
+                #endif
                 if (args->dCert->extExtKeyUsageSet) {
                     if (ssl->options.side == WOLFSSL_CLIENT_END) {
                         if ((args->dCert->extExtKeyUsage &
