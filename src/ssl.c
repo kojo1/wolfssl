@@ -17809,27 +17809,47 @@ WOLFSSL_X509_STORE* wolfSSL_X509_STORE_new(void)
 {
     WOLFSSL_X509_STORE* store = NULL;
 
-    store = (WOLFSSL_X509_STORE*)XMALLOC(sizeof(WOLFSSL_X509_STORE), NULL,
-                                         DYNAMIC_TYPE_X509_STORE);
-    if (store != NULL) {
-        store->cm = wolfSSL_CertManagerNew();
-        if (store->cm == NULL) {
-            XFREE(store, NULL, DYNAMIC_TYPE_X509_STORE);
-            store = NULL;
-        }
-        else
-            store->isDynamic = 1;
-    }
+    if((store = ((WOLFSSL_X509_STORE*)XMALLOC(sizeof(WOLFSSL_X509_STORE), NULL,
+                                         DYNAMIC_TYPE_X509_STORE))) == NULL)
+        goto err_exit;
+
+    if((store->cm = wolfSSL_CertManagerNew()) == NULL)
+        goto err_exit;
+
+    store->isDynamic = 1;
+
+#ifdef HAVE_CRL
+    if((store->crl =((WOLFSSL_X509_CRL*)XMALLOC(sizeof(WOLFSSL_X509_CRL), 
+               NULL, DYNAMIC_TYPE_TMP_BUFFER))) == NULL)
+        goto err_exit;
+    InitCRL(store->crl, store->cm);
+#endif
 
     return store;
+
+err_exit:
+    if(store != NULL){
+        if(store->cm)
+            wolfSSL_CertManagerFree(store->cm);
+#ifdef HAVE_CRL
+        if(store->crl)
+            wolfSSL_X509_CRL_free(store->crl);
+#endif
+        wolfSSL_X509_STORE_free(store);
+    }
+    return NULL;
 }
 
 
 void wolfSSL_X509_STORE_free(WOLFSSL_X509_STORE* store)
 {
     if (store != NULL && store->isDynamic) {
-        if (store->cm != NULL)
-        wolfSSL_CertManagerFree(store->cm);
+        if (store->cm)
+            wolfSSL_CertManagerFree(store->cm);
+#ifdef HAVE_CRL
+        if (store->crl)
+            wolfSSL_X509_CRL_free(store->crl);
+#endif
         XFREE(store, NULL, DYNAMIC_TYPE_X509_STORE);
     }
 }
@@ -17883,7 +17903,6 @@ WOLFSSL_X509_STORE_CTX* wolfSSL_X509_STORE_CTX_new(void)
 
     return ctx;
 }
-
 
 int wolfSSL_X509_STORE_CTX_init(WOLFSSL_X509_STORE_CTX* ctx,
      WOLFSSL_X509_STORE* store, WOLFSSL_X509* x509, WOLF_STACK_OF(WOLFSSL_X509)* sk)
