@@ -64,10 +64,12 @@
 
 #ifndef NO_OLD_WC_NAMES
     #define Sha             wc_Sha
-    #define SHA             WC_SHA
-    #define SHA_BLOCK_SIZE  WC_SHA_BLOCK_SIZE
+    #if !defined(OPENSSL_EXTRA)
+    #define SHA WC_SHA
+    #endif
+    #define SHA_BLOCK_SIZE WC_SHA_BLOCK_SIZE
     #define SHA_DIGEST_SIZE WC_SHA_DIGEST_SIZE
-    #define SHA_PAD_SIZE    WC_SHA_PAD_SIZE
+    #define SHA_PAD_SIZE WC_SHA_PAD_SIZE
 #endif
 
 /* in bytes */

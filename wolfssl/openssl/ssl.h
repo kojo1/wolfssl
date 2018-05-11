@@ -575,25 +575,30 @@ typedef WOLFSSL_X509_STORE_CTX X509_STORE_CTX;
 #define X509_NAME_get_index_by_NID wolfSSL_X509_NAME_get_index_by_NID
 #define X509_NAME_ENTRY_get_data wolfSSL_X509_NAME_ENTRY_get_data
 #define sk_X509_NAME_pop_free  wolfSSL_sk_X509_NAME_pop_free
-#define SHA1 wolfSSL_SHA1
+
+#define SHA1   wolfSSL_SHA1
+
+#ifdef OPENSSL_EXTRA
+#define SHA256 wolfSSL_SHA256
+#define SHA384 wolfSSL_SHA384
+#define SHA512 wolfSSL_SHA512
+#endif
+
 #define X509_check_private_key wolfSSL_X509_check_private_key
 #define SSL_dup_CA_list wolfSSL_dup_CA_list
 
-
-
-
-/* NIDs */
-enum {
-    NID_des    = 66,
-    NID_des3   = 67,
-    NID_sha256 = 672,
-    NID_sha384 = 673,
-    NID_sha512 = 674,
-    NID_hw_name_oid = 73,
-    NID_id_pkix_OCSP_basic = 74,
-    NID_any_policy = 75,
-    NID_anyExtendedKeyUsage = 76,
-};
+        /* NIDs */
+        enum {
+            NID_des = 66,
+            NID_des3 = 67,
+            NID_sha256 = 672,
+            NID_sha384 = 673,
+            NID_sha512 = 674,
+            NID_hw_name_oid = 73,
+            NID_id_pkix_OCSP_basic = 74,
+            NID_any_policy = 75,
+            NID_anyExtendedKeyUsage = 76,
+        };
 
 enum {
     GEN_DNS   = 0x02, /* ASN_DNS_TYPE */
@@ -921,3 +926,4 @@ typedef WOLFSSL_ASN1_BIT_STRING    ASN1_BIT_STRING;
 
 
 #endif /* wolfSSL_openssl_h__ */
+
