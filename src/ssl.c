@@ -28892,12 +28892,18 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
      * returns a pointer to a new WOLFSSL_ASN1_OBJECT struct on success and NULL
      *         on fail
      */
+
     WOLFSSL_ASN1_OBJECT* wolfSSL_OBJ_nid2obj(int id)
+    {
+        return wolfSSL_OBJ_nid2obj_ex(id, NULL);
+    }
+
+   WOLFSSL_LOCAL WOLFSSL_ASN1_OBJECT* wolfSSL_OBJ_nid2obj_ex(int id, WOLFSSL_ASN1_OBJECT* arg_obj)
     {
         word32 oidSz = 0;
         const byte* oid;
         word32 type = 0;
-        WOLFSSL_ASN1_OBJECT* obj;
+        WOLFSSL_ASN1_OBJECT* obj = arg_obj;
         byte objBuf[MAX_OID_SZ + MAX_LENGTH_SZ + 1]; /* +1 for object tag */
         word32 objSz = 0;
         const char* sName;
@@ -29312,10 +29318,13 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         oid = OidFromId(id, type, &oidSz);
 
         /* set object ID to buffer */
-        obj = wolfSSL_ASN1_OBJECT_new();
-        if (obj == NULL) {
-            WOLFSSL_MSG("Issue creating WOLFSSL_ASN1_OBJECT struct");
-            return NULL;
+        if (obj == NULL)
+        {
+            obj = wolfSSL_ASN1_OBJECT_new();
+            if (obj == NULL) {
+                WOLFSSL_MSG("Issue creating WOLFSSL_ASN1_OBJECT struct");
+                return NULL;
+            }
         }
         obj->type    = id;
         obj->grp     = type;
@@ -29329,7 +29338,7 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         obj->objSz = objSz;
 
         obj->obj = (byte*)XMALLOC(obj->objSz, NULL, DYNAMIC_TYPE_ASN1);
-        if (obj->obj == NULL) {
+        if ((obj->obj == NULL) && arg_obj == NULL) {
             wolfSSL_ASN1_OBJECT_free(obj);
             return NULL;
         }
@@ -30031,16 +30040,13 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
     }
     #endif
 
-
-    #ifndef NO_WOLFSSL_STUB
-    WOLFSSL_ASN1_OBJECT * wolfSSL_X509_NAME_ENTRY_get_object(WOLFSSL_X509_NAME_ENTRY *ne) {
-        (void)ne;
-        WOLFSSL_ENTER("wolfSSL_X509_NAME_ENTRY_get_object");
-        WOLFSSL_STUB("X509_NAME_ENTRY_get_object");
-
-        return NULL;
+    WOLFSSL_ASN1_OBJECT *wolfSSL_X509_NAME_ENTRY_get_object(WOLFSSL_X509_NAME_ENTRY *ne)
+    {
+        WOLFSSL_ENTER("wolfSSL_X509_NAME_ENTRY_get_object");  
+        if(ne == NULL)return NULL;
+        wolfSSL_OBJ_nid2obj_ex(ne->nid, &ne->object);
+        return &ne->object;
     }
-    #endif
 
     WOLFSSL_X509_NAME_ENTRY *wolfSSL_X509_NAME_get_entry(
                                              WOLFSSL_X509_NAME *name, int loc) {
@@ -30069,7 +30075,6 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
             }
             name->cnEntry.data.type = CTC_UTF8;
             name->cnEntry.set       = 1;
-            return &(name->cnEntry);
 
          /* common name index case */
         } else if (loc == name->fullName.cnIdx) {
@@ -30079,8 +30084,10 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
             name->cnEntry.data.type   = CTC_UTF8;
             name->cnEntry.nid         = ASN_COMMON_NAME;
             name->cnEntry.set         = 1;
-            return &(name->cnEntry);
         }
+        
+        wolfSSL_OBJ_nid2obj_ex(name->cnEntry.nid, &name->cnEntry.object);
+        return &name->cnEntry;
 
         /* additionall cases to check for go here */
 

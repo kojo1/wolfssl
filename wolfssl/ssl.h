@@ -2468,7 +2468,7 @@ WOLFSSL_API int wolfSSL_accept_ex(WOLFSSL*, HandShakeCallBack, TimeoutCallBack,
 
 #include <wolfssl/openssl/asn1.h>
 struct WOLFSSL_X509_NAME_ENTRY {
-    WOLFSSL_ASN1_OBJECT* object; /* not defined yet */
+    WOLFSSL_ASN1_OBJECT  object;
     WOLFSSL_ASN1_STRING  data;
     WOLFSSL_ASN1_STRING* value;  /* points to data, for lighttpd port */
     int nid; /* i.e. ASN_COMMON_NAME */
@@ -2507,7 +2507,8 @@ WOLFSSL_API int wolfSSL_OBJ_sn2nid(const char *sn);
 WOLFSSL_API char* wolfSSL_OBJ_nid2ln(int n);
 WOLFSSL_API int wolfSSL_OBJ_txt2nid(const char *sn);
 
-WOLFSSL_API WOLFSSL_ASN1_OBJECT* wolfSSL_OBJ_nid2obj(int n);
+WOLFSSL_API   WOLFSSL_ASN1_OBJECT* wolfSSL_OBJ_nid2obj(int n);
+WOLFSSL_LOCAL WOLFSSL_ASN1_OBJECT *wolfSSL_OBJ_nid2obj_ex(int n, WOLFSSL_ASN1_OBJECT *);
 WOLFSSL_API int wolfSSL_OBJ_obj2txt(char *buf, int buf_len, WOLFSSL_ASN1_OBJECT *a, int no_name);
 
 WOLFSSL_API void wolfSSL_OBJ_cleanup(void);
