@@ -29337,12 +29337,15 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         objSz     += oidSz;
         obj->objSz = objSz;
 
-        obj->obj = (byte*)XMALLOC(obj->objSz, NULL, DYNAMIC_TYPE_ASN1);
-        if ((obj->obj == NULL) && arg_obj == NULL) {
-            wolfSSL_ASN1_OBJECT_free(obj);
-            return NULL;
-        }
-        XMEMCPY(obj->obj, objBuf, obj->objSz);
+        if(arg_obj == NULL) { /* Dynamic NAME_ENTRY */
+            obj->obj = (byte*)XMALLOC(obj->objSz, NULL, DYNAMIC_TYPE_ASN1);
+            if ((obj->obj == NULL) && arg_obj == NULL) {
+                wolfSSL_ASN1_OBJECT_free(obj);
+                return NULL;
+            }
+            XMEMCPY(obj->obj, objBuf, obj->objSz);
+        } else /* static NAME_ENTR is for just type and grp */
+            obj->obj = NULL; 
 
         (void)type;
 

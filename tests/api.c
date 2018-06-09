@@ -2701,28 +2701,32 @@ static void test_wolfSSL_X509_NAME_get_entry(void)
         X509* x509;
         ASN1_STRING* asn;
         int idx;
+        ASN1_OBJECT *object = NULL;
 
     #ifndef NO_FILESYSTEM
         x509 = wolfSSL_X509_load_certificate_file(cliCertFile, WOLFSSL_FILETYPE_PEM);
         AssertNotNull(x509);
-
         name = X509_get_subject_name(x509);
+        idx = X509_NAME_get_index_by_NID(name, NID_commonName, -1);
+        AssertIntGE(idx, 0);
+        ne = X509_NAME_get_entry(name, idx);
+        AssertNotNull(ne);
+        asn = X509_NAME_ENTRY_get_data(ne);
+        AssertNotNull(asn);
+        subCN = (char*)ASN1_STRING_data(asn);
+        AssertNotNull(subCN);
+        wolfSSL_FreeX509(x509);
+    #endif
 
+        x509 = wolfSSL_X509_load_certificate_file(cliCertFile, WOLFSSL_FILETYPE_PEM);
+        AssertNotNull(x509);
+        name = X509_get_subject_name(x509);
         idx = X509_NAME_get_index_by_NID(name, NID_commonName, -1);
         AssertIntGE(idx, 0);
 
         ne = X509_NAME_get_entry(name, idx);
         AssertNotNull(ne);
-
-        asn = X509_NAME_ENTRY_get_data(ne);
-        AssertNotNull(asn);
-
-        subCN = (char*)ASN1_STRING_data(asn);
-        AssertNotNull(subCN);
-
-        wolfSSL_FreeX509(x509);
-    #endif
-
+        AssertNotNull(object = X509_NAME_ENTRY_get_object(ne));
     }
 
     printf(resultFmt, passed);
