@@ -30,6 +30,7 @@
 #define TFM_TIMING_RESISTANT
 #define ECC_TIMING_RESISTANT
 #define WC_RSA_BLINDING
+#define HAVE_SUPPORTED_CURVES
 
 #define WOLFSSL_USER_CURRTIME /* for benchmark */
 #define WOLFSSL_CURRTIME_OSTICK /* use OS tich for current_time */

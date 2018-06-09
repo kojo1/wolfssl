@@ -6178,7 +6178,6 @@ static int DoTls13KeyUpdate(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             break;
         default:
             return INVALID_PARAMETER;
-            break;
     }
 
     /* Move index to byte after message. */
@@ -6863,7 +6862,6 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
                                          SERVER_ENCRYPTED_EXTENSIONS_COMPLETE &&
                                                   ssl->arrays->psk_keySz != 0) {
                 WOLFSSL_MSG("CertificateRequset received while using PSK");
-                return SANITY_MSG_E;
                 return SANITY_MSG_E;
             }
         #endif
