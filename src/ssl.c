@@ -10834,7 +10834,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
             return WOLFSSL_FATAL_ERROR;
     }
 
-    int wolfSSL_OPENSSL_add_all_algorithms_noconf(void)
+    int wolfSSL_OpenSSL_add_all_algorithms_noconf(void)
     {
         WOLFSSL_ENTER("wolfSSL_OPENSSL_add_all_algorithms_noconf");
 
@@ -30989,27 +30989,6 @@ void wolfSSL_ERR_load_crypto_strings(void)
     return;
 }
 
-unsigned long wolfSSL_ERR_peek_last_error(void)
-{
-    WOLFSSL_ENTER("wolfSSL_ERR_peek_last_error");
-
-#if defined(OPENSSL_EXTRA) || defined(WOLFSSL_NGINX)
-    {
-        int ret;
-
-        if ((ret = wc_PeekErrorNode(-1, NULL, NULL, NULL)) < 0) {
-            WOLFSSL_MSG("Issue peeking at error node in queue");
-            return 0;
-        }
-        if (ret == -ASN_NO_PEM_HEADER)
-            return (ERR_LIB_PEM << 24) | PEM_R_NO_START_LINE;
-        return (unsigned long)ret;
-    }
-#else
-    return (unsigned long)(0 - NOT_COMPILED_IN);
-#endif
-}
-
 #ifndef NO_WOLFSSL_STUB
 int wolfSSL_FIPS_mode(void)
 {
@@ -31157,12 +31136,6 @@ int wolfSSL_version(WOLFSSL* ssl)
 }
 
 
-WOLFSSL_CTX* wolfSSL_get_SSL_CTX(WOLFSSL* ssl)
-{
-    WOLFSSL_ENTER("wolfSSL_get_SSL_CTX");
-    return ssl->ctx;
-}
-
 int wolfSSL_X509_NAME_get_sz(WOLFSSL_X509_NAME* name)
 {
     WOLFSSL_ENTER("wolfSSL_X509_NAME_get_sz");
@@ -31277,6 +31250,35 @@ WOLF_STACK_OF(WOLFSSL_X509)* wolfSSL_X509_STORE_get1_certs(WOLFSSL_X509_STORE_CT
 #endif
 
 #endif /* OPENSSL_EXTRA and HAVE_STUNNEL */
+
+#if defined(OPENSSL_EXTRA)
+unsigned long wolfSSL_ERR_peek_last_error(void)
+{
+    WOLFSSL_ENTER("wolfSSL_ERR_peek_last_error");
+
+#if defined(OPENSSL_EXTRA) || defined(WOLFSSL_NGINX)
+    {
+        int ret;
+
+        if ((ret = wc_PeekErrorNode(-1, NULL, NULL, NULL)) < 0) {
+            WOLFSSL_MSG("Issue peeking at error node in queue");
+            return 0;
+        }
+        if (ret == -ASN_NO_PEM_HEADER)
+            return (ERR_LIB_PEM << 24) | PEM_R_NO_START_LINE;
+        return (unsigned long)ret;
+    }
+#else
+    return (unsigned long)(0 - NOT_COMPILED_IN);
+#endif
+}
+
+WOLFSSL_CTX* wolfSSL_get_SSL_CTX(WOLFSSL* ssl)
+{
+    WOLFSSL_ENTER("wolfSSL_get_SSL_CTX");
+    return ssl->ctx;
+}
+#endif /* OPENSSL_EXTRA */
 
 #if defined(OPENSSL_ALL) || \
     (defined(OPENSSL_EXTRA) && (defined(HAVE_STUNNEL) || \
@@ -33016,4 +33018,20 @@ int wolfSSL_X509_CA_num(WOLFSSL_X509_STORE* store)
     return cnt_ret;
 }
 #endif /* !NO_CERT */
+
+long wolfSSL_X509_get_version(const WOLFSSL_X509 *x509){
+    int version = 0;
+
+    WOLFSSL_ENTER("wolfSSL_X509_get_version");
+
+    if (x509 == NULL){
+        WOLFSSL_MSG("invalid parameter");
+        return 0L;
+    }
+    version = x509->version;
+    if (version != 0)
+        return (long)version - 1L;
+    
+    return 0L;
+}
 #endif  /* OPENSSL_EXTRA */
