@@ -2913,6 +2913,37 @@ static void test_wolfSSL_PKCS12(void)
     BIO_free(bio);
     PKCS12_free(pkcs12);
     sk_X509_free(ca);
+
+
+    /* TEST d2i_PKCS12_fp */
+
+    /* test order of parsing */
+    f = fopen(file, "rb");
+
+    AssertNotNull(pkcs12 = d2i_PKCS12_fp(f, NULL));
+
+    /* check verify MAC fail case */
+    ret = PKCS12_parse(pkcs12, "bad", &pkey, &cert, NULL);
+    AssertIntEQ(ret, 0);
+    AssertNull(pkey);
+    AssertNull(cert);
+
+    /* check parse with no extra certs kept */
+    ret = PKCS12_parse(pkcs12, "wolfSSL test", &pkey, &cert, NULL);
+    AssertIntEQ(ret, 1);
+    AssertNotNull(pkey);
+    AssertNotNull(cert);
+
+    wolfSSL_EVP_PKEY_free(pkey);
+    wolfSSL_X509_free(cert);
+
+    /* check parse with extra certs kept */
+    ret = PKCS12_parse(pkcs12, "wolfSSL test", &pkey, &cert, &ca);
+    AssertIntEQ(ret, 1);
+    AssertNotNull(pkey);
+    AssertNotNull(cert);
+    AssertNotNull(ca);
+
 #endif /* HAVE_ECC */
 
     (void)x509;
@@ -17946,12 +17977,15 @@ static void test_wolfSSL_RSA_DER(void)
 
     RSA *rsa;
     int i;
+    const unsigned char *buff;
 
-    struct
+    struct tbl_s
     {
         const unsigned char *der;
         int sz;
     } tbl[] = {
+
+    
 #ifdef USE_CERT_BUFFERS_1024
         {client_key_der_1024, sizeof_client_key_der_1024},
         {server_key_der_1024, sizeof_server_key_der_1024},
@@ -17959,6 +17993,18 @@ static void test_wolfSSL_RSA_DER(void)
 #ifdef USE_CERT_BUFFERS_2048
         {client_key_der_2048, sizeof_client_key_der_2048},
         {server_key_der_2048, sizeof_server_key_der_2048},
+#endif
+        {NULL, 0}
+    };
+
+    /* Public Key DER */
+    struct tbl_s pub[] = {
+#ifdef USE_CERT_BUFFERS_1024
+        {client_keypub_der_1024, sizeof_client_keypub_der_1024},
+        {server_keypub_der_1024, sizeof_server_keypub_der_1024},
+#endif
+#ifdef USE_CERT_BUFFERS_2048
+        {client_keypub_der_2048, sizeof_client_keypub_der_2048},
 #endif
         {NULL, 0}
     };
@@ -17971,6 +18017,19 @@ static void test_wolfSSL_RSA_DER(void)
         AssertNotNull(rsa);
         RSA_free(rsa);
     }
+
+    for (i = 0; pub[i].der != NULL; i++)
+    {
+        AssertNotNull(d2i_RSAPublicKey(&rsa, &pub[i].der, pub[i].sz));
+        AssertNotNull(rsa);
+        buff = NULL;
+        AssertIntEQ(i2d_RSAPublicKey(rsa, &buff), pub[i].sz);
+        AssertNotNull(buff);
+        AssertIntEQ(0, memcmp((void *)buff, (void *)pub[i].der, pub[i].sz));
+        free((void *)buff);
+        RSA_free(rsa);
+    }
+
     printf(resultFmt, passed);
 
 #endif
