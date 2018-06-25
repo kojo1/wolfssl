@@ -2921,7 +2921,9 @@ static void test_wolfSSL_PKCS12(void)
     f = fopen(file, "rb");
 
     AssertNotNull(pkcs12 = d2i_PKCS12_fp(f, NULL));
-
+    
+    fclose(f);
+    
     /* check verify MAC fail case */
     ret = PKCS12_parse(pkcs12, "bad", &pkey, &cert, NULL);
     AssertIntEQ(ret, 0);
@@ -2943,6 +2945,7 @@ static void test_wolfSSL_PKCS12(void)
     AssertNotNull(pkey);
     AssertNotNull(cert);
     AssertNotNull(ca);
+
 
 #endif /* HAVE_ECC */
 
