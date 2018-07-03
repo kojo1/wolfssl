@@ -2732,7 +2732,7 @@ WOLFSSL_API void wolfSSL_CTX_set_servername_arg(WOLFSSL_CTX *, void*);
 WOLFSSL_API void WOLFSSL_ERR_remove_thread_state(void*);
 
 #ifndef NO_FILESYSTEM
-WOLFSSL_API void wolfSSL_print_all_errors_fp(XFILE *fp);
+WOLFSSL_API void wolfSSL_print_all_errors_fp(XFILE fp);
 #endif
 
 WOLFSSL_API void wolfSSL_THREADID_set_callback(void (*threadid_func)(void*));
