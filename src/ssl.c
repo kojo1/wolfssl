@@ -29356,8 +29356,10 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
                 return NULL;
             }
             XMEMCPY(obj->obj, objBuf, obj->objSz);
-        } else /* static NAME_ENTR is for just type and grp */
+        } else {/* static NAME_ENTR is for just type and grp */
             obj->obj = NULL; 
+            obj->type = id;
+        }
 
         (void)type;
 
@@ -29738,7 +29740,6 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         if (o == NULL) {
             return -1;
         }
-
         if ((id = GetObjectId(o->obj, &idx, &oid, o->grp, o->objSz)) < 0) {
             WOLFSSL_MSG("Issue getting OID of object");
             return -1;
