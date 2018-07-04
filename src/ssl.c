@@ -17170,7 +17170,7 @@ int wolfSSL_X509_LOOKUP_load_file(WOLFSSL_X509_LOOKUP* lookup,
         return BAD_FUNC_ARG;
 
     fp = XFOPEN(file, "r");
-    if (fp == NULL)
+    if (fp == XBADFILE)
         return BAD_FUNC_ARG;
 
     XFSEEK(fp, 0, XSEEK_END);
@@ -19796,7 +19796,7 @@ WOLFSSL_API int wolfSSL_sk_SSL_CIPHER_num(const void * p)
 #if !defined(NO_FILESYSTEM)
 #ifndef NO_WOLFSSL_STUB
 /*** TBD ***/
-WOLFSSL_API WOLFSSL_EVP_PKEY *wolfSSL_PEM_read_PrivateKey(FILE *fp, WOLFSSL_EVP_PKEY **x, pem_password_cb *cb, void *u)
+WOLFSSL_API WOLFSSL_EVP_PKEY *wolfSSL_PEM_read_PrivateKey(XFILE fp, WOLFSSL_EVP_PKEY **x, pem_password_cb *cb, void *u)
 {
     (void)fp;
     (void)x;
@@ -21328,7 +21328,7 @@ int wolfSSL_RAND_write_file(const char* fname)
             XFILE f;
 
             f = XFOPEN(fname, "wb");
-            if (f == NULL) {
+            if (f == XBADFILE) {
                 WOLFSSL_MSG("Error opening the file");
                 bytes = 0;
             }
@@ -22525,7 +22525,7 @@ int wolfSSL_BN_print_fp(XFILE fp, const WOLFSSL_BIGNUM *bn)
 
     WOLFSSL_ENTER("wolfSSL_BN_print_fp");
 
-    if (fp == NULL || bn == NULL || bn->internal == NULL) {
+    if (fp == XBADFILE || bn == NULL || bn->internal == NULL) {
         WOLFSSL_MSG("bn NULL error");
         return WOLFSSL_FAILURE;
     }
@@ -25650,7 +25650,7 @@ int wolfSSL_PEM_write_mem_RSAPrivateKey(RSA* rsa, const EVP_CIPHER* cipher,
 /* return code compliant with OpenSSL :
  *   1 if success, 0 if error
  */
-int wolfSSL_PEM_write_RSAPrivateKey(FILE *fp, WOLFSSL_RSA *rsa,
+int wolfSSL_PEM_write_RSAPrivateKey(XFILE fp, WOLFSSL_RSA *rsa,
                                     const EVP_CIPHER *enc,
                                     unsigned char *kstr, int klen,
                                     pem_password_cb *cb, void *u)
@@ -25663,7 +25663,8 @@ int wolfSSL_PEM_write_RSAPrivateKey(FILE *fp, WOLFSSL_RSA *rsa,
 
     WOLFSSL_MSG("wolfSSL_PEM_write_RSAPrivateKey");
 
-    if (fp == NULL || rsa == NULL || rsa->internal == NULL) {
+    if (fp == XBADFILE || rsa == NULL || rsa->internal == NULL)
+    {
         WOLFSSL_MSG("Bad function arguments");
         return WOLFSSL_FAILURE;
     }
@@ -26946,7 +26947,7 @@ int wolfSSL_ECDH_compute_key(void *out, size_t outlen,
  *   1 if success, 0 if error
  */
 #ifndef NO_WOLFSSL_STUB
-int wolfSSL_PEM_write_EC_PUBKEY(FILE *fp, WOLFSSL_EC_KEY *x)
+int wolfSSL_PEM_write_EC_PUBKEY(XFILE fp, WOLFSSL_EC_KEY *x)
 {
     (void)fp;
     (void)x;
@@ -27112,7 +27113,7 @@ int wolfSSL_PEM_write_mem_ECPrivateKey(WOLFSSL_EC_KEY* ecc,
 /* return code compliant with OpenSSL :
  *   1 if success, 0 if error
  */
-int wolfSSL_PEM_write_ECPrivateKey(FILE *fp, WOLFSSL_EC_KEY *ecc,
+int wolfSSL_PEM_write_ECPrivateKey(XFILE fp, WOLFSSL_EC_KEY *ecc,
                                    const EVP_CIPHER *enc,
                                    unsigned char *kstr, int klen,
                                    pem_password_cb *cb, void *u)
@@ -27125,7 +27126,7 @@ int wolfSSL_PEM_write_ECPrivateKey(FILE *fp, WOLFSSL_EC_KEY *ecc,
 
     WOLFSSL_MSG("wolfSSL_PEM_write_ECPrivateKey");
 
-    if (fp == NULL || ecc == NULL || ecc->internal == NULL) {
+    if (fp == XBADFILE || ecc == NULL || ecc->internal == NULL) {
         WOLFSSL_MSG("Bad function arguments");
         return WOLFSSL_FAILURE;
     }
@@ -27305,7 +27306,7 @@ int wolfSSL_PEM_write_mem_DSAPrivateKey(WOLFSSL_DSA* dsa,
 /* return code compliant with OpenSSL :
  *   1 if success, 0 if error
  */
-int wolfSSL_PEM_write_DSAPrivateKey(FILE *fp, WOLFSSL_DSA *dsa,
+int wolfSSL_PEM_write_DSAPrivateKey(XFILE fp, WOLFSSL_DSA *dsa,
                                     const EVP_CIPHER *enc,
                                     unsigned char *kstr, int klen,
                                     pem_password_cb *cb, void *u)
@@ -27318,7 +27319,7 @@ int wolfSSL_PEM_write_DSAPrivateKey(FILE *fp, WOLFSSL_DSA *dsa,
 
     WOLFSSL_MSG("wolfSSL_PEM_write_DSAPrivateKey");
 
-    if (fp == NULL || dsa == NULL || dsa->internal == NULL) {
+    if (fp == XBADFILE || dsa == NULL || dsa->internal == NULL) {
         WOLFSSL_MSG("Bad function arguments");
         return WOLFSSL_FAILURE;
     }
@@ -27347,7 +27348,7 @@ int wolfSSL_PEM_write_DSAPrivateKey(FILE *fp, WOLFSSL_DSA *dsa,
  *   1 if success, 0 if error
  */
 #ifndef NO_WOLFSSL_STUB
-int wolfSSL_PEM_write_DSA_PUBKEY(FILE *fp, WOLFSSL_DSA *x)
+int wolfSSL_PEM_write_DSA_PUBKEY(XFILE fp, WOLFSSL_DSA *x)
 {
     (void)fp;
     (void)x;
@@ -27575,7 +27576,7 @@ int wolfSSL_EVP_PKEY_base_id(const EVP_PKEY *pkey)
 
 
 #if !defined(NO_FILESYSTEM)
-WOLFSSL_EVP_PKEY *wolfSSL_PEM_read_PUBKEY(FILE *fp, EVP_PKEY **x,
+WOLFSSL_EVP_PKEY *wolfSSL_PEM_read_PUBKEY(XFILE fp, EVP_PKEY **x,
                                           pem_password_cb *cb, void *u)
 {
     (void)fp;
@@ -27593,7 +27594,7 @@ WOLFSSL_EVP_PKEY *wolfSSL_PEM_read_PUBKEY(FILE *fp, EVP_PKEY **x,
 
 #if !defined(NO_FILESYSTEM)
 #ifndef NO_WOLFSSL_STUB
-WOLFSSL_RSA *wolfSSL_PEM_read_RSAPublicKey(FILE *fp, WOLFSSL_RSA **x,
+WOLFSSL_RSA *wolfSSL_PEM_read_RSAPublicKey(XFILE fp, WOLFSSL_RSA **x,
                                            pem_password_cb *cb, void *u)
 {
     (void)fp;
@@ -27610,7 +27611,7 @@ WOLFSSL_RSA *wolfSSL_PEM_read_RSAPublicKey(FILE *fp, WOLFSSL_RSA **x,
  *   1 if success, 0 if error
  */
 #ifndef NO_WOLFSSL_STUB
-int wolfSSL_PEM_write_RSAPublicKey(FILE *fp, WOLFSSL_RSA *x)
+int wolfSSL_PEM_write_RSAPublicKey(XFILE fp, WOLFSSL_RSA *x)
 {
     (void)fp;
     (void)x;
@@ -27625,7 +27626,7 @@ int wolfSSL_PEM_write_RSAPublicKey(FILE *fp, WOLFSSL_RSA *x)
  *   1 if success, 0 if error
  */
 #ifndef NO_WOLFSSL_STUB
-int wolfSSL_PEM_write_RSA_PUBKEY(FILE *fp, WOLFSSL_RSA *x)
+int wolfSSL_PEM_write_RSA_PUBKEY(XFILE fp, WOLFSSL_RSA *x)
 {
     (void)fp;
     (void)x;
@@ -27670,7 +27671,7 @@ int wolfSSL_i2d_RSAPublicKey(WOLFSSL_RSA *rsa, const unsigned char **pp)
     int ret;
 
     WOLFSSL_ENTER("i2d_RSAPublicKey");
-    if((rsa == NULL) || (pp == NULL))
+    if(rsa == NULL)
         return WOLFSSL_FATAL_ERROR;
     if((ret = SetRsaInternal(rsa)) != WOLFSSL_SUCCESS) {
         WOLFSSL_MSG("SetRsaInternal Failed");
@@ -27687,8 +27688,8 @@ int wolfSSL_i2d_RSAPublicKey(WOLFSSL_RSA *rsa, const unsigned char **pp)
         XFREE(der, NULL, DYNAMIC_TYPE_TMP_BUFFER);
         return ret;
     }
-
-    *pp = der;
+    if((pp != NULL) && (ret >= 0))
+        *pp = der;
     return ret;
 }
 #endif /* #if !defined(HAVE_FAST_RSA) */
@@ -28618,7 +28619,7 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
             i = XFTELL(bp->file);
             if (i < 0)
                 return NULL;
-            if (XFSEEK(bp->file, 0, SEEK_END) != 0)
+            if (XFSEEK(bp->file, 0, XSEEK_END) != 0)
                 return NULL;
             l = XFTELL(bp->file);
             if (l < 0)
@@ -28695,7 +28696,7 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         
         WOLFSSL_ENTER("wolfSSL_PEM_read_X509");
 
-        if (fp == NULL) {
+        if (fp == XBADFILE) {
             WOLFSSL_LEAVE("wolfSSL_PEM_read_X509", BAD_FUNC_ARG);
             return NULL;
         }
@@ -28706,7 +28707,7 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
             return NULL;
         }
 
-        if (XFSEEK(fp, 0, SEEK_END) != 0)
+        if (XFSEEK(fp, 0, XSEEK_END) != 0)
             return NULL;
         l = XFTELL(fp);
         if (l < 0)
@@ -29667,13 +29668,13 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
 
         WOLFSSL_ENTER("wolfSSL_BIO_new_file");
 
-        if ((wolfSSL_BIO_get_fp(b, &fp) == WOLFSSL_SUCCESS) && (fp != NULL))
+        if ((wolfSSL_BIO_get_fp(b, &fp) == WOLFSSL_SUCCESS) && (fp != XBADFILE))
         {
             XFCLOSE(fp);
         }
 
         fp = XFOPEN(name, "r");
-        if (fp == NULL)
+        if (fp == XBADFILE)
             return WOLFSSL_BAD_FILE;
 
         if (wolfSSL_BIO_set_fp(b, fp, BIO_CLOSE) != WOLFSSL_SUCCESS) {
@@ -30064,6 +30065,60 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         return &ne->object;
     }
 
+    static WOLFSSL_X509_NAME *get_nameByLoc( WOLFSSL_X509_NAME *name, int loc)
+    {
+        if ((loc < 0) || (loc >= name->fullName.entryCount))
+            return NULL;
+
+        switch (loc)
+        {
+        case 0: 
+            name->cnEntry.value->length = name->fullName.cnLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.cnIdx];
+            break;
+        case 1:
+            name->cnEntry.value->length = name->fullName.cLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.cIdx];
+            break;
+        case 2:
+            name->cnEntry.value->length = name->fullName.lLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.lIdx];
+            break;
+        case 3:
+            name->cnEntry.value->length = name->fullName.stLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.stIdx];
+            break;
+        case 4:
+            name->cnEntry.value->length = name->fullName.oLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.oIdx];
+            break;
+        case 5:
+            name->cnEntry.value->length = name->fullName.ouLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.ouIdx];
+            break;
+        case 6:
+            name->cnEntry.value->length = name->fullName.emailLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.emailIdx];
+            break;
+        case 7:
+            name->cnEntry.value->length = name->fullName.snLen;
+            name->cnEntry.value->data = &name->fullName.fullName[name->fullName.snIdx];
+            break;
+        case 8:
+            name->cnEntry.value->length = name->fullName.uidLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.uidIdx];
+            break;
+        case 9:
+            name->cnEntry.value->length = name->fullName.serialLen;
+            name->cnEntry.value->data   = &name->fullName.fullName[name->fullName.serialIdx];
+            break;
+        default:
+            return NULL;
+        }
+        name->cnEntry.value->type   = CTC_UTF8;
+        return name;
+    }
+
 
     WOLFSSL_X509_NAME_ENTRY *wolfSSL_X509_NAME_get_entry(
                                              WOLFSSL_X509_NAME *name, int loc) {
@@ -30101,6 +30156,11 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
             name->cnEntry.data.type   = CTC_UTF8;
             name->cnEntry.nid         = ASN_COMMON_NAME;
             name->cnEntry.set         = 1;
+        }
+        
+        if((loc >= 0) && (loc < name->fullName.entryCount)){
+            if(get_nameByLoc(name, loc) == NULL)
+                return NULL;
         }
 
         wolfSSL_OBJ_nid2obj_ex(name->cnEntry.nid, &name->cnEntry.object);
@@ -30505,7 +30565,7 @@ WOLFSSL_BIO *wolfSSL_BIO_new_file(const char *filename, const char *mode)
     WOLFSSL_ENTER("wolfSSL_BIO_new_file");
 
     fp = XFOPEN(filename, mode);
-    if (fp == NULL)
+    if (fp == XBADFILE)
         return NULL;
 
     bio = wolfSSL_BIO_new(wolfSSL_BIO_s_file());
@@ -30567,7 +30627,7 @@ WOLFSSL_DH *wolfSSL_PEM_read_bio_DHparams(WOLFSSL_BIO *bio, WOLFSSL_DH **x,
     }
     else if (bio->type == WOLFSSL_BIO_FILE) {
         /* Read whole file into a new buffer. */
-        XFSEEK(bio->file, 0, SEEK_END);
+        XFSEEK(bio->file, 0, XSEEK_END);
         sz = XFTELL(bio->file);
         XFSEEK(bio->file, 0, SEEK_SET);
         if (sz <= 0L)
@@ -30870,7 +30930,7 @@ void WOLFSSL_ERR_remove_thread_state(void* pid)
 
 #ifndef NO_FILESYSTEM
 /***TBD ***/
-void wolfSSL_print_all_errors_fp(XFILE *fp)
+void wolfSSL_print_all_errors_fp(XFILE fp)
 {
     (void)fp;
 }
