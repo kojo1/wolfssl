@@ -4078,7 +4078,7 @@ WOLFSSL_LOCAL int OBJ_sn2nid(const char *sn)
 
     int i;
     WOLFSSL_ENTER("OBJ_osn2nid");
-
+    #ifdef HAVE_ECC
     /* Nginx uses this OpenSSL string. */
     if (XSTRNCMP(sn, "prime256v1", 10) == 0)
         sn = "SECP256R1";
@@ -4090,7 +4090,8 @@ WOLFSSL_LOCAL int OBJ_sn2nid(const char *sn)
             return ecc_sets[i].id;
         }
     }
-
+    #endif
+    
     for(i=0; sn2nid[i].sn != NULL; i++) {
         if(XSTRNCMP(sn, sn2nid[i].sn, XSTRLEN(sn2nid[i].sn)) == 0) {
             return sn2nid[i].nid;
