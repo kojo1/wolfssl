@@ -18271,7 +18271,11 @@ static void test_wolfSSL_OBJ(void)
             AssertNotNull(asn1Name = X509_NAME_ENTRY_get_object(x509NameEntry));
             AssertTrue((nid = OBJ_obj2nid(asn1Name)) > 0);
             printf("nid=%d\n", nid);
+            ASN1_OBJECT_free(asn1Name);
         }
+        BIO_free(bio);
+        X509_free(x509);
+        XFCLOSE(fp);
     }
 
     for (i = 0; p12_f[i] != NULL; i++)
@@ -18289,7 +18293,11 @@ static void test_wolfSSL_OBJ(void)
             AssertNotNull(asn1Name = X509_NAME_ENTRY_get_object(x509NameEntry));
             AssertTrue((nid = OBJ_obj2nid(asn1Name)) > 0);
             printf("nid=%d\n", nid);
+            ASN1_OBJECT_free(asn1Name);
         }
+        BIO_free(bio);
+        X509_free(x509);
+        XFCLOSE(fp);
     }
 
     printf(resultFmt, passed);
