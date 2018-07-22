@@ -6917,6 +6917,7 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 }
                 obj->type = BASIC_CA_OID;
                 obj->grp  = oidCertExtType;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
             }
             else {
                 WOLFSSL_MSG("No Basic Constraint set");
@@ -6949,6 +6950,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                         obj->type = dns->type;
                         obj->grp  = oidCertExtType;
                         obj->obj  = (byte*)dns->name;
+                        obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                        obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA ;
 
                         /* set app derefrenced pointers */
                         obj->d.ia5_internal.data   = dns->name;
@@ -6987,6 +6990,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = x509->CRLInfo;
                 obj->objSz = x509->CRLInfoSz;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA ;
             }
             else {
                 WOLFSSL_MSG("No CRL dist set");
@@ -7008,6 +7013,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = x509->authInfo;
                 obj->objSz = x509->authInfoSz;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
             }
             else {
                 WOLFSSL_MSG("No Auth Info set");
@@ -7029,6 +7036,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = x509->authKeyId;
                 obj->objSz = x509->authKeyIdSz;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
             }
             else {
                 WOLFSSL_MSG("No Auth Key set");
@@ -7050,6 +7059,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = x509->subjKeyId;
                 obj->objSz = x509->subjKeyIdSz;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
             }
             else {
                 WOLFSSL_MSG("No Subject Key set");
@@ -7082,6 +7093,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                         obj->grp   = oidCertExtType;
                         obj->obj   = (byte*)(x509->certPolicies[i]);
                         obj->objSz = MAX_CERTPOL_SZ;
+                        obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                        obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
                         if (wolfSSL_sk_ASN1_OBJECT_push(sk, obj)
                                                                != WOLFSSL_SUCCESS) {
                             WOLFSSL_MSG("Error pushing ASN1 object onto stack");
@@ -7100,6 +7113,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                     obj->grp   = oidCertExtType;
                     obj->obj   = (byte*)(x509->certPolicies[i]);
                     obj->objSz = MAX_CERTPOL_SZ;
+                    obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                    obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
                 }
                 else {
                     WOLFSSL_MSG("No Cert Policy set");
@@ -7119,6 +7134,7 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                     }
                     obj->type  = CERT_POLICY_OID;
                     obj->grp   = oidCertExtType;
+                    obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
                 }
                 else {
                     WOLFSSL_MSG("No Cert Policy set");
@@ -7144,6 +7160,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = (byte*)&(x509->keyUsage);
                 obj->objSz = sizeof(word16);
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
             }
             else {
                 WOLFSSL_MSG("No Key Usage set");
@@ -7174,6 +7192,8 @@ void* wolfSSL_X509_get_ext_d2i(const WOLFSSL_X509* x509,
                 obj->grp   = oidCertExtType;
                 obj->obj   = x509->extKeyUsageSrc;
                 obj->objSz = x509->extKeyUsageSz;
+                obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
+                obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC_DATA;
             }
             else {
                 WOLFSSL_MSG("No Extended Key Usage set");
@@ -30018,9 +30038,9 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
                 WOLFSSL_MSG("Issue creating WOLFSSL_ASN1_OBJECT struct");
                 return NULL;
             }
-            obj->dynamic = WOLFSSL_ASN1_DYNAMIC;
+            obj->dynamic |= WOLFSSL_ASN1_DYNAMIC;
         } else {
-            obj->dynamic = 0;
+            obj->dynamic &= ~WOLFSSL_ASN1_DYNAMIC;
         }
         obj->type    = id;
         obj->grp     = type;
