@@ -4310,7 +4310,7 @@ AC_SUBST([LIB_STATIC_ADD])
 
 # FINAL
 AC_CONFIG_FILES([stamp-h], [echo timestamp > stamp-h])
-AC_CONFIG_FILES([Makefile wolfssl/version.h wolfssl/options.h cyassl/options.h others/support/wolfssl.pc rpm/spec])
+AC_CONFIG_FILES([Makefile wolfssl/version.h wolfssl/options.h cyassl/options.h others/support/wolfssl.pc packages/rpm/spec])
 
 AX_CREATE_GENERIC_CONFIG
 AX_AM_JOBSERVER([yes])

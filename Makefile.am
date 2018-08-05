@@ -109,7 +109,7 @@ include examples/include.am
 include tests/testsuite/include.am
 include tests/include.am
 include tools/sslSniffer/sslSnifferTest/include.am
-include rpm/include.am
+include packages/rpm/include.am
 
 # Exclude references to non-DFSG sources from build files
 if !BUILD_DISTRO
