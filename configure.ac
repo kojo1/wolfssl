@@ -21,7 +21,7 @@ AS_CASE([$xxx_ar_flags],[*'use actual timestamps and uids/gids'*],[: ${AR_FLAGS=
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_CANONICAL_HOST
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR([tools/m4])
 
 AM_INIT_AUTOMAKE([1.11 -Wall -Werror -Wno-portability foreign tar-ustar subdir-objects no-define color-tests])
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
@@ -4310,7 +4310,7 @@ AC_SUBST([LIB_STATIC_ADD])
 
 # FINAL
 AC_CONFIG_FILES([stamp-h], [echo timestamp > stamp-h])
-AC_CONFIG_FILES([Makefile wolfssl/version.h wolfssl/options.h cyassl/options.h support/wolfssl.pc rpm/spec])
+AC_CONFIG_FILES([Makefile wolfssl/version.h wolfssl/options.h cyassl/options.h others/support/wolfssl.pc rpm/spec])
 
 AX_CREATE_GENERIC_CONFIG
 AX_AM_JOBSERVER([yes])

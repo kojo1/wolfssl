@@ -8,7 +8,7 @@ ca=certs/external/ca-globalsign-root.pem
 [ ! -x ./examples/client/client ] && echo -e "\n\nClient doesn't exist" && exit 1
 
 # is our desired server there?
-./scripts/ping.test $server 2
+./tests/scripts/ping.test $server 2
 RESULT=$?
 if [ $RESULT = 0 ]; then
     # client test against the server
@@ -23,7 +23,7 @@ server=www.google.com
 ca=certs/external/ca-google-root.pem
 
 # is our desired server there?
-./scripts/ping.test $server 2
+./tests/scripts/ping.test $server 2
 RESULT=$?
 if [ $RESULT = 0 ]; then
     # client test against the server

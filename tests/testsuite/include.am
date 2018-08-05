@@ -4,23 +4,23 @@
 
 
 if BUILD_TESTS
-check_PROGRAMS += testsuite/testsuite.test
-noinst_PROGRAMS += testsuite/testsuite.test
-testsuite_testsuite_test_SOURCES = \
+check_PROGRAMS += tests/testsuite/testsuite.test
+noinst_PROGRAMS += tests/testsuite/testsuite.test
+tests_testsuite_testsuite_test_SOURCES = \
 			      wolfcrypt/test/test.c \
 			      examples/client/client.c \
 			      examples/echoclient/echoclient.c \
 			      examples/echoserver/echoserver.c \
 			      examples/server/server.c \
-			      testsuite/testsuite.c
-testsuite_testsuite_test_CFLAGS       = -DNO_MAIN_DRIVER $(AM_CFLAGS)
-testsuite_testsuite_test_LDADD        = src/libwolfssl.la $(LIB_STATIC_ADD)
-testsuite_testsuite_test_DEPENDENCIES = src/libwolfssl.la
+			      tests/testsuite/testsuite.c
+tests_testsuite_testsuite_test_CFLAGS       = -DNO_MAIN_DRIVER $(AM_CFLAGS)
+tests_testsuite_testsuite_test_LDADD        = src/libwolfssl.la $(LIB_STATIC_ADD)
+tests_testsuite_testsuite_test_DEPENDENCIES = src/libwolfssl.la
 endif
-EXTRA_DIST += testsuite/testsuite.sln
-EXTRA_DIST += testsuite/testsuite-ntru.vcproj
-EXTRA_DIST += testsuite/testsuite.vcproj
-EXTRA_DIST += testsuite/testsuite.vcxproj
-EXTRA_DIST += input
-EXTRA_DIST += quit
-DISTCLEANFILES+= testsuite/.libs/testsuite.test
+EXTRA_DIST += tests/testsuite/testsuite.sln
+EXTRA_DIST += tests/testsuite/testsuite-ntru.vcproj
+EXTRA_DIST += tests/testsuite/testsuite.vcproj
+EXTRA_DIST += tests/testsuite/testsuite.vcxproj
+EXTRA_DIST += others/input
+EXTRA_DIST += others/quit
+DISTCLEANFILES+= tests/testsuite/.libs/testsuite.test

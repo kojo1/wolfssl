@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run this script from the wolfSSL root as `./scripts/memtest.sh`.
+# Run this script from the wolfSSL root as `./tests/scripts/memtest.sh`.
 
 ./autogen.sh
 ./configure --enable-debug --disable-shared --enable-memtest \
@@ -16,7 +16,7 @@ for i in {1..1000}
 do
     echo "Trying $i...\n"
 
- 	./tests/unit.test > ./scripts/memtest.txt 2>&1
+ 	./tests/unit.test > ./tests/scripts/memtest.txt 2>&1
 
  	RESULT=$?
  	[ $RESULT -eq 139 ] && echo "Mem Seg Fault" && exit 1

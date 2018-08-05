@@ -2,9 +2,9 @@
 # All paths should be given relative to the root
 #
 
-EXTRA_DIST += support/wolfssl.pc
+EXTRA_DIST += others/support/wolfssl.pc
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = support/wolfssl.pc
+pkgconfig_DATA = others/support/wolfssl.pc
 	     
 

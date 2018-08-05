@@ -71,9 +71,9 @@ CLEANFILES+= cert.der \
 exampledir = $(docdir)/example
 dist_example_DATA=
 
-ACLOCAL_AMFLAGS= -I m4
+ACLOCAL_AMFLAGS= -I tools/m4
 
-EXTRA_DIST+= lib/dummy
+EXTRA_DIST+= others/lib/dummy
 
 EXTRA_DIST+= wolfssl-ntru.vcproj
 EXTRA_DIST+= wolfssl.vcproj
@@ -97,43 +97,43 @@ include cyassl/include.am
 include wolfssl/include.am
 include certs/include.am
 include doc/include.am
-include swig/include.am
+include wrapper/swig/include.am
 
 include src/include.am
-include support/include.am
+include others/support/include.am
 include wolfcrypt/user-crypto/include.am
 include wolfcrypt/benchmark/include.am
 include wolfcrypt/src/include.am
 include wolfcrypt/test/include.am
 include examples/include.am
-include testsuite/include.am
+include tests/testsuite/include.am
 include tests/include.am
-include sslSniffer/sslSnifferTest/include.am
+include tools/sslSniffer/sslSnifferTest/include.am
 include rpm/include.am
 
 # Exclude references to non-DFSG sources from build files
 if !BUILD_DISTRO
-include mqx/util_lib/Sources/include.am
-include mqx/wolfcrypt_benchmark/Sources/include.am
-include mqx/wolfcrypt_test/Sources/include.am
-include mqx/wolfssl/include.am
-include mqx/wolfssl_client/Sources/include.am
-include mplabx/include.am
-include mplabx/wolfcrypt_benchmark.X/nbproject/include.am
-include mplabx/wolfcrypt_test.X/nbproject/include.am
-include mplabx/wolfssl.X/nbproject/include.am
-include mcapi/include.am
-include mcapi/wolfcrypt_mcapi.X/nbproject/include.am
-include mcapi/wolfcrypt_test.X/nbproject/include.am
-include mcapi/wolfssl.X/nbproject/include.am
-include mcapi/zlib.X/nbproject/include.am
-include tirtos/include.am
+include IDE/mqx/util_lib/Sources/include.am
+include IDE/mqx/wolfcrypt_benchmark/Sources/include.am
+include IDE/mqx/wolfcrypt_test/Sources/include.am
+include IDE/mqx/wolfssl/include.am
+include IDE/mqx/wolfssl_client/Sources/include.am
+include IDE/Microchip/mplabx/include.am
+include IDE/Microchip/mplabx/wolfcrypt_benchmark.X/nbproject/include.am
+include IDE/Microchip/mplabx/wolfcrypt_test.X/nbproject/include.am
+include IDE/Microchip/mplabx/wolfssl.X/nbproject/include.am
+include IDE/Microchip/mcapi/include.am
+include IDE/Microchip/mcapi/wolfcrypt_mcapi.X/nbproject/include.am
+include IDE/Microchip/mcapi/wolfcrypt_test.X/nbproject/include.am
+include IDE/Microchip/mcapi/wolfssl.X/nbproject/include.am
+include IDE/Microchip/mcapi/zlib.X/nbproject/include.am
+include IDE/tirtos/include.am
 include IDE/include.am
 endif
-include scripts/include.am
+include tests/scripts/include.am
 
 if USE_VALGRIND
-TESTS_ENVIRONMENT=./valgrind-error.sh
+TESTS_ENVIRONMENT=.tools/valgrind-error.sh
 endif
 
 TEST_EXTENSIONS=.test
@@ -143,7 +143,7 @@ check_SCRIPTS+= $(dist_noinst_SCRIPTS)
 TESTS += $(check_SCRIPTS)
 
 test: check
-tests/unit.log: testsuite/testsuite.log
+tests/unit.log: tests/testsuite/testsuite.log
 
 DISTCLEANFILES+= cyassl-config
 DISTCLEANFILES+= wolfssl-config
@@ -164,12 +164,12 @@ maintainer-clean-local:
 	-rm config.log
 	-rm config.status
 	-rm config.in
-	-rm m4/libtool.m4
-	-rm m4/ltoptions.m4
-	-rm m4/ltsugar.m4
-	-rm m4/ltversion.m4
-	-rm m4/lt~obsolete.m4
-	-rm support/wolfssl.pc
+	-rm tools/m4/libtool.m4
+	-rm tools/m4/ltoptions.m4
+	-rm tools/m4/ltsugar.m4
+	-rm tools/m4/ltversion.m4
+	-rm tools/m4/lt~obsolete.m4
+	-rm others/support/wolfssl.pc
 	find . -type f -name '*~' -exec rm -f '{}' \;
 	-rm -f @PACKAGE@-*.tar.gz
 	-rm -f @PACKAGE@-*.rpm
