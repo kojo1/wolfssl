@@ -1,4 +1,4 @@
-add_library(wolfcrypt SHARED
+set(SOURCE_WOLFCRYPT_SRC 
 aes.c
 arc4.c
 asm.c
@@ -66,3 +66,6 @@ wolfcrypt_last.c
 wolfevent.c
 wolfmath.c
 )
+
+#link_directories(${TESTWOLFCRYPT} ${WOLFSSL_ROOT}/wolfcrypt/src)
+add_library(${LIBWOLFCRYPT}  SHARED ${SOURCE_WOLFCRYPT_SRC})

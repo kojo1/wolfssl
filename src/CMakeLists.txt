@@ -1,4 +1,4 @@
-add_library(wolfssl SHARED
+set(SOURCE_SRC
 crl.c
 internal.c
 keys.c
@@ -9,3 +9,5 @@ tls.c
 tls13.c
 wolfio.c
 )
+#link_directories(${TESTWOLFCRYPT} ${WOLFSSL_ROOT}/src)
+add_library(${LIBWOLFSSL}  SHARED ${SOURCE_SRC})
