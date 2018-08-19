@@ -31,7 +31,7 @@ func_args args = { 0 } ;
 
 extern int wolfcrypt_test(void *args) ;
 
-main(void) {
+int main(void) {
     wolfcrypt_test(&args) ;
     return 0;
 }
