@@ -59,7 +59,12 @@
 //         <7=>Micrium <8=>EBSnet<9=>MQX 
 //         <10=>T-RTOS <11=>uITRON4<12=>uTKERNEL2 
 //         <13=>Frosted <14=>CMSIS RTOS<15=>Others
+#ifdef WOLFSSL_NO_PACK
+#define MDK_CONF_THREAD 0
+#else
 #define MDK_CONF_THREAD 14
+#endif
+
 #if MDK_CONF_THREAD== 0
 #define SINGLE_THREADED
 #elif MDK_CONF_THREAD == 1
@@ -96,7 +101,11 @@
 
 
 //      <e>File System
+#ifdef WOLFSSL_NO_PACK
+#define MDK_CONF_FILESYSTEM 0
+#else
 #define MDK_CONF_FILESYSTEM 1
+#endif
 #if MDK_CONF_FILESYSTEM == 0
 #define NO_FILESYSTEM
 #else
@@ -106,7 +115,12 @@
 //  </e>
 
 //   <o> Network<0=>None <1=>RLnet <2=>User I/O
+#ifdef WOLFSSL_NO_PACK
+#define MDK_CONF_NETWORK 2
+#else
 #define MDK_CONF_NETWORK 1
+#endif
+
 #if   MDK_CONF_NETWORK == 0
 #elif MDK_CONF_NETWORK == 1
 #define WOLFSSL_KEIL_TCP_NET
@@ -375,7 +389,8 @@
 
 //  <h>Hardware Crypt (See document for usage)
 //      <e>Hardware RNG
-#define MDK_CONF_STM32F2_RNG 1
+
+#define MDK_CONF_STM32F2_RNG 0
 #if MDK_CONF_STM32F2_RNG == 1
 #define WOLFSSL_STM32_CUBEMX
 #define STM32_RNG
@@ -393,7 +408,7 @@
 #endif
 //  </e>
 //      <e>Hardware Crypt
-#define MDK_CONF_STM32F2_CRYPTO 1
+#define MDK_CONF_STM32F2_CRYPTO 0
 #if MDK_CONF_STM32F2_CRYPTO == 1
 #define WOLFSSL_STM32_CUBEMX
 #define STM32_CRYPTO
@@ -411,7 +426,7 @@
 #endif
 //  </e>
 //      <e>Hardware Hash
-#define MDK_CONF_STM32F2_HASH 1
+#define MDK_CONF_STM32F2_HASH 0
 #if MDK_CONF_STM32F2_HASH == 1
 #define WOLFSSL_STM32_CUBEMX
 #define STM32_HASH
