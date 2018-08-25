@@ -1,0 +1,15 @@
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(CPU_FLAGS "--cpu Cortex-M7")
+set(EWARM_ROOT_DIR "C:/Keil_v5/ARM/ARMCC")
+set(CMAKE_C_COMPILER   "${EWARM_ROOT_DIR}/bin/armcc.exe")
+set(CMAKE_CXX_COMPILER "${EWARM_ROOT_DIR}/bin/armcc.exe")
+set(CMAKE_ASM_COMPILER "${EWARM_ROOT_DIR}/bin/armasm.exe")
+
+set(CMAKE_C_COMPILER_FLAGS   "${CPU_FLAGS} -c -D__RTX  --apcs=interwork")
+set(CMAKE_BUILD_FLAGS        "${CPU_FLAGS} -c -D__RTX  --apcs=interwork")
+set(CMAKE_CXX_COMPILER_FLAGS "${CPU_FLAGS} --c++ -D__RTX  --apcs=interwork")
+
+#set(LINKER_SCRIPT ${EWARM_ROOT_DIR}/config/linker/ST/stm32f745xG.icf)
+#set(CMAKE_C_LINK_FLAGS "${CPU_FLAGS}")
+#set(CMAKE_CXX_LINK_FLAGS "${CPU_FLAGS}")
