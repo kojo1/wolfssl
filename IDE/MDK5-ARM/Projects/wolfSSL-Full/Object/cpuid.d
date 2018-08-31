@@ -1,0 +1,17 @@
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfcrypt\src\cpuid.c
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/settings.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/visibility.h
+.\object\cpuid.o: .\RTE\wolfSSL\user_settings.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/cpuid.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/types.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/wc_port.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\RTOS\RTX\INC\cmsis_os.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/memory.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\object\cpuid.o: C:\Keil_v5\ARM\PACK\wolfSSL\wolfSSL\3.14.0\wolfssl\wolfssl/wolfcrypt/types.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\object\cpuid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h

@@ -1,6 +1,6 @@
 /* main.c
  *
- * Copyright (C) 2006-2017 wolfSSL Inc.
+ * Copyright (C) 2006-2018 wolfSSL Inc.
  *
  * This file is part of wolfSSL.
  *
@@ -79,7 +79,7 @@ typedef struct func_args {
 extern void shell_main(func_args * args) ;
 
 /*-----------------------------------------------------------------------------
- *       mian entry
+ *       main entry
  *----------------------------------------------------------------------------*/
 int myoptind = 0;
 char* myoptarg = NULL;
