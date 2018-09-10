@@ -577,8 +577,8 @@ static void command_invoke(void const *args)
 
     if(iteration > 1)
     for_iteration = 1 ;
-    //osDelay(20000) ;
-    #if 0 // def HAVE_KEIL_RTX
+
+    #if 0
         wc_UnLockMutex((wolfSSL_Mutex *)&command_mutex) ;
         #ifdef WOLFSSL_CMSIS_RTOS
             osThreadTerminate(osThreadGetId()) ;
@@ -627,7 +627,6 @@ void shell_main(void *arg) {
     int i ;
     func_args args ;
     int bf_flg ;
-    osThreadId 	 cmd ;
     i = BackGround ;
         /* Dummy for avoiding warning: BackGround is defined but not used. */
 
@@ -649,7 +648,7 @@ void shell_main(void *arg) {
                                  command_stack, COMMAND_STACK_SIZE, &args) ;
                         os_tsk_pass ();
                     #else
-                        #if 0 // defined(WOLFSSL_CMSIS_RTOS)
+                        #if 0
                              wc_UnLockMutex((wolfSSL_Mutex *)&command_mutex) ;
                              cmd = osThreadCreate (osThread (command_invoke) , &args);
                              if(cmd == NULL) {
