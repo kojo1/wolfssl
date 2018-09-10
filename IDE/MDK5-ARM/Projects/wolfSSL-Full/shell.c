@@ -42,15 +42,13 @@
         #endif
 #endif
 
-#ifdef WOLFSSL_KEIL_TCP_NET
-#include "wolfssl/test.h"
-#else
+
 typedef struct func_args {
     int    argc;
     char** argv;
     int    return_code;
 } func_args;
-#endif
+
 
 #if defined(WOLFSSL_CMSIS_RTOS)
 #define HAVE_KEIL_RTX
@@ -403,9 +401,9 @@ static int getline(char * line, int sz, func_args *args, int*bf_flg)
 /************* Embedded Shell Commands **********************************/
 #define IP_SIZE 16
 
-#ifdef WOLFSSL_KEIL_TCP_NET
-static void ipaddr_comm(void *args)
+void ipaddr_comm(void *args)
 {
+	#if 0
     if(((func_args *)args)->argc == 1) {
             printf("IP addr: %s, port %d\n", wolfSSLIP, wolfSSLPort) ;
     } else {
@@ -421,9 +419,8 @@ static void ipaddr_comm(void *args)
 /*          yasslPort = atoi(((func_args *)args)->argv[2]) ; */
         } else printf("Invalid argument\n") ;
     }
-}
-
 #endif
+}
 
 
 
@@ -494,7 +491,7 @@ static void dbg_comm(void *args)
         printf("Turning OFF Debug message\n") ;
         wolfSSL_Debugging_OFF() ;
     } else {
-        wolfasslDebug = 1 ;
+        wolfsslDebug = 1 ;
         printf("Turning ON Debug message\n") ;
         wolfSSL_Debugging_ON() ;
     }
@@ -580,8 +577,8 @@ static void command_invoke(void const *args)
 
     if(iteration > 1)
     for_iteration = 1 ;
-    osDelay(20000) ;
-    #ifdef HAVE_KEIL_RTX
+    //osDelay(20000) ;
+    #if 0 // def HAVE_KEIL_RTX
         wc_UnLockMutex((wolfSSL_Mutex *)&command_mutex) ;
         #ifdef WOLFSSL_CMSIS_RTOS
             osThreadTerminate(osThreadGetId()) ;
@@ -652,7 +649,7 @@ void shell_main(void *arg) {
                                  command_stack, COMMAND_STACK_SIZE, &args) ;
                         os_tsk_pass ();
                     #else
-                        #if defined(WOLFSSL_CMSIS_RTOS)
+                        #if 0 // defined(WOLFSSL_CMSIS_RTOS)
                              wc_UnLockMutex((wolfSSL_Mutex *)&command_mutex) ;
                              cmd = osThreadCreate (osThread (command_invoke) , &args);
                              if(cmd == NULL) {

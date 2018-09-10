@@ -41,7 +41,7 @@
 
 //  <h>Common options
 //        <o> MPU<0=>Undefined<1=>STM32F2xx<2=>STM32F4xx<3=>STM32F7xx
-#define MDK_CONF_MPU 1
+#define MDK_CONF_MPU 3
 #if     MDK_CONF_MPU == 0
 
 #elif   MDK_CONF_MPU == 1
@@ -119,7 +119,7 @@
 //  <h>Debug options
 
 //              <e>Debug Message
-#define MDK_CONF_DebugMessage 0
+#define MDK_CONF_DebugMessage 1
 #if MDK_CONF_DebugMessage == 1
 #define DEBUG_WOLFSSL
 #endif
@@ -152,13 +152,13 @@
 //  <h>Hash/Crypt Algrithm
 
 //      <e>MD2
-#define MDK_CONF_MD2 1
+#define MDK_CONF_MD2 0
 #if MDK_CONF_MD2 == 1
 #define WOLFSSL_MD2
 #endif
 //  </e>
 //      <e>MD4
-#define MDK_CONF_MD4 1
+#define MDK_CONF_MD4 0
 #if MDK_CONF_MD4 == 0
 #define NO_MD4
 #endif
@@ -194,7 +194,7 @@
 #endif
 //  </e>
 //      <e>Hash DRBG
-#define MDK_CONF_HASHDRBG 0
+#define MDK_CONF_HASHDRBG 1
 #if MDK_CONF_HASHDRBG == 1
 #define HAVE_HASHDRBG
 #endif
@@ -231,14 +231,14 @@
 #endif
 //  </e>
 //      <e>AES GCM
-#define MDK_CONF_AESGCM 0
+#define MDK_CONF_AESGCM 1
 #if MDK_CONF_AESGCM == 1
 #define HAVE_AESGCM
 #endif
 //  </e>
 
 //      <e>RC4
-#define MDK_CONF_RC4 1
+#define MDK_CONF_RC4 0
 #if MDK_CONF_RC4 == 0
 #define NO_RC4
 #endif
@@ -281,7 +281,7 @@
 //  </e>
 
 //      <e>AES
-#define MDK_CONF_AES 0
+#define MDK_CONF_AES 1
 #if MDK_CONF_AES == 0
 #define NO_AES
 #endif
