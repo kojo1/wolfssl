@@ -5712,7 +5712,8 @@ int ProcessFile(WOLFSSL_CTX* ctx, const char* fname, int format, int type,
 
     file = XFOPEN(fname, "rb");
     if (file == XBADFILE) return WOLFSSL_BAD_FILE;
-    XFSEEK(file, 0, XSEEK_END);
+    if (XFSEEK(file, 0, XSEEK_END) != 0)
+        return WOLFSSL_BAD_FILE;
     sz = XFTELL(file);
     XREWIND(file);
 
@@ -5889,7 +5890,9 @@ int wolfSSL_CertManagerVerify(WOLFSSL_CERT_MANAGER* cm, const char* fname,
     WOLFSSL_ENTER("wolfSSL_CertManagerVerify");
 
     if (file == XBADFILE) return WOLFSSL_BAD_FILE;
-    XFSEEK(file, 0, XSEEK_END);
+    if(XFSEEK(file, 0, XSEEK_END) != 0)
+        return WOLFSSL_BAD_FILE;
+
     sz = XFTELL(file);
     XREWIND(file);
 
@@ -6343,7 +6346,8 @@ static int wolfSSL_SetTmpDH_file_wrapper(WOLFSSL_CTX* ctx, WOLFSSL* ssl,
 
     file = XFOPEN(fname, "rb");
     if (file == XBADFILE) return WOLFSSL_BAD_FILE;
-    XFSEEK(file, 0, XSEEK_END);
+    if(XFSEEK(file, 0, XSEEK_END) != 0)
+        return WOLFSSL_BAD_FILE;
     sz = XFTELL(file);
     XREWIND(file);
 
@@ -8382,7 +8386,8 @@ int CM_RestoreCertCache(WOLFSSL_CERT_MANAGER* cm, const char* fname)
        return WOLFSSL_BAD_FILE;
     }
 
-    XFSEEK(file, 0, XSEEK_END);
+    if(XFSEEK(file, 0, XSEEK_END) != 0)
+        return WOLFSSL_BAD_FILE;
     memSz = (int)XFTELL(file);
     XREWIND(file);
 
@@ -15199,7 +15204,8 @@ WOLFSSL_X509* wolfSSL_X509_d2i_fp(WOLFSSL_X509** x509, XFILE file)
         byte* fileBuffer = NULL;
         long sz = 0;
 
-        XFSEEK(file, 0, XSEEK_END);
+        if(XFSEEK(file, 0, XSEEK_END) != 0)
+            return NULL;
         sz = XFTELL(file);
         XREWIND(file);
 
@@ -15250,7 +15256,10 @@ WOLFSSL_X509* wolfSSL_X509_load_certificate_file(const char* fname, int format)
     if (file == XBADFILE)
         return NULL;
 
-    XFSEEK(file, 0, XSEEK_END);
+    if(XFSEEK(file, 0, XSEEK_END) != 0){
+        XFCLOSE(file);
+        return NULL;
+    }
     sz = XFTELL(file);
     XREWIND(file);
 
@@ -17568,7 +17577,8 @@ int wolfSSL_X509_LOOKUP_load_file(WOLFSSL_X509_LOOKUP* lookup,
     if (fp == XBADFILE)
         return BAD_FUNC_ARG;
 
-    XFSEEK(fp, 0, XSEEK_END);
+     if(XFSEEK(fp, 0, XSEEK_END) != 0)
+        return WOLFSSL_BAD_FILE;
     sz = XFTELL(fp);
     XREWIND(fp);
 
@@ -18535,7 +18545,8 @@ static void *wolfSSL_d2i_X509_fp_ex(XFILE file, void **x509, int type)
     {
         long sz = 0;
 
-        XFSEEK(file, 0, XSEEK_END);
+        if(XFSEEK(file, 0, XSEEK_END) != 0)
+            return NULL;
         sz = XFTELL(file);
         XREWIND(file);
 
@@ -21627,7 +21638,8 @@ int wolfSSL_cmp_peer_cert_to_file(WOLFSSL* ssl, const char *fname)
         if (file == XBADFILE)
             return WOLFSSL_BAD_FILE;
 
-        XFSEEK(file, 0, XSEEK_END);
+        if(XFSEEK(file, 0, XSEEK_END) != 0)
+            return WOLFSSL_BAD_FILE;
         sz = XFTELL(file);
         XREWIND(file);
 
@@ -31780,7 +31792,7 @@ WOLFSSL_RSA* wolfSSL_d2i_RSAPrivateKey_bio(WOLFSSL_BIO *bio, WOLFSSL_RSA **out)
             extraBioMem = (unsigned char *)XMALLOC(extraBioMemSz, NULL,
                                                        DYNAMIC_TYPE_TMP_BUFFER);
             if (extraBioMem == NULL) {
-                WOLFSSL_MSG("Malloc failure");;
+                WOLFSSL_MSG("Malloc failure");
                 XFREE((unsigned char*)extraBioMem, bio->heap,
                                                        DYNAMIC_TYPE_TMP_BUFFER);
                 XFREE((unsigned char*)bioMem, bio->heap,
