@@ -39,7 +39,7 @@
     #endif /* HAVE_ECC */
 #endif /*HAVE_PK_CALLBACKS */
 
-#ifdef USE_WINDOWS_API
+#if !defined(WOLFSSL_USER_IO) && defined(USE_WINDOWS_API)
     #include <winsock2.h>
     #include <process.h>
     #ifdef TEST_IPV6            /* don't require newer SDK for IPV4 */
@@ -92,7 +92,9 @@
     #include <sys/time.h>
     #include <netdb.h>
     #include <pthread.h>
-    #define SOCKET_T int
+    #define SOCKET_T
+#elif defined(WOLFSSL_USER_IO)
+    /* Nothing to include here */
 #else
     #include <string.h>
     #include <sys/types.h>
@@ -171,9 +173,12 @@
 
 /* HPUX doesn't use socklent_t for third parameter to accept, unless
    _XOPEN_SOURCE_EXTENDED is defined */
+
 #if !defined(__hpux__) && !defined(WOLFSSL_MDK_ARM) && !defined(WOLFSSL_IAR_ARM)\
- && !defined(WOLFSSL_ROWLEY_ARM)  && !defined(WOLFSSL_KEIL_TCP_NET)
-    typedef socklen_t* ACCEPT_THIRD_T;
+ && !defined(WOLFSSL_ROWLEY_ARM) && !defined(WOLFSSL_KEIL_TCP_NET)\
+ && !defined(WOLFSSL_USER_IO)
+
+        typedef socklen_t *ACCEPT_THIRD_T;
 #else
     #if defined _XOPEN_SOURCE_EXTENDED
         typedef socklen_t* ACCEPT_THIRD_T;
@@ -255,7 +260,9 @@
 #endif
 
 /* all certs relative to wolfSSL home directory now */
-#if defined(WOLFSSL_NO_CURRDIR) || defined(WOLFSSL_MDK_SHELL)
+#if defined(WOLFSSL_USER_KEYFILES)
+    /* To be defined in user header file */
+#elif defined(WOLFSSL_NO_CURRDIR) || defined(WOLFSSL_MDK_SHELL)
 #define caCertFile     "certs/ca-cert.pem"
 #define eccCertFile    "certs/server-ecc.pem"
 #define eccKeyFile     "certs/ecc-key.pem"
@@ -669,7 +676,7 @@ static WC_INLINE void showPeer(WOLFSSL* ssl)
   (void)ssl;
 }
 
-
+#ifndef WOLFSSL_USER_IO
 static WC_INLINE void build_addr(SOCKADDR_IN_T* addr, const char* peer,
                               word16 port, int udp, int sctp)
 {
@@ -1105,7 +1112,7 @@ static WC_INLINE void tcp_set_nonblocking(SOCKET_T* sockfd)
             err_sys("fcntl set failed");
     #endif
 }
-
+#endif /* WOLFSSL_USER_IO */
 
 #ifndef NO_PSK
 

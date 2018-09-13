@@ -318,6 +318,8 @@ WOLFSSL_API  int wolfIO_Recv(SOCKET_T sd, char *buf, int sz, int rdFlags);
         #define CloseSocket(s) closesocket(s)
     #endif
     #define StartTCP()
+#elif defined(WOLFSSL_USER_IO)
+    /* To be defined in the user header */
 #else
     #ifndef CloseSocket
         #define CloseSocket(s) close(s)

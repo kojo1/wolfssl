@@ -37,7 +37,7 @@
 
 typedef struct WOLFSSL_OCSP WOLFSSL_OCSP;
 
-#if defined(OPENSSL_ALL) || defined(WOLFSSL_NGINX) || defined(WOLFSSL_HAPROXY)
+#if defined(OPENSSL_ALL) || defined(OPENSSL_EXTRA) || defined(WOLFSSL_NGINX) || defined(WOLFSSL_HAPROXY)
 typedef struct OcspResponse WOLFSSL_OCSP_BASICRESP;
 
 typedef struct OcspRequest WOLFSSL_OCSP_CERTID;

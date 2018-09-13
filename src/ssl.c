@@ -30473,7 +30473,6 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
     int wolfSSL_OBJ_obj2nid(const WOLFSSL_ASN1_OBJECT *o) {
         word32 oid = 0;
         word32 idx = 0;
-        int id;
 
         WOLFSSL_ENTER("wolfSSL_OBJ_obj2nid");
 
@@ -30482,7 +30481,7 @@ void* wolfSSL_GetDhAgreeCtx(WOLFSSL* ssl)
         }
         if (o->nid > 0)
             return o->nid;
-        if ((id = GetObjectId(o->obj, &idx, &oid, o->grp, o->objSz)) < 0) {
+        if ((GetObjectId(o->obj, &idx, &oid, o->grp, o->objSz)) < 0) {
             WOLFSSL_MSG("Issue getting OID of object");
             return -1;
         }
