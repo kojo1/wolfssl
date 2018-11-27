@@ -1,6 +1,7 @@
 wolfSSL example: TLS Client
 
 Use Configuration Wizard tab
+Activate SDMCC1 and ETH on Device/RTE_Device.h
 main.c for remote IP address, port or TLS version
 user_settings.h for wolfCrypt or wolfSSL options
 

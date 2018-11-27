@@ -65,7 +65,7 @@
 //   <h>RTC: for validate certificate date
 //    <o>Year <1970-2099>
 #define RTC_YEAR 2018
-//    <o>Month <1=>Jan<2=>Feb<3=>Mar<4=>Apr<5=>May<6=>Jun<7=>Jul<8=>Aut<9=>Sep<10=>Oct<11=>Nov<12=>Dec
+//    <o>Month <1=>Jan<2=>Feb<3=>Mar<4=>Apr<5=>May<6=>Jun<7=>Jul<8=>Aug<9=>Sep<10=>Oct<11=>Nov<12=>Dec
 #define RTC_MONTH 1
 //    <o>Day <1-31>
 #define RTC_DAY 1
