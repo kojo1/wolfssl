@@ -525,7 +525,7 @@ static const char* client_showpeer_msg[][8] = {
         "peer's cert info:",
         NULL
     },
-#ifndef NO_MULTIBYTE
+#ifndef NO_MULTIBYTE_PRINT
     /* Japanese */
     {
         "SSL バージョンは",
@@ -550,7 +550,7 @@ static const char* client_showx509_msg[][5] = {
         "serial number",
         NULL
     },
-#ifndef NO_MULTIBYTE
+#ifndef NO_MULTIBYTE_PRINT
     /* Japanese */
     {
         "発行者",
