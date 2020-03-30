@@ -5218,9 +5218,42 @@ static const byte R[256][2] = {
     {0xbb, 0xf0}, {0xba, 0x32}, {0xb8, 0x74}, {0xb9, 0xb6},
     {0xbc, 0xf8}, {0xbd, 0x3a}, {0xbf, 0x7c}, {0xbe, 0xbe} };
 
+#ifdef WORD64_AVAILABLE
+    #define GMULT_BODY(i)\
+    {\
+        word64 temp1, temp2;\
+        temp1 = *(word64*)Z     ^ *(word64 *)m[x[i]];\
+        temp2 = *(word64*)(Z+8) ^ *(word64 *)(m[x[i]]+8);\
+        *(word64 *)(Z+9) = temp2;\
+        *(word64 *)(Z+1) = temp1;\
+        Z[0] = R[Z[16]][0];\
+        Z[1] ^= R[Z[16]][1];\
+    }
+#else
+    #define GMULT_BODY(i)\
+        a = Z[15]^m[x[i]][15];\
+        Z[15] = Z[14]^m[x[i]][14];\
+        Z[14] = Z[13]^m[x[i]][13];\
+        Z[13] = Z[12]^m[x[i]][12];\
+        Z[12] = Z[11]^m[x[i]][11];\
+        Z[11] = Z[10]^m[x[i]][10];\
+        Z[10] = Z[9]^m[x[i]][9];\
+        Z[9] = Z[8]^m[x[i]][8];\
+        Z[8] = Z[7]^m[x[i]][7];\
+        Z[7] = Z[6]^m[x[i]][6];\
+        Z[6] = Z[5]^m[x[i]][5];\
+        Z[5] = Z[4]^m[x[i]][4];\
+        Z[4] = Z[3]^m[x[i]][3];\
+        Z[3] = Z[2]^m[x[i]][2];\
+        Z[2] = Z[1]^m[x[i]][1];\
+        Z[1] = Z[0]^m[x[i]][0];\
+        Z[0] = R[a][0];\
+        Z[1] ^= R[a][1];
+#endif
 
 static void GMULT(byte *x, byte m[256][AES_BLOCK_SIZE])
 {
+    #ifndef WOLFSSL_EXPAND_GMULT
     int i, j;
     byte Z[AES_BLOCK_SIZE];
     byte a;
@@ -5234,10 +5267,19 @@ static void GMULT(byte *x, byte m[256][AES_BLOCK_SIZE])
         for (j = 15; j > 0; j--) {
             Z[j] = Z[j-1];
         }
-
         Z[0] = R[a][0];
         Z[1] ^= R[a][1];
     }
+    #else
+        byte Z[AES_BLOCK_SIZE+1];
+        XMEMSET(Z, 0, sizeof(Z));
+        
+        GMULT_BODY(15); GMULT_BODY(14); GMULT_BODY(13); GMULT_BODY(12);
+        GMULT_BODY(11); GMULT_BODY(10); GMULT_BODY(9); GMULT_BODY(8);
+        GMULT_BODY(7); GMULT_BODY(6); GMULT_BODY(5); GMULT_BODY(4);
+        GMULT_BODY(3); GMULT_BODY(2); GMULT_BODY(1);
+    #endif
+    
     xorbuf(Z, m[x[0]], AES_BLOCK_SIZE);
 
     XMEMCPY(x, Z, AES_BLOCK_SIZE);
