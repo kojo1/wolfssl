@@ -15365,7 +15365,7 @@ int ProcessReply(WOLFSSL* ssl)
        #if defined(HAVE_ENCRYPT_THEN_MAC) && !defined(WOLFSSL_AEAD_ONLY)
             if (IsEncryptionOn(ssl, 0) && ssl->options.startedETMRead) {
                 if ((ssl->buffers.inputBuffer.length -
-                        ssl->keys.padSz -
+                         (IsEncryptionOn(ssl, 0) ? ssl->keys.padSz : 0)  -
                         MacSize(ssl) -
                         ssl->buffers.inputBuffer.idx > MAX_PLAINTEXT_SZ)
 #ifdef WOLFSSL_ASYNC_CRYPT
