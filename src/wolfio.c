@@ -758,6 +758,10 @@ int wolfIO_TcpConnect(SOCKET_T* sockfd, const char* ip, word16 port, int to_sec)
     SOCKADDR_IN *sin;
 #endif
 
+    if (sockfd == NULL || ip == NULL) {
+        return -1;
+    }
+
     XMEMSET(&addr, 0, sizeof(addr));
 
 #ifdef WOLFIO_DEBUG
@@ -801,16 +805,14 @@ int wolfIO_TcpConnect(SOCKET_T* sockfd, const char* ip, word16 port, int to_sec)
     *sockfd = (SOCKET_T)socket(addr.ss_family, SOCK_STREAM, 0);
 
 #ifdef USE_WINDOWS_API
-    if (*sockfd == INVALID_SOCKET) {
+    if (*sockfd == SOCKET_INVALID)
+#else
+    if (*sockfd <= SOCKET_INVALID)
+#endif
+    {
         WOLFSSL_MSG("bad socket fd, out of fds?");
         return -1;
     }
-#else
-     if (*sockfd < 0) {
-         WOLFSSL_MSG("bad socket fd, out of fds?");
-         return -1;
-     }
-#endif
 
 #ifdef HAVE_IO_TIMEOUT
     /* if timeout value provided then set socket non-blocking */
@@ -835,6 +837,8 @@ int wolfIO_TcpConnect(SOCKET_T* sockfd, const char* ip, word16 port, int to_sec)
 #endif
     if (ret != 0) {
         WOLFSSL_MSG("Responder tcp connect failed");
+        CloseSocket(*sockfd);
+        *sockfd = SOCKET_INVALID;
         return -1;
     }
     return ret;
@@ -1283,7 +1287,7 @@ int wolfIO_HttpProcessResponseOcsp(int sfd, byte** respBuf,
 int EmbedOcspLookup(void* ctx, const char* url, int urlSz,
                         byte* ocspReqBuf, int ocspReqSz, byte** ocspRespBuf)
 {
-    SOCKET_T sfd = 0;
+    SOCKET_T sfd = SOCKET_INVALID;
     word16   port;
     int      ret = -1;
 #ifdef WOLFSSL_SMALL_STACK
@@ -1329,7 +1333,7 @@ int EmbedOcspLookup(void* ctx, const char* url, int urlSz,
                                                             httpBuf, httpBufSz);
 
             ret = wolfIO_TcpConnect(&sfd, domainName, port, io_timeout_sec);
-            if ((ret != 0) || ((int)sfd < 0)) {
+            if (ret != 0) {
                 WOLFSSL_MSG("OCSP Responder connection failed");
             }
             else if (wolfIO_Send(sfd, (char*)httpBuf, httpBufSz, 0) !=
@@ -1345,7 +1349,8 @@ int EmbedOcspLookup(void* ctx, const char* url, int urlSz,
                                                  HTTP_SCRATCH_BUFFER_SIZE, ctx);
             }
 
-            CloseSocket(sfd);
+         if (sfd != SOCKET_INVALID)
+                CloseSocket(sfd);
             XFREE(httpBuf, ctx, DYNAMIC_TYPE_OCSP);
         }
     }
@@ -1403,7 +1408,7 @@ int wolfIO_HttpProcessResponseCrl(WOLFSSL_CRL* crl, int sfd, byte* httpBuf,
 
 int EmbedCrlLookup(WOLFSSL_CRL* crl, const char* url, int urlSz)
 {
-    SOCKET_T sfd = 0;
+ SOCKET_T sfd = SOCKET_INVALID;
     word16   port;
     int      ret = -1;
 #ifdef WOLFSSL_SMALL_STACK
@@ -1435,7 +1440,7 @@ int EmbedCrlLookup(WOLFSSL_CRL* crl, const char* url, int urlSz)
                 httpBuf, httpBufSz);
 
             ret = wolfIO_TcpConnect(&sfd, domainName, port, io_timeout_sec);
-            if ((ret != 0) || (sfd < 0)) {
+         if (ret != 0) {
                 WOLFSSL_MSG("CRL connection failed");
             }
             else if (wolfIO_Send(sfd, (char*)httpBuf, httpBufSz, 0)
@@ -1447,7 +1452,8 @@ int EmbedCrlLookup(WOLFSSL_CRL* crl, const char* url, int urlSz)
                                                       HTTP_SCRATCH_BUFFER_SIZE);
             }
 
-            CloseSocket(sfd);
+         if (sfd != SOCKET_INVALID)
+                CloseSocket(sfd);
             XFREE(httpBuf, crl->heap, DYNAMIC_TYPE_CRL);
         }
     }

@@ -100,6 +100,10 @@
     #endif
 #endif
 
+#if defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)
+    #include <wolfssl/openssl/objects.h>
+#endif
+
 #ifdef __cplusplus
     extern "C" {
 #endif
@@ -2955,6 +2959,14 @@ WOLFSSL_API int wolfSSL_set_alpn_protos(WOLFSSL* ssl,
 WOLFSSL_API void *wolfSSL_OPENSSL_memdup(const void *data,
     size_t siz, const char* file, int line);
 WOLFSSL_API void wolfSSL_ERR_load_BIO_strings(void);
+#endif
+
+#ifndef WOLFCRYPT_ONLY
+#define PEMerr(func, reason)            wolfSSL_ERR_put_error(ERR_LIB_PEM, \
+                                        (func), (reason), __FILE__, __LINE__)
+#else
+#define PEMerr(func, reason)            WOLFSSL_ERROR_LINE((reason), \
+                                        NULL, __LINE__, __FILE__, NULL)
 #endif
 
 #if defined(OPENSSL_ALL) \

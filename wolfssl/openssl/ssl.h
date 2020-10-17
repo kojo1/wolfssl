@@ -875,13 +875,22 @@ typedef STACK_OF(WOLFSSL_ASN1_OBJECT) GENERAL_NAMES;
 #define SSL_CTX_set_msg_callback_arg    wolfSSL_CTX_set_msg_callback_arg
 #define SSL_set_msg_callback_arg        wolfSSL_set_msg_callback_arg
 
+/* Avoid wolfSSL error code range */
+#define PEM_R_NO_START_LINE             (-MIN_CODE_E + 1)
+#define PEM_R_PROBLEMS_GETTING_PASSWORD (-MIN_CODE_E + 2)
+#define PEM_R_BAD_PASSWORD_READ         (-MIN_CODE_E + 3)
+#define PEM_R_BAD_DECRYPT               (-MIN_CODE_E + 4)
+
+#define EVP_R_BAD_DECRYPT               (-MIN_CODE_E + 100 + 1)
+#define EVP_R_BN_DECODE_ERROR           (-MIN_CODE_E + 100 + 2)
+#define EVP_R_DECODE_ERROR              (-MIN_CODE_E + 100 + 3)
+#define EVP_R_PRIVATE_KEY_DECODE_ERROR  (-MIN_CODE_E + 100 + 4)
 
 /* Nginx uses this to determine if reached end of certs in file.
  * PEM_read_bio_X509 is called and the return error is lost.
  * The error that needs to be detected is: SSL_NO_PEM_HEADER.
  */
 #define ERR_GET_LIB(l)  (int)((((unsigned long)l)>>24L)&0xffL)
-#define PEM_R_NO_START_LINE     108
 #define ERR_LIB_PEM             9
 #define ERR_LIB_X509            10
 

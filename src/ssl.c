@@ -29420,21 +29420,29 @@ WOLFSSL_EVP_PKEY* wolfSSL_PEM_read_bio_PrivateKey(WOLFSSL_BIO* bio,
 {
     WOLFSSL_EVP_PKEY* pkey = NULL;
     DerBuffer*        der = NULL;
-    int               eccFlag = 0;
+    int               keyFormat = 0;
+    int               type = -1;
 
     WOLFSSL_ENTER("wolfSSL_PEM_read_bio_PrivateKey");
 
     if (bio == NULL)
         return pkey;
 
-    if (pem_read_bio_key(bio, cb, pass, PRIVATEKEY_TYPE, &eccFlag, &der) >= 0) {
-        int type;
+    if (pem_read_bio_key(bio, cb, pass, PRIVATEKEY_TYPE, &keyFormat, &der) >= 0) {
         const unsigned char* ptr = der->buffer;
 
-        if (eccFlag)
-            type = EVP_PKEY_EC;
-        else
+        if (keyFormat) {
+            /* keyFormat is Key_Sum enum */
+            if (keyFormat == RSAk)
+                type = EVP_PKEY_RSA;
+            else if (keyFormat == ECDSAk)
+                type =  EVP_PKEY_EC;
+            else if (keyFormat == DSAk)
+                type = EVP_PKEY_DSA;
+        } else {
+            /* Default to RSA if format is not set */
             type = EVP_PKEY_RSA;
+        }
 
         /* handle case where reuse is attempted */
         if (key != NULL && *key != NULL)
