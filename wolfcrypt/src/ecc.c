@@ -2478,17 +2478,18 @@ int wc_ecc_mulmod_ex(mp_int* k, ecc_point *G, ecc_point *R,
    #define WINSIZE  4
    #define M_POINTS 8
    int           first = 1, bitbuf = 0, bitcpy = 0, j;
-#else
+#elif defined(WC_NO_CACHE_RESISTANT)
    #define M_POINTS 4
+#else
+   #define M_POINTS 5
 #endif
-
    ecc_point     *tG, *M[M_POINTS];
    int           i, err;
-#ifdef WOLFSSL_SMALL_STACK
-   mp_int*       mu = NULL;
 #ifdef WOLFSSL_SMALL_STACK_CACHE
    ecc_key       key;
 #endif
+#ifdef WOLFSSL_SMALL_STACK
+   mp_int*       mu = NULL;
 #else
    mp_int        mu[1];
 #endif
@@ -2766,7 +2767,15 @@ int wc_ecc_mulmod_ex(mp_int* k, ecc_point *G, ecc_point *R,
    /* M[1] == 2G */
    if (err == MP_OKAY)
        err = ecc_projective_dbl_point(tG, M[1], a, modulus, mp);
-
+#ifdef WC_NO_CACHE_RESISTANT
+    if (err == MP_OKAY)
+        err = wc_ecc_copy_point(M[0], M[2]);
+#else
+    if (err == MP_OKAY)
+        err = wc_ecc_copy_point(M[0], M[3]);
+    if (err == MP_OKAY)
+        err = wc_ecc_copy_point(M[1], M[4]);
+#endif
    /* setup sliding window */
    mode   = 0;
    bitcnt = 1;
@@ -2792,103 +2801,85 @@ int wc_ecc_mulmod_ex(mp_int* k, ecc_point *G, ecc_point *R,
            i = (buf >> (DIGIT_BIT - 1)) & 1;
            buf <<= 1;
 
+#ifdef WC_NO_CACHE_RESISTANT
            if (mode == 0) {
-               mode = i;
                /* timing resistant - dummy operations */
                if (err == MP_OKAY)
                    err = ecc_projective_add_point(M[1], M[2], M[2], a, modulus,
                                                   mp);
-#ifdef WC_NO_CACHE_RESISTANT
                if (err == MP_OKAY)
                    err = ecc_projective_dbl_point(M[2], M[3], a, modulus, mp);
+            }
+            else {
+                if (err == MP_OKAY)
+                    err = ecc_projective_add_point(M[0], M[1], M[i^1], a, modulus,
+                                                                            mp);
+                if (err == MP_OKAY)
+                    err = ecc_projective_dbl_point(M[i], M[i], a, modulus, mp);
+            }
 #else
-               /* instead of using M[i] for double, which leaks key bit to cache
-                * monitor, use M[2] as temp, make sure address calc is constant,
-                * keep M[0] and M[1] in cache */
-              if (err == MP_OKAY)
-                  err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->x & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->x & wc_off_on_addr[i])),
-                             M[2]->x);
-              if (err == MP_OKAY)
-                  err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->y & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->y & wc_off_on_addr[i])),
-                             M[2]->y);
-              if (err == MP_OKAY)
-                  err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->z & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->z & wc_off_on_addr[i])),
-                             M[2]->z);
-              if (err == MP_OKAY)
-                  err = ecc_projective_dbl_point(M[2], M[3], a, modulus, mp);
-              /* copy M[2] back to M[i] */
-              if (err == MP_OKAY)
-                  err = mp_copy(M[2]->x,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->x & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->x & wc_off_on_addr[i])) );
-              if (err == MP_OKAY)
-                  err = mp_copy(M[2]->y,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->y & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->y & wc_off_on_addr[i])) );
-              if (err == MP_OKAY)
-                  err = mp_copy(M[2]->z,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->z & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->z & wc_off_on_addr[i])) );
-#endif
-               if (err == MP_OKAY)
-                   continue;
-           }
+           if (err == MP_OKAY)
+               err = ecc_projective_add_point(M[0], M[1], M[2], a, modulus, mp);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->x, i, M[0]->x);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->y, i, M[0]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->z, i, M[0]->z);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->x, i ^ 1, M[1]->x);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->y, i ^ 1, M[1]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->z, i ^ 1, M[1]->z);
 
            if (err == MP_OKAY)
-               err = ecc_projective_add_point(M[0], M[1], M[i^1], a, modulus,
-                                                                       mp);
-#ifdef WC_NO_CACHE_RESISTANT
+               err = mp_cond_copy(M[0]->x, i ^ 1, M[2]->x);
            if (err == MP_OKAY)
-               err = ecc_projective_dbl_point(M[i], M[i], a, modulus, mp);
-#else
-            /* instead of using M[i] for double, which leaks key bit to cache
-             * monitor, use M[2] as temp, make sure address calc is constant,
-             * keep M[0] and M[1] in cache */
+               err = mp_cond_copy(M[0]->y, i ^ 1, M[2]->y);
            if (err == MP_OKAY)
-               err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->x & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->x & wc_off_on_addr[i])),
-                             M[2]->x);
+               err = mp_cond_copy(M[0]->z, i ^ 1, M[2]->z);
            if (err == MP_OKAY)
-               err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->y & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->y & wc_off_on_addr[i])),
-                             M[2]->y);
+               err = mp_cond_copy(M[1]->x, i, M[2]->x);
            if (err == MP_OKAY)
-               err = mp_copy((mp_int*)
-                             ( ((wolfssl_word)M[0]->z & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->z & wc_off_on_addr[i])),
-                             M[2]->z);
+               err = mp_cond_copy(M[1]->y, i, M[2]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[1]->z, i, M[2]->z);
+
            if (err == MP_OKAY)
                err = ecc_projective_dbl_point(M[2], M[2], a, modulus, mp);
-           /* copy M[2] back to M[i] */
            if (err == MP_OKAY)
-               err = mp_copy(M[2]->x,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->x & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->x & wc_off_on_addr[i])) );
+               err = mp_cond_copy(M[2]->x, i ^ 1, M[0]->x);
            if (err == MP_OKAY)
-               err = mp_copy(M[2]->y,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->y & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->y & wc_off_on_addr[i])) );
+               err = mp_cond_copy(M[2]->y, i ^ 1, M[0]->y);
            if (err == MP_OKAY)
-               err = mp_copy(M[2]->z,
-                             (mp_int*)
-                             ( ((wolfssl_word)M[0]->z & wc_off_on_addr[i^1]) +
-                               ((wolfssl_word)M[1]->z & wc_off_on_addr[i])) );
+               err = mp_cond_copy(M[2]->z, i ^ 1, M[0]->z);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->x, i, M[1]->x);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->y, i, M[1]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[2]->z, i, M[1]->z);
+
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[3]->x, (mode ^ 1) & i, M[0]->x);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[3]->y, (mode ^ 1) & i, M[0]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[3]->z, (mode ^ 1) & i, M[0]->z);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[4]->x, (mode ^ 1) & i, M[1]->x);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[4]->y, (mode ^ 1) & i, M[1]->y);
+           if (err == MP_OKAY)
+               err = mp_cond_copy(M[4]->z, (mode ^ 1) & i, M[1]->z);
+#endif /* WC_NO_CACHE_RESISTANT */
+
            if (err != MP_OKAY)
                break;
-#endif /* WC_NO_CACHE_RESISTANT */
+
+           mode |= i;
+
        } /* end for */
    }
 
@@ -2935,7 +2926,17 @@ exit:
 
    (void)a;
 
-   return sp_ecc_mulmod_256(k, G, R, map, heap);
+#ifndef WOLFSSL_SP_NO_256
+    if (mp_count_bits(modulus) == 256) {
+        return sp_ecc_mulmod_256(k, G, R, map, heap);
+    }
+#endif
+#ifdef WOLFSSL_SP_384
+    if (mp_count_bits(modulus) == 384) {
+        return sp_ecc_mulmod_384(k, G, R, map, heap);
+    }
+#endif
+    return ECC_BAD_ARG_E;
 #endif
 }
 

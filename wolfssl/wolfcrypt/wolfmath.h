@@ -19,6 +19,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335, USA
  */
 
+
 #ifndef __WOLFMATH_H__
 #define __WOLFMATH_H__
 
@@ -54,6 +55,7 @@ MP_API int get_digit_count(mp_int* a);
 MP_API mp_digit get_digit(mp_int* a, int n);
 MP_API int get_rand_digit(WC_RNG* rng, mp_digit* d);
 
+WOLFSSL_API int mp_cond_copy(mp_int* a, int copy, mp_int* b);
 WOLFSSL_API int mp_rand(mp_int* a, int digits, WC_RNG* rng);
 
 enum {
