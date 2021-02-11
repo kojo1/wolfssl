@@ -104,7 +104,7 @@ WOLFSSL_CALLBACKS needs LARGE_STATIC_BUFFERS, please add LARGE_STATIC_BUFFERS
         static int DoCertificateVerify(WOLFSSL* ssl, byte*, word32*, word32);
     #endif
     #ifdef WOLFSSL_DTLS
-        static int SendHelloVerifyRequest(WOLFSSL*, const byte*, byte);
+//        static int SendHelloVerifyRequest(WOLFSSL*, const byte*, byte);
     #endif /* WOLFSSL_DTLS */
 #endif
 
@@ -9240,6 +9240,7 @@ static int DoHandShakeMsgType(WOLFSSL* ssl, byte* input, word32* inOutIdx,
             !(IsDtlsNotSctpMode(ssl) && type == client_hello) &&
             ssl->error != WC_PENDING_E) {
         ret = HashInput(ssl, input + *inOutIdx, size);
+//		printf("HashInput %d\n", ret);
         if (ret != 0) return ret;
     }
 
@@ -9464,6 +9465,8 @@ static INLINE int DtlsCheckWindow(WOLFSSL* ssl)
     word32 cur_lo, next_lo, diff;
     int curLT;
 
+    //	printf("curEpoch %d  nextEpoch %d\n", ssl->keys.curEpoch , ssl->keys.nextEpoch);
+	
     if (ssl->keys.curEpoch == ssl->keys.nextEpoch) {
         next_hi = ssl->keys.nextSeq_hi;
         next_lo = ssl->keys.nextSeq_lo;
@@ -9672,6 +9675,7 @@ static int DoDtlsHandShakeMsg(WOLFSSL* ssl, byte* input, word32* inOutIdx,
      * order, if so, process it. (Repeat until list exhausted.) If the
      * head is out of order, return for more processing.
      */
+//    printf("handshake_number %d expected %d\n", ssl->keys.dtls_peer_handshake_number, ssl->keys.dtls_expected_peer_handshake_number);
     if (ssl->keys.dtls_peer_handshake_number >
                                 ssl->keys.dtls_expected_peer_handshake_number) {
         /* Current message is out of order. It will get stored in the list.
@@ -9735,7 +9739,7 @@ static int DoDtlsHandShakeMsg(WOLFSSL* ssl, byte* input, word32* inOutIdx,
         /* This branch is in order next, and a complete message. */
         ret = DoHandShakeMsgType(ssl, input, inOutIdx, type, size, totalSz);
         if (ret == 0) {
-            if (type != client_hello || !IsDtlsNotSctpMode(ssl))
+	  //            if (type != client_hello || !IsDtlsNotSctpMode(ssl))
                 ssl->keys.dtls_expected_peer_handshake_number++;
             if (ssl->dtls_rx_msg_list != NULL) {
                 ret = DtlsMsgDrain(ssl);
@@ -11497,7 +11501,7 @@ int ProcessReply(WOLFSSL* ssl)
                                             &ssl->buffers.inputBuffer.idx,
                                             ssl->buffers.inputBuffer.length);
                     }
-                    else {
+                   else {
 #ifdef WOLFSSL_TLS13
                         ret = DoTls13HandShakeMsg(ssl,
                                             ssl->buffers.inputBuffer.buffer,
@@ -11753,16 +11757,17 @@ int SendChangeCipher(WOLFSSL* ssl)
     #endif
     ssl->buffers.outputBuffer.length += sendSz;
 
-    if (ssl->options.groupMessages)
-        return 0;
     #if defined(WOLFSSL_DTLS) && !defined(WOLFSSL_DEBUG_DTLS)
-    else if (ssl->options.dtls) {
+    if (ssl->options.dtls) {
         /* If using DTLS, force the ChangeCipherSpec message to be in the
          * same datagram as the finished message. */
-        return 0;
+		/* return 0; */
+		return SendBuffered(ssl); /* For retry M.OHNO */
     }
     #endif
-    else
+	if (ssl->options.groupMessages)
+		return 0; 
+	else
         return SendBuffered(ssl);
 }
 
@@ -12398,7 +12403,7 @@ int SendFinished(WOLFSSL* ssl)
 
     ssl->buffers.outputBuffer.length += sendSz;
 
-    return SendBuffered(ssl);
+	return SendBuffered(ssl);
 }
 
 
@@ -21699,7 +21704,6 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
 
 #endif /* OLD_HELLO_ALLOWED */
 
-
     int DoClientHello(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                              word32 helloSz)
     {
@@ -21710,13 +21714,13 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         word32          i = *inOutIdx;
         word32          begin = i;
 #ifdef WOLFSSL_DTLS
-        Hmac            cookieHmac;
+/*        Hmac            cookieHmac; */
         byte            peerCookie[MAX_COOKIE_LEN];
         byte            peerCookieSz = 0;
-        byte            cookieType;
-        byte            cookieSz = 0;
+/*        byte            cookieType;
+		  byte            cookieSz = 0; */
 
-        XMEMSET(&cookieHmac, 0, sizeof(Hmac));
+//        XMEMSET(&cookieHmac, 0, sizeof(Hmac));
 #endif /* WOLFSSL_DTLS */
 
 #ifdef WOLFSSL_CALLBACKS
@@ -21731,6 +21735,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         /* protocol version */
         XMEMCPY(&pv, input + i, OPAQUE16_LEN);
         ssl->chVersion = pv;   /* store */
+#if 0
 #ifdef WOLFSSL_DTLS
         if (IsDtlsNotSctpMode(ssl)) {
             int ret;
@@ -21758,6 +21763,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             if (ret != 0) return ret;
         }
 #endif /* WOLFSSL_DTLS */
+#endif
         i += OPAQUE16_LEN;
 
         if ((!ssl->options.dtls && ssl->version.minor > pv.minor) ||
@@ -21812,12 +21818,14 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
 
         /* random */
         XMEMCPY(ssl->arrays->clientRandom, input + i, RAN_LEN);
+#if 0
 #ifdef WOLFSSL_DTLS
         if (IsDtlsNotSctpMode(ssl)) {
             int ret = wc_HmacUpdate(&cookieHmac, input + i, RAN_LEN);
             if (ret != 0) return ret;
         }
 #endif /* WOLFSSL_DTLS */
+#endif		
         i += RAN_LEN;
 
 #ifdef SHOW_SECRETS
@@ -21845,12 +21853,14 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                 return BUFFER_ERROR;
 
             XMEMCPY(ssl->arrays->sessionID, input + i, b);
+#if 0			
 #ifdef WOLFSSL_DTLS
             if (IsDtlsNotSctpMode(ssl)) {
                 int ret = wc_HmacUpdate(&cookieHmac, input + i - 1, b + 1);
                 if (ret != 0) return ret;
             }
 #endif /* WOLFSSL_DTLS */
+#endif
             ssl->arrays->sessionIDSz = b;
             i += b;
             ssl->options.resuming = 1; /* client wants to resume */
@@ -21860,7 +21870,6 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             WOLFSSL_MSG("Invalid session ID size");
             return BUFFER_ERROR; /* session ID nor 0 neither 32 bytes long */
         }
-
         #ifdef WOLFSSL_DTLS
             /* cookie */
             if (ssl->options.dtls) {
@@ -21911,6 +21920,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         }
 #endif /* HAVE_SERVER_RENEGOTIATION_INFO */
 
+#if 0	   
 #ifdef WOLFSSL_DTLS
         if (IsDtlsNotSctpMode(ssl)) {
             int ret = wc_HmacUpdate(&cookieHmac,
@@ -21919,6 +21929,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             if (ret != 0) return ret;
         }
 #endif /* WOLFSSL_DTLS */
+#endif		
         i += clSuites.suiteSz;
         clSuites.hashSigAlgoSz = 0;
 
@@ -21935,9 +21946,9 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
 
 #ifdef WOLFSSL_DTLS
         if (IsDtlsNotSctpMode(ssl)) {
-            byte newCookie[MAX_COOKIE_LEN];
+//            byte newCookie[MAX_COOKIE_LEN];
             int ret;
-
+#if 0		
             ret = wc_HmacUpdate(&cookieHmac, input + i - 1, b + 1);
             if (ret != 0) return ret;
             ret = wc_HmacFinal(&cookieHmac, newCookie);
@@ -21964,14 +21975,13 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                 *inOutIdx += helloSz;
                 return SendHelloVerifyRequest(ssl, newCookie, cookieSz);
             }
-
+#endif		
             /* This was skipped in the DTLS case so we could handle the hello
              * verify request. */
             ret = HashInput(ssl, input + *inOutIdx, helloSz);
             if (ret != 0) return ret;
         }
 #endif /* WOLFSSL_DTLS */
-
         {
             /* copmression match types */
             int matchNo = 0;
@@ -22023,8 +22033,9 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                     return ret;
 #endif
 
-                if ((i - begin) + OPAQUE16_LEN > helloSz)
+                if ((i - begin) + OPAQUE16_LEN > helloSz){
                     return BUFFER_ERROR;
+				}
 
                 ato16(&input[i], &totalExtSz);
                 i += OPAQUE16_LEN;
@@ -22048,8 +22059,9 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                 while (totalExtSz) {
                     word16 extId, extSz;
 
-                    if (OPAQUE16_LEN + OPAQUE16_LEN > totalExtSz)
+                    if (OPAQUE16_LEN + OPAQUE16_LEN > totalExtSz){
                         return BUFFER_ERROR;
+					}
 
                     ato16(&input[i], &extId);
                     i += OPAQUE16_LEN;
@@ -22366,9 +22378,8 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
             #endif /* HAVE_ECC */
 
                 /* Check for error */
-                if (ret != 0) {
+                if (ret != 0)
                     goto exit_dcv;
-                }
 
                 /* Advance state and proceed */
                 ssl->options.asyncState = TLS_ASYNC_VERIFY;
@@ -22432,10 +22443,24 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
                         }
                     }
                     else {
+/*						int i;
+						char c;
+						for(i=0; i<FINISHED_SZ; i++){
+							c = *(args->output+i);
+							printf("%d ", c);
+						}
+						printf("\n");
+						for(i=0; i<FINISHED_SZ; i++){
+							c = *((char *)&ssl->hsHashes->certHashes+i);
+							printf("%d ", c);
+						} 
+						printf("\n"); */
                         if (args->sendSz != FINISHED_SZ || !args->output ||
                             XMEMCMP(args->output,
                                 &ssl->hsHashes->certHashes, FINISHED_SZ) != 0) {
                             ret = VERIFY_CERT_ERROR;
+/*			    printf("!!!!! %d %d %d %d\n", args->sendSz, FINISHED_SZ, args->output,
+				XMEMCMP(args->output, &ssl->hsHashes->certHashes, FINISHED_SZ)); */
                         }
                     }
                 }
@@ -22798,7 +22823,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
 
 #endif /* HAVE_SESSION_TICKET */
 
-
+#if 0
 #ifdef WOLFSSL_DTLS
     static int SendHelloVerifyRequest(WOLFSSL* ssl,
                                       const byte* cookie, byte cookieSz)
@@ -22850,7 +22875,7 @@ static int DoSessionTicket(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
         return SendBuffered(ssl);
     }
 #endif /* WOLFSSL_DTLS */
-
+#endif
     typedef struct DckeArgs {
         byte*  output; /* not allocated */
         word32 length;

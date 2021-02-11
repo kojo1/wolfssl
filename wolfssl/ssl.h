@@ -2056,6 +2056,12 @@ int wolfSSL_DeriveTlsKeys(unsigned char* key_data, unsigned int keyLen,
                                const unsigned char* sr, const unsigned char* cr,
                                int tls1_2, int hash_type);
 
+WOLFSSL_API
+int wolfSSL_tls1_PRF(unsigned char* key_dig, unsigned int key_dig_len,
+					 const unsigned char* ms, unsigned int msLen,
+					 const unsigned char* sr, const unsigned char* cr,
+					 const unsigned char* label, unsigned int labLen);
+
 #ifdef WOLFSSL_CALLBACKS
 
 /* used internally by wolfSSL while OpenSSL types aren't */
@@ -2451,6 +2457,20 @@ WOLFSSL_API int wolfSSL_sk_SSL_CIPHER_num(const void * p);
 WOLFSSL_API int wolfSSL_sk_SSL_COMP_zero(WOLFSSL_STACK* st);
 WOLFSSL_API WOLFSSL_CIPHER* wolfSSL_sk_SSL_CIPHER_value(void *ciphers, int idx);
 WOLFSSL_API void ERR_load_SSL_strings(void);
+
+#ifdef WOLFSSL_DTLS
+
+#define SRTP_AES128_CM_SHA1_80 0x0001
+        
+typedef struct WOLFSSL_SRTP_PROTECTION_PROFILE {
+    unsigned long id;
+} WOLFSSL_SRTP_PROTECTION_PROFILE;
+
+WOLFSSL_API int wolfSSL_CTX_set_tlsext_use_srtp(WOLFSSL_CTX *ctx);
+WOLFSSL_API WOLFSSL_SRTP_PROTECTION_PROFILE *wolfSSL_get_selected_srtp_profile(WOLFSSL *s);
+WOLFSSL_API int wolfSSL_export_dtls_srtp_keying_material(WOLFSSL *s, unsigned char *out, size_t olen);
+      
+#endif      
 
 #ifdef __cplusplus
     }  /* extern "C" */

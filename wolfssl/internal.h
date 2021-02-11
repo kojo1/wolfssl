@@ -952,7 +952,7 @@ enum Misc {
                                 /* RECORD_HEADER_SZ + BLOCK_SZ (pad) + Max
                                    digest sz + BLOC_SZ (iv) + pad byte (1) */
     MAX_COMP_EXTRA  = 1024,     /* max compression extra */
-    MAX_MTU         = 1500,     /* max expected MTU */
+    MAX_MTU         = 1400,     /* max expected MTU */
     MAX_UDP_SIZE    = 8192 - 100, /* was MAX_MTU - 100 */
     MAX_DH_SZ       = 1036,     /* 4096 p, pub, g + 2 byte size for each */
     MAX_STR_VERSION = 8,        /* string rep of protocol version */
@@ -1187,7 +1187,8 @@ enum Misc {
     #ifdef WOLFSSL_MAX_STRENGTH
         #define WOLFSSL_MIN_RSA_BITS 2048
     #else
-        #define WOLFSSL_MIN_RSA_BITS 1024
+/*        #define WOLFSSL_MIN_RSA_BITS 1024 */
+#define WOLFSSL_MIN_RSA_BITS 512 /* M.OHNO */
     #endif
 #endif /* WOLFSSL_MIN_RSA_BITS */
 #if (WOLFSSL_MIN_RSA_BITS % 8)
@@ -1778,6 +1779,7 @@ typedef enum {
     TLSX_TRUNCATED_HMAC             = 0x0004,
     TLSX_STATUS_REQUEST             = 0x0005, /* a.k.a. OCSP stapling   */
     TLSX_SUPPORTED_GROUPS           = 0x000a, /* a.k.a. Supported Curves */
+	TLSX_USE_SRTP                   = 0x000e, /* 14 */	
     TLSX_SIGNATURE_ALGORITHMS       = 0x000d,
     TLSX_APPLICATION_LAYER_PROTOCOL = 0x0010, /* a.k.a. ALPN */
     TLSX_STATUS_REQUEST_V2          = 0x0011, /* a.k.a. OCSP stapling v2 */
@@ -2244,6 +2246,8 @@ struct WOLFSSL_CTX {
 #ifdef WOLFSSL_DTLS
     CallbackGenCookie CBIOCookie;       /* gen cookie callback */
     wc_dtls_export    dtls_export;      /* export function for DTLS session */
+	int             use_srtp;
+	WOLFSSL_SRTP_PROTECTION_PROFILE *offer_srtp_profile;
 #ifdef WOLFSSL_SESSION_EXPORT
     CallbackGetPeer CBGetPeer;
     CallbackSetPeer CBSetPeer;
@@ -3274,6 +3278,8 @@ struct WOLFSSL {
     void*           IOCB_CookieCtx;     /* gen cookie ctx */
     word32          dtls_expected_rx;
     wc_dtls_export  dtls_export;        /* export function for session */
+	WOLFSSL_SRTP_PROTECTION_PROFILE *srtp_profile;
+	byte            expect_use_srtp;
 #ifdef WOLFSSL_SCTP
     word16          dtlsMtuSz;
 #endif /* WOLFSSL_SCTP */
@@ -3746,6 +3752,12 @@ WOLFSSL_LOCAL void FreeKey(WOLFSSL* ssl, int type, void** pKey);
                                         word32 flags);
 #endif
 
+#ifdef WOLFSSL_DTLS
+typedef struct UseSRTP {
+	word16 profile_len;
+	word16 id;
+}UseSRTP;
+#endif
 
 #ifdef __cplusplus
     }  /* extern "C" */

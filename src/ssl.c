@@ -93,7 +93,6 @@
     #include <wolfssl/wolfcrypt/dh.h>
 #endif
 
-
 #ifndef WOLFSSL_LEANPSK
 char* mystrnstr(const char* s1, const char* s2, unsigned int n)
 {
@@ -8341,8 +8340,8 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
                 /* In DTLS, when resuming, we can go straight to FINISHED,
                  * or do a cookie exchange and then skip to FINISHED, assume
                  * we need the cookie exchange first. */
-                if (IsDtlsNotSctpMode(ssl))
-                    neededState = SERVER_HELLOVERIFYREQUEST_COMPLETE;
+                                          /*                if (IsDtlsNotSctpMode(ssl))
+                                                            neededState = SERVER_HELLOVERIFYREQUEST_COMPLETE; */
             #endif
             /* get response */
             while (ssl->options.serverState < neededState) {
@@ -8374,6 +8373,7 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
         #endif
 
             #ifdef WOLFSSL_DTLS
+#if 0
                 if (IsDtlsNotSctpMode(ssl)) {
                     /* re-init hashes, exclude first hello and verify request */
                     if ((ssl->error = InitHandshakeHashes(ssl)) != 0) {
@@ -8385,6 +8385,7 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
                         return SSL_FATAL_ERROR;
                     }
                 }
+#endif
             #endif
 
             ssl->options.connectState = HELLO_AGAIN_REPLY;
@@ -8393,6 +8394,7 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
 
         case HELLO_AGAIN_REPLY :
             #ifdef WOLFSSL_DTLS
+#if 0
                 if (IsDtlsNotSctpMode(ssl)) {
                     neededState = ssl->options.resuming ?
                            SERVER_FINISHED_COMPLETE : SERVER_HELLODONE_COMPLETE;
@@ -8409,6 +8411,7 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
                                 neededState = SERVER_HELLODONE_COMPLETE;
                     }
                 }
+#endif
             #endif
 
             ssl->options.connectState = FIRST_REPLY_DONE;
@@ -8843,7 +8846,6 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
                 WOLFSSL_ERROR(ssl->error);
                 return SSL_FATAL_ERROR;
             }
-
             ssl->options.acceptState = ACCEPT_FINISHED_DONE;
             WOLFSSL_MSG("accept state ACCEPT_FINISHED_DONE");
             FALL_THROUGH;
@@ -10528,6 +10530,7 @@ int wolfSSL_set_compression(WOLFSSL* ssl)
     void wolfSSL_set_bio(WOLFSSL* ssl, WOLFSSL_BIO* rd, WOLFSSL_BIO* wr)
     {
         WOLFSSL_ENTER("SSL_set_bio");
+		printf("rfd %d wfd %d\n", rd->fd, wr->fd);
         wolfSSL_set_rfd(ssl, rd->fd);
         wolfSSL_set_wfd(ssl, wr->fd);
 
@@ -24991,5 +24994,69 @@ int wolfSSL_set_msg_callback_arg(WOLFSSL *ssl, void* arg)
 }
 #endif
 
+#ifdef WOLFSSL_DTLS
+
+static WOLFSSL_SRTP_PROTECTION_PROFILE srtp_profile = {
+     SRTP_AES128_CM_SHA1_80
+};
+
+
+WOLFSSL_API int wolfSSL_CTX_set_tlsext_use_srtp(WOLFSSL_CTX *ctx)
+{
+    ctx->use_srtp = 1;
+    ctx->offer_srtp_profile = &srtp_profile; // TODO: set available profiles from argument
+
+    //	printf("srtp profile: %ld\n", ctx->offer_srtp_profile->id);
+	
+	return 0;
+}
+
+WOLFSSL_API WOLFSSL_SRTP_PROTECTION_PROFILE *wolfSSL_get_selected_srtp_profile(WOLFSSL *s)
+{
+	if(s == NULL)
+		return NULL;
+	
+	return s->srtp_profile;
+}
+
+WOLFSSL_API int wolfSSL_export_dtls_srtp_keying_material(WOLFSSL *ssl, unsigned char *out, size_t olen)
+{
+	int ret;
+	unsigned int length = 60; /* ( master_key:128bits + master_salt:112bits ) * 2 = 480 bits */
+#ifdef WOLFSSL_SMALL_STACK
+    byte* key_data;
+#else
+    byte  key_data[MAX_PRF_DIG];
+#endif
+	static const char *label = "EXTRACTOR-dtls_srtp";
+
+	if(olen < (size_t)length)
+		return BAD_FUNC_ARG;
+
+#ifdef WOLFSSL_SMALL_STACK
+    key_data = (byte*)XMALLOC(MAX_PRF_DIG, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+    if (key_data == NULL) {
+        return MEMORY_E;
+    }
+#endif
+    ret = wolfSSL_tls1_PRF(key_data, length,
+                           ssl->arrays->masterSecret, SECRET_LEN,
+                           ssl->arrays->serverRandom, ssl->arrays->clientRandom,
+						   (byte*)label, 19);
+/*	printf("wolfSSL_export_dtls_srtp_keying_material ret=%d\n", ret); */
+    if (ret == 0){
+/*	  ret = StoreKeys(ssl, key_data); */
+		XMEMCPY(out, key_data, length);
+		ret = SSL_SUCCESS;
+	}
+
+#ifdef WOLFSSL_SMALL_STACK
+    XFREE(key_data, NULL, DYNAMIC_TYPE_TMP_BUFFER);
+#endif
+
+    return ret;
+}
+
+#endif
 
 #endif /* WOLFCRYPT_ONLY */

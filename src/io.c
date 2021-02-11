@@ -253,7 +253,7 @@ int EmbedReceiveFrom(WOLFSSL *ssl, char *buf, int sz, void *ctx)
         if (setsockopt(sd, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout,
                        sizeof(timeout)) != 0) {
                 WOLFSSL_MSG("setsockopt rcvtimeo failed");
-        }
+		} 
     }
 
     recvd = (int)RECVFROM_FUNCTION(sd, buf, sz, ssl->rflags,
@@ -293,6 +293,11 @@ int EmbedReceiveFrom(WOLFSSL *ssl, char *buf, int sz, void *ctx)
         }
     }
     else {
+        char type = buf[0];
+        if((type < 20) || (type > 63)){ /* Check No TLS packets M.OHNO */
+            //            printf("Packet Type = %d\n", type);
+            return 0;
+        }
         if (dtlsCtx->peer.sz > 0
                 && peerSz != (XSOCKLENT)dtlsCtx->peer.sz
                 && XMEMCMP(&peer, dtlsCtx->peer.sa, peerSz) != 0) {
