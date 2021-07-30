@@ -222,11 +222,6 @@ static int SSL_hmac(WOLFSSL* ssl, byte* digest, const byte* in, word32 sz,
     int QSH_Init(WOLFSSL* ssl);
 #endif
 
-#ifdef WOLFSSL_RENESAS_TSIP_TLS
-    int tsip_useable(const WOLFSSL *ssl);
-    int tsip_generatePremasterSecret();
-    int tsip_generateEncryptPreMasterSecret(WOLFSSL *ssl, byte *out, word32 *outSz);
-#endif
 #if defined(OPENSSL_EXTRA) && defined(HAVE_SECRET_CALLBACK)
 
     static int  SessionSecret_callback(WOLFSSL* ssl, void* secret,
@@ -4400,12 +4395,12 @@ int RsaEnc(WOLFSSL* ssl, const byte* in, word32 inSz, byte* out, word32* outSz,
     if (ssl->ctx->RsaEncCb) {
         void* ctx = wolfSSL_GetRsaEncCtx(ssl);
         ret = ssl->ctx->RsaEncCb(ssl, in, inSz, out, outSz, keyBuf, keySz, ctx);
+        if (ret != 0 && ret != CRYPTOCB_UNAVAILABLE)
+            return ret;
     }
-    else
 #endif /* HAVE_PK_CALLBACKS */
-    {
-        ret = wc_RsaPublicEncrypt(in, inSz, out, *outSz, key, ssl->rng);
-    }
+
+    ret = wc_RsaPublicEncrypt(in, inSz, out, *outSz, key, ssl->rng);
 
     /* Handle async pending response */
 #ifdef WOLFSSL_ASYNC_CRYPT
@@ -24876,27 +24871,24 @@ int SendClientKeyExchange(WOLFSSL* ssl)
                 case rsa_kea:
                 {
                     /* build PreMasterSecret with RNG data */
-                    #if defined(WOLFSSL_RENESAS_TSIP_TLS) && \
-                       !defined(NO_WOLFSSL_RENESAS_TSIP_TLS_SESSION)
-                    if (tsip_useable(ssl)) {
-                        ret = tsip_generatePremasterSecret(
-                        &ssl->arrays->preMasterSecret[VERSION_SZ],
-                        ENCRYPT_LEN - VERSION_SZ);
-                    } else {
-                    #endif
-                        ret = wc_RNG_GenerateBlock(ssl->rng,
+                    #ifdef HAVE_PK_CALLBACKS
+                    if (ssl->ctx->GenPremasterCb) {
+                        ret = ssl->ctx->GenPremasterCb(ssl, 
                             &ssl->arrays->preMasterSecret[VERSION_SZ],
-                            SECRET_LEN - VERSION_SZ);
-                    #if defined(WOLFSSL_RENESAS_TSIP_TLS) && \
-                       !defined(NO_WOLFSSL_RENESAS_TSIP_TLS_SESSION)
-                    }
-                    #endif
-                        if (ret != 0) {
+                            ENCRYPT_LEN - VERSION_SZ);
+                        if(ret != 0 && ret != CRYPTOCB_UNAVAILABLE)
                             goto exit_scke;
-                        }
+                    }
+                    #endif /* HAVE_PK_CALLBACKS */
+                    ret = wc_RNG_GenerateBlock(ssl->rng,
+                        &ssl->arrays->preMasterSecret[VERSION_SZ],
+                        SECRET_LEN - VERSION_SZ);
+                    if (ret != 0) {
+                        goto exit_scke;
+                    }
 
-                        ssl->arrays->preMasterSecret[0] = ssl->chVersion.major;
-                        ssl->arrays->preMasterSecret[1] = ssl->chVersion.minor;
+                    ssl->arrays->preMasterSecret[0] = ssl->chVersion.major;
+                    ssl->arrays->preMasterSecret[1] = ssl->chVersion.minor;
 
                     ssl->arrays->preMasterSz = SECRET_LEN;
 
@@ -25261,26 +25253,16 @@ int SendClientKeyExchange(WOLFSSL* ssl)
             #ifndef NO_RSA
                 case rsa_kea:
                 {
-                    #if defined(WOLFSSL_RENESAS_TSIP_TLS) && \
-                       !defined(NO_WOLFSSL_RENESAS_TSIP_TLS_SESSION)
-                    if (tsip_useable(ssl) &&
-                                     wc_RsaEncryptSize(ssl->peerRsaKey) == 256) {
-                        ret = tsip_generateEncryptPreMasterSecret(ssl,
-                                                            args->encSecret,
-                                                            &args->encSz);
-
-                    } else
+                    ret = RsaEnc(ssl,
+                        ssl->arrays->preMasterSecret, SECRET_LEN,
+                        args->encSecret, &args->encSz,
+                        ssl->peerRsaKey,
+                    #if defined(HAVE_PK_CALLBACKS)
+                        &ssl->buffers.peerRsaKey
+                    #else
+                        NULL
                     #endif
-                        ret = RsaEnc(ssl,
-                            ssl->arrays->preMasterSecret, SECRET_LEN,
-                            args->encSecret, &args->encSz,
-                            ssl->peerRsaKey,
-                        #if defined(HAVE_PK_CALLBACKS)
-                            &ssl->buffers.peerRsaKey
-                        #else
-                            NULL
-                        #endif
-                        );
+                    );
 
                     break;
                 }

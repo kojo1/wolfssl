@@ -775,14 +775,17 @@ int tsip_generateMasterSecret(
 }
 #endif
 /* generate pre-Master secrete by TSIP */
-int tsip_generatePremasterSecret(byte *premaster, word32 preSz )
+int tsip_generatePremasterSecret(WOLFSSL *ssl, byte *premaster, word32 preSz )
 {
     WOLFSSL_MSG(">> tsip_generatePremasterSecret");
     int ret;
     
     if (premaster == NULL)
       return BAD_FUNC_ARG;
-    
+
+    if (!tsip_useable(ssl))
+        return CRYPTOCB_UNAVAILABLE;
+
     if ((ret = tsip_hw_lock()) == 0 && preSz >=
                                     (R_TSIP_TLS_MASTER_SECRET_WORD_SIZE*4)) {
         /* generate pre-master, 80 bytes */
@@ -813,7 +816,10 @@ int tsip_generateEncryptPreMasterSecret(
     
     if ((ssl == NULL) || (out == NULL) || (outSz == NULL))
       return BAD_FUNC_ARG;
-    
+
+    if (!tsip_useable(ssl) || wc_RsaEncryptSize(ssl->peerRsaKey) != 256)
+        return CRYPTOCB_UNAVAILABLE;
+
     if ((ret = tsip_hw_lock()) == 0) {
         if (*outSz >= 256)
            

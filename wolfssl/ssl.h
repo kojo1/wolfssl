@@ -3065,11 +3065,12 @@ typedef int (*CallbackRsaDec)(WOLFSSL* ssl,
 WOLFSSL_API void  wolfSSL_CTX_SetRsaDecCb(WOLFSSL_CTX*, CallbackRsaDec);
 WOLFSSL_API void  wolfSSL_SetRsaDecCtx(WOLFSSL* ssl, void *ctx);
 WOLFSSL_API void* wolfSSL_GetRsaDecCtx(WOLFSSL* ssl);
+typedef int (*CallbackGenPremaster)(WOLFSSL* ssl, byte *premaster, word32 preSz);
 #endif
 #endif /* HAVE_PK_CALLBACKS */
 
 #ifndef NO_CERTS
-    WOLFSSL_API void wolfSSL_CTX_SetCACb(WOLFSSL_CTX*, CallbackCACache);
+    WOLFSSL_API void wolfSSL_CTX_SetCACb(WOLFSSL_CTX *, CallbackCACache);
 
     WOLFSSL_API WOLFSSL_CERT_MANAGER* wolfSSL_CTX_GetCertManager(WOLFSSL_CTX*);
 

@@ -3059,6 +3059,7 @@ struct WOLFSSL_CTX {
         #endif
         CallbackRsaEnc    RsaEncCb;     /* User Rsa Public Encrypt  handler */
         CallbackRsaDec    RsaDecCb;     /* User Rsa Private Decrypt handler */
+        CallbackGenPremaster GenPremasterCb; /* User RSA generate premaster */
     #endif /* NO_RSA */
 #endif /* HAVE_PK_CALLBACKS */
 #ifdef HAVE_WOLF_EVENT
