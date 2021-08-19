@@ -69,6 +69,9 @@ block cipher mechanism that uses n-bit binary string parameter key with 128-bits
     #include <wolfssl/wolfcrypt/port/nxp/dcp_port.h>
 #endif
 
+#ifdef WOLFSSL_AES_CFB_ONLY
+#undef WOLFSSL_AES_DIRECT
+#endif
 
 /* fips wrapper calls, user can call direct */
 #if defined(HAVE_FIPS) && \
@@ -2716,6 +2719,7 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
 
 #else
 
+    #ifndef WOLFSSL_AES_CFB_ONLY
     /* Software AES - SetKey */
     static int wc_AesSetKeyLocal(Aes* aes, const byte* userKey, word32 keylen,
                 const byte* iv, int dir, int checkKeyLen)
@@ -3029,10 +3033,12 @@ static void wc_AesDecrypt(Aes* aes, const byte* inBlock, byte* outBlock)
             return wc_AesSetKeyLocal(aes, userKey, keylen, iv, dir, 0);
         }
     #endif /* WOLFSSL_AES_DIRECT || WOLFSSL_AES_COUNTER */
+    #endif  /* !WOLFSSL_AES_CFB_ONLY */
 #endif /* wc_AesSetKey block */
 
 
 /* wc_AesSetIV is shared between software and hardware */
+#ifndef WOLFSSL_AES_CFB_ONLY
 int wc_AesSetIV(Aes* aes, const byte* iv)
 {
     if (aes == NULL)
@@ -3044,6 +3050,7 @@ int wc_AesSetIV(Aes* aes, const byte* iv)
         XMEMSET(aes->reg,  0, AES_BLOCK_SIZE);
     return 0;
 }
+#endif  /* !WOLFSSL_AES_CFB_ONLY */
 
 /* AES-DIRECT */
 #if defined(WOLFSSL_AES_DIRECT)
@@ -9882,6 +9889,7 @@ int wc_AesCcmEncrypt_ex(Aes* aes, byte* out, const byte* in, word32 sz,
 #endif /* HAVE_AESCCM */
 
 
+#ifndef WOLFSSL_AES_CFB_ONLY
 /* Initialize Aes for use with async hardware */
 int wc_AesInit(Aes* aes, void* heap, int devId)
 {
@@ -10058,6 +10066,7 @@ int wc_AesGetKeySize(Aes* aes, word32* keySize)
 
     return ret;
 }
+#endif /* !WOLFSSL_AES_CFB_ONLY */
 
 #endif /* !WOLFSSL_TI_CRYPT */
 
