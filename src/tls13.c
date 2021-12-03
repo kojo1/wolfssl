@@ -6893,7 +6893,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_CLIENT
             if (ssl->options.side == WOLFSSL_CLIENT_END) {
                 WOLFSSL_MSG("ClientHello received by client");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
             if (ssl->options.clientState >= CLIENT_HELLO_COMPLETE) {
@@ -6914,7 +6914,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_SERVER
             if (ssl->options.side == WOLFSSL_SERVER_END) {
                 WOLFSSL_MSG("ServerHello received by server");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
         #ifdef WOLFSSL_TLS13_DRAFT_18
@@ -6939,7 +6939,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_SERVER
             if (ssl->options.side == WOLFSSL_SERVER_END) {
                 WOLFSSL_MSG("NewSessionTicket received by server");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
             if (ssl->options.clientState < CLIENT_FINISHED_COMPLETE) {
@@ -6957,7 +6957,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_CLIENT
             if (ssl->options.side == WOLFSSL_CLIENT_END) {
                 WOLFSSL_MSG("EndOfEarlyData received by client");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
             if (ssl->options.serverState < SERVER_FINISHED_COMPLETE) {
@@ -7006,7 +7006,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_SERVER
             if (ssl->options.side == WOLFSSL_SERVER_END) {
                 WOLFSSL_MSG("EncryptedExtensions received by server");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
             if (ssl->options.serverState != SERVER_HELLO_COMPLETE) {
@@ -7060,7 +7060,7 @@ static int SanityCheckTls13MsgReceived(WOLFSSL* ssl, byte type)
         #ifndef NO_WOLFSSL_SERVER
             if (ssl->options.side == WOLFSSL_SERVER_END) {
                 WOLFSSL_MSG("CertificateRequest received by server");
-                return OUT_OF_ORDER_E;
+                return SIDE_ERROR;
             }
         #endif
         #ifndef WOLFSSL_POST_HANDSHAKE_AUTH
