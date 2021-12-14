@@ -2260,8 +2260,8 @@ WOLFSSL_API int  wolfSSL_get_alert_history(WOLFSSL*, WOLFSSL_ALERT_HISTORY *);
     \return SSL_FAILURE will be returned on failure.  This could be caused
     by the session cache being disabled, or if the session has timed out.
 
-    \return When OPENSSL_EXTRA and WOLFSSL_ERROR_CODE_OPENSSL are defined,
-    SSL_SUCCESS will be returned even if the session has timed out.
+    \return When OPENSSL_EXTRA and (WOLFSSL_ERROR_CODE_OPENSSL or OPENSSL_COMPATIBLE_DEFAULTS)
+    \return are defined, SSL_SUCCESS will be returned even if the session has timed out.
 
     \param ssl pointer to the SSL object, created with wolfSSL_new().
     \param session pointer to the WOLFSSL_SESSION used to set the session
@@ -2276,7 +2276,7 @@ WOLFSSL_API int  wolfSSL_get_alert_history(WOLFSSL*, WOLFSSL_ALERT_HISTORY *);
 
     ret = wolfSSL_get_session(ssl, session);
     if (ret != SSL_SUCCESS) {
-    	// failed to set the SSL session
+        // failed to set the SSL session
     }
     ...
     \endcode
@@ -5797,8 +5797,9 @@ WOLFSSL_API int wolfSSL_set_timeout(WOLFSSL*, unsigned int);
     \brief This function sets the timeout value for SSL sessions, in seconds,
     for the specified SSL context.
 
-    \return the previous timeout value, if WOLFSSL_ERROR_CODE_OPENSSL is 
-    \return defined on success. If not defined, SSL_SUCCESS will be returned.
+    \return the previous timeout value, if WOLFSSL_ERROR_CODE_OPENSSL or 
+    \return OPENSSL_COMPATIBLE_DEFAULTS is defined on success. If not defined, 
+    \return SSL_SUCCESS will be returned.
     \return BAD_FUNC_ARG will be returned when the input context (ctx) is null.
 
     \param ctx pointer to the SSL context, created with wolfSSL_CTX_new().
@@ -5810,7 +5811,7 @@ WOLFSSL_API int wolfSSL_set_timeout(WOLFSSL*, unsigned int);
     ...
     ret = wolfSSL_CTX_set_timeout(ctx, 500);
     if (ret != SSL_SUCCESS) {
-	    // failed to set session timeout value
+        // failed to set session timeout value
     }
     \endcode
 

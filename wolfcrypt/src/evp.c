@@ -2182,7 +2182,7 @@ int wolfSSL_EVP_PKEY_cmp(const WOLFSSL_EVP_PKEY *a, const WOLFSSL_EVP_PKEY *b)
             return WS_RETURN_CODE(ret, WOLFSSL_FAILURE);
         }
     }
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     ret = 1; /* the keys match */
 #else
     ret = 0; /* success */

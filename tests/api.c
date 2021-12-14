@@ -39180,7 +39180,7 @@ static void test_wolfSSL_SESSION(void)
     /* SSL_set_session should reject specified session but return success
      * if WOLFSSL_ERROR_CODE_OPENSSL macro is defined for OpenSSL compatibility.
      */
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS) 
     AssertIntEQ(wolfSSL_set_session(ssl,sess), SSL_SUCCESS);
 #else
     AssertIntEQ(wolfSSL_set_session(ssl,sess), SSL_FAILURE);
@@ -46137,7 +46137,7 @@ static void test_EVP_PKEY_cmp(void)
         &in, (long)sizeof_client_key_der_2048));
 
     /* Test success case RSA */
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     AssertIntEQ(EVP_PKEY_cmp(a, b), 1);
 #else
     AssertIntEQ(EVP_PKEY_cmp(a, b), 0);
@@ -46156,7 +46156,7 @@ static void test_EVP_PKEY_cmp(void)
         &in, (long)sizeof_ecc_clikey_der_256));
 
     /* Test success case ECC */
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     AssertIntEQ(EVP_PKEY_cmp(a, b), 1);
 #else
     AssertIntEQ(EVP_PKEY_cmp(a, b), 0);
@@ -46177,7 +46177,7 @@ static void test_EVP_PKEY_cmp(void)
     AssertNotNull(b = wolfSSL_d2i_PrivateKey(EVP_PKEY_EC, NULL,
         &in, (long)sizeof_ecc_clikey_der_256));
 
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     AssertIntEQ(EVP_PKEY_cmp(a, b), -1);
 #else
     AssertIntNE(EVP_PKEY_cmp(a, b), 0);
@@ -46189,7 +46189,7 @@ static void test_EVP_PKEY_cmp(void)
     /* invalid or empty failure cases */
     a = EVP_PKEY_new();
     b = EVP_PKEY_new();
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     AssertIntEQ(EVP_PKEY_cmp(NULL, NULL), 0);
     AssertIntEQ(EVP_PKEY_cmp(a, NULL), 0);
     AssertIntEQ(EVP_PKEY_cmp(NULL, b), 0);
@@ -50069,7 +50069,8 @@ static int test_wolfSSL_CTX_set_ecdh_auto(void)
     return ret;
 }
 
-#if defined(OPENSSL_EXTRA) && defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(OPENSSL_EXTRA) && \
+    (defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS))
 static THREAD_RETURN WOLFSSL_THREAD SSL_read_test_server_thread(void* args)
 {
     callback_functions* callbacks = NULL;
@@ -50268,7 +50269,8 @@ static THREAD_RETURN WOLFSSL_THREAD SSL_read_test_client_thread(void* args)
 static int test_wolfSSL_read_detect_TCP_disconnect(void)
 {
     int ret = 0;
-#if defined(OPENSSL_EXTRA) && defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(OPENSSL_EXTRA) && \
+    (defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS))
     tcp_ready ready;
     func_args client_args;
     func_args server_args;
@@ -50485,7 +50487,7 @@ static void test_wolfSSL_CTX_set_timeout(void)
     WOLFSSL_CTX* ctx = wolfSSL_CTX_new(wolfSSLv23_server_method());
     AssertNotNull(ctx);
 
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL)  || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     /* in WOLFSSL_ERROR_CODE_OPENSSL macro guard,
      * wolfSSL_CTX_set_timeout returns previous timeout value on success.
      */

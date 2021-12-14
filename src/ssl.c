@@ -2196,7 +2196,8 @@ static int wolfSSL_read_internal(WOLFSSL* ssl, void* data, int sz, int peek)
     if (ssl == NULL || data == NULL || sz < 0)
         return BAD_FUNC_ARG;
 
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL) && defined(OPENSSL_EXTRA)
+#if (defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS))\
+     && defined(OPENSSL_EXTRA)
     /* This additional logic is meant to simulate following openSSL behavior:
      * After bidirectional SSL_shutdown complete, SSL_read returns 0 and
      * SSL_get_error_code returns SSL_ERROR_ZERO_RETURN.
@@ -14837,7 +14838,7 @@ int wolfSSL_set_timeout(WOLFSSL* ssl, unsigned int to)
 WOLFSSL_ABI
 int wolfSSL_CTX_set_timeout(WOLFSSL_CTX* ctx, unsigned int to)
 {
-    #if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+    #if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     word32 prev_timeout;
     #endif
 
@@ -14848,7 +14849,7 @@ int wolfSSL_CTX_set_timeout(WOLFSSL_CTX* ctx, unsigned int to)
         ret = BAD_FUNC_ARG;
 
     if (ret == WOLFSSL_SUCCESS) {
-    #if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+    #if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
         prev_timeout = ctx->timeout;
     #endif
         if (to == 0) {
@@ -14870,7 +14871,7 @@ int wolfSSL_CTX_set_timeout(WOLFSSL_CTX* ctx, unsigned int to)
     }
 #endif /* OPENSSL_EXTRA && HAVE_SESSION_TICKET && !NO_WOLFSSL_SERVER */
 
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     if (ret == WOLFSSL_SUCCESS) {
         return prev_timeout;
     }
@@ -15247,7 +15248,8 @@ int SetSession(WOLFSSL* ssl, WOLFSSL_SESSION* session)
         return ret;
     }
     else {
-#if defined(OPENSSL_EXTRA) && defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(OPENSSL_EXTRA) && \
+    (defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS))
         WOLFSSL_MSG("Session is expired but return success for \
                               OpenSSL compatibility");
         return WOLFSSL_SUCCESS;
@@ -51027,7 +51029,7 @@ int wolfSSL_CTX_set_alpn_protos(WOLFSSL_CTX *ctx, const unsigned char *p,
     ctx->alpn_cli_protos = (const unsigned char*)XMALLOC(p_len,
         ctx->heap, DYNAMIC_TYPE_OPENSSL);
     if (ctx->alpn_cli_protos == NULL) {
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
         /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
          * the function reverses the return value convention.
          */
@@ -51039,7 +51041,7 @@ int wolfSSL_CTX_set_alpn_protos(WOLFSSL_CTX *ctx, const unsigned char *p,
     XMEMCPY((void*)ctx->alpn_cli_protos, p, p_len);
     ctx->alpn_cli_protos_len = p_len;
 
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
      * the function reverses the return value convention.
      */
@@ -51072,7 +51074,7 @@ int wolfSSL_set_alpn_protos(WOLFSSL* ssl,
     WOLFSSL_ENTER("wolfSSL_set_alpn_protos");
 
     if (ssl == NULL || p_len <= 1) {
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
         /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
          * the function reverses the return value convention.
          */
@@ -51084,7 +51086,7 @@ int wolfSSL_set_alpn_protos(WOLFSSL* ssl,
 
     bio = wolfSSL_BIO_new(wolfSSL_BIO_s_mem());
     if (bio == NULL) {
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
         /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
          * the function reverses the return value convention.
          */
@@ -51102,7 +51104,7 @@ int wolfSSL_set_alpn_protos(WOLFSSL* ssl,
         if (idx + sz > p_len) {
             WOLFSSL_MSG("Bad list format");
             wolfSSL_BIO_free(bio);
-    #if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+    #if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
             /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
              * the function reverses the return value convention.
              */
@@ -51128,7 +51130,7 @@ int wolfSSL_set_alpn_protos(WOLFSSL* ssl,
         wolfSSL_UseALPN(ssl, pt, sz, alpn_opt);
     }
     wolfSSL_BIO_free(bio);
-#if defined(WOLFSSL_ERROR_CODE_OPENSSL)
+#if defined(WOLFSSL_ERROR_CODE_OPENSSL) || defined(OPENSSL_COMPATIBLE_DEFAULTS)
     /* 0 on success in OpenSSL, non-0 on failure in OpenSSL
      * the function reverses the return value convention.
      */
