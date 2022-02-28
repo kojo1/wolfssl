@@ -8705,6 +8705,7 @@ int DoTls13HandShakeMsg(WOLFSSL* ssl, byte* input, word32* inOutIdx,
 int wolfSSL_connect_TLSv13(WOLFSSL* ssl)
 {
     WOLFSSL_ENTER("wolfSSL_connect_TLSv13()");
+    int advanceState;
 
     #ifdef HAVE_ERRNO_H
     errno = 0;
@@ -8727,6 +8728,16 @@ int wolfSSL_connect_TLSv13(WOLFSSL* ssl)
     }
 #endif /* WOLFSSL_WOLFSENTRY_HOOKS */
 
+    /* fragOffset is non-zero when sending fragments. On the last
+     * fragment, fragOffset is zero again, and the state can be
+     * advanced. */
+    advanceState = ssl->fragOffset == 0;
+
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls)
+        advanceState = advanceState && !ssl->dtls13SendingFragments;
+#endif /* WOLFSSL_DTLS13 */
+
     if (ssl->buffers.outputBuffer.length > 0
     #ifdef WOLFSSL_ASYNC_CRYPT
         /* do not send buffered or advance state if last error was an
@@ -8735,10 +8746,7 @@ int wolfSSL_connect_TLSv13(WOLFSSL* ssl)
     #endif
     ) {
         if ((ssl->error = SendBuffered(ssl)) == 0) {
-            /* fragOffset is non-zero when sending fragments. On the last
-             * fragment, fragOffset is zero again, and the state can be
-             * advanced. */
-            if (ssl->fragOffset == 0) {
+            if (advanceState) {
                 ssl->options.connectState++;
                 WOLFSSL_MSG("connect state: "
                             "Advanced from last buffered fragment send");
@@ -8753,6 +8761,18 @@ int wolfSSL_connect_TLSv13(WOLFSSL* ssl)
             return WOLFSSL_FATAL_ERROR;
         }
     }
+
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls && ssl->dtls13SendingFragments) {
+        if ((ssl->error = Dtls13FragmentsContinue(ssl)) != 0) {
+                WOLFSSL_ERROR(ssl->error);
+                return WOLFSSL_FATAL_ERROR;
+        }
+
+        /* we sent all the fragments. Advance state. */
+        ssl->options.connectState++;
+    }
+#endif /* WOLFSSL_DTLS13 */
 
     switch (ssl->options.connectState) {
 
@@ -9612,6 +9632,7 @@ int wolfSSL_accept_TLSv13(WOLFSSL* ssl)
     word16 havePSK = 0;
 #endif
     WOLFSSL_ENTER("SSL_accept_TLSv13()");
+    int advanceState;
 
 #ifdef HAVE_ERRNO_H
     errno = 0;
@@ -9689,11 +9710,20 @@ int wolfSSL_accept_TLSv13(WOLFSSL* ssl)
         && ssl->error != WC_PENDING_E
     #endif
     ) {
+
+        /* fragOffset is non-zero when sending fragments. On the last
+         * fragment, fragOffset is zero again, and the state can be
+         * advanced. */
+        advanceState = ssl->fragOffset == 0;
+
+#ifdef WOLFSSL_DTLS13
+        if (ssl->options.dtls)
+            advanceState = advanceState &&
+                !ssl->dtls13SendingFragments;
+#endif /* WOLFSSL_DTLS13 */
+
         if ((ssl->error = SendBuffered(ssl)) == 0) {
-            /* fragOffset is non-zero when sending fragments. On the last
-             * fragment, fragOffset is zero again, and the state can be
-             * advanced. */
-            if (ssl->fragOffset == 0) {
+            if (advanceState) {
                 ssl->options.acceptState++;
                 WOLFSSL_MSG("accept state: "
                             "Advanced from last buffered fragment send");
@@ -9708,6 +9738,18 @@ int wolfSSL_accept_TLSv13(WOLFSSL* ssl)
             return WOLFSSL_FATAL_ERROR;
         }
     }
+
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls && ssl->dtls13SendingFragments) {
+        if ((ssl->error = Dtls13FragmentsContinue(ssl)) != 0) {
+                WOLFSSL_ERROR(ssl->error);
+                return WOLFSSL_FATAL_ERROR;
+        }
+
+        /* we sent all the fragments. Advance state. */
+        ssl->options.acceptState++;
+    }
+#endif /* WOLFSSL_DTLS13 */
 
     switch (ssl->options.acceptState) {
 
