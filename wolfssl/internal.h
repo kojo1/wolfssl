@@ -4326,12 +4326,12 @@ enum Dtls13RtxFsmState {
 };
 
 typedef struct Dtls13RtxRecord {
+    struct Dtls13RtxRecord *next;
     word16 length;
     byte *data;
     word32 epoch;
     word32 rn[DTLS13_RETRANS_RN_SIZE][2];
     byte rnIdx;
-    struct Dtls13RtxRecord *next;
     byte handshakeType;
 } Dtls13RtxRecord;
 
