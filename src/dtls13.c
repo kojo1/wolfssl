@@ -129,13 +129,16 @@ int Dtls13RlAddPlaintextHeader(
 {
     Dtls13RecordPlaintextHeader *hdr;
     word32 seq[2];
+    int ret;
 
     hdr = (Dtls13RecordPlaintextHeader *)out;
     hdr->contentType = content_type;
     hdr->legacyVersionRecord.major = DTLS_MAJOR;
     hdr->legacyVersionRecord.minor = DTLSv1_2_MINOR;
 
-    Dtls13GetSeq(ssl, CUR_ORDER, seq, 1);
+    ret = Dtls13GetSeq(ssl, CUR_ORDER, seq, 1);
+    if (ret != 0)
+        return ret;
 
     /* seq[0] combines epoch and 16 MSB of sequence number */
     c32toa(seq[0], hdr->epoch);
