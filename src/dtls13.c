@@ -225,7 +225,8 @@ static int Dtls13GetRnMask(
             return BAD_STATE_E;
 
         /* assuming CIPHER[0..3] should be interpreted as big endian 32-bits
-           integer. The draft rfc isn't really clear on that. See sec 4.2.3 */
+           integer. The draft rfc isn't really clear on that. See sec 4.2.3 of
+           the draft. See also Section 2.3 of the Chacha RFC. */
         ato32(ciphertext, &counter);
         ret = wc_Chacha_SetIV(c->chacha, &ciphertext[4], counter);
         if (ret != 0)
@@ -1728,10 +1729,10 @@ static int Dtls13InitChaChaCipher(
     if (c->chacha == NULL) {
         c->chacha =
             (ChaCha *)XMALLOC(sizeof(ChaCha), heap, DYNAMIC_TYPE_CIPHER);
-    }
 
-    if (c->chacha == NULL)
-        return MEMORY_E;
+        if (c->chacha == NULL)
+            return MEMORY_E;
+    }
 
     return wc_Chacha_SetKey(c->chacha, key, keySize);
 }
