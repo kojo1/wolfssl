@@ -11474,19 +11474,7 @@ int wolfSSL_dtls_get_current_timeout(WOLFSSL* ssl)
  */
 int wolfSSL_dtls_13_use_quick_timeout(WOLFSSL* ssl)
 {
-    if (ssl->options.side == WOLFSSL_CLIENT_END) {
-        /* Check if we are in the middle of receiving a flight */
-        if (ssl->options.serverState >= SERVER_HELLO_RETRY_REQUEST_COMPLETE &&
-                ssl->options.serverState < SERVER_FINISHED_COMPLETE)
-            return ssl->dtls13FastTimeout;
-    }
-    else {
-        /* Check if we are in the middle of receiving a flight */
-        if (ssl->options.clientState >= CLIENT_HELLO_COMPLETE &&
-                ssl->options.clientState < HANDSHAKE_DONE)
-            return ssl->dtls13FastTimeout;
-    }
-    return 0;
+    return ssl->dtls13FastTimeout;
 }
 
 /*

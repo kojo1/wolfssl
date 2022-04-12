@@ -6737,6 +6737,7 @@ int InitSSL(WOLFSSL* ssl, WOLFSSL_CTX* ctx, int writeDup)
     ssl->dtls13Epochs[0].side = ENCRYPT_AND_DECRYPT_SIDE;
     ssl->dtls13EncryptEpoch = &ssl->dtls13Epochs[0];
     ssl->dtls13DecryptEpoch = &ssl->dtls13Epochs[0];
+    ssl->options.sendMoreAcks = 0;
 #endif /* WOLFSSL_DTLS13 */
 
     return 0;

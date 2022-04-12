@@ -261,10 +261,7 @@ static int Dtls13RtxNeedsExplicitAck(WOLFSSL *ssl, enum HandShakeType hs)
     (void)hs;
 
 #ifndef NO_WOLFSSL_SERVER
-    /* Entire client's last flight needs to be acked */
-    if (ssl->options.side == WOLFSSL_SERVER_END && (hs == certificate ||
-                                                    hs == certificate_verify ||
-                                                    hs == finished))
+    if (ssl->options.side == WOLFSSL_SERVER_END && (hs == finished))
         return 1;
 #endif /* NO_WOLFSSL_SERVER */
 
@@ -651,16 +648,17 @@ static int Dtls13RtxRecordRecvd(WOLFSSL *ssl, enum HandShakeType hs,
         fsm->retransmit = 1;
 
         /* the other peer may have retransmitted because an ACK for a flight
-           that needs explicit ACK was lost. This can also happen when we
-           receive a flight out of order */
+           that needs explicit ACK was lost.*/
         if (fsm->ackRecords != NULL)
             fsm->sendAcks = ssl->options.sendMoreAcks;
     }
 
-    /* Don't send explicit acks immediately when in a handshake */
-    if (ssl->options.handShakeDone && Dtls13RtxNeedsExplicitAck(ssl, hs))
+    if (ssl->keys.dtls_peer_handshake_number ==
+            ssl->keys.dtls_expected_peer_handshake_number &&
+        Dtls13RtxNeedsExplicitAck(ssl, hs))
         fsm->sendAcks = 1;
-    else if (Dtls13DetectDisruption(ssl, fragOffset))
+
+    if (Dtls13DetectDisruption(ssl, fragOffset))
         fsm->sendAcks = 1;
 
     return 0;
