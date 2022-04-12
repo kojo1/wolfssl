@@ -20626,7 +20626,9 @@ int SendAlert(WOLFSSL* ssl, int severity, int type)
      */
     if (IsEncryptionOn(ssl, 1)) {
 #ifdef WOLFSSL_DTLS13
-        if (ssl->dtls13EncryptEpoch->epochNumber != ssl->dtls13Epoch) {
+        if (ssl->options.dtls
+            && IsAtLeastTLSv1_3(ssl->version)
+            && ssl->dtls13EncryptEpoch->epochNumber != ssl->dtls13Epoch) {
             ret = Dtls13SetEpochKeys(ssl, ssl->dtls13Epoch, ENCRYPT_SIDE_ONLY);
             if (ret != 0)
                 return ret;
