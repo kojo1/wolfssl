@@ -2052,8 +2052,10 @@ int SetCipherSpecs(WOLFSSL* ssl)
 #ifdef WOLFSSL_DTLS13
     if (ssl->options.dtls &&
         ssl->version.major == DTLS_MAJOR &&
-        ssl->version.minor <= DTLSv1_3_MINOR)
-        ssl->options.tls1_3 = 1;
+        ssl->version.minor <= DTLSv1_3_MINOR) {
+            ssl->options.tls = 1;
+            ssl->options.tls1_3 = 1;
+    }
 #endif /* WOLFSSL_DTLS13 */
 
 #if defined(HAVE_ENCRYPT_THEN_MAC) && !defined(WOLFSSL_AEAD_ONLY)
