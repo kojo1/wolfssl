@@ -2691,6 +2691,12 @@ static int CreateCookie(WOLFSSL* ssl, byte* hash, byte hashSz)
 }
 #endif
 
+#ifdef WOLFSSL_DTLS13
+#define HRR_MAX_HS_HEADER_SZ DTLS_HANDSHAKE_HEADER_SZ
+#else
+#define HRR_MAX_HS_HEADER_SZ HANDSHAKE_HEADER_SZ
+#endif
+
 /* Restart the handshake hash with a hash of the previous messages.
  *
  * ssl The SSL/TLS object.
@@ -2700,7 +2706,7 @@ int RestartHandshakeHash(WOLFSSL* ssl)
 {
     int    ret;
     Hashes hashes;
-    byte   header[HANDSHAKE_HEADER_SZ] = {0};
+    byte   header[HRR_MAX_HS_HEADER_SZ] = {0};
     byte*  hash = NULL;
     byte   hashSz = 0;
 
@@ -4575,7 +4581,7 @@ static int CheckCookie(WOLFSSL* ssl, byte* cookie, byte cookieSz)
 #define HRR_BODY_SZ        (VERSION_SZ + RAN_LEN + ENUM_LEN + ID_LEN + \
                             SUITE_LEN + COMP_LEN + OPAQUE16_LEN)
 /* HH | PV | CipherSuite | Ext Len | Key Share | Supported Version | Cookie */
-#define MAX_HRR_SZ   (HANDSHAKE_HEADER_SZ   + \
+#define MAX_HRR_SZ   (HRR_MAX_HS_HEADER_SZ   + \
                         HRR_BODY_SZ         + \
                           HRR_KEY_SHARE_SZ  + \
                           HRR_VERSIONS_SZ   + \
@@ -4590,7 +4596,7 @@ static int CheckCookie(WOLFSSL* ssl, byte* cookie, byte cookieSz)
  */
 static int RestartHandshakeHashWithCookie(WOLFSSL* ssl, Cookie* cookie)
 {
-    byte   header[HANDSHAKE_HEADER_SZ] = {0};
+    byte   header[HRR_MAX_HS_HEADER_SZ] = {0};
     byte   hrr[MAX_HRR_SZ] = {0};
     int    hrrIdx;
     word32 idx;
@@ -4600,6 +4606,10 @@ static int RestartHandshakeHashWithCookie(WOLFSSL* ssl, Cookie* cookie)
     word16 length;
     int    keyShareExt = 0;
     int    ret;
+
+#ifdef WOLFSSL_DTLS13
+    word16 tmpDtlsHSNum;
+#endif /* WOLFSSL_DTLS13 */
 
     cookieDataSz = ret = CheckCookie(ssl, &cookie->data, cookie->len);
     if (ret < 0)
@@ -4627,14 +4637,31 @@ static int RestartHandshakeHashWithCookie(WOLFSSL* ssl, Cookie* cookie)
         length += HRR_KEY_SHARE_SZ;
     }
 
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls) {
+        tmpDtlsHSNum = ssl->keys.dtls_handshake_number;
+        ssl->keys.dtls_handshake_number = 0;
+    }
+#endif /* WOLFSSL_DTLS13 */
+
     AddTls13HandShakeHeader(hrr, length, 0, 0, server_hello, ssl);
+
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls)
+        ssl->keys.dtls_handshake_number = tmpDtlsHSNum;
+#endif /* WOLFSSL_DTLS13 */
 
     idx += hashSz;
     hrrIdx = HANDSHAKE_HEADER_SZ;
 
+#ifdef WOLFSSL_DTLS13
+    if (ssl->options.dtls)
+        hrrIdx += DTLS_HANDSHAKE_EXTRA;
+#endif /* WOLFSSL_DTLS13 */
+
     /* The negotiated protocol version. */
     hrr[hrrIdx++] = ssl->version.major;
-    hrr[hrrIdx++] = TLSv1_2_MINOR;
+    hrr[hrrIdx++] = ssl->options.dtls ? DTLSv1_2_MINOR : TLSv1_2_MINOR;
 
     /* HelloRetryRequest message has fixed value for random. */
     XMEMCPY(hrr + hrrIdx, helloRetryRequestRandom, RAN_LEN);
@@ -5174,6 +5201,26 @@ int DoTls13ClientHello(WOLFSSL* ssl, const byte* input, word32* inOutIdx,
     default:
         ret = INPUT_CASE_ERROR;
     } /* switch (ssl->options.asyncState) */
+
+#if defined(WOLFSSL_DTLS13) && defined(WOLFSSL_SEND_HRR_COOKIE)
+    /* We are using DTLSv13 and set the HRR cookie secret, use the cookie to
+       perform a return-routability check. */
+    if (ret == 0 && ssl->options.dtls && ssl->options.sendCookie &&
+        ssl->options.serverState != SERVER_HELLO_RETRY_REQUEST_COMPLETE) {
+
+        /* ssl->options.serverState != SERVER_HELLO_RETRY_REQUEST_COMPLETE
+           so the client already provided a good KeyShareEntry. In this case
+           we don't add the KEY_SHARE extension to the HelloRetryRequest or
+           in the Cookie. The RFC8446 forbids to select a supported group
+           with KeyShare extension in HelloRetryRequest if the client
+           already provided a KeyShareEntry for that group. See rfc8446
+           section 4.1.4 */
+        TLSX_Remove(&ssl->extensions, TLSX_KEY_SHARE, ssl->heap);
+
+        /* send an HRR (see wolfSSL_Accept_TLSv13()) */
+        ssl->options.serverState = SERVER_HELLO_RETRY_REQUEST_COMPLETE;
+    }
+#endif /* WOLFSSL_DTLS13 */
 
 exit_dch:
 
