@@ -1373,7 +1373,7 @@ int Dtls13HandshakeSend(WOLFSSL *ssl, byte *message, word16 outputSize,
            was already sent. In the worst case we will ACK the server
            retranmission*/
         if (handshakeType == certificate || handshakeType == finished ||
-            handshakeType == server_hello)
+            handshakeType == server_hello || handshakeType == client_hello)
             Dtls13RtxFlushAcks(ssl, fsm);
     }
 
