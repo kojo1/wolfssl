@@ -14,6 +14,7 @@ endif
 EXTRA_DIST += examples/server/server.sln
 EXTRA_DIST += examples/server/server.vcproj
 EXTRA_DIST += examples/server/server.vcxproj
+EXTRA_DIST += examples/server/server-filter-progress.sh
 
 dist_example_DATA+= examples/server/server.c
 DISTCLEANFILES+= examples/server/.libs/server

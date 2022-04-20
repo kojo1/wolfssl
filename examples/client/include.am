@@ -12,6 +12,7 @@ endif
 EXTRA_DIST += examples/client/client.sln
 EXTRA_DIST += examples/client/client.vcproj
 EXTRA_DIST += examples/client/client.vcxproj
+EXTRA_DIST += examples/client/client-filter-progress.sh
 
 dist_example_DATA+= examples/client/client.c
 DISTCLEANFILES+= examples/client/.libs/client
