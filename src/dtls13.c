@@ -1922,8 +1922,11 @@ static int Dtls13WriteAckMessage(
     while (recordNumberList != NULL) {
         c32toa(recordNumberList->seq[0], ackMessage);
         c32toa(recordNumberList->seq[1], ackMessage + OPAQUE32_LEN);
-        fprintf(stderr, "Entering SendDtls13Ack %d %d\n", recordNumberList->seq[0] >> 16,
-                recordNumberList->seq[1]);
+
+#ifdef WOLFSSL_DEBUG_TLS
+        fprintf(stderr, "Entering SendDtls13Ack %d %d\n",
+            recordNumberList->seq[0] >> 16, recordNumberList->seq[1]);
+#endif /* WOLFSSL_DEBUG_TLS */
 
         ackMessage += OPAQUE64_LEN;
         recordNumberList = recordNumberList->next;
