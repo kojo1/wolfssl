@@ -340,7 +340,7 @@ int EmbedReceiveFrom(WOLFSSL *ssl, char *buf, int sz, void *ctx)
     doDtlsTimeout = ssl->options.handShakeState != HANDSHAKE_DONE;
 
 #ifdef WOLFSSL_DTLS13
-    if (ssl->options.dtls) {
+    if (ssl->options.dtls && IsAtLeastTLSv1_3(ssl->version)) {
         doDtlsTimeout =
             doDtlsTimeout || ssl->handshakeRtxFSM.rtxRecords != NULL ||
             (ssl->dtls13FastTimeout && ssl->handshakeRtxFSM.ackRecords != NULL);
