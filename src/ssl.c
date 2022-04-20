@@ -11467,6 +11467,7 @@ int wolfSSL_dtls_get_current_timeout(WOLFSSL* ssl)
 }
 
 #ifdef WOLFSSL_DTLS13
+
 /*
  * This API returns 1 when the user should set a short timeout for receiving
  * data. It is recommended that it is at most 1/4 the value returned by

@@ -353,18 +353,23 @@ int EmbedReceiveFrom(WOLFSSL *ssl, char *buf, int sz, void *ctx)
     if (!wolfSSL_get_using_nonblock(ssl)) {
         #ifdef USE_WINDOWS_API
             DWORD timeout = dtls_timeout * 1000;
-            if (wolfSSL_dtls_13_use_quick_timeout(ssl))
+#ifdef WOLFSSL_DTLS13
+            if (wolfSSL_dtls_13_use_quick_timeout(ssl) && IsAtLeastTLSv1_3(ssl->version))
                 timeout /= 4;
+#endif /* WOLFSSL_DTLS13 */
         #else
             struct timeval timeout;
             XMEMSET(&timeout, 0, sizeof(timeout));
-            if (wolfSSL_dtls_13_use_quick_timeout(ssl)) {
+#ifdef WOLFSSL_DTLS13
+            if (wolfSSL_dtls_13_use_quick_timeout(ssl) &&
+                IsAtLeastTLSv1_3(ssl->version)) {
                 if (dtls_timeout >= 4)
                     timeout.tv_sec = dtls_timeout / 4;
                 else
                     timeout.tv_usec = dtls_timeout * 1000000 / 4;
             }
             else
+#endif /* WOLFSSL_DTLS13 */
                 timeout.tv_sec = dtls_timeout;
         #endif
         if (setsockopt(sd, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout,
