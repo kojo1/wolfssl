@@ -537,7 +537,7 @@ static Dtls13RecordNumber *Dtls13NewRecordNumber(
 static int Dtls13RtxAddAck(
     WOLFSSL *ssl, Dtls13RtxFSM *fsm, word32 *recordNumber)
 {
-    Dtls13RecordNumber *rn, *list;
+    Dtls13RecordNumber *rn;
 
     WOLFSSL_ENTER("Dtls13RtxAddAck");
 
@@ -545,16 +545,8 @@ static int Dtls13RtxAddAck(
     if (rn == NULL)
         return MEMORY_E;
 
-    list = fsm->ackRecords;
-    if (list == NULL) {
-        fsm->ackRecords = rn;
-        return 0;
-    }
-
-    while (list->next != NULL)
-        list = list->next;
-
-    list->next = rn;
+    rn->next = fsm->ackRecords;
+    fsm->ackRecords = rn;
 
     return 0;
 }
@@ -608,28 +600,49 @@ static int Dtls13DetectDisruption(WOLFSSL *ssl, word32 fragOffset)
 
     return 0;
 }
+/* seq is a size 2 array */
+static WC_INLINE void Dtls13MakeRN(
+    word32 epoch, word16 seqHi, word32 seqLo, word32 *seq)
+{
+    seq[0] = (epoch << 16) | (seqHi & 0xFFFF);
+    seq[1] = seqLo;
+}
+
+static void Dtls13RtxRemoveCurAck(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
+{
+    Dtls13RecordNumber *rn, **prev_next;
+    word32 recordNumber[2];
+
+    Dtls13MakeRN(ssl->keys.curEpoch, ssl->keys.curSeq_hi, ssl->keys.curSeq_lo,
+        recordNumber);
+
+    prev_next = &fsm->ackRecords;
+    rn = fsm->ackRecords;
+
+    while (rn != NULL) {
+        if (rn->seq[0] == recordNumber[0] && rn->seq[1] == recordNumber[1]) {
+            *prev_next = rn->next;
+            XFREE(rn, ssl->heap, DYNAMIC_TYEP_DTLS_MSG);
+            return;
+        }
+
+        prev_next = &rn->next;
+        rn = rn->next;
+    }
+}
 
 /* recordNumber is a size 2 array */
-static int Dtls13RtxRecordRecvd(WOLFSSL *ssl, enum HandShakeType hs,
-    Dtls13RtxFSM *fsm, word32 *recordNumber, word32 fragOffset)
+static int Dtls13RtxRecordRecvd(
+    WOLFSSL *ssl, enum HandShakeType hs, Dtls13RtxFSM *fsm, word32 fragOffset)
 {
-    int ret;
-
     WOLFSSL_ENTER("Dtls13RtxRecordRecvd");
 
-    ssl->dtls13FastTimeout = 1;
-
-    if (!ssl->options.handShakeDone || hs != certificate_request) {
-        /* After handshake we don't save certificate_req in the seen
-           records. This is because we will ack that message with a
-           certificate/cert_verifiy/finished flight and we have not a simple and
-           nice way to remove this from seen records. */
-        ret = Dtls13RtxAddAck(ssl, fsm, recordNumber);
-        if (ret != 0) {
-            WOLFSSL_MSG("can't save ack fragment");
-            return ret;
-        }
-    }
+    /* After handshake we remove certificate_req in the seen
+       records. This is because we will ack that message with a
+       certificate/cert_verifiy/finished flight and we have not a simpler and
+       nice way to remove this from seen records. */
+    if (hs == certificate_request)
+        Dtls13RtxRemoveCurAck(ssl, fsm);
 
     if (!ssl->options.handShakeDone
         && ssl->keys.dtls_peer_handshake_number >=
@@ -1046,14 +1059,6 @@ int Dtls13ParseUnifedRecordLayer(WOLFSSL *ssl, const byte *input,
     return 0;
 }
 
-/* seq is a size 2 array */
-static WC_INLINE void Dtls13MakeRN(
-    word32 epoch, word16 seqHi, word32 seqLo, word32 *seq)
-{
-    seq[0] = (epoch << 16) | (seqHi & 0xFFFF);
-    seq[1] = seqLo;
-}
-
 #define DTLS13_MIN_RTX_INTERVAL 1
 
 static void Dtls13RtxMoveToEndOfList(Dtls13RtxRecord **listPtr,
@@ -1171,6 +1176,23 @@ static int Dtls13RtxSendBuffered(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
     return 0;
 }
 
+int Dtls13RecordRecvd(WOLFSSL *ssl)
+{
+    word32 seq[2];
+    int ret;
+
+    Dtls13MakeRN(
+        ssl->keys.curEpoch, ssl->keys.curSeq_hi, ssl->keys.curSeq_lo, seq);
+
+    ssl->dtls13FastTimeout = 1;
+    ret = Dtls13RtxAddAck(ssl, &ssl->handshakeRtxFSM, seq);
+    if (ret != 0)
+        WOLFSSL_MSG("can't save ack fragment");
+
+    return ret;
+}
+
+
 /**
  * Dtls13HandshakeRecv() - process an handshake message. Deal with
  fragmentation if needed
@@ -1190,9 +1212,7 @@ int Dtls13HandshakeRecv(WOLFSSL *ssl, byte *input, word32 size,
     word32 message_length;
     byte handshake_type;
     Dtls13RtxFSM *fsm;
-    word32 seq[2];
     word32 idx;
-    int epoch;
     int ret;
 
     idx = 0;
@@ -1210,10 +1230,7 @@ int Dtls13HandshakeRecv(WOLFSSL *ssl, byte *input, word32 size,
         return BUFFER_ERROR;
 
     fsm = &ssl->handshakeRtxFSM;
-
-    epoch = ssl->keys.curEpoch;
-    Dtls13MakeRN(epoch, ssl->keys.curSeq_hi, ssl->keys.curSeq_lo, seq);
-    ret = Dtls13RtxRecordRecvd(ssl, handshake_type, fsm, seq, frag_off);
+    ret = Dtls13RtxRecordRecvd(ssl, handshake_type, fsm, frag_off);
     if (ret != 0)
         return ret;
 

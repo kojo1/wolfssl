@@ -5349,6 +5349,7 @@ WOLFSSL_LOCAL int Dtls13ParseUnifedRecordLayer(WOLFSSL *ssl, const byte *input,
 WOLFSSL_LOCAL int Dtls13HandshakeSend(WOLFSSL *ssl, byte *output,
     word16 output_size, word16 length, enum HandShakeType handshake_type,
     int hash_output);
+WOLFSSL_LOCAL int Dtls13RecordRecvd(WOLFSSL *ssl);
 WOLFSSL_LOCAL int Dtls13HandshakeRecv(
     WOLFSSL *ssl, byte *input, word32 size, word32 *processed_size);
 WOLFSSL_LOCAL int Dtls13HandshakeAddheader(
