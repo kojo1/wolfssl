@@ -5836,9 +5836,11 @@ static int TLSX_SupportedVersions_Parse(WOLFSSL* ssl, const byte* input,
     int ret;
     int tls13minor;
     int tls12minor;
+    byte isDtls;
 
     tls13minor = TLSv1_3_MINOR;
     tls12minor = TLSv1_2_MINOR;
+    isDtls = ssl->options.dtls == 1;
 
 #ifdef WOLFSSL_DTLS13
     if (ssl->options.dtls) {
@@ -5879,27 +5881,27 @@ static int TLSX_SupportedVersions_Parse(WOLFSSL* ssl, const byte* input,
                 continue;
 
             /* No upgrade allowed. */
-            if (versionIsGreater(ssl->options.dtls, minor, ssl->version.minor))
+            if (versionIsGreater(isDtls, minor, ssl->version.minor))
                     continue;
 
             /* Check downgrade. */
-            if (versionIsLesser(ssl->options.dtls, minor, ssl->version.minor)) {
+            if (versionIsLesser(isDtls, minor, ssl->version.minor)) {
                 if (!ssl->options.downgrade)
                     continue;
 
                 if (versionIsLesser(
-                        ssl->options.dtls, minor, ssl->options.minDowngrade))
+                        isDtls, minor, ssl->options.minDowngrade))
                     continue;
 
                 if (newMinor == 0 &&
                     versionIsGreater(
-                        ssl->options.dtls, minor, ssl->options.oldMinor)) {
+                        isDtls, minor, ssl->options.oldMinor)) {
                     /* Downgrade the version. */
                     ssl->version.minor = minor;
                 }
             }
 
-            if (versionIsAtLeast(ssl->options.dtls, minor, tls13minor)) {
+            if (versionIsAtLeast(isDtls, minor, tls13minor)) {
                 if (!ssl->options.tls1_3) {
                     ssl->options.tls1_3 = 1;
                     ret = TLSX_Prepend(&ssl->extensions,
@@ -5909,13 +5911,13 @@ static int TLSX_SupportedVersions_Parse(WOLFSSL* ssl, const byte* input,
                     }
                     TLSX_SetResponse(ssl, TLSX_SUPPORTED_VERSIONS);
                 }
-                if (versionIsGreater(ssl->options.dtls, minor, newMinor)) {
+                if (versionIsGreater(isDtls, minor, newMinor)) {
                     ssl->version.minor = minor;
                     newMinor = minor;
                 }
             }
             else if (versionIsGreater(
-                         ssl->options.dtls, minor, ssl->options.oldMinor))
+                         isDtls, minor, ssl->options.oldMinor))
                 ssl->options.oldMinor = minor;
 
             set = 1;
@@ -5941,7 +5943,7 @@ static int TLSX_SupportedVersions_Parse(WOLFSSL* ssl, const byte* input,
             return VERSION_ERROR;
 
         /* Can't downgrade with this extension below TLS v1.3. */
-        if (versionIsLesser(ssl->options.dtls, minor, tls13minor))
+        if (versionIsLesser(isDtls, minor, tls13minor))
             return VERSION_ERROR;
 
         /* Version is TLS v1.2 to handle downgrading from TLS v1.3+. */
@@ -5951,16 +5953,16 @@ static int TLSX_SupportedVersions_Parse(WOLFSSL* ssl, const byte* input,
         }
 
         /* No upgrade allowed. */
-        if (versionIsLesser(ssl->options.dtls, ssl->version.minor, minor))
+        if (versionIsLesser(isDtls, ssl->version.minor, minor))
             return VERSION_ERROR;
 
         /* Check downgrade. */
-        if (versionIsGreater(ssl->options.dtls, ssl->version.minor, minor)) {
+        if (versionIsGreater(isDtls, ssl->version.minor, minor)) {
             if (!ssl->options.downgrade)
                 return VERSION_ERROR;
 
             if (versionIsLesser(
-                    ssl->options.dtls, minor, ssl->options.minDowngrade))
+                    isDtls, minor, ssl->options.minDowngrade))
                 return VERSION_ERROR;
 
             /* Downgrade the version. */
