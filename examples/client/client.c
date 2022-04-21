@@ -2775,16 +2775,21 @@ THREAD_RETURN WOLFSSL_THREAD client_test(void* args)
     }
     else {
         if (doDTLS) {
-            if (version == 3)
+            if (version == 3) {
                 version = -2;
+            }
         #if defined(OPENSSL_EXTRA) || defined(WOLFSSL_EITHER_SIDE)
-            else if (version == EITHER_DOWNGRADE_VERSION)
+            else if (version == EITHER_DOWNGRADE_VERSION) {
                 version = -3;
+            }
         #endif
+            else if (version == 4) {
 #ifdef WOLFSSL_DTLS13
-            else if (version == 4)
                 version = -4;
+#else
+                err_sys("Bad DTLS version");
 #endif /* WOLFSSL_DTLS13 */
+            }
             else
                 version = -1;
         }
