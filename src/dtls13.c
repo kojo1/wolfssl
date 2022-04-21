@@ -256,7 +256,7 @@ static int Dtls13EncryptDecryptRecordNumber(WOLFSSL *ssl, byte *seq,
     return 0;
 }
 
-static int Dtls13RtxNeedsExplicitAck(WOLFSSL *ssl, enum HandShakeType hs)
+static int Dtls13RtxLastMsgExplicitFlight(WOLFSSL *ssl, enum HandShakeType hs)
 {
 
     (void)hs;
@@ -272,16 +272,19 @@ static int Dtls13RtxNeedsExplicitAck(WOLFSSL *ssl, enum HandShakeType hs)
     return 0;
 }
 
+static void Dtls13MsgProcessed(WOLFSSL *ssl, enum HandShakeType hs)
+{
+    ssl->keys.dtls_expected_peer_handshake_number++;
+
+    if (Dtls13RtxLastMsgExplicitFlight(ssl, hs))
+        ssl->handshakeRtxFSM.sendAcks = 1;
+}
+
 static int Dtls13ProcessBufferedMessages(WOLFSSL *ssl)
 {
     DtlsMsg *msg = ssl->dtls_rx_msg_list;
-    Dtls13RtxFSM *fsm;
     word32 idx = 0;
     int ret = 0;
-
-    /* TODO: handshake messages after initial handshake will have their
-       duplicated fsm */
-    fsm = &ssl->handshakeRtxFSM;
 
     WOLFSSL_ENTER("Dtls13ProcessBufferedMessages()");
 
@@ -296,17 +299,12 @@ static int Dtls13ProcessBufferedMessages(WOLFSSL *ssl)
         if (msg->fragSz != msg->sz)
             break;
 
-        /* even if this record was acked, the lost one that stopped the
-           processing of this message wasn't. */
-        if (Dtls13RtxNeedsExplicitAck(ssl, msg->type))
-            fsm->sendAcks = 1;
-
         ret = DoTls13HandShakeMsgType(
             ssl, msg->msg, &idx, msg->type, msg->sz, msg->sz);
         if (ret != 0)
             break;
 
-        ssl->keys.dtls_expected_peer_handshake_number++;
+        Dtls13MsgProcessed(ssl, msg->type);
 
         ssl->dtls_rx_msg_list = msg->next;
         DtlsMsgDelete(msg, ssl->heap);
@@ -632,17 +630,10 @@ static void Dtls13RtxRemoveCurAck(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
 }
 
 /* recordNumber is a size 2 array */
-static int Dtls13RtxRecordRecvd(
+static int Dtls13RtxMsgRecvd(
     WOLFSSL *ssl, enum HandShakeType hs, Dtls13RtxFSM *fsm, word32 fragOffset)
 {
     WOLFSSL_ENTER("Dtls13RtxRecordRecvd");
-
-    /* After handshake we remove certificate_req in the seen
-       records. This is because we will ack that message with a
-       certificate/cert_verifiy/finished flight and we have not a simpler and
-       nice way to remove this from seen records. */
-    if (hs == certificate_request)
-        Dtls13RtxRemoveCurAck(ssl, fsm);
 
     if (!ssl->options.handShakeDone
         && ssl->keys.dtls_peer_handshake_number >=
@@ -669,8 +660,20 @@ static int Dtls13RtxRecordRecvd(
 
     if (ssl->keys.dtls_peer_handshake_number ==
             ssl->keys.dtls_expected_peer_handshake_number &&
-        Dtls13RtxNeedsExplicitAck(ssl, hs))
-        fsm->sendAcks = 1;
+        ssl->options.handShakeDone && hs == certificate_request) {
+
+        /* the current record, containing a post-handshake certificate request,
+           is implicitly acknowledged by the
+           certificate/certificate_verify/finished flight we are about to
+           send. Please note that if the certificate request came out-of-order
+           and we didn't send an ACK (sendMoreAcks == 0 and the missing
+           packet(s) arrive before that fast timeout expired), then we will send
+           both the ACK and the flight. While unnecessary this it's harmless, it
+           should be rare and simplifies the code. Otherwise, it would be
+           necessary to track which record number contained a CertificateRequest
+           with a particular context id */
+        Dtls13RtxRemoveCurAck(ssl, fsm);
+    }
 
     if (Dtls13DetectDisruption(ssl, fragOffset))
         fsm->sendAcks = 1;
@@ -1230,7 +1233,7 @@ int Dtls13HandshakeRecv(WOLFSSL *ssl, byte *input, word32 size,
         return BUFFER_ERROR;
 
     fsm = &ssl->handshakeRtxFSM;
-    ret = Dtls13RtxRecordRecvd(ssl, handshake_type, fsm, frag_off);
+    ret = Dtls13RtxMsgRecvd(ssl, handshake_type, fsm, frag_off);
     if (ret != 0)
         return ret;
 
@@ -1268,12 +1271,12 @@ int Dtls13HandshakeRecv(WOLFSSL *ssl, byte *input, word32 size,
         return 0;
     }
 
-    ssl->keys.dtls_expected_peer_handshake_number++;
-
     ret = DoTls13HandShakeMsgType(
         ssl, input, &idx, handshake_type, message_length, size);
     if (ret != 0)
         return ret;
+
+    Dtls13MsgProcessed(ssl, handshake_type);
 
     *processedSize = idx;
 
