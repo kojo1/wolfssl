@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sha_8h" kind="file" language="C++">
+    <compoundname>sha.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSha</definition>
+        <argsstring>(wc_Sha *)</argsstring>
+        <name>wc_InitSha</name>
+        <param>
+          <type>wc_Sha *</type>
+        </param>
+        <briefdescription>
+<para>この関数はSHAを初期化します。これは自動的にWC_Shahashによって呼び出されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 首尾よく初期化に戻りました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha<sp/>sha[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha(sha))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaUpdate(sha,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaFinal(sha,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf47421d2f7afd2f4b166033ff10267e9" kindref="member">wc_ShaUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sha.h" line="27" column="5" declfile="dox_comments/header_files/sha.h" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gaf47421d2f7afd2f4b166033ff10267e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ShaUpdate</definition>
+        <argsstring>(wc_Sha *sha, const byte *data, word32 len)</argsstring>
+        <name>wc_ShaUpdate</name>
+        <param>
+          <type>wc_Sha *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さレンの提供されたバイト配列を継続的にハッシュするように呼び出すことができます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>hedheになるデータの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha<sp/>sha[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>//<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha(sha))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaUpdate(sha,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaFinal(sha,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sha.h" line="60" column="5" declfile="dox_comments/header_files/sha.h" declline="60" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ShaFinal</definition>
+        <argsstring>(wc_Sha *sha, byte *hash)</argsstring>
+        <name>wc_ShaFinal</name>
+        <param>
+          <type>wc_Sha *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。Sha structの状態をリセットします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 正常にファイナライズしたときに返されました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha<sp/>sha[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha(sha))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaUpdate(sha,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_ShaFinal(sha,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaab3a5e68884ed3c7dd6921ce8fb8bcdd" kindref="member">wc_ShaGetHash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sha.h" line="92" column="5" declfile="dox_comments/header_files/sha.h" declline="92" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gace59e4f1fcc1e49e78488e8d302ab43d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ShaFree</definition>
+        <argsstring>(wc_Sha *)</argsstring>
+        <name>wc_ShaFree</name>
+        <param>
+          <type>wc_Sha *</type>
+        </param>
+        <briefdescription>
+<para>初期化されたSHA構造体で使用されるメモリをクリーンアップするために使用されます。注：これは、WolfSSL_TI_HASHが定義されている場合にのみサポートされます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>No 戻り値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sha structへのポインターは、自由になります</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha<sp/>sha;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitSha(&amp;sha);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>sha</highlight></codeline>
+<codeline><highlight class="normal">wc_ShaFree(&amp;sha);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf47421d2f7afd2f4b166033ff10267e9" kindref="member">wc_ShaUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sha.h" line="116" column="6" declfile="dox_comments/header_files/sha.h" declline="116" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gaab3a5e68884ed3c7dd6921ce8fb8bcdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ShaGetHash</definition>
+        <argsstring>(wc_Sha *sha, byte *hash)</argsstring>
+        <name>wc_ShaGetHash</name>
+        <param>
+          <type>wc_Sha *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>ハッシュデータを取得します。結果はハッシュに入れられます。Sha structの状態をリセットしません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 正常にファイナライズしたときに返されました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha<sp/>sha[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha(sha))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_MSG(&quot;wc_InitSha<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_ShaUpdate(sha,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_ShaGetHash(sha,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sha.h" line="145" column="5" declfile="dox_comments/header_files/sha.h" declline="145" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref>(wc_Sha*);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="group__SHA_1gaf47421d2f7afd2f4b166033ff10267e9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gaf47421d2f7afd2f4b166033ff10267e9" kindref="member">wc_ShaUpdate</ref>(wc_Sha*<sp/>sha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref>(wc_Sha*<sp/>sha,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="group__SHA_1gace59e4f1fcc1e49e78488e8d302ab43d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gace59e4f1fcc1e49e78488e8d302ab43d" kindref="member">wc_ShaFree</ref>(wc_Sha*);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="group__SHA_1gaab3a5e68884ed3c7dd6921ce8fb8bcdd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gaab3a5e68884ed3c7dd6921ce8fb8bcdd" kindref="member">wc_ShaGetHash</ref>(wc_Sha*<sp/>sha,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/sha.h"/>
+  </compounddef>
+</doxygen>

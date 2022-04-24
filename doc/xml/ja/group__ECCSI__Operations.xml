@@ -1,0 +1,484 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__ECCSI__Operations" kind="group">
+    <compoundname>ECCSI_Operations</compoundname>
+    <title>Operations for Signing and Verifying with ECCSI Key</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga53b58464921d21f6466ae8ed0ae834b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeEccsiPair</definition>
+        <argsstring>(EccsiKey *key, WC_RNG *rng, enum wc_HashType hashType, const byte *id, word32 idSz, mp_int *ssk, ecc_point *pvt)</argsstring>
+        <name>wc_MakeEccsiPair</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>idSz</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="24" column="5" declfile="dox_comments/header_files/eccsi.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga08e58acfbbcf01e91a159c1fa7921a50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ValidateEccsiPair</definition>
+        <argsstring>(EccsiKey *key, enum wc_HashType hashType, const byte *id, word32 idSz, const mp_int *ssk, ecc_point *pvt, int *valid)</argsstring>
+        <name>wc_ValidateEccsiPair</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>idSz</declname>
+        </param>
+        <param>
+          <type>const mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>valid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="30" column="5" declfile="dox_comments/header_files/eccsi.h" declline="30" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1gaf4a9d80db8032e4cdff0035974192f2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ValidateEccsiPvt</definition>
+        <argsstring>(EccsiKey *key, const ecc_point *pvt, int *valid)</argsstring>
+        <name>wc_ValidateEccsiPvt</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>valid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="36" column="5" declfile="dox_comments/header_files/eccsi.h" declline="36" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1gaa75cf5b1c3a80606b6db94e3fe31033c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_EncodeEccsiPair</definition>
+        <argsstring>(const EccsiKey *key, mp_int *ssk, ecc_point *pvt, byte *data, word32 *sz)</argsstring>
+        <name>wc_EncodeEccsiPair</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="41" column="5" declfile="dox_comments/header_files/eccsi.h" declline="41" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga50229f9afcac8aa49a15236ac0cbb10a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_EncodeEccsiSsk</definition>
+        <argsstring>(const EccsiKey *key, mp_int *ssk, byte *data, word32 *sz)</argsstring>
+        <name>wc_EncodeEccsiSsk</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="46" column="5" declfile="dox_comments/header_files/eccsi.h" declline="46" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga23cabfddc4666fa674d241772797466c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_EncodeEccsiPvt</definition>
+        <argsstring>(const EccsiKey *key, ecc_point *pvt, byte *data, word32 *sz, int raw)</argsstring>
+        <name>wc_EncodeEccsiPvt</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="51" column="5" declfile="dox_comments/header_files/eccsi.h" declline="51" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga8bf2233bc94052a2972597a513ac0a26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DecodeEccsiPair</definition>
+        <argsstring>(const EccsiKey *key, const byte *data, word32 sz, mp_int *ssk, ecc_point *pvt)</argsstring>
+        <name>wc_DecodeEccsiPair</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="56" column="5" declfile="dox_comments/header_files/eccsi.h" declline="56" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga26b5957a495e6923817c17f426983b37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DecodeEccsiSsk</definition>
+        <argsstring>(const EccsiKey *key, const byte *data, word32 sz, mp_int *ssk)</argsstring>
+        <name>wc_DecodeEccsiSsk</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="61" column="5" declfile="dox_comments/header_files/eccsi.h" declline="61" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga65e59b4592b7bb1f93b8fafc8cae9092" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DecodeEccsiPvt</definition>
+        <argsstring>(const EccsiKey *key, const byte *data, word32 sz, ecc_point *pvt)</argsstring>
+        <name>wc_DecodeEccsiPvt</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="66" column="5" declfile="dox_comments/header_files/eccsi.h" declline="66" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1gab5816f2dbd951785d9ed25930dec5974" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DecodeEccsiPvtFromSig</definition>
+        <argsstring>(const EccsiKey *key, const byte *sig, word32 sz, ecc_point *pvt)</argsstring>
+        <name>wc_DecodeEccsiPvtFromSig</name>
+        <param>
+          <type>const EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="71" column="5" declfile="dox_comments/header_files/eccsi.h" declline="71" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HashEccsiId</definition>
+        <argsstring>(EccsiKey *key, enum wc_HashType hashType, const byte *id, word32 idSz, ecc_point *pvt, byte *hash, byte *hashSz)</argsstring>
+        <name>wc_HashEccsiId</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>idSz</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hashSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="107" column="5" declfile="dox_comments/header_files/eccsi.h" declline="107" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga64f67314f1760c19c6d9cb543f22bcf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SignEccsiHash</definition>
+        <argsstring>(EccsiKey *key, WC_RNG *rng, enum wc_HashType hashType, const byte *msg, word32 msgSz, byte *sig, word32 *sigSz)</argsstring>
+        <name>wc_SignEccsiHash</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sigSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="122" column="5" declfile="dox_comments/header_files/eccsi.h" declline="122" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Operations_1ga22e6ca729bd78ede754da6a08da4ddbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_VerifyEccsiHash</definition>
+        <argsstring>(EccsiKey *key, enum wc_HashType hashType, const byte *msg, word32 msgSz, const byte *sig, word32 sigSz, int *verified)</argsstring>
+        <name>wc_VerifyEccsiHash</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sigSz</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>verified</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="128" column="5" declfile="dox_comments/header_files/eccsi.h" declline="128" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>これらの操作は、ECCSIキーを署名して検証するためのものです</para>
+<para>署名時に使用するための署名者＆apos;のIDを使用して、ECCSIキーペア（<ref refid="group__ECCSI__Operations_1ga53b58464921d21f6466ae8ed0ae834b8" kindref="member">wc_MakeEccsiPair()</ref>）を作成します。
+Signer＆Apos;のIDでECCSIキーペア（<ref refid="group__ECCSI__Operations_1ga08e58acfbbcf01e91a159c1fa7921a50" kindref="member">wc_ValidateEccsiPair()</ref>）を検証します。
+ECCSIパブリック検証トークン（PVT）（<ref refid="group__ECCSI__Operations_1gaf4a9d80db8032e4cdff0035974192f2f" kindref="member">wc_ValidateEccsiPvt()</ref>）を検証します。
+クライアントへの転送のために、ECCSIキーペア（<ref refid="group__ECCSI__Operations_1gaa75cf5b1c3a80606b6db94e3fe31033c" kindref="member">wc_EncodeEccsiPair()</ref>）をエンコードします。
+クライアントへの転送のために、ECCSI SSK（<ref refid="group__ECCSI__Operations_1ga50229f9afcac8aa49a15236ac0cbb10a" kindref="member">wc_EncodeEccsiSsk()</ref>）をエンコードします。
+検証器への転送のために、ECCSI PVT（<ref refid="group__ECCSI__Operations_1ga23cabfddc4666fa674d241772797466c" kindref="member">wc_EncodeEccsiPvt()</ref>）をエンコードします。
+署名のためにクライアントにECCSIキーペア（<ref refid="group__ECCSI__Operations_1ga8bf2233bc94052a2972597a513ac0a26" kindref="member">wc_DecodeEccsiPair()</ref>）をデコードします。
+署名のためにクライアントにECCSI SSK（<ref refid="group__ECCSI__Operations_1ga26b5957a495e6923817c17f426983b37" kindref="member">wc_DecodeEccsiSsk()</ref>）をデコードします。
+署名のためにクライアントにECCSI PVT（<ref refid="group__ECCSI__Operations_1ga65e59b4592b7bb1f93b8fafc8cae9092" kindref="member">wc_DecodeEccsiPvt()</ref>）をデコードします。
+検証のために、クライアントに署名（<ref refid="group__ECCSI__Operations_1gab5816f2dbd951785d9ed25930dec5974" kindref="member">wc_DecodeEccsiPvtFromSig()</ref>）からECCSI PVTをデコードします。
+IDおよびパブリック検証トークン（PVT）を使用して署名/検証するために、ID（<ref refid="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" kindref="member">wc_HashEccsiId()</ref>）のハッシュを計算します。
+署名（<ref refid="group__ECCSI__Operations_1ga64f67314f1760c19c6d9cb543f22bcf2" kindref="member">wc_SignEccsiHash()</ref>）IDのハッシュと秘密署名キー（SSK）とパブリック検証トークン（PVT）を含むメッセージ。
+Signer＆Apos;のIDのハッシュを含むメッセージ（<ref refid="group__ECCSI__Operations_1ga22e6ca729bd78ede754da6a08da4ddbc" kindref="member">wc_VerifyEccsiHash()</ref>）を確認します。</para>
+
+
+
+
+
+
+
+
+
+
+
+
+    </detaileddescription>
+  </compounddef>
+</doxygen>

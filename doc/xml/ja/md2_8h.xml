@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="md2_8h" kind="file" language="C++">
+    <compoundname>md2.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__MD2_1gaff945ca452263eb812a948237612d06b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_InitMd2</definition>
+        <argsstring>(Md2 *)</argsstring>
+        <name>wc_InitMd2</name>
+        <param>
+          <type>Md2 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はMD2を初期化します。これはWC_MD2HASHによって自動的に呼び出されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 首尾よく初期化に戻りました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD2構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md2<sp/>md2[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd2(md2))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd2<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Update(md2,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Final(md2,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" kindref="member">wc_Md2Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1ga324853a7decdda459c67384948cf961e" kindref="member">wc_Md2Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" kindref="member">wc_Md2Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md2.h" line="27" column="6" declfile="dox_comments/header_files/md2.h" declline="27" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD2_1ga324853a7decdda459c67384948cf961e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Md2Update</definition>
+        <argsstring>(Md2 *md2, const byte *data, word32 len)</argsstring>
+        <name>wc_Md2Update</name>
+        <param>
+          <type>Md2 *</type>
+          <declname>md2</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さレンの提供されたバイト配列を継続的にハッシュするように呼び出すことができます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD2構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>hedheになるデータの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md2<sp/>md2[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd2(md2))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd2<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Update(md2,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Final(md2,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" kindref="member">wc_Md2Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" kindref="member">wc_Md2Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1gaff945ca452263eb812a948237612d06b" kindref="member">wc_InitMd2</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md2.h" line="60" column="6" declfile="dox_comments/header_files/md2.h" declline="60" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Md2Final</definition>
+        <argsstring>(Md2 *md2, byte *hash)</argsstring>
+        <name>wc_Md2Final</name>
+        <param>
+          <type>Md2 *</type>
+          <declname>md2</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 正常にファイナライズしたときに返されました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD2構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md2<sp/>md2[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd2(md2))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd2<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Update(md2,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md2Final(md2,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" kindref="member">wc_Md2Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" kindref="member">wc_Md2Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1gaff945ca452263eb812a948237612d06b" kindref="member">wc_InitMd2</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md2.h" line="91" column="6" declfile="dox_comments/header_files/md2.h" declline="91" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Md2Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Md2Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>利便性関数は、すべてのハッシュを処理し、結果をハッシュに配置します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データを正常にハッシュしたときに返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは小さなスタックオプションが有効になっているだけです。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" kindref="member">wc_Md2Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" kindref="member">wc_Md2Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD2_1gaff945ca452263eb812a948237612d06b" kindref="member">wc_InitMd2</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md2.h" line="116" column="6" declfile="dox_comments/header_files/md2.h" declline="116" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="group__MD2_1gaff945ca452263eb812a948237612d06b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD2_1gaff945ca452263eb812a948237612d06b" kindref="member">wc_InitMd2</ref>(Md2*);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="group__MD2_1ga324853a7decdda459c67384948cf961e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD2_1ga324853a7decdda459c67384948cf961e" kindref="member">wc_Md2Update</ref>(Md2*<sp/>md2,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD2_1ga2dd3ba9d536fe6aec666cef9d667c3d9" kindref="member">wc_Md2Final</ref>(Md2*<sp/>md2,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__MD2_1gab0f73eace7ccc1caf96332e412b20113" kindref="member">wc_Md2Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/md2.h"/>
+  </compounddef>
+</doxygen>

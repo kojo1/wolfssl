@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="md5_8h" kind="file" language="C++">
+    <compoundname>md5.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitMd5</definition>
+        <argsstring>(wc_Md5 *)</argsstring>
+        <name>wc_InitMd5</name>
+        <param>
+          <type>wc_Md5 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はMD5を初期化します。これは、wc_md5hashによって自動的に呼び出されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG MD5構造がNULL値として渡された場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD5構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Md5<sp/>md5;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>hash;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd5(&amp;md5))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd5<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Md5Update(&amp;md5,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Update<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Md5Final(&amp;md5,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Final<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gae987cf45cb46af01f6f3f373488e38a6" kindref="member">wc_Md5Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md5.h" line="36" column="5" declfile="dox_comments/header_files/md5.h" declline="36" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD5_1gae987cf45cb46af01f6f3f373488e38a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Md5Update</definition>
+        <argsstring>(wc_Md5 *md5, const byte *data, word32 len)</argsstring>
+        <name>wc_Md5Update</name>
+        <param>
+          <type>wc_Md5 *</type>
+          <declname>md5</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さレンの提供されたバイト配列を継続的にハッシュするように呼び出すことができます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG MD5構造がNULLの場合、またはデータがNULLで、LENがゼロより大きい場合に返されます。DATAパラメーターがNULLで、LENがゼロの場合、関数はエラーを返してはいけません。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD5構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>hedheになるデータの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Md5<sp/>md5;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd5(&amp;md5))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd5<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Md5Update(&amp;md5,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Update<sp/>Error<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Md5Final(&amp;md5,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Final<sp/>Error<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md5.h" line="78" column="5" declfile="dox_comments/header_files/md5.h" declline="78" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Md5Final</definition>
+        <argsstring>(wc_Md5 *md5, byte *hash)</argsstring>
+        <name>wc_Md5Final</name>
+        <param>
+          <type>wc_Md5 *</type>
+          <declname>md5</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。MD5構造体はリセットされます。注：この関数は、HAS_INTEL_QAが定義されている場合のIntelqasymmd5（）を呼び出した結果も返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 正常にファイナライズしたときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG MD5構造またはハッシュポインタがnullに渡された場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD5構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md5<sp/>md5[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd5(md5))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd5<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Md5Update(md5,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Update<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>ret<sp/>=<sp/>wc_Md5Final(md5,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Final<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga7a120f187cdc49078b5e11e508b59488" kindref="member">wc_Md5GetHash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md5.h" line="119" column="5" declfile="dox_comments/header_files/md5.h" declline="119" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD5_1ga2ab8a0b9d5c8a469a8618461d6563054" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Md5Free</definition>
+        <argsstring>(wc_Md5 *)</argsstring>
+        <name>wc_Md5Free</name>
+        <param>
+          <type>wc_Md5 *</type>
+        </param>
+        <briefdescription>
+<para>MD5構造をリセットします。注：これは、WolfSSL_TI_HASHが定義されている場合にのみサポートされます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえリターン</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>リセットするMD5構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Md5<sp/>md5;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd5(&amp;md5))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitMd5<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md5Update(&amp;md5,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md5Final(&amp;md5,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md5Free(&amp;md5);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gae987cf45cb46af01f6f3f373488e38a6" kindref="member">wc_Md5Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md5.h" line="151" column="6" declfile="dox_comments/header_files/md5.h" declline="151" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD5_1ga7a120f187cdc49078b5e11e508b59488" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Md5GetHash</definition>
+        <argsstring>(wc_Md5 *md5, byte *hash)</argsstring>
+        <name>wc_Md5GetHash</name>
+        <param>
+          <type>wc_Md5 *</type>
+          <declname>md5</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>ハッシュデータを取得します。結果はハッシュに入れられます。MD5構造体はリセットされません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none 返品不可</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD5構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ値を保持するバイト配列</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md5<sp/>md5[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd5(md5))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd5<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md5Update(md5,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md5GetHash(md5,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/md5.h" line="180" column="6" declfile="dox_comments/header_files/md5.h" declline="180" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref>(wc_Md5*);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="group__MD5_1gae987cf45cb46af01f6f3f373488e38a6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__MD5_1gae987cf45cb46af01f6f3f373488e38a6" kindref="member">wc_Md5Update</ref>(wc_Md5*<sp/>md5,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref>(wc_Md5*<sp/>md5,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="group__MD5_1ga2ab8a0b9d5c8a469a8618461d6563054" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD5_1ga2ab8a0b9d5c8a469a8618461d6563054" kindref="member">wc_Md5Free</ref>(wc_Md5*);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="group__MD5_1ga7a120f187cdc49078b5e11e508b59488" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__MD5_1ga7a120f187cdc49078b5e11e508b59488" kindref="member">wc_Md5GetHash</ref>(wc_Md5*<sp/>md5,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/md5.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pem_8h" kind="file" language="C++">
+    <compoundname>pem.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__openSSL_1gaa7fd7fe3afdfd38e76a5c041a7630909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_PEM_write_bio_PrivateKey</definition>
+        <argsstring>(WOLFSSL_BIO *bio, WOLFSSL_EVP_PKEY *key, const WOLFSSL_EVP_CIPHER *cipher, unsigned char *passwd, int len, wc_pem_password_cb *cb, void *arg)</argsstring>
+        <name>wolfSSL_PEM_write_bio_PrivateKey</name>
+        <param>
+          <type>WOLFSSL_BIO *</type>
+          <declname>bio</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_EVP_PKEY *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>cipher</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>passwd</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>wc_pem_password_cb *</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、PEM形式のWolfSSL_BIO構造にキーを書き込みます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 失敗すると</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_bio構造体からPEMバッファを取得します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PEM形式に変換するためのキー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cipher</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>EVP暗号構造。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワード。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワードの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワードコールバック。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>オプションの引数</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>bio<sp/>and<sp/>setup<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_PEM_write_bio_PrivateKey(bio,<sp/>key,<sp/>NULL,<sp/>NULL,<sp/>0,<sp/>NULL,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1ga39f3f2707c8355d270ee236e9e97f6d6" kindref="member">wolfSSL_PEM_read_bio_X509_AUX</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pem.h" line="31" column="5" declfile="dox_comments/header_files/pem.h" declline="31" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="group__openSSL_1gaa7fd7fe3afdfd38e76a5c041a7630909" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__openSSL_1gaa7fd7fe3afdfd38e76a5c041a7630909" kindref="member">wolfSSL_PEM_write_bio_PrivateKey</ref>(WOLFSSL_BIO*<sp/>bio,<sp/>WOLFSSL_EVP_PKEY*<sp/>key,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>WOLFSSL_EVP_CIPHER*<sp/>cipher,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>passwd,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wc_pem_password_cb*<sp/>cb,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>arg);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/pem.h"/>
+  </compounddef>
+</doxygen>

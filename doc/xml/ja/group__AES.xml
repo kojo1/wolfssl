@@ -1,0 +1,2789 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__AES" kind="group">
+    <compoundname>AES</compoundname>
+    <title>Algorithms - AES</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesSetKey</definition>
+        <argsstring>(Aes *aes, const byte *key, word32 len, const byte *iv, int dir)</argsstring>
+        <name>wc_AesSetKey</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、キーを設定し、初期化ベクトルを設定することにより、AES構造を初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0キーおよび初期化ベクトルを正常に設定すると。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGキーの長さが無効である場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>変更するAES構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化と復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>渡されたキーの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの初期化に使用される初期化ベクトルへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号方向。AES_ENCRYPTIONを暗号化するように設定するか、AES_DECRYPTIONを復号化します。一部のモード（CFBおよびCTR）の方向は常にAES_ENCRYPTINGです</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24<sp/>or<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>=<sp/>wc_AesSetKey(&amp;enc,<sp/>key,<sp/>AES_BLOCK_SIZE,<sp/>iv,</highlight></codeline>
+<codeline><highlight class="normal">AES_ENCRYPTION)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>failed<sp/>to<sp/>set<sp/>aes<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gafc1e71615652e4870a7c3de627be5e9b" kindref="member">wc_AesSetKeyDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" kindref="member">wc_AesSetIV</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="32" column="6" declfile="dox_comments/header_files/aes.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesSetIV</definition>
+        <argsstring>(Aes *aes, const byte *iv)</argsstring>
+        <name>wc_AesSetIV</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、特定のAESオブジェクトの初期化ベクトルを設定します。この関数を呼び出す前に、AESオブジェクトを初期化する必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0初期化ベクトルを正常に設定すると。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGAESポインターがnullの場合は返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトルを設定するためのAES構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AES構造の初期化に使用される初期化ベクトル。値がnullの場合、デフォルトのアクションはIVを0に初期化します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>enc<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>=<sp/>wc_AesSetIV(&amp;enc,<sp/>iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>failed<sp/>to<sp/>set<sp/>aes<sp/>iv</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gafc1e71615652e4870a7c3de627be5e9b" kindref="member">wc_AesSetKeyDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="62" column="6" declfile="dox_comments/header_files/aes.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gaed1e38cd30d917165183fc68dd4b218b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCbcEncrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_AesCbcEncrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>入力バッファーからプレーンテキストメッセージを暗号化し、結果の暗号テキストを出力バッファーに配置します。この関数では、メッセージを暗号化する前にAessetkeyを呼び出すことにより、AESオブジェクトを初期化する必要があります。この関数は、入力メッセージがAESブロックの長さに合わせられていることを前提としており、入力長がブロック長の倍数であると予想します。これは、WolfSSL_AES_CBC_Length_Checksがビルド構成で定義されている場合、オプションでチェックおよび施行されます。ブロックマルチプル入力を保証するために、PKCS＃7スタイルのパディングを事前に追加する必要があります。これは、パディングを追加するOpenSSL AES-CBCメソッドとは異なります。WolfSSLと対応するOpenSSL関数を相互操作するには、OpenSSLコマンドライン関数の-NOPADオプションを指定して、WolfSSL AESCBCENCRYPTメソッドのように動作し、暗号化中に追加のパディングを追加しないようにする必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0メッセージを正常に暗号化すると。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ALIGN_E:ブロックアライメントエラーで返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_LENGTH_E入力長がAESブロック長の倍数である場合、ライブラリがwolfssl_aes_cbc_length_checksで構築されている場合に返されます。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージの暗号文を保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるメッセージを含む入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力メッセージのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>AesSetKey,<sp/>using<sp/>direction<sp/>AES_ENCRYPTION</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>fill<sp/>msg<sp/>with<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//<sp/>Some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_AesCbcEncrypt(&amp;enc,<sp/>cipher,<sp/>message,<sp/>sizeof(msg)))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>block<sp/>align<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" kindref="member">wc_AesSetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga35713fdddf94f25ca7bd1a60249b041c" kindref="member">wc_AesCbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="110" column="6" declfile="dox_comments/header_files/aes.h" declline="110" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga35713fdddf94f25ca7bd1a60249b041c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCbcDecrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_AesCbcDecrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>入力バッファーから暗号を復号化し、結果のプレーンテキストを出力バッファーに配置します。この関数では、メッセージを復号化する前にAessetkeyを呼び出すことにより、AES構造を初期化する必要があります。この関数は、元のメッセージがAESブロックの長さが並べられていることを前提としており、入力長がブロック長の倍数であると予想します。これは、WolfSSL_AES_CBC_LENGTH_CHECKSがビルド構成で定義されている場合、オプションでチェックおよび施行されます。これは、PKCS＃7パディングを自動的に追加するOpenSSL AES-CBCメソッドとは異なります。したがって、ブロックマルチプル入力は必要ありません。WolfSSL関数と同等のOpenSSL関数を相互操作するには、OpenSSLコマンドライン関数の-NOPADオプションを指定して、WolfSSL AESCBCENCRYPTメソッドのように動作し、復号化中にエラーを作成しないようにする必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0正常に復号化されたメッセージ。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ALIGN_Eブロックアライメントエラーで返される場合があります。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_LENGTH_E入力長がAESブロック長の倍数である場合、ライブラリがwolfssl_aes_cbc_length_checksで構築されている場合に返されます。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを復号化するために使用されるAESオブジェクトへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたメッセージのプレーンテキストを保存する出力バッファーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化される暗号テキストを含む入力バッファーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力メッセージのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>dec;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>AesSetKey,<sp/>using<sp/>direction<sp/>AES_DECRYPTION</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//<sp/>some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>fill<sp/>cipher<sp/>with<sp/>cipher<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plain<sp/>[AES_BLOCK_SIZE<sp/>*<sp/>n];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_AesCbcDecrypt(&amp;dec,<sp/>plain,<sp/>cipher,<sp/>sizeof(cipher)))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>block<sp/>align<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaed1e38cd30d917165183fc68dd4b218b" kindref="member">wc_AesCbcEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="159" column="6" declfile="dox_comments/header_files/aes.h" declline="159" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gabe7557f4867c7d8f84cecaa000fe43a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCtrEncrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_AesCtrEncrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>入力バッファーからのメッセージを暗号化/復号化し、結果の暗号テキストを出力バッファに配置します。AESを使用してCTRモードを使用します。この関数は、WolfSSL_AES_Counterがコンパイル時に有効になっている場合にのみ有効になります。AES構造は、この関数を呼び出す前に、AessetKeyを介して初期化する必要があります。この関数は、復号化と暗号化の両方に使用されることに注意してください。<emphasis>NOTE:</emphasis>暗号化と復号化に同じAPIを使用することについて。ユーザーは、暗号化/復号化のAES構造を区別する必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>intWolfSSLエラーまたは成功統計に対応する整数値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを復号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージの暗号テキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるプレーンテキストを含む入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力プレーンテックスのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">Aes<sp/>dec;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>and<sp/>dec<sp/>with<sp/>AesSetKeyDirect,<sp/>using<sp/>direction</highlight></codeline>
+<codeline><highlight class="normal">AES_ENCRYPTION</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>since<sp/>the<sp/>underlying<sp/>API<sp/>only<sp/>calls<sp/>Encrypt<sp/>and<sp/>by<sp/>default<sp/>calling</highlight></codeline>
+<codeline><highlight class="normal">encrypt<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>a<sp/>cipher<sp/>results<sp/>in<sp/>a<sp/>decryption<sp/>of<sp/>the<sp/>cipher</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//n<sp/>being<sp/>a<sp/>positive<sp/>integer<sp/>making<sp/>msg</highlight></codeline>
+<codeline><highlight class="normal">some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>fill<sp/>plain<sp/>with<sp/>message<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE<sp/>*<sp/>n];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decrypted[AES_BLOCK_SIZE<sp/>*<sp/>n];</highlight></codeline>
+<codeline><highlight class="normal">wc_AesCtrEncrypt(&amp;enc,<sp/>cipher,<sp/>msg,<sp/>sizeof(msg));<sp/>//<sp/>encrypt<sp/>plain</highlight></codeline>
+<codeline><highlight class="normal">wc_AesCtrEncrypt(&amp;dec,<sp/>decrypted,<sp/>cipher,<sp/>sizeof(cipher));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>decrypt<sp/>cipher<sp/>text</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="204" column="5" declfile="dox_comments/header_files/aes.h" declline="204" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gadf98e960a0f388486fed8b4b576c7514" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesEncryptDirect</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in)</argsstring>
+        <name>wc_AesEncryptDirect</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力ブロックの1ブロックの暗号化、出力ブロックへの暗号化です。提供されたAES構造のキーを使用します。これは、この関数を呼び出す前にwc_aessetkeyで初期化する必要があります。WC_AESSETKEYは、IVセットがnullに呼び出されるべきでした。これは、configure option wolfssl_aes_directが有効になっている場合にのみ有効になります。<bold>警告</bold> In nearly all use cases ECB mode is considered to be less secure. Please avoid using ECB API’s directly whenever possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>intWolfSSLエラーまたは成功統計に対応する整数値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージの暗号テキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるプレーンテキストを含む入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>AesSetKey,<sp/>using<sp/>direction<sp/>AES_ENCRYPTION</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg<sp/>[AES_BLOCK_SIZE];<sp/>//<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>msg<sp/>with<sp/>plain<sp/>text<sp/>to<sp/>encrypt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">wc_AesEncryptDirect(&amp;enc,<sp/>cipher,<sp/>msg);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gac03c7c2d8fc31cb4bc4d26d8dcb10fd2" kindref="member">wc_AesDecryptDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gafc1e71615652e4870a7c3de627be5e9b" kindref="member">wc_AesSetKeyDirect</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="238" column="5" declfile="dox_comments/header_files/aes.h" declline="238" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gac03c7c2d8fc31cb4bc4d26d8dcb10fd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesDecryptDirect</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in)</argsstring>
+        <name>wc_AesDecryptDirect</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力ブロックの1ブロックの復号化であり、出力ブロックを排出します。提供されたAES構造のキーを使用します。これは、この関数を呼び出す前にwc_aessetkeyで初期化する必要があります。WC_AESSETKEYは、IVセットがnullに呼び出されるべきでした。これは、configure option wolfssl_aes_directが有効になっている場合にのみ有効になります。<bold>警告</bold> In nearly all use cases ECB mode is considered to be less secure. Please avoid using ECB API’s directly whenever possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>intWolfSSLエラーまたは成功統計に対応する整数値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された暗号テキストのプレーンテキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを含む入力バッファーへのポインタが復号化される</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>dec;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>AesSetKey,<sp/>using<sp/>direction<sp/>AES_DECRYPTION</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher<sp/>[AES_BLOCK_SIZE];<sp/>//<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cipher<sp/>with<sp/>cipher<sp/>text<sp/>to<sp/>decrypt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[AES_BLOCK_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">wc_AesDecryptDirect(&amp;dec,<sp/>msg,<sp/>cipher);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gadf98e960a0f388486fed8b4b576c7514" kindref="member">wc_AesEncryptDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gafc1e71615652e4870a7c3de627be5e9b" kindref="member">wc_AesSetKeyDirect</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="272" column="5" declfile="dox_comments/header_files/aes.h" declline="272" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gafc1e71615652e4870a7c3de627be5e9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesSetKeyDirect</definition>
+        <argsstring>(Aes *aes, const byte *key, word32 len, const byte *iv, int dir)</argsstring>
+        <name>wc_AesSetKeyDirect</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、AESを使用してCTRモードのAESキーを設定するために使用されます。指定されたキー、IV（初期化ベクトル）、および暗号化dir（方向）を使用してAESオブジェクトを初期化します。configure option wolfssl_aes_directが有効になっている場合にのみ有効になります。現在、WC_AESSETKEYDIRECTはWC_AESSETKEYを内部で使用しています。<bold>警告</bold> In nearly all use cases ECB mode is considered to be less secure. Please avoid using ECB API’s directly whenever possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0キーを正常に設定すると。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG指定されたキーが無効な長さの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化と復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>渡されたキーの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの初期化に使用される初期化ベクトル</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号方向。AES_ENCRYPTIONを暗号化するように設定するか、AES_DECRYPTIONを復号化します。（wolfssl/wolfcrypt/aes.hの列挙を参照）（注：aesカウンターモードでwc_aessetkeydirectを使用する場合（ストリーム暗号）、暗号化と復号化の両方にaes_encryptionのみを使用します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>=<sp/>wc_AesSetKeyDirect(&amp;enc,<sp/>key,<sp/>sizeof(key),<sp/>iv,</highlight></codeline>
+<codeline><highlight class="normal">AES_ENCRYPTION)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>failed<sp/>to<sp/>set<sp/>aes<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gadf98e960a0f388486fed8b4b576c7514" kindref="member">wc_AesEncryptDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gac03c7c2d8fc31cb4bc4d26d8dcb10fd2" kindref="member">wc_AesDecryptDirect</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="312" column="6" declfile="dox_comments/header_files/aes.h" declline="312" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga4d88b09e44908284d49ecbbfe389816b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesGcmSetKey</definition>
+        <argsstring>(Aes *aes, const byte *key, word32 len)</argsstring>
+        <name>wc_AesGcmSetKey</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、AES GCM（Galois/Counter Mode）のキーを設定するために使用されます。指定されたキーを使用してAESオブジェクトを初期化します。Configure Option have_aesgcmがコンパイル時に有効になっている場合にのみ有効になります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0キーを正常に設定すると。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG指定されたキーが無効な長さの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化と復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの長さが渡されましたi</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>=<sp/>wc_AesGcmSetKey(&amp;enc,<sp/>key,<sp/>sizeof(key))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>failed<sp/>to<sp/>set<sp/>aes<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga8ca2509cefd6a9d4b446c1ee38140fe1" kindref="member">wc_AesGcmEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga3abce2439b7cf22adbf5c800a9b79d7d" kindref="member">wc_AesGcmDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="342" column="6" declfile="dox_comments/header_files/aes.h" declline="342" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga8ca2509cefd6a9d4b446c1ee38140fe1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesGcmEncrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz, const byte *iv, word32 ivSz, byte *authTag, word32 authTagSz, const byte *authIn, word32 authInSz)</argsstring>
+        <name>wc_AesGcmEncrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>ivSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>authTag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authTagSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authIn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authInSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、バッファに保持されている入力メッセージを暗号化し、結果の暗号テキストを出力バッファに保存します。暗号化するたびに、新しいIV（初期化ベクトル）が必要です。また、入力認証ベクトルauthinを認証タグ、authtagにエンコードします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0入力メッセージを正常に暗号化すると</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para> - データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを暗号化するためにメッセージを保持する入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化への入力メッセージの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ivSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトルの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証タグを保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目的の認証タグの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authInSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証vectoの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>aes<sp/>structure<sp/>by<sp/>calling<sp/>wc_AesGcmSetKey</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[AES_BLOCK_LENGTH<sp/>*<sp/>n];<sp/>//n<sp/>being<sp/>a<sp/>positive<sp/>integer</highlight></codeline>
+<codeline><highlight class="normal">making<sp/>plain<sp/>some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>plain<sp/>with<sp/>msg<sp/>to<sp/>encrypt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/>=<sp/>//<sp/>some<sp/>16<sp/>byte<sp/>iv</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[AUTH_TAG_LENGTH];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authIn[]<sp/>=<sp/>//<sp/>Authentication<sp/>Vector</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_AesGcmEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(cipher),<sp/>iv,<sp/>sizeof(iv),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>authTag,<sp/>sizeof(authTag),<sp/>authIn,<sp/>sizeof(authIn));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga4d88b09e44908284d49ecbbfe389816b" kindref="member">wc_AesGcmSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga3abce2439b7cf22adbf5c800a9b79d7d" kindref="member">wc_AesGcmDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="387" column="6" declfile="dox_comments/header_files/aes.h" declline="387" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga3abce2439b7cf22adbf5c800a9b79d7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesGcmDecrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz, const byte *iv, word32 ivSz, const byte *authTag, word32 authTagSz, const byte *authIn, word32 authInSz)</argsstring>
+        <name>wc_AesGcmDecrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>ivSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authTag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authTagSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authIn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authInSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、バッファに保持されている入力暗号テキストを復号化し、結果のメッセージテキストを出力バッファに保存します。また、入力認証ベクトルであるAuthinを、提供された認証タグauthtagに対してチェックします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0入力メッセージを正常に復号化すると</para>
+</simplesect>
+<simplesect kind="return"><para>AES_GCM_AUTH_E認証タグが付属の認証コードベクトルと一致しない場合、authtag</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージテキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保持する入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストの長さを復号化する</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ivSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトルの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証タグを含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目的の認証タグの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authInSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証vectoの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;<sp/>//can<sp/>use<sp/>the<sp/>same<sp/>struct<sp/>as<sp/>was<sp/>passed<sp/>to<sp/>wc_AesGcmEncrypt</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>aes<sp/>structure<sp/>by<sp/>calling<sp/>wc_AesGcmSetKey<sp/>if<sp/>not<sp/>already<sp/>done</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_LENGTH<sp/>*<sp/>n];<sp/>//n<sp/>being<sp/>a<sp/>positive<sp/>integer</highlight></codeline>
+<codeline><highlight class="normal">making<sp/>cipher<sp/>some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cipher<sp/>with<sp/>cipher<sp/>text<sp/>to<sp/>decrypt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>output[sizeof(cipher)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/>=<sp/>//<sp/>some<sp/>16<sp/>byte<sp/>iv</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[AUTH_TAG_LENGTH];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authIn[]<sp/>=<sp/>//<sp/>Authentication<sp/>Vector</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_AesGcmDecrypt(&amp;enc,<sp/>output,<sp/>cipher,<sp/>sizeof(cipher),<sp/>iv,<sp/>sizeof(iv),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>authTag,<sp/>sizeof(authTag),<sp/>authIn,<sp/>sizeof(authIn));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga4d88b09e44908284d49ecbbfe389816b" kindref="member">wc_AesGcmSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8ca2509cefd6a9d4b446c1ee38140fe1" kindref="member">wc_AesGcmEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="436" column="6" declfile="dox_comments/header_files/aes.h" declline="436" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gae42e0250f7ec82cf1dce498d59b5f725" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_GmacSetKey</definition>
+        <argsstring>(Gmac *gmac, const byte *key, word32 len)</argsstring>
+        <name>wc_GmacSetKey</name>
+        <param>
+          <type>Gmac *</type>
+          <declname>gmac</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、Galoisメッセージ認証に使用されるGMACオブジェクトのキーを初期化し、設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0キーを正常に設定すると</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGキーの長さが無効である場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証に使用されるGMACオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KEの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Gmac<sp/>gmac;</highlight></codeline>
+<codeline><highlight class="normal">key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>length<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_GmacSetKey(&amp;gmac,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gaeb328cdd7c9ff7433198a0c4b19416af" kindref="member">wc_GmacUpdate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="463" column="5" declfile="dox_comments/header_files/aes.h" declline="463" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gaeb328cdd7c9ff7433198a0c4b19416af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_GmacUpdate</definition>
+        <argsstring>(Gmac *gmac, const byte *iv, word32 ivSz, const byte *authIn, word32 authInSz, byte *authTag, word32 authTagSz)</argsstring>
+        <name>wc_GmacUpdate</name>
+        <param>
+          <type>Gmac *</type>
+          <declname>gmac</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>ivSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authIn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authInSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>authTag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authTagSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、authin入力のgmacハッシュを生成し、結果をauthtagバッファーに保存します。WC_GMACUPDATEを実行した後、生成されたAUTHTAGを既知の認証タグと比較して、メッセージの信頼性を確認する必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0GMACハッシュを正常に計算すると</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証に使用されるGMACオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュに使用される初期化ベクトル</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ivSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用される初期化ベクトルのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証ベクトルを含むバッファーへのポインタを確認する</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authInSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証ベクトルのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>GMACハッシュを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>GMACの保存に使用される出力バッファーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Gmac<sp/>gmac;</highlight></codeline>
+<codeline><highlight class="normal">key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>length<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">iv[]<sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>length<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_GmacSetKey(&amp;gmac,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline><highlight class="normal">authIn[]<sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>authentication<sp/>input<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">tag[AES_BLOCK_SIZE];<sp/>//<sp/>will<sp/>store<sp/>authentication<sp/>code</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_GmacUpdate(&amp;gmac,<sp/>iv,<sp/>sizeof(iv),<sp/>authIn,<sp/>sizeof(authIn),<sp/>tag,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(tag));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gae42e0250f7ec82cf1dce498d59b5f725" kindref="member">wc_GmacSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="499" column="5" declfile="dox_comments/header_files/aes.h" declline="499" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga093c15adc447598d0a8def1676ee9939" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCcmSetKey</definition>
+        <argsstring>(Aes *aes, const byte *key, word32 keySz)</argsstring>
+        <name>wc_AesCcmSetKey</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、CCM（CBC-MACを使用したカウンター）を使用してAESオブジェクトのキーを設定します。AES構造へのポインターが必要であり、付属のキーでそれを初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>非</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>供給されたキーを保存するAES構造</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化と復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>供給されたKEのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>length<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_AesCcmSetKey(&amp;aes,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga5742b8232c72e07262d8daff5b6da21c" kindref="member">wc_AesCcmEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga74f0c4e47cecadaf02c1e5a756fcb0e2" kindref="member">wc_AesCcmDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="526" column="6" declfile="dox_comments/header_files/aes.h" declline="526" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga5742b8232c72e07262d8daff5b6da21c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCcmEncrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 inSz, const byte *nonce, word32 nonceSz, byte *authTag, word32 authTagSz, const byte *authIn, word32 authInSz)</argsstring>
+        <name>wc_AesCcmEncrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nonceSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>authTag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authTagSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authIn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authInSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力メッセージを、CCM（CBC-MACを使用したカウンター）を使用して、出力バッファーに出力バッファーに暗号化します。その後、Authin入力から認証タグauthtagを計算して保存します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>非</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを暗号化するためにメッセージを保持する入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化への入力メッセージの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>NonCeを含むバッファーへのポインタ（1回のみ使用）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonceSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Nonceの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証タグを保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目的の認証タグの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authInSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証vectoの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_AesCcmSetKey</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">plain[]<sp/>=<sp/>{<sp/>some<sp/>plain<sp/>text<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">authIn[]<sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>authentication<sp/>input<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">tag[AES_BLOCK_SIZE];<sp/>//<sp/>will<sp/>store<sp/>authentication<sp/>code</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_AesCcmEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain),<sp/>nonce,<sp/>sizeof(nonce),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tag,<sp/>sizeof(tag),<sp/>authIn,<sp/>sizeof(authIn));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga093c15adc447598d0a8def1676ee9939" kindref="member">wc_AesCcmSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga74f0c4e47cecadaf02c1e5a756fcb0e2" kindref="member">wc_AesCcmDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="571" column="6" declfile="dox_comments/header_files/aes.h" declline="571" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga74f0c4e47cecadaf02c1e5a756fcb0e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCcmDecrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 inSz, const byte *nonce, word32 nonceSz, const byte *authTag, word32 authTagSz, const byte *authIn, word32 authInSz)</argsstring>
+        <name>wc_AesCcmDecrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nonceSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authTag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authTagSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>authIn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>authInSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力暗号テキストを、CCM（CBC-MACを使用したカウンター）を使用して、出力バッファーに出力バッファーに復号化します。その後、authin入力から承認タグauthtagを計算します。承認タグが無効である場合、出力バッファーをゼロに設定し、エラーを返します：AES_CCM_AUTH_E。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0入力メッセージを正常に復号化すると</para>
+</simplesect>
+<simplesect kind="return"><para>AES_CCM_AUTH_E認証タグが付属の認証コードベクトルと一致しない場合、authtag</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データを暗号化するために使用されるAESオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを暗号化するためにメッセージを保持する入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力暗号テキストの長さを復号化する</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>NonCeを含むバッファーへのポインタ（1回のみ使用）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonceSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Nonceの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証タグを保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authTagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目的の認証タグの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証ベクトルを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>authInSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力認証vectoの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>dec;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>wc_AesCcmSetKey</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">cipher[]<sp/>=<sp/>{<sp/>encrypted<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">plain[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">authIn[]<sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>authentication<sp/>input<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">tag[AES_BLOCK_SIZE]<sp/>=<sp/>{<sp/>authentication<sp/>tag<sp/>received<sp/>for<sp/>verification<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>return<sp/>=<sp/>wc_AesCcmDecrypt(&amp;dec,<sp/>plain,<sp/>cipher,<sp/>sizeof(cipher),</highlight></codeline>
+<codeline><highlight class="normal">nonce,<sp/>sizeof(nonce),tag,<sp/>sizeof(tag),<sp/>authIn,<sp/>sizeof(authIn));</highlight></codeline>
+<codeline><highlight class="normal">if(return<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>decrypt<sp/>error,<sp/>invalid<sp/>authentication<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga093c15adc447598d0a8def1676ee9939" kindref="member">wc_AesCcmSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga5742b8232c72e07262d8daff5b6da21c" kindref="member">wc_AesCcmEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="626" column="6" declfile="dox_comments/header_files/aes.h" declline="626" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gaa1a5c32613382ca969ef11b875752f51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsSetKey</definition>
+        <argsstring>(XtsAes *aes, const byte *key, word32 len, int dir, void *heap, int devId)</argsstring>
+        <name>wc_AesXtsSetKey</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dir</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+<para>これは、暗号化または復号化タイプを修正するためにキーを設定するのに役立ちます。完了したら、AESキーでwc_aesxtsfreeを呼び出すのはユーザー次第です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化/復号化プロセス用のAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AESキーを保持しているバッファー|キーを調整します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイトのキーバッファーの長さ。キーサイズの2倍である必要があります。つまり、16バイトキーの場合32。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>方向、AES_ENCRYPTINGまたはAES_DECRYPTIONのいずれか</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するためのヒントのヒント。nullにすることができます</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>async cryptoで使用するid。可能です</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsSetKey(&amp;aes,<sp/>key,<sp/>sizeof(key),<sp/>AES_ENCRYPTION,<sp/>NULL,<sp/>0)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" kindref="member">wc_AesXtsEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad3aea81076e797ce28aa77e9cd610779" kindref="member">wc_AesXtsDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" kindref="member">wc_AesXtsFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="664" column="5" declfile="dox_comments/header_files/aes.h" declline="664" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gaf06ea9dce97f3bda7d1ce373c6a917c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsEncryptSector</definition>
+        <argsstring>(XtsAes *aes, byte *out, const byte *in, word32 sz, word64 sector)</argsstring>
+        <name>wc_AesXtsEncryptSector</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>word64</type>
+          <declname>sector</declname>
+        </param>
+        <briefdescription>
+<para>WC_AESXTSENCRYPTと同じプロセスが、バイト配列の代わりにWord64タイプを微調整値として使用します。これにより、Word64をバイト配列に変換し、wc_aesxtsencryptを呼び出します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保持する出力バッファー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するためにプレーンテキストバッファを入力します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アウトとバッファー内の両方のサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>TWEAに使用する価値</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word64<sp/>s<sp/>=<sp/>VALUE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>keys<sp/>with<sp/>AES_ENCRYPTION<sp/>as<sp/>dir</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsEncryptSector(&amp;aes,<sp/>cipher,<sp/>plain,<sp/>SIZE,<sp/>s)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" kindref="member">wc_AesXtsEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad3aea81076e797ce28aa77e9cd610779" kindref="member">wc_AesXtsDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaa1a5c32613382ca969ef11b875752f51" kindref="member">wc_AesXtsSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" kindref="member">wc_AesXtsFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="703" column="5" declfile="dox_comments/header_files/aes.h" declline="703" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga656aa1de00e3d73649726a9303ac863d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsDecryptSector</definition>
+        <argsstring>(XtsAes *aes, byte *out, const byte *in, word32 sz, word64 sector)</argsstring>
+        <name>wc_AesXtsDecryptSector</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>word64</type>
+          <declname>sector</declname>
+        </param>
+        <briefdescription>
+<para>WC_AESXTSDECRYPTと同じプロセスが、バイト配列の代わりにWord64タイプを微調整値として使用します。これにより、Word64をバイト配列に変換するだけです。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プレーンテキストを保持する出力バッファー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストバッファーを入力して復号化します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アウトとバッファー内の両方のサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>TWEAに使用する価値</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word64<sp/>s<sp/>=<sp/>VALUE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>aes<sp/>key<sp/>with<sp/>AES_DECRYPTION<sp/>as<sp/>dir<sp/>and<sp/>tweak<sp/>with<sp/>AES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsDecryptSector(&amp;aes,<sp/>plain,<sp/>cipher,<sp/>SIZE,<sp/>s)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" kindref="member">wc_AesXtsEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad3aea81076e797ce28aa77e9cd610779" kindref="member">wc_AesXtsDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaa1a5c32613382ca969ef11b875752f51" kindref="member">wc_AesXtsSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" kindref="member">wc_AesXtsFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="742" column="5" declfile="dox_comments/header_files/aes.h" declline="742" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsEncrypt</definition>
+        <argsstring>(XtsAes *aes, byte *out, const byte *in, word32 sz, const byte *i, word32 iSz)</argsstring>
+        <name>wc_AesXtsEncrypt</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>iSz</declname>
+        </param>
+        <briefdescription>
+<para>XTSモードのAES。（XTS）微調整と暗号のテキスト盗みによるXEX暗号化。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保持する出力バッファー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するためにプレーンテキストバッファを入力します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アウトとバッファー内の両方のサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>調整に使用する価値</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iバッファーのサイズは常にaes_block_sizeである必要がありますが、この入力があると、ユーザーが関数を呼び出す方法についての正気チェックが追加されます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>i[AES_BLOCK_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>key<sp/>with<sp/>AES_ENCRYPTION<sp/>as<sp/>dir</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsEncrypt(&amp;aes,<sp/>cipher,<sp/>plain,<sp/>SIZE,<sp/>i,<sp/>sizeof(i))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad3aea81076e797ce28aa77e9cd610779" kindref="member">wc_AesXtsDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaa1a5c32613382ca969ef11b875752f51" kindref="member">wc_AesXtsSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" kindref="member">wc_AesXtsFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="782" column="5" declfile="dox_comments/header_files/aes.h" declline="782" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1gad3aea81076e797ce28aa77e9cd610779" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsDecrypt</definition>
+        <argsstring>(XtsAes *aes, byte *out, const byte *in, word32 sz, const byte *i, word32 iSz)</argsstring>
+        <name>wc_AesXtsDecrypt</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>iSz</declname>
+        </param>
+        <briefdescription>
+<para>暗号化と同じプロセスですが、AESキーはAES_DECRYPTIONタイプです。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プレーンテキストを保持する出力バッファー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストバッファーを入力して復号化します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アウトとバッファー内の両方のサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>調整に使用する価値</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iバッファーのサイズは常にaes_block_sizeである必要がありますが、この入力があると、ユーザーが関数を呼び出す方法についての正気チェックが追加されます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>i[AES_BLOCK_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>key<sp/>with<sp/>AES_DECRYPTION<sp/>as<sp/>dir<sp/>and<sp/>tweak<sp/>with<sp/>AES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsDecrypt(&amp;aes,<sp/>plain,<sp/>cipher,<sp/>SIZE,<sp/>i,<sp/>sizeof(i))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" kindref="member">wc_AesXtsEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaa1a5c32613382ca969ef11b875752f51" kindref="member">wc_AesXtsSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" kindref="member">wc_AesXtsFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="821" column="5" declfile="dox_comments/header_files/aes.h" declline="821" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga8d63d909dd415e2954daec23cb4851ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesXtsFree</definition>
+        <argsstring>(XtsAes *aes)</argsstring>
+        <name>wc_AesXtsFree</name>
+        <param>
+          <type>XtsAes *</type>
+          <declname>aes</declname>
+        </param>
+        <briefdescription>
+<para>これは、XTSAES構造で使用されるリソースを解放することです。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AESキーはFREのキーです</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">XtsAes<sp/>aes;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesXtsSetKey(&amp;aes,<sp/>key,<sp/>sizeof(key),<sp/>AES_ENCRYPTION,<sp/>NULL,<sp/>0)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_AesXtsFree(&amp;aes);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga0372af5fdae94d196c977e28c3e35a81" kindref="member">wc_AesXtsEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad3aea81076e797ce28aa77e9cd610779" kindref="member">wc_AesXtsDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaa1a5c32613382ca969ef11b875752f51" kindref="member">wc_AesXtsSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="848" column="5" declfile="dox_comments/header_files/aes.h" declline="848" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga430f0c344e8e8132bceec748483212c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesInit</definition>
+        <argsstring>(Aes *aes, void *heap, int devId)</argsstring>
+        <name>wc_AesInit</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+<para>AES構造を初期化します。使用するヒップのヒントを設定し、Asyncハードウェアで使用するためにIDを使用します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するためのAES構造</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>必要に応じてmalloc/freeに使用するためのヒップのヒント</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Asyncハードウェアで使用するID</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>hint<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>devId<sp/>=<sp/>INVALID_DEVID;<sp/>//if<sp/>not<sp/>using<sp/>async<sp/>INVALID_DEVID<sp/>is<sp/>default</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//heap<sp/>hint<sp/>could<sp/>be<sp/>set<sp/>here<sp/>if<sp/>used</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_AesInit(&amp;aes,<sp/>hint,<sp/>devId);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" kindref="member">wc_AesSetIV</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="875" column="6" declfile="dox_comments/header_files/aes.h" declline="875" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga92c53cbd730d329fe59a15b372495d3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCfbEncrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_AesCfbEncrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>CFBモードのAES。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0失敗時の成功と負のエラー値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを保持するための出力バッファーは、少なくとも入力バッファと同じくらい大きくなければなりません）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するためにプレーンテキストバッファを入力します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>key<sp/>with<sp/>AES_ENCRYPTION<sp/>as<sp/>dir<sp/>for<sp/>both<sp/>encrypt<sp/>and<sp/>decrypt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesCfbEncrypt(&amp;aes,<sp/>cipher,<sp/>plain,<sp/>SIZE)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga311d4f8105b7f3b1d5a3b46fca440b6d" kindref="member">wc_AesCfbDecrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="907" column="5" declfile="dox_comments/header_files/aes.h" declline="907" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga311d4f8105b7f3b1d5a3b46fca440b6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCfbDecrypt</definition>
+        <argsstring>(Aes *aes, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_AesCfbDecrypt</name>
+        <param>
+          <type>Aes *</type>
+          <declname>aes</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>CFBモードのAES。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0失敗時の成功と負のエラー値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロック暗号化/復号化に使用するAESキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたテキストを保持するための出力バッファーは、少なくとも入力バッファと同じくらい大きくなければなりません）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化するための入力バッファー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Aes<sp/>aes;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>plain[SIZE];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cipher[SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>key<sp/>with<sp/>AES_ENCRYPTION<sp/>as<sp/>dir<sp/>for<sp/>both<sp/>encrypt<sp/>and<sp/>decrypt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_AesCfbDecrypt(&amp;aes,<sp/>plain,<sp/>cipher,<sp/>SIZE)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga92c53cbd730d329fe59a15b372495d3a" kindref="member">wc_AesCfbEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="939" column="5" declfile="dox_comments/header_files/aes.h" declline="939" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga49ecb8fde33e33ad2287e4d28b74a5c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesSivEncrypt</definition>
+        <argsstring>(const byte *key, word32 keySz, const byte *assoc, word32 assocSz, const byte *nonce, word32 nonceSz, const byte *in, word32 inSz, byte *siv, byte *out)</argsstring>
+        <name>wc_AesSivEncrypt</name>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>assoc</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>assocSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nonceSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>siv</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、RFC 5297で説明されているように、SIV（合成初期化ベクトル）暗号化を実行します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0成功した暗号化。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGキー、SIV、または出力バッファーがnullの場合。また、キーサイズが32、48、または64バイトである場合にも返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>OtherAESまたはCMAC操作が失敗した場合、その他の負のエラー値が返されました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するキーを含むバイトバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイトのキーバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>assoc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加の認証された関連データ（AD）。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>assocSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイトのADバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>一度使用された番号。ADと同じ方法でアルゴリズムで使用されます。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonceSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト単位の非CEバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するためのプレーンテキストバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プレーンテキストバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>siv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>S2VによるSIV出力（RFC 5297 2.4を参照）。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号文を保持するバッファー。プレーンテキストバッファーと同じ長さでなければなりません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>32,<sp/>48,<sp/>or<sp/>64<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>assoc[]<sp/>=<sp/>{0x01,<sp/>0x2,<sp/>0x3};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{0x04,<sp/>0x5,<sp/>0x6};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plainText[]<sp/>=<sp/>{0xDE,<sp/>0xAD,<sp/>0xBE,<sp/>0xEF};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>siv[AES_BLOCK_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipherText[sizeof(plainText)];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_AesSivEncrypt(key,<sp/>sizeof(key),<sp/>assoc,<sp/>sizeof(assoc),<sp/>nonce,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sizeof(nonce),<sp/>plainText,<sp/>sizeof(plainText),<sp/>siv,<sp/>cipherText)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>encrypt</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga91be158d881bb0c56fa3a03660917da6" kindref="member">wc_AesSivDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="984" column="5" declfile="dox_comments/header_files/aes.h" declline="984" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga91be158d881bb0c56fa3a03660917da6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesSivDecrypt</definition>
+        <argsstring>(const byte *key, word32 keySz, const byte *assoc, word32 assocSz, const byte *nonce, word32 nonceSz, const byte *in, word32 inSz, byte *siv, byte *out)</argsstring>
+        <name>wc_AesSivDecrypt</name>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>assoc</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>assocSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nonceSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>siv</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、RFC 5297で説明されているように、SIV（合成初期化ベクトル）復号化を実行します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0復号化が成功した場合。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGキー、SIV、または出力バッファーがnullの場合。また、キーサイズが32、48、または64バイトである場合にも返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>AES_SIV_AUTH_ES2Vによって導出されたSIVが入力SIVと一致しない場合（RFC 5297 2.7を参照）。</para>
+</simplesect>
+<simplesect kind="return"><para>OtherAESまたはCMAC操作が失敗した場合、その他の負のエラー値が返されました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するキーを含むバイトバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイトのキーバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>assoc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加の認証された関連データ（AD）。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>assocSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイトのADバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>一度使用された番号。基礎となるアルゴリズムによってADと同じ方法で使用されます。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonceSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト単位の非CEバッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号文化バッファーを復号化します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号文化バッファーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>siv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号文に伴うSIV（RFC 5297 2.4を参照）。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたプレーンテキストを保持するバッファー。ciphertextバッファーと同じ長さでなければなりません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>32,<sp/>48,<sp/>or<sp/>64<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>assoc[]<sp/>=<sp/>{0x01,<sp/>0x2,<sp/>0x3};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{0x04,<sp/>0x5,<sp/>0x6};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipherText[]<sp/>=<sp/>{0xDE,<sp/>0xAD,<sp/>0xBE,<sp/>0xEF};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>siv[AES_BLOCK_SIZE]<sp/>=<sp/>{<sp/>the<sp/>SIV<sp/>that<sp/>came<sp/>with<sp/>the<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plainText[sizeof(cipherText)];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_AesSivDecrypt(key,<sp/>sizeof(key),<sp/>assoc,<sp/>sizeof(assoc),<sp/>nonce,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sizeof(nonce),<sp/>cipherText,<sp/>sizeof(cipherText),<sp/>siv,<sp/>plainText)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>decrypt</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1ga49ecb8fde33e33ad2287e4d28b74a5c7" kindref="member">wc_AesSivEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/aes.h" line="1031" column="5" declfile="dox_comments/header_files/aes.h" declline="1031" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__AES_1ga7f27a5f5f50fe1da277fafff27fa2173" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 inSz, const byte *key, word32 keySz, const byte *iv)</argsstring>
+        <name>wc_AesCbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>入力バッファーから暗号を復号化し、結果のプレーンテキストを出力バッファーに配置します。この関数では、AES構造を初期化する必要はありません。代わりに、キーとIV（初期化ベクトル）を取り入れ、これらを使用してAESオブジェクトを初期化してから、暗号テキストを復号化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0正常に復号化されたメッセージ</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ALIGN_Eブロックアライメントエラーで返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGキー長が無効である場合、またはaesオブジェクトがaessetiv中にnullの場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Ewolfssl_small_stackが有効になり、xmallocがAESオブジェクトのインスタンス化に失敗した場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたメッセージのプレーンテキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを含む入力バッファーへのポインタは、復号化されます</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力メッセージのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用されるキーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//n<sp/>being<sp/>a<sp/>positive<sp/>integer<sp/>making</highlight></codeline>
+<codeline><highlight class="normal">cipher<sp/>some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>fill<sp/>cipher<sp/>with<sp/>cipher<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plain<sp/>[AES_BLOCK_SIZE<sp/>*<sp/>n];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_AesCbcDecryptWithKey(plain,<sp/>cipher,<sp/>AES_BLOCK_SIZE,<sp/>key,</highlight></codeline>
+<codeline><highlight class="normal">AES_BLOCK_SIZE,<sp/>iv))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Decrypt<sp/>Error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" kindref="member">wc_AesSetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaed1e38cd30d917165183fc68dd4b218b" kindref="member">wc_AesCbcEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga35713fdddf94f25ca7bd1a60249b041c" kindref="member">wc_AesCbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="45" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

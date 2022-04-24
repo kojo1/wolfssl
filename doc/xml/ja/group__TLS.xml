@@ -1,0 +1,738 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__TLS" kind="group">
+    <compoundname>TLS</compoundname>
+    <title>wolfSSL Initialization/Shutdown</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__TLS_1ga51f54ec99e4d87f4b25a92fe031439ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_shutdown</definition>
+        <argsstring>(WOLFSSL *)</argsstring>
+        <name>wolfSSL_shutdown</name>
+        <param>
+          <type>WOLFSSL *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、SSLセッションであるSSLを使用して、アクティブなSSL/TLS接続をシャットダウンします。この関数は、ピアに「Close Notify」アラートを送信しようとします。呼び出しアプリケーションは、ピアがそれに応じて「閉じる通知」アラートを送信するのを待つか、Wolfssl_shutdown（リソースを節約するため）を直接呼び出した後、先に進んで基礎となる接続をシャットダウンすることを選択できます。どちらのオプションもTLS仕様によって許可されます。将来的に基礎となる接続が再度使用される場合、同期をピア間でそのままに保つために、完全な2方向のシャットダウン手順を実行する必要があります。<ref refid="group__TLS_1ga51f54ec99e4d87f4b25a92fe031439ae" kindref="member">wolfSSL_shutdown()</ref>は、ブロッキングI/OノンブロッキングI/Oの両方で動作します。基礎となるI/Oが非ブロッキングである場合、<ref refid="group__TLS_1ga51f54ec99e4d87f4b25a92fe031439ae" kindref="member">wolfSSL_shutdown()</ref>は、基礎となるI/Oが<ref refid="group__TLS_1ga51f54ec99e4d87f4b25a92fe031439ae" kindref="member">wolfSSL_shutdown()</ref>のニーズを満たすことができなかった場合、エラーを返します。この場合、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>への呼び出しはSSL_ERROR_WANT_READまたはSSL_ERROR_WANT_WRITEのいずれかを生成します。次に、呼び出しプロセスは、基礎となるI/Oの準備ができたら、<ref refid="group__TLS_1ga51f54ec99e4d87f4b25a92fe031439ae" kindref="member">wolfSSL_shutdown()</ref>に呼び出しを繰り返す必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功に戻ります。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SHUTDOWN_NOT_DONE シャットダウンが終了していない場合は返され、機能を再度呼び出す必要があります。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERROR 失敗したときに返されます。より具体的なエラーコードについては、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>に電話してください</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>で作成されたSSLセッションへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_shutdown(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>shut<sp/>down<sp/>SSL<sp/>connection</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Setup_1ga640f0a9e17f4727e996fc8bab4eee3c6" kindref="member">wolfSSL_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1gabe86939065276c9271a17d799860535d" kindref="member">wolfSSL_CTX_free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="2069" column="6" declfile="dox_comments/header_files/ssl.h" declline="2069" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga8aec710d0abb45c5f0ddcbfd635335ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetServerID</definition>
+        <argsstring>(WOLFSSL *ssl, const unsigned char *id, int len, int newSession)</argsstring>
+        <name>wolfSSL_SetServerID</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>newSession</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、クライアントセッションをサーバーIDに関連付けます。新聞のフラグがある場合、既存のセッションは再利用されません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 関数がエラーなしで実行された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG WolfSSL structまたはIDパラメーターがnullの場合、またはlenがゼロ以下の場合は返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_session構造体のServerIDメンバーにコピーされる定数バイトポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>セッションIDパラメータの長さを表すint型。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>newSession</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>セッションを再利用するかどうかを示すためのフラグを表すint型</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>protocol<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>WOLFSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>id[MAX_SIZE];<sp/><sp/>//<sp/>or<sp/>dynamically<sp/>create<sp/>space</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>len<sp/>=<sp/>0;<sp/>//<sp/>initialize<sp/>length</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>newSession<sp/>=<sp/>0;<sp/>//<sp/>flag<sp/>to<sp/>allow</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wolfSSL_SetServerID(ssl,<sp/>id,<sp/>len,<sp/>newSession);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>WOLFSSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>Id<sp/>was<sp/>successfully<sp/>set</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Setup_1ga7dec51eac167358e439747b5050d5acd" kindref="member">wolfSSL_set_session</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="2406" column="12" declfile="dox_comments/header_files/ssl.h" declline="2406" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga5dd6220863840b6c1476a6f1f67cfc95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_library_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_library_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は<ref refid="group__Setup_1gad13c500e10baf5b162ff84fa14939087" kindref="member">wolfSSL_CTX_new()</ref>で内部的に呼び出されます。この関数は<ref refid="group__TLS_1ga789ef74e34df659a62f06da2ea709737" kindref="member">wolfSSL_Init()</ref>のままのラッパーで、wolfsslがOpenSSL互換層でコンパイルされたときのOpenSSL互換性（ssl_library_init）に存在します。<ref refid="group__TLS_1ga789ef74e34df659a62f06da2ea709737" kindref="member">wolfSSL_Init()</ref>はより一般的に使用されているWolfSSL初期化機能です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功した場合、コールが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERROR 失敗に戻ります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_library_init();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>failed<sp/>to<sp/>initialize<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__TLS_1ga789ef74e34df659a62f06da2ea709737" kindref="member">wolfSSL_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__TLS_1gab9c917bd9f4e75b07a6538899e493899" kindref="member">wolfSSL_Cleanup</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="2723" column="6" declfile="dox_comments/header_files/ssl.h" declline="2723" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga42d411375098db69d57e978ac5bc8b56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_get_shutdown</definition>
+        <argsstring>(const WOLFSSL *)</argsstring>
+        <name>wolfSSL_get_shutdown</name>
+        <param>
+          <type>const WOLFSSL *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、Options構造体のClosEnotifyまたはConnresetまたはSentNotifyメンバーのシャットダウン条件をチェックします。オプション構造はWolfSSL構造内にあります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1 ssl_sent_shutdownが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>2 ss_received_shutdownが返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造への一定のポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>WOLFSSL_CTX_new(<sp/>protocol<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>WOLFSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_get_shutdown(ssl);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>==<sp/>1){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SSL_SENT_SHUTDOWN</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if(ret<sp/>==<sp/>2){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SSL_RECEIVED_SHUTDOWN</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Fatal<sp/>error.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_SESSION_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="3622" column="6" declfile="dox_comments/header_files/ssl.h" declline="3622" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga963d7c78cfb7695f66a655c2d5ccb6f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_is_init_finished</definition>
+        <argsstring>(WOLFSSL *)</argsstring>
+        <name>wolfSSL_is_init_finished</name>
+        <param>
+          <type>WOLFSSL *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、接続が確立されているかどうかを確認します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 接続が確立されていない場合、すなわちWolfSSL構造体がNULLまたはハンドシェイクが行われていない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>1 接続が確立されていない場合に返されます。つまり、WolfSSL structがnullであるか、握手が行われていません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>EXAMPLE</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>protocol<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_is_init_finished(ssl)){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Handshake<sp/>is<sp/>done<sp/>and<sp/>connection<sp/>is<sp/>established</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_set_accept_state </para>
+</simplesect>
+<simplesect kind="see"><para>wolfssl_get_keys.</para>
+</simplesect>
+<simplesect kind="see"><para>wolfssl_set_shutdown</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="3679" column="6" declfile="dox_comments/header_files/ssl.h" declline="3679" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga789ef74e34df659a62f06da2ea709737" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>使用するためにWolfSSLライブラリを初期化します。アプリケーションごとに1回、ライブラリへの他の呼び出しの前に呼び出される必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功した場合、コールが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_E 返される可能性のあるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>WC_INIT_E WolfCrypt初期化エラーが返されました</para>
+</simplesect>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_Init();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>failed<sp/>to<sp/>initialize<sp/>wolfSSL<sp/>library</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__TLS_1gab9c917bd9f4e75b07a6538899e493899" kindref="member">wolfSSL_Cleanup</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5694" column="5" declfile="dox_comments/header_files/ssl.h" declline="5694" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1gab9c917bd9f4e75b07a6538899e493899" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_Cleanup</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Cleanup</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>WolfSSLライブラリをさらに使用しないようにしてください。図書館で使用されているリソースを解放しますが、呼び出す必要はありません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS エラーを返しません。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_E Mutexエラーが戻ります。</para>
+</simplesect>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Cleanup();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__TLS_1ga789ef74e34df659a62f06da2ea709737" kindref="member">wolfSSL_Init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5712" column="5" declfile="dox_comments/header_files/ssl.h" declline="5712" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga019ccc78fa3e8c2c093288596b46ab67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetMinVersion</definition>
+        <argsstring>(WOLFSSL *ssl, int version)</argsstring>
+        <name>wolfSSL_SetMinVersion</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、許可されている最小のダウングレードバージョンを設定します。接続が（wolfsslv23_client_methodまたはwolfsslv23_server_method）を使用して、接続がダウングレードできる場合にのみ適用されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS この関数とそのサブルーチンがエラーなしで実行されると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SSLオブジェクトがNULLの場合に返されます。サブルーチンでは、このエラーが表示されない場合はこのエラーがスローされます。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最小値として設定するバージョンの整数表現：wolfssl_sslv3 = 0、wolfssl_tlsv1 = 1、wolfssl_tlsv1_1 = 2またはwolfssl_tlsv1_2 = 3</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>WOLFSSL_CTX_new(protocol<sp/>method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>WOLFSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>version;<sp/><sp/>macro<sp/>representation</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CTX_SetMinVersion(ssl-&gt;ctx,<sp/>version)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Failed<sp/>to<sp/>set<sp/>min<sp/>version</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>SetMinVersionHelper </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="7987" column="5" declfile="dox_comments/header_files/ssl.h" declline="7987" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga855e31083f892640e8a07db40c4d5be3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_ALPN_GetProtocol</definition>
+        <argsstring>(WOLFSSL *ssl, char **protocol_name, unsigned short *size)</argsstring>
+        <name>wolfSSL_ALPN_GetProtocol</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>protocol_name</declname>
+        </param>
+        <param>
+          <type>unsigned short *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、サーバーによって設定されたプロトコル名を取得します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS エラーが投げられなかった成功した実行で返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERROR 拡張機能が見つからなかった場合、またはPEERとのプロトコルマッチがなかった場合に返されます。また、複数のプロトコル名が受け入れられている場合、エラーがスローされます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_ALPN_NOT_FOUND PEERとのプロトコルの一致が見つからなかったことを意味することを示しました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数に渡されたnull引数があった場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>protocol_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プロトコル名を表すCHARへのポインタは、ALPN構造に保持されます。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>protocol_nameのサイズを表すWord16タイプ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>WOLFSSL_CTX_new(<sp/>protocol<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>WOLFSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>err;</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>protocol_name<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">Word16<sp/>protocol_nameSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_ALPN_GetProtocol(ssl,<sp/>&amp;protocol_name,<sp/>&amp;protocol_nameSz);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(err<sp/>==<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Sent<sp/>ALPN<sp/>protocol</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>TLSX_ALPN_GetRequest </para>
+</simplesect>
+<simplesect kind="see"><para>tlsx_find.</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="10702" column="5" declfile="dox_comments/header_files/ssl.h" declline="10702" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga0a63e7d191029128ea311f5a90244bd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_ALPN_GetPeerProtocol</definition>
+        <argsstring>(WOLFSSL *ssl, char **list, unsigned short *listSz)</argsstring>
+        <name>wolfSSL_ALPN_GetPeerProtocol</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>unsigned short *</type>
+          <declname>listSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、SSLオブジェクトからバッファーにALPN_CLIENT_LISTデータをコピーします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 関数がエラーなしで実行された場合に返されます。SSLオブジェクトのALPN_CLIENT_LISTメンバーがリストパラメーターにコピーされました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG リストまたはListSZパラメーターがnullの場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_ERROR リストバッファーに問題がある場合は返されます（nullまたはサイズは0です）。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_ERROR メモリを動的に割り当てる問題がある場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファへのポインター。SSLオブジェクトからのデータがコピーされます。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>listSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#import<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>protocol<sp/>method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>HAVE_ALPN</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>list<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">word16<sp/>listSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_ALPN_GetPeerProtocol(ssl,<sp/>&amp;list,<sp/>&amp;listSz);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(err<sp/>==<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>List<sp/>of<sp/>protocols<sp/>names<sp/>sent<sp/>by<sp/>client</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Setup_1ga39186057ad4fc9a1fe0defcf111254b6" kindref="member">wolfSSL_UseALPN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="10745" column="5" declfile="dox_comments/header_files/ssl.h" declline="10745" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1ga6666c5c5d9a81938689ab49d691b16d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_MakeTlsMasterSecret</definition>
+        <argsstring>(unsigned char *ms, word32 msLen, const unsigned char *pms, word32 pmsLen, const unsigned char *cr, const unsigned char *sr, int tls1_2, int hash_type)</argsstring>
+        <name>wolfSSL_MakeTlsMasterSecret</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>ms</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msLen</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>pms</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pmsLen</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>cr</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>sr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tls1_2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hash_type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はCRとSRの値をコピーしてからWC_PRF（疑似ランダム関数）に渡し、その値を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功について</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E バッファのサイズのエラーが発生する場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E サブルーチンが動的メモリを割り当てることができなかった場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスターシークレットはアレイ構造に保持されています。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスターシークレットの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pms</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アレイ構造に保持されているプリマスターの秘密。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pmsLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プリマスターの秘密の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>クライアントのランダム</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サーバーのランダムです。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tls1_2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バージョンが少なくともTLSバージョン1.2であることを意味します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュ型を意味します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">called<sp/>in<sp/>MakeTlsMasterSecret<sp/>and<sp/>retrieves<sp/>the<sp/>necessary</highlight></codeline>
+<codeline><highlight class="normal">information<sp/>as<sp/>follows:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>MakeTlsMasterSecret(WOLFSSL*<sp/>ssl){</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_makeTlsMasterSecret(ssl-&gt;arrays-&gt;masterSecret,<sp/>SECRET_LEN,</highlight></codeline>
+<codeline><highlight class="normal">ssl-&gt;arrays-&gt;preMasterSecret,<sp/>ssl-&gt;arrays-&gt;preMasterSz,</highlight></codeline>
+<codeline><highlight class="normal">ssl-&gt;arrays-&gt;clientRandom,<sp/>ssl-&gt;arrays-&gt;serverRandom,</highlight></codeline>
+<codeline><highlight class="normal">IsAtLeastTLSv1_2(ssl),<sp/>ssl-&gt;specs.mac_algorithm);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_PRF </para>
+</simplesect>
+<simplesect kind="see"><para>maketlsmastersecret</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="11594" column="5" declfile="dox_comments/header_files/ssl.h" declline="11594" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__TLS_1gae50a6326d822bfce8172ff435b0ebff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_preferred_group</definition>
+        <argsstring>(WOLFSSL *ssl)</argsstring>
+        <name>wolfSSL_preferred_group</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、クライアントがTLS V1.3の握手で使用することを好む主要な交換グループを返します。この関数を握手が完了した後にこの関数を呼び出して、サーバーが好みのグループを決定し、この情報を将来の接続で使用してキーペアを事前に生成してキーエクスチェンジのために事前に生成できるようにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>BAD_FUNC_ARG SSLがNULLであるか、TLS V1.3を使用していない場合。</para>
+</simplesect>
+<simplesect kind="return"><para>SIDE_ERROR サーバーで呼び出された場合。</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_READY_ERROR ハンドシェイクが完了する前に呼び出された場合。</para>
+</simplesect>
+<simplesect kind="return"><para>Group 成功した場合は識別子</para>
+</simplesect>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>group;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_set1_groups_list(ssl)</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>get<sp/>group</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">group<sp/>=<sp/>ret;</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Setup_1gac2d00ac65513f10e0ccd1b67d9a99e3d" kindref="member">wolfSSL_UseKeyShare</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga5bab039f79486d3ac31be72bc5f4e1e8" kindref="member">wolfSSL_CTX_set_groups</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga4364fed6282be996cd4b2503ae81a79b" kindref="member">wolfSSL_set_groups</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga7d8482831c10c4628a51f34f8bcb4d96" kindref="member">wolfSSL_CTX_set1_groups_list</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga789a0a18aa33f7cd9b64e4f2590335ec" kindref="member">wolfSSL_set1_groups_list</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="13141" column="6" declfile="dox_comments/header_files/ssl.h" declline="13141" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

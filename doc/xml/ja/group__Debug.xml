@@ -1,0 +1,550 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__Debug" kind="group">
+    <compoundname>Debug</compoundname>
+    <title>wolfSSL Error Handling and Reporting</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_Debugging_ON</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Debugging_ON</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>ビルド時にロギングが有効になっている場合、この関数は実行時にロギングをオンにします。ビルド時にロギングを有効にするには、<ndash/> enable-debugを使用するか、debug_wolfsslを定義します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功すると。</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN このビルドでロギングが有効になっていない場合に返されるエラーです</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_ON();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/logging.h" line="58" column="6" declfile="dox_comments/header_files/logging.h" declline="58" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1gafa8dab742182b891d80300fb195399ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_Debugging_OFF</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Debugging_OFF</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は、ランタイムロギングメッセージをオフにします。彼らがすでにオフになっている場合、行動は取られていません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none リターンはありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_OFF();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/logging.h" line="78" column="6" declfile="dox_comments/header_files/logging.h" declline="78" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_get_error</definition>
+        <argsstring>(WOLFSSL *ssl, int ret)</argsstring>
+        <name>wolfSSL_get_error</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ret</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、以前のAPI関数呼び出し（wolfssl_connect、wolfssl_accept、wolfssl_read、wolfssl_writeなど）がエラー戻りコード（ssl_failure）を呼び出した理由を表す一意のエラーコードを返します。前の関数の戻り値は、RETを介してwolfssl_get_errorに渡されます。wolfssl_get_errorが呼び出され、一意のエラーコードを返すと、<ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string()</ref>が呼び出されると、人間の読み取り可能なエラー文字列を取得できます。詳細については、<ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string()</ref>を参照してください。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>On 正常に完了すると、この関数は、以前のAPI関数が失敗した理由を説明する一意のエラーコードを返します。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_ERROR_NONE ret＆gt;の場合、返却されます。0. ret＆lt; = 0の場合、以前のAPIがエラーコードを返すように見えたが実際にはエラーが発生しなかったときにこの値を返すことができる場合があります。例は、ゼロSZパラメーターで<ref refid="group__IO_1ga80c3ccd3c0441c77307df3afe88a5c35" kindref="member">wolfSSL_read()</ref>を呼び出すことです。<ref refid="group__IO_1ga80c3ccd3c0441c77307df3afe88a5c35" kindref="member">wolfSSL_read()</ref>からの0の戻りは通常、エラーを示しますが、この場合、エラーは発生しませんでした。<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>が後に呼び出された場合、SSL_ERROR_NONEが返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>で作成されたSSLオブジェクトへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エラーの戻りコードをもたらした前の関数の値を返します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>err<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>buffer[80];</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_get_error(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_ERR_error_string(err,<sp/>buffer);</highlight></codeline>
+<codeline><highlight class="normal">printf(“err<sp/>=<sp/>%d,<sp/>%s\n”,<sp/>err,<sp/>buffer);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" kindref="member">wolfSSL_ERR_error_string_n</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga3f82460752b93314b1ad70acc623135c" kindref="member">wolfSSL_ERR_print_errors_fp</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="2224" column="6" declfile="dox_comments/header_files/ssl.h" declline="2224" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_load_error_strings</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_load_error_strings</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は、OpenSSL互換性（SSL_LOAD_ERROR_STRING）のみであり、アクションはありません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none リターンはありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_load_error_strings();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" kindref="member">wolfSSL_ERR_error_string_n</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga3f82460752b93314b1ad70acc623135c" kindref="member">wolfSSL_ERR_print_errors_fp</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="2694" column="6" declfile="dox_comments/header_files/ssl.h" declline="2694" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* wolfSSL_ERR_error_string</definition>
+        <argsstring>(unsigned long, char *)</argsstring>
+        <name>wolfSSL_ERR_error_string</name>
+        <param>
+          <type>unsigned long</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>で返されたエラーコードを、より人間の読み取り可能なエラー文字列に変換します。errnumberは<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>によって返されるエラーコードであり、データはエラー文字列が配置されるストレージバッファーです。max_error_szで定義されているように、データの最大長はデフォルトで80文字です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>success 正常に完了すると、この関数はデータに返されるのと同じ文字列を返します。</para>
+</simplesect>
+<simplesect kind="return"><para>failure 失敗すると、この関数は適切な障害理由で文字列を返します。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>errNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>までに返されるエラーコード。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ErrNumberと一致する人間が読めるエラー文字列を含む出力バッファ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>err<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>buffer[80];</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_get_error(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_ERR_error_string(err,<sp/>buffer);</highlight></codeline>
+<codeline><highlight class="normal">printf(“err<sp/>=<sp/>%d,<sp/>%s\n”,<sp/>err,<sp/>buffer);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" kindref="member">wolfSSL_ERR_error_string_n</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga3f82460752b93314b1ad70acc623135c" kindref="member">wolfSSL_ERR_print_errors_fp</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="3552" column="6" declfile="dox_comments/header_files/ssl.h" declline="3552" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_ERR_error_string_n</definition>
+        <argsstring>(unsigned long e, char *buf, unsigned long sz)</argsstring>
+        <name>wolfSSL_ERR_error_string_n</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は<ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string()</ref>のバージョンで、LENはBUFに書き込まれる可能性のある文字の最大数を指定します。<ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string()</ref>と同様に、この関数は、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>から返されたエラーコードをより人間が読み取るエラー文字列に変換します。人間の読み取り可能な文字列はBUFに配置されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none リターンはありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>までに返されるエラーコード。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ヒューマン読み取り可能なエラー文字列を含む出力バッファーe。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>BUFに書き込まれる文字の最大長</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>err<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>buffer[80];</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_get_error(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_ERR_error_string_n(err,<sp/>buffer,<sp/>80);</highlight></codeline>
+<codeline><highlight class="normal">printf(“err<sp/>=<sp/>%d,<sp/>%s\n”,<sp/>err,<sp/>buffer);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga3f82460752b93314b1ad70acc623135c" kindref="member">wolfSSL_ERR_print_errors_fp</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="3585" column="7" declfile="dox_comments/header_files/ssl.h" declline="3585" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga3f82460752b93314b1ad70acc623135c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_ERR_print_errors_fp</definition>
+        <argsstring>(XFILE fp, int err)</argsstring>
+        <name>wolfSSL_ERR_print_errors_fp</name>
+        <param>
+          <type>XFILE</type>
+          <declname>fp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>err</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>で返されたエラーコードをより人間の読み取り可能なエラー文字列に変換し、その文字列を出力ファイル-FPに印刷します。ERRは<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>によって返されるエラーコードであり、FPはエラー文字列が配置されるファイルです。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none リターンはありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>書き込まれる人間の読み取り可能なエラー文字列の出力ファイル。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>err</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エラーコードが<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>までに返されました</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>err<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">FILE*<sp/>fp<sp/>=<sp/>...</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_get_error(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_ERR_print_errors_fp(fp,<sp/>err);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" kindref="member">wolfSSL_ERR_error_string_n</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5082" column="7" declfile="dox_comments/header_files/ssl.h" declline="5082" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga42fb87f2b1eb9f76603fc09b03ce94c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_ERR_print_errors_cb</definition>
+        <argsstring>(int(*cb)(const char *str, size_t len, void *u), void *u)</argsstring>
+        <name>wolfSSL_ERR_print_errors_cb</name>
+        <param>
+          <type>int(*)(const char *str, size_t len, void *u)</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、提供されたコールバックを使用してエラーレポートを処理します。コールバック関数は、各エラーラインに対して実行されます。文字列、長さ、およびuserDataは、コールバックパラメーターに渡されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none リターンはありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コールバック関数</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>userDataコールバック関数に渡す</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>error_cb(const<sp/>char<sp/>*str,<sp/>size_t<sp/>len,<sp/>void<sp/>*u)</highlight></codeline>
+<codeline><highlight class="normal">{<sp/>fprintf((FILE*)u,<sp/>&quot;%-*.*s\n&quot;,<sp/>(int)len,<sp/>(int)len,<sp/>str);<sp/>return<sp/>0;<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">FILE*<sp/>fp<sp/>=<sp/>...</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_ERR_print_errors_cb(error_cb,<sp/>fp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga571185ba1055ab786470f133fe8a4d45" kindref="member">wolfSSL_ERR_error_string</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga508a388e80c30a9925b47fb6077f5bf3" kindref="member">wolfSSL_ERR_error_string_n</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga688146c77e8d4b693d81c4a1f295b126" kindref="member">wolfSSL_load_error_strings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5110" column="7" declfile="dox_comments/header_files/ssl.h" declline="5110" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1gaa2bce46756f25c57485ba506d86b6c8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_want_read</definition>
+        <argsstring>(WOLFSSL *)</argsstring>
+        <name>wolfSSL_want_read</name>
+        <param>
+          <type>WOLFSSL *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>を呼び出し、見返りにSSL_ERROR_WANT_READを取得することに似ています。基礎となるエラー状態がSSL_ERROR_WANT_READの場合、この関数は1、それ以外の場合は0を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1 <ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>はSSL_ERROR_WANT_READを返します。基礎となるI/Oには、読み取りできるデータがあります。</para>
+</simplesect>
+<simplesect kind="return"><para>0 SSL_ERROR_WANT_READエラー状態はありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>で作成されたSSLセッションへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_want_read(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>underlying<sp/>I/O<sp/>has<sp/>data<sp/>available<sp/>for<sp/>reading<sp/>(SSL_ERROR_WANT_READ)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga53f6395eeed548747a2e989f19ab782f" kindref="member">wolfSSL_want_write</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5608" column="5" declfile="dox_comments/header_files/ssl.h" declline="5608" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga53f6395eeed548747a2e989f19ab782f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_want_write</definition>
+        <argsstring>(WOLFSSL *)</argsstring>
+        <name>wolfSSL_want_write</name>
+        <param>
+          <type>WOLFSSL *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、呼び出し<ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>と似ており、SSL_ERROR_WANT_WANT_WRITEを取得してください。基礎となるエラー状態がSSL_ERROR_WANT_WRITEの場合、この関数は1を返しますが、それ以外の場合は0です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1 <ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error()</ref>はSSL_ERROR_WANT_WRITEを返します。基礎となるI/Oは、基礎となるSSL接続で進行するためにデータを記述する必要があります。</para>
+</simplesect>
+<simplesect kind="return"><para>0 SSL_ERROR_WANT_WRITEエラー状態はありません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>で作成されたSSLセッションへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_want_write(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>underlying<sp/>I/O<sp/>needs<sp/>data<sp/>to<sp/>be<sp/>written<sp/>(SSL_ERROR_WANT_WRITE)</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gaa2bce46756f25c57485ba506d86b6c8d" kindref="member">wolfSSL_want_read</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1gaafd5671d443fa684913ba5955a4eb591" kindref="member">wolfSSL_get_error</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="5638" column="5" declfile="dox_comments/header_files/ssl.h" declline="5638" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga672812a5459d1172e9cf2e1bcc48570e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long wolfSSL_ERR_peek_last_error</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_ERR_peek_last_error</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は、遭遇したwolfssl_errorから最後のエラーの絶対値を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>error 最後のエラーの絶対値を返します</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">unsigned<sp/>long<sp/>err;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">err<sp/>=<sp/>wolfSSL_ERR_peek_last_error();</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>inspect<sp/>err<sp/>value</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga3f82460752b93314b1ad70acc623135c" kindref="member">wolfSSL_ERR_print_errors_fp</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="12454" column="15" declfile="dox_comments/header_files/ssl.h" declline="12454" declcolumn="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__CertManager" kind="group">
+    <compoundname>CertManager</compoundname>
+    <title>CertManager API</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__CertManager_1ga1c287fe13eebbc1107de0a5f84d0048f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WOLFSSL_CERT_MANAGER *</type>
+        <definition>WOLFSSL_CERT_MANAGER* wolfSSL_CertManagerNew_ex</definition>
+        <argsstring>(void *heap)</argsstring>
+        <name>wolfSSL_CertManagerNew_ex</name>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+<para>新しい証明書マネージャーのコンテキストを割り当てて初期化します。このコンテキストは、SSLのニーズとは無関係に使用できます。証明書の読み込み、証明書の確認、および取り消しステータスを確認するために使用できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>WOLFSSL_CERT_MANAGER成功した場合、コールは有効なwolfssl_cert_managerポインターを返します。</para>
+</simplesect>
+<simplesect kind="return"><para>NULLエラー状態のために返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメーターはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga57ba8168c6b468eef0978ad60b8bf092" kindref="member">wolfSSL_CertManagerFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9016" column="22" declfile="dox_comments/header_files/ssl.h" declline="9016" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WOLFSSL_CERT_MANAGER *</type>
+        <definition>WOLFSSL_CERT_MANAGER* wolfSSL_CertManagerNew</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_CertManagerNew</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>新しい証明書マネージャーのコンテキストを割り当てて初期化します。このコンテキストは、SSLのニーズとは無関係に使用できます。証明書の読み込み、証明書の確認、および取り消しステータスを確認するために使用できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>WOLFSSL_CERT_MANAGER成功した場合、コールは有効なwolfssl_cert_managerポインターを返します。</para>
+</simplesect>
+<simplesect kind="return"><para>NULLエラー状態のために返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメーターはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#import<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(cm<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>error<sp/>creating<sp/>new<sp/>cert<sp/>manager</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga57ba8168c6b468eef0978ad60b8bf092" kindref="member">wolfSSL_CertManagerFree</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9043" column="22" declfile="dox_comments/header_files/ssl.h" declline="9043" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga57ba8168c6b468eef0978ad60b8bf092" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_CertManagerFree</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *)</argsstring>
+        <name>wolfSSL_CertManagerFree</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+        </param>
+        <briefdescription>
+<para>証明書マネージャーのコンテキストに関連するすべてのリソースを解放します。証明書マネージャーを使用する必要がなくなったら、これを呼び出します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>非</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CertManagerFree(cm);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9066" column="6" declfile="dox_comments/header_files/ssl.h" declline="9066" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga548767c9d7da9a197a746a148f1bda3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerLoadCA</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const char *f, const char *d)</argsstring>
+        <name>wolfSSL_CertManagerLoadCA</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>マネージャーコンテキストにCA証明書のロードの場所を指定します。PEM証明書Cafileには、いくつかの信頼できるCA証明書が含まれている場合があります。CapathがNULLでない場合、PEM形式のCA証明書を含むディレクトリを指定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した場合、コールが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILETYPEファイルが間違った形式である場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILEファイルが存在しない、読み取れない、または破損している場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eメモリ状態が発生した場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_Eファイルでbase16デコードが失敗すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGポインターが提供されていない場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERROR - 障害時に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ロードするCA証明書を含むファイルの名前へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ロードするためのca certifificatesを含むディレクトリパスの名前へのポインタ。証明書ディレクトリが望まれない場合、ヌルポインターを使用できます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CertManagerLoadCA(cm,<sp/>“path/to/cert-file.pem”,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>error<sp/>loading<sp/>CA<sp/>certs<sp/>into<sp/>cert<sp/>manager</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga02a2f8451f6b5583f84e30ed9b192839" kindref="member">wolfSSL_CertManagerVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9108" column="5" declfile="dox_comments/header_files/ssl.h" declline="9108" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gae8385826f3feb6c68f239b91ab613e1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerLoadCABuffer</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const unsigned char *in, long sz, int format)</argsstring>
+        <name>wolfSSL_CertManagerLoadCABuffer</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>wolfssl_ctx_load_verify_bufferを呼び出し、その結果を使用してその結果を返して、関数に渡されたCMの情報を失わないように、その結果を返すことにより、CAバッファーをロードします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_FATAL_ERRORwolfssl_cert_manager structがnullの場合、または<ref refid="group__Setup_1gad13c500e10baf5b162ff84fa14939087" kindref="member">wolfSSL_CTX_new()</ref>がnullを返す場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS成功した実行のために返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書情報のバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PEMまたはderのいずれかの証明書形式</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>(WOLFSSL_CERT_MANAGER*)vp;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>unsigned<sp/>char*<sp/>in;</highlight></codeline>
+<codeline><highlight class="normal">long<sp/>sz;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>format;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerLoadCABuffer(vp,<sp/>sz,<sp/>format)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Error<sp/>returned.<sp/>Failure<sp/>case<sp/>code<sp/>block.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1gaa5a28f0ac25d9abeb72fcee81bbf647b" kindref="member">wolfSSL_CTX_load_verify_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>ProcessChainBuffer</para>
+</simplesect>
+<simplesect kind="see"><para>ProcessBuffer</para>
+</simplesect>
+<simplesect kind="see"><para>cm_pick_method</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9145" column="5" declfile="dox_comments/header_files/ssl.h" declline="9145" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga6435f45bfaeb5a5e282a73df2f160475" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerUnloadCAs</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm)</argsstring>
+        <name>wolfSSL_CertManagerUnloadCAs</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、CA署名者リストをアンロードします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数の成功した実行で返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_managerがnullである場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_EMutexエラーがあった場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(protocol<sp/>method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerUnloadCAs(ctx-&gt;cm)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>FreeSignerTable </para>
+</simplesect>
+<simplesect kind="see"><para>UnlockMutex</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9174" column="5" declfile="dox_comments/header_files/ssl.h" declline="9174" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga4ac407be88acf2b8c329fbca68bd4163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerUnload_trust_peers</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm)</argsstring>
+        <name>wolfSSL_CertManagerUnload_trust_peers</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、信頼できるピアリンクリストを解放し、信頼できるピアリストのロックを解除します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数が正常に完了した場合。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_managerがnullの場合。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_EMutexエラーWolfssl_cert_manager structのメンバーであるTplockが0（nill）の場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>WOLFSSL_CTX_new(Protocol<sp/>define);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerUnload_trust_peers(cm)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>The<sp/>function<sp/>did<sp/>not<sp/>execute<sp/>successfully.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>UnLockMutex </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9203" column="5" declfile="dox_comments/header_files/ssl.h" declline="9203" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga02a2f8451f6b5583f84e30ed9b192839" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerVerify</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const char *f, int format)</argsstring>
+        <name>wolfSSL_CertManagerVerify</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>証明書マネージャーのコンテキストで確認する証明書を指定します。この形式は、ssl_filetype_pemまたはssl_filetype_asn1です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した場合。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_CONFIRM_E署名を検証できなかった場合、返却されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_OID_E署名タイプがサポートされていない場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>CRL_CERT_REVOKEDこの証明書が取り消された場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>CRL_MISSING現在の発行者CRLが利用できない場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_BEFORE_DATE_E現在の日付が前日より前である場合、返却されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_AFTER_DATE_E現在の日付が後日後に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILETYPEファイルが間違った形式である場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILEファイルが存在しない、読み取れない、または破損している場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eメモリ状態が発生した場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_Eファイルでbase16デコードが失敗すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGポインターが提供されていない場合に返されるエラーですか</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書を含むファイルの名前へのポインタを確認します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する証明書の形式-SSL_FILETYPE_ASN1またはSSL_FILETYPE_PEMのいずれか</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CertManagerVerify(cm,<sp/>“path/to/cert-file.pem”,</highlight></codeline>
+<codeline><highlight class="normal">SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/>verifying<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga548767c9d7da9a197a746a148f1bda3b" kindref="member">wolfSSL_CertManagerLoadCA</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga33fb6d3ecbea2b276f0cbef1e179fb07" kindref="member">wolfSSL_CertManagerVerifyBuffer</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9254" column="5" declfile="dox_comments/header_files/ssl.h" declline="9254" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga33fb6d3ecbea2b276f0cbef1e179fb07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerVerifyBuffer</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const unsigned char *buff, long sz, int format)</argsstring>
+        <name>wolfSSL_CertManagerVerifyBuffer</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>buff</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>証明書マネージャーのコンテキストで確認する証明書バッファーを指定します。この形式は、ssl_filetype_pemまたはssl_filetype_asn1です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した場合。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_CONFIRM_E署名を検証できなかった場合、返却されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_OID_E署名タイプがサポートされていない場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>CRL_CERT_REVOKEDこの証明書が取り消された場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>CRL_MISSING現在の発行者CRLが利用できない場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_BEFORE_DATE_E現在の日付が前日より前である場合、返却されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_AFTER_DATE_E現在の日付が後日後に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILETYPEファイルが間違った形式である場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_BAD_FILEファイルが存在しない、読み取れない、または破損している場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eメモリ状態が発生した場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_Eファイルでbase16デコードが失敗すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGポインターが提供されていない場合に返されるエラーですか</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書を含むバッファーを確認します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ、buf。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buf -ssl_filetype_asn1またはssl_filetype_pemのいずれかにある検証する証明書の形式</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>certBuff[...];</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CertManagerVerifyBuffer(cm,<sp/>certBuff,<sp/>sz,<sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/>verifying<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga548767c9d7da9a197a746a148f1bda3b" kindref="member">wolfSSL_CertManagerLoadCA</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga02a2f8451f6b5583f84e30ed9b192839" kindref="member">wolfSSL_CertManagerVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9310" column="5" declfile="dox_comments/header_files/ssl.h" declline="9310" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gad9ceee1281677143dec30e5993a405c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_CertManagerSetVerify</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, VerifyCallback vc)</argsstring>
+        <name>wolfSSL_CertManagerSetVerify</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>VerifyCallback</type>
+          <declname>vc</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、証明書マネージャーにVerifyCallback関数を設定します。存在する場合、それは各証明書がロードされていることに対して呼び出されます。検証エラーがある場合、検証コールバックを使用してエラーをオーバーライドできます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none返品不可</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コールバックルーチンへのコールバック関数ポインターを確認します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>myVerify(int<sp/>preverify,<sp/>WOLFSSL_X509_STORE_CTX*<sp/>store)</highlight></codeline>
+<codeline><highlight class="normal">{<sp/>//<sp/>do<sp/>custom<sp/>verification<sp/>of<sp/>certificate<sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>WOLFSSL_CTX_new(Protocol<sp/>define);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CertManagerSetVerify(cm,<sp/>myVerify);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga02a2f8451f6b5583f84e30ed9b192839" kindref="member">wolfSSL_CertManagerVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9342" column="6" declfile="dox_comments/header_files/ssl.h" declline="9342" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gaa0caa567b553f8417bca591cd18c9a25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerEnableCRL</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, int options)</argsstring>
+        <name>wolfSSL_CertManagerEnableCRL</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+<para>証明書マネージャーと証明書を確認するときに証明書の取り消しリストチェックをオンにします。デフォルトでは、CRLチェックはオフです。オプションには、チェーン内の各証明書のCRLチェックを実行するWolfSSL_CRL_CHECKALLに対して、デフォルトの葉証明書のみが含まれます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した場合、コールが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_INWolfSSLがCRL有効になって構築されていない場合、返品されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eメモリ状態が発生した場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGポインターが提供されていない場合に返されるエラーです。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURECRLコンテキストを適切に初期化できない場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認定マネージャーを有効にするときに使用するオプション、CM</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CertManagerEnableCRL(cm,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/>enabling<sp/>cert<sp/>manager</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1ga9e8cc5c00936adde105e64dbf1e8d403" kindref="member">wolfSSL_CertManagerDisableCRL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9416" column="5" declfile="dox_comments/header_files/ssl.h" declline="9416" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga9e8cc5c00936adde105e64dbf1e8d403" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerDisableCRL</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *)</argsstring>
+        <name>wolfSSL_CertManagerDisableCRL</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+        </param>
+        <briefdescription>
+<para>証明書マネージャーと証明書を確認するときに証明書の取り消しリストチェックをオフにします。デフォルトでは、CRLチェックはオフです。この関数を使用して、以前にCRLチェックが有効になっていたこの証明書マネージャーコンテキストでCRLチェックを一時的または永続的に無効にすることができます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した場合、コールが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG関数ポインターが提供されていない場合に返されるエラーですか</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CertManagerDisableCRL(cm);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>error<sp/>disabling<sp/>cert<sp/>manager</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1gaa0caa567b553f8417bca591cd18c9a25" kindref="member">wolfSSL_CertManagerEnableCRL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9450" column="5" declfile="dox_comments/header_files/ssl.h" declline="9450" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga407833060925d7dd8366db3ca557ce8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerLoadCRL</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const char *path, int type, int monitor)</argsstring>
+        <name>wolfSSL_CertManagerLoadCRL</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>monitor</declname>
+        </param>
+        <briefdescription>
+<para>エラーがチェックされ、loadcrl（）に通過して、CRLにCRLにロードして取り消しチェックを行います。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESSwolfssl_certmanagerloadcrlにエラーがない場合、loadcrlが正常に戻る場合。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_manager structがnullの場合。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERRORwolfssl_certmanagerenablecrlがssl_success以外のものを返す場合。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_PATH_ERRORパスがnullの場合。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_ELoadCRLがヒープメモリの割り当てに失敗した場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CRLパスを保持している一定のcharポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>読み込まれる証明書のタイプ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>monitor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>loadcrl（）で監視をリクエストする</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>wolfSSL_LoadCRL(WOLFSSL*<sp/>ssl,<sp/>const<sp/>char*<sp/>path,<sp/>int<sp/>type,</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>monitor);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CertManagerLoadCRL(SSL_CM(ssl),<sp/>path,<sp/>type,<sp/>monitor);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1gaa0caa567b553f8417bca591cd18c9a25" kindref="member">wolfSSL_CertManagerEnableCRL</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1ae7e4756ce11b1803379dc9a121b2b954" kindref="member">wolfSSL_LoadCRL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9484" column="5" declfile="dox_comments/header_files/ssl.h" declline="9484" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga2db6e5f4ed5fa7d41ecc6c7ca7a04aec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerLoadCRLBuffer</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const unsigned char *buff, long sz, int type)</argsstring>
+        <name>wolfSSL_CertManagerLoadCRLBuffer</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>buff</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、bufferloadcrlを呼び出してCRLファイルをロードします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数がエラーなしで完了した場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_managerがnullである場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FATAL_ERRORwolfssl_cert_managerに関連するエラーがある場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>一定のバイトタイプで、バッファーです。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズを表す長いINT。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書の種類を保持する長い整数</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm;</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>unsigned<sp/>char*<sp/>buff;</highlight></codeline>
+<codeline><highlight class="normal">long<sp/>sz;<sp/>size<sp/>of<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>type;<sp/><sp/>cert<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wolfSSL_CertManagerLoadCRLBuffer(cm,<sp/>buff,<sp/>sz,<sp/>type);</highlight></codeline>
+<codeline><highlight class="normal">if(ret<sp/>==<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>BufferLoadCRL </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1gaa0caa567b553f8417bca591cd18c9a25" kindref="member">wolfSSL_CertManagerEnableCRL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9521" column="5" declfile="dox_comments/header_files/ssl.h" declline="9521" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga4929fe270fdc7cf0bdfca82d2c8a88ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerSetCRL_Cb</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, CbMissingCRL cb)</argsstring>
+        <name>wolfSSL_CertManagerSetCRL_Cb</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>CbMissingCRL</type>
+          <declname>cb</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、CRL証明書マネージャーコールバックを設定します。has_crlが定義され、一致するCRLレコードが見つからない場合、CBMissingCrlは呼び出されます（WolfSSL_CertManagerSetcrl_cbを介して設定）。これにより、CRLを外部から取得してロードできます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数とサブルーチンの実行が成功したときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_manager構造がnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_manager構造は、証明書の情報を保持しています。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_managerのcbmissingcrlメンバーに設定された（*cbmissingcrl）への関数ポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(protocol<sp/>method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>cb(const<sp/>char*<sp/>url){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Function<sp/>body.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">CbMissingCRL<sp/>cb<sp/>=<sp/>CbMissingCRL;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(ctx){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>wolfSSL_CertManagerSetCRL_Cb(SSL_CM(ssl),<sp/>cb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>CbMissingCRL </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a761a40b527f38ba2df833fe8b51a8408" kindref="member">wolfSSL_SetCRL_Cb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9562" column="5" declfile="dox_comments/header_files/ssl.h" declline="9562" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga53ff0bfe288d67722d794facebc09543" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerCheckOCSP</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, unsigned char *der, int sz)</argsstring>
+        <name>wolfSSL_CertManagerCheckOCSP</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>der</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSL_CERT_MANAGERのメンバーであるOCSPENABLEDを有効にして、OCSPチェックオプションが有効になっていることを示します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数の成功した実行で返されました。wolfssl_cert_managerのocspenabledメンバーが有効になっています。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGWolfSSL_CERT_MANAGER構造がnullの場合、または許可されていない引数値がサブルーチンに渡される場合、返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eこの関数内にメモリを割り当てるエラーがある場合、またはサブルーチンが返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>der</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書へのバイトポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DER証明書のサイズを表すINTタイプ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#import<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>der;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz;<sp/>size<sp/>of<sp/>der</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerCheckOCSP(cm,<sp/>der,<sp/>sz)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>ParseCertRelative </para>
+</simplesect>
+<simplesect kind="see"><para>checkcertocsp</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9598" column="5" declfile="dox_comments/header_files/ssl.h" declline="9598" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga05b1f36d81c5cf5316336a2f54d53e68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerEnableOCSP</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, int options)</argsstring>
+        <name>wolfSSL_CertManagerEnableOCSP</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+<para>OCSPがオフになっている場合、および使用可能なセットオプションがコンパイルされている場合は、OCSPをオンにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS関数呼び出しが成功した場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGCM structがnullの場合。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Ewolfssl_ocsp struct valueがnullの場合。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILUREwolfssl_ocsp structの初期化は初期化に失敗します。</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN正しい機能を有効にしてコンパイルされていないビルド</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew()</ref>を使用して作成されたwolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_manager structの値を設定するために使用されます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(protocol<sp/>method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>options;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerEnableOCSP(SSL_CM(ssl),<sp/>options)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1gaf5f5bfd8de3254a84453972b527351ad" kindref="member">wolfSSL_CertManagerNew</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9633" column="5" declfile="dox_comments/header_files/ssl.h" declline="9633" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga31367a0d315f0342113ce827128727f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerDisableOCSP</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *)</argsstring>
+        <name>wolfSSL_CertManagerDisableOCSP</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+        </param>
+        <briefdescription>
+<para>OCSP証明書の取り消しを無効にします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESSwolfssl_certmangerdisablecrlは、wolfssl_cert_manager構造のcrlenabledメンバーを正常に無効にしました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGウルフスル構造はヌルでした</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>-<ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerDisableOCSP(ssl)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Fail<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="ssl_8h_1ac61342d421acd184492aa8a674270805" kindref="member">wolfSSL_DisableCRL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9660" column="5" declfile="dox_comments/header_files/ssl.h" declline="9660" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gaae16a6566a0a4ac899ca94e8b9869158" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerSetOCSPOverrideURL</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, const char *url)</argsstring>
+        <name>wolfSSL_CertManagerSetOCSPOverrideURL</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>url</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、URLをWolfSSL_CERT_MANAGER構造のOCSSPOVERRIDEURLメンバーにコピーします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESSこの機能は、予想どおりに実行できました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_manager structはnullです。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMEORY_Eメモリは、証明書マネージャーのocspoverrideurlメンバーに割り当てることができませんでした</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="group__Setup_1gaa37dc22775da8f6a3b5c149d5dfd6e1c" kindref="member">wolfSSL_new()</ref>を使用して作成されたWolfSSL構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CERT_MANAGER*<sp/>cm<sp/>=<sp/>wolfSSL_CertManagerNew();</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>char*<sp/>url;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>wolfSSL_SetOCSP_OverrideURL(WOLFSSL*<sp/>ssl,<sp/>const<sp/>char*<sp/>url)</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(wolfSSL_CertManagerSetOCSPOverrideURL(SSL_CM(ssl),<sp/>url)<sp/>!=<sp/>SSL_SUCCESS){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>ocspOverrideURL </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1adecc0f6f1d5156e7e0e2ca364fffecd4" kindref="member">wolfSSL_SetOCSP_OverrideURL</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9690" column="5" declfile="dox_comments/header_files/ssl.h" declline="9690" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1ga40598eacaa03af2e003e95f57ddd30a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerSetOCSP_Cb</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm, CbOCSPIO ioCb, CbOCSPRespFree respFreeCb, void *ioCbCtx)</argsstring>
+        <name>wolfSSL_CertManagerSetOCSP_Cb</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>CbOCSPIO</type>
+          <declname>ioCb</declname>
+        </param>
+        <param>
+          <type>CbOCSPRespFree</type>
+          <declname>respFreeCb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ioCbCtx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、wolfssl_cert_managerでOCSPコールバックを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS成功した実行で返されました。引数は、WolfsSl_cert_manager構造に保存されています。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGwolfssl_cert_managerがnullである場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_manager構造へのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioCb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>タイプcbocspioの関数ポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>respFreeCb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para> - タイプCbocsprespreeの関数ポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ioCbCtx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>-I/Oコールバックユーザー登録コンテキストへのボイドポインター変数</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/ssl.h&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wolfSSL_SetOCSP_Cb(WOLFSSL*<sp/>ssl,<sp/>CbOCSPIO<sp/>ioCb,</highlight></codeline>
+<codeline><highlight class="normal">CbOCSPRespFree<sp/>respFreeCb,<sp/>void*<sp/>ioCbCtx){</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>wolfSSL_CertManagerSetOCSP_Cb(SSL_CM(ssl),<sp/>ioCb,<sp/>respFreeCb,<sp/>ioCbCtx);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertManager_1gaae16a6566a0a4ac899ca94e8b9869158" kindref="member">wolfSSL_CertManagerSetOCSPOverrideURL</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga53ff0bfe288d67722d794facebc09543" kindref="member">wolfSSL_CertManagerCheckOCSP</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1gac17294be4393a23f98c7004217376dae" kindref="member">wolfSSL_CertManagerEnableOCSPStapling</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfssl_enableocsp</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1abb7c9ec80311c16f4223f53e5ec8449e" kindref="member">wolfSSL_DisableOCSP</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a6eb9a96acfa1bedbcdbc4e89fbb8a43a" kindref="member">wolfSSL_SetOCSP_Cb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9724" column="5" declfile="dox_comments/header_files/ssl.h" declline="9724" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__CertManager_1gac17294be4393a23f98c7004217376dae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CertManagerEnableOCSPStapling</definition>
+        <argsstring>(WOLFSSL_CERT_MANAGER *cm)</argsstring>
+        <name>wolfSSL_CertManagerEnableOCSPStapling</name>
+        <param>
+          <type>WOLFSSL_CERT_MANAGER *</type>
+          <declname>cm</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、オプションを設定するだけでなく、オンになっていない場合にOCSPのステープルをオンにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESSエラーがなく、機能が正常に実行された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGWolfssl_cert_manager構造がnullまたはその他の方法でサブルーチンに渡された引数値がある場合は返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_Eメモリを割り当てる問題があった場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILUREOCSP構造の初期化が失敗した場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_INWolfSSLがhave_certificate_status_requestオプションでコンパイルされていない場合は返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_cert_ctx構造のメンバーであるwolfssl_cert_manager構造へのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>wolfSSL_CTX_EnableOCSPStapling(WOLFSSL_CTX*<sp/>ctx){</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>wolfSSL_CertManagerEnableOCSPStapling(ctx-&gt;cm);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="ssl_8h_1a27c5bf3d28d3cb3e8ef25f97d0c31f7f" kindref="member">wolfSSL_CTX_EnableOCSPStapling</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ssl.h" line="9756" column="5" declfile="dox_comments/header_files/ssl.h" declline="9756" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

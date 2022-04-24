@@ -1,0 +1,2074 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__ED25519" kind="group">
+    <compoundname>ED25519</compoundname>
+    <title>Algorithms - ED25519</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ED25519_1gacfce862cbb65fdfcd33f1b2b8acb9679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_make_public</definition>
+        <argsstring>(ed25519_key *key, unsigned char *pubKey, word32 pubKeySz)</argsstring>
+        <name>wc_ed25519_make_public</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>pubKey</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubKeySz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、秘密鍵からED25519公開キーを生成します。Buffer Pubkeyに公開キーを保管し、Pubkeyszのこのバッファーに書かれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 公開キーの作成に成功したときに戻ってきました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG IFIキーまたはPubKeyがNULLに評価された場合、または指定されたキーサイズが32バイトではない場合（ED25519に32バイトのキーがあります）。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成するためのED25519_KEYへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。公開鍵のエクスポートに成功した後に書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[32];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pubSz<sp/>=<sp/>sizeof(pub);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_import_private_only(priv,<sp/>sizeof(priv),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_make_public(&amp;key,<sp/>pub,<sp/>&amp;pubSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>making<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="42" column="5" declfile="dox_comments/header_files/ed25519.h" declline="42" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gac6e4fe63aff2df0e6fa2de509cb559bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_make_key</definition>
+        <argsstring>(WC_RNG *rng, int keysize, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_make_key</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keysize</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は新しいED25519キーを生成し、それをキーに格納します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ED25519_KEYの作成に成功したときに戻りました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RNGまたはキーがNULLに評価される場合、または指定されたキーサイズが32バイトでない場合（ED25519には32バイトキーがあります）。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成する初期化されたRNGオブジェクトへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">keysize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成するキーの長さ。ED25519の場合は常に32である必要があります。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成するためのED25519_KEYへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>making<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="80" column="5" declfile="dox_comments/header_files/ed25519.h" declline="80" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga3ccf59b0c70f6192204e895e9649cfaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_sign_msg</definition>
+        <argsstring>(const byte *in, word32 inlen, byte *out, word32 *outlen, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_sign_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_Keyオブジェクトを使用して認証を保証するメッセージに署名します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージの署名を正常に生成すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメーターのいずれかがnullに評価される場合、または生成された署名を保存できない出力バッファーが小さすぎる場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。メッセージ署名の生成に成功したときに、書き込まれたバイトを保存します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するためのプライベートED25519_KEYへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[64];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>message[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_sign_msg(message,<sp/>sizeof(message),<sp/>sig,<sp/>&amp;sigSz,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="128" column="5" declfile="dox_comments/header_files/ed25519.h" declline="128" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gae9fafb2733edcf1558d3def7983934c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ctx_sign_msg</definition>
+        <argsstring>(const byte *in, word32 inlen, byte *out, word32 *outlen, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ctx_sign_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_Keyオブジェクトを使用して認証を保証するメッセージに署名します。コンテキストは、署名されたデータの一部です。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージの署名を正常に生成すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 返された入力パラメータはNULLに評価されます。出力バッファが小さすぎて生成された署名を保存するには小さすぎます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。メッセージ署名の生成に成功したときに、書き込まれたバイトを保存します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するためのプライベートED25519_KEYへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されているコンテキストを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[64];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>message[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signing<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ctx_sign_msg(message,<sp/>sizeof(message),<sp/>sig,<sp/>&amp;sigSz,<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>context,<sp/>sizeof(context));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="182" column="5" declfile="dox_comments/header_files/ed25519.h" declline="182" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga758b5ae6d00fab9878d4b1eab5e535f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ph_sign_hash</definition>
+        <argsstring>(const byte *hash, word32 hashLen, byte *out, word32 *outLen, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ph_sign_hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_Keyオブジェクトを使用してメッセージダイジェストに署名して信頼性を保証します。コンテキストは署名されたデータの一部として含まれています。署名計算の前にメッセージは事前にハッシュされています。メッセージダイジェストを作成するために使用されるハッシュアルゴリズムはShake-256でなければなりません。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージダイジェストの署名を正常に生成したときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 返された入力パラメータはNULLに評価されます。出力バッファが小さすぎて生成された署名を保存するには小さすぎます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージのハッシュを含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">hashLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージのハッシュの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。メッセージ署名の生成に成功したときに、書き込まれたバイトを保存します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するためのプライベートED25519_KEYへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されているコンテキストを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[64];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>SHA-512<sp/>hash<sp/>of<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signing<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ph_sign_hash(hash,<sp/>sizeof(hash),<sp/>sig,<sp/>&amp;sigSz,<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>context,<sp/>sizeof(context));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="240" column="5" declfile="dox_comments/header_files/ed25519.h" declline="240" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gadc8d66e3e0a8fa1a3b825a18e78fecf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ph_sign_msg</definition>
+        <argsstring>(const byte *in, word32 inlen, byte *out, word32 *outlen, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ph_sign_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_Keyオブジェクトを使用して認証を保証するメッセージに署名します。コンテキストは署名されたデータの一部として含まれています。署名計算の前にメッセージは事前にハッシュされています。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージの署名を正常に生成すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 返された入力パラメータはNULLに評価されます。出力バッファが小さすぎて生成された署名を保存するには小さすぎます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 関数実行中にメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するバッファー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。メッセージ署名の生成に成功したときに、書き込まれたバイトを保存します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するためのプライベートED25519_KEYへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されているコンテキストを含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[64];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>message[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signing<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ph_sign_msg(message,<sp/>sizeof(message),<sp/>sig,<sp/>&amp;sigSz,<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>context,<sp/>sizeof(context));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="296" column="5" declfile="dox_comments/header_files/ed25519.h" declline="296" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gaa8dd914906b792b1b78620a802a1c69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_verify_msg</definition>
+        <argsstring>(const byte *sig, word32 siglen, const byte *msg, word32 msgLen, int *ret, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_verify_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgLen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数はメッセージのED25519署名を確認して信頼性を確保します。RESを介して答えを返し、有効な署名に対応する1、無効な署名に対応する0を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名の検証と認証の実行に正常に実行されたときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG いずれかの入力パラメータがNULLに評価された場合、またはSIGLENが署名の実際の長さと一致しない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SIG_VERIFY_E 検証が完了した場合は返されますが、生成された署名は提供された署名と一致しません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するための署名を含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">siglen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するメッセージを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msgLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証の結果へのポインタ。1メッセージが正常に検証されたことを示します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を検証するためのPublic ED25519キーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>verified<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[]<sp/>{<sp/>initialize<sp/>with<sp/>received<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_verify_msg(sig,<sp/>sizeof(sig),<sp/>msg,<sp/>sizeof(msg),<sp/>&amp;verified,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>performing<sp/>verification</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(verified<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>the<sp/>signature<sp/>is<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="346" column="5" declfile="dox_comments/header_files/ed25519.h" declline="346" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gaa27939ba8d8b1d09186387ae241f882d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ctx_verify_msg</definition>
+        <argsstring>(const byte *sig, word32 siglen, const byte *msg, word32 msgLen, int *ret, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ctx_verify_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgLen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数はメッセージのED25519署名を確認して信頼性を確保します。文脈はデータ検証済みの一部として含まれています。RESを介して答えを返し、有効な署名に対応する1、無効な署名に対応する0を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名の検証と認証の実行に正常に実行されたときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG いずれかの入力パラメータがNULLに評価された場合、またはSIGLENが署名の実際の長さと一致しない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SIG_VERIFY_E 検証が完了した場合は返されますが、生成された署名は提供された署名と一致しません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するための署名を含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">siglen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するメッセージを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msgLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証の結果へのポインタ。1メッセージが正常に検証されたことを示します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を検証するためのPublic ED25519キーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されたコンテキストを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>verified<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[]<sp/>{<sp/>initialize<sp/>with<sp/>received<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ctx_verify_msg(sig,<sp/>sizeof(sig),<sp/>msg,<sp/>sizeof(msg),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;verified,<sp/>&amp;key,<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>performing<sp/>verification</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(verified<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>the<sp/>signature<sp/>is<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="400" column="5" declfile="dox_comments/header_files/ed25519.h" declline="400" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gac6c35438959a1de233d4a62184e86d19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ph_verify_hash</definition>
+        <argsstring>(const byte *sig, word32 siglen, const byte *hash, word32 hashLen, int *ret, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ph_verify_hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashLen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、信頼性を確保するために、メッセージのダイジェストのED25519署名を検証します。文脈はデータ検証済みの一部として含まれています。ハッシュは、署名計算前の事前にハッシュされたメッセージです。メッセージダイジェストを作成するために使用されるハッシュアルゴリズムは、SHA-512でなければなりません。答えはRESから返され、1は有効な署名に対応し、0は無効な署名に対応します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名の検証と認証の実行に正常に実行されたときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG いずれかの入力パラメータがNULLに評価された場合、またはSIGLENが署名の実際の長さと一致しない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SIG_VERIFY_E 検証が完了した場合は返されますが、生成された署名は提供された署名と一致しません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するための署名を含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">siglen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証するメッセージのハッシュを含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">hashLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証するハッシュの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証の結果へのポインタ。1メッセージが正常に検証されたことを示します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を検証するためのPublic ED25519キーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されたコンテキストを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>verified<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[]<sp/>{<sp/>initialize<sp/>with<sp/>received<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>SHA-512<sp/>hash<sp/>of<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ph_verify_hash(sig,<sp/>sizeof(sig),<sp/>msg,<sp/>sizeof(msg),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;verified,<sp/>&amp;key,<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>performing<sp/>verification</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(verified<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>the<sp/>signature<sp/>is<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="459" column="5" declfile="dox_comments/header_files/ed25519.h" declline="459" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga085813a71042a0b640b4c2071fe6380e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519ph_verify_msg</definition>
+        <argsstring>(const byte *sig, word32 siglen, const byte *msg, word32 msgLen, int *ret, ed25519_key *key, const byte *context, byte contextLen)</argsstring>
+        <name>wc_ed25519ph_verify_msg</name>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgLen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>contextLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数はメッセージのED25519署名を確認して信頼性を確保します。文脈はデータ検証済みの一部として含まれています。メッセージは、検証の前に事前に打ち上げられます。RESを介して答えを返し、有効な署名に対応する1、無効な署名に対応する0を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名の検証と認証の実行に正常に実行されたときに返されました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG いずれかの入力パラメータがNULLに評価された場合、またはSIGLENが署名の実際の長さと一致しない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>SIG_VERIFY_E 検証が完了した場合は返されますが、生成された署名は提供された署名と一致しません</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するための署名を含むバッファーへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">siglen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するメッセージを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">msgLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証するメッセージの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証の結果へのポインタ。1メッセージが正常に検証されたことを示します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を検証するためのPublic ED25519キーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージが署名されたコンテキストを含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">contextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテキストバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>verified<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[]<sp/>{<sp/>initialize<sp/>with<sp/>received<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>context[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>context<sp/>of<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519ctx_verify_msg(sig,<sp/>sizeof(sig),<sp/>msg,<sp/>sizeof(msg),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;verified,<sp/>&amp;key,<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>performing<sp/>verification</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(verified<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>the<sp/>signature<sp/>is<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="515" column="5" declfile="dox_comments/header_files/ed25519.h" declline="515" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga3207814e4094fb95abe1e83bf42b12d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_init</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_init</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、メッセージ検証で将来使用するためにED25519_KEYオブジェクトを初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ED25519_KEYオブジェクトの初期化に正常に戻ったときに返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーがnullの場合は返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するED25519_Keyオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="540" column="5" declfile="dox_comments/header_files/ed25519.h" declline="540" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga0c06a752fcc50a26f34453000e415ba7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ed25519_free</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_free</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519オブジェクトが使用された後に解放されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ed25519_keyオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>and<sp/>perform<sp/>secure<sp/>exchanges</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_free(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="560" column="6" declfile="dox_comments/header_files/ed25519.h" declline="560" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga5f6edfb4771dbeeb57ff279567d388ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_import_public</definition>
+        <argsstring>(const byte *in, word32 inLen, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_import_public</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、公開鍵を含むバッファからPublic ED25519_Keyペアをインポートします。この関数は圧縮キーと非圧縮キーの両方を処理します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ED25519_KEYのインポートに成功しました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG inまたはkeyがnullに評価された場合、またはInlenがED25519キーのサイズよりも小さい場合に返されます。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を含むバッファの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するED25519_Keyオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/>=<sp/>{<sp/>initialize<sp/>Ed25519<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ed_25519<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init_key(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_import_public(pub,<sp/>sizeof(pub),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>importing<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="595" column="5" declfile="dox_comments/header_files/ed25519.h" declline="595" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gaadeda012b632acae1cc1549abb7e3622" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_import_private_only</definition>
+        <argsstring>(const byte *priv, word32 privSz, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_import_private_only</name>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、バッファーからのみED25519秘密キーをインポートします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ED25519キーのインポートに成功しました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG InまたはKeyがnullに評価される場合、またはprivszがed25519_key_size未満の場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開キーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>インポートされた秘密鍵を保存するED25519_Keyオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init_key(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_import_private_key(priv,<sp/>sizeof(priv),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>importing<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="632" column="5" declfile="dox_comments/header_files/ed25519.h" declline="632" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga7f6c57a8d86497f67b8985717d6900c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_import_private_key</definition>
+        <argsstring>(const byte *priv, word32 privSz, const byte *pub, word32 pubSz, ed25519_key *key)</argsstring>
+        <name>wc_ed25519_import_private_key</name>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、バッファーのペアからパブリック/プライベートED25519キーペアをインポートします。この関数は圧縮キーと非圧縮キーの両方を処理します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ED25519_KEYのインポートに成功しました。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG InまたはKeyがnullに評価される場合、またはいずれかのprivszがed25519_key_sizeよりも少ない場合、またはpubszがed25519_pub_key_sizeよりも小さい場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を含むバッファへのポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵の長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を含むバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開キーの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>インポートされたプライベート/公開鍵ペアを保存するED25519_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/><sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>the<sp/>corresponding<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init_key(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_import_private_key(priv,<sp/>sizeof(priv),<sp/>pub,<sp/>sizeof(pub),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>importing<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="674" column="5" declfile="dox_comments/header_files/ed25519.h" declline="674" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gadd909ae08fc064b5a781c1de49b5dcf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_export_public</definition>
+        <argsstring>(ed25519_key *key, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ed25519_export_public</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、秘密鍵をED25519_Key構造体からエクスポートします。公開鍵をバッファアウトに格納し、ounterenでこのバッファに書き込まれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 公開キーを正常にエクスポートすると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力値のいずれかがnullに評価された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたバッファーが秘密鍵を保存するのに十分な大きさでない場合に返されます。このエラーを返すと、関数はアウトレンで必要なサイズを設定します</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開キーをエクスポートするED25519_KEY構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。公開鍵のエクスポートに成功した後に書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>pub[32];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pubSz<sp/>=<sp/>sizeof(pub);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_export_public(&amp;key,<sp/>pub,<sp/>&amp;pubSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="716" column="5" declfile="dox_comments/header_files/ed25519.h" declline="716" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga70b5b1f3c7908c89a98981608a64fa54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_export_private_only</definition>
+        <argsstring>(ed25519_key *key, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ed25519_export_private_only</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_KEY構造からの秘密鍵のみをエクスポートします。秘密鍵をバッファアウトに格納し、outlenにこのバッファに書き込まれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 秘密鍵を正常にエクスポートすると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力値のいずれかがnullに評価された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたバッファーが秘密鍵を保存するのに十分な大きさでない場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵をエクスポートするED25519_KEY構造へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。秘密鍵を正常にエクスポートした後、outに書き込まれたバイト数を設定します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>priv[32];<sp/>//<sp/>32<sp/>bytes<sp/>because<sp/>only<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>privSz<sp/>=<sp/>sizeof(priv);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_export_private_only(&amp;key,<sp/>priv,<sp/>&amp;privSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="755" column="5" declfile="dox_comments/header_files/ed25519.h" declline="755" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gaf00659c1a55921efc0155e5336b0dbf0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_export_private</definition>
+        <argsstring>(ed25519_key *key, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ed25519_export_private</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_KEY構造からキーペアをエクスポートします。キーペアをバッファーに保存し、Outlenのこのバッファーに書き込まれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 キーペアを正常にエクスポートすると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力値のいずれかがnullに評価された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたバッファーがキーペアを保存するのに十分な大きさでない場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーペアをエクスポートするためのED25519_Key構造体へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーペアを保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。キーペアのエクスポートに成功した後に、OUTに書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>Ed25519<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>out[64];<sp/>//<sp/>out<sp/>needs<sp/>to<sp/>be<sp/>a<sp/>sufficient<sp/>buffer<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>outLen<sp/>=<sp/>sizeof(out);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>key_size<sp/>=<sp/>wc_ed25519_export_private(&amp;key,<sp/>out,<sp/>&amp;outLen);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(key_size<sp/>==<sp/>BUFFER_E)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Check<sp/>size<sp/>of<sp/>out<sp/>compared<sp/>to<sp/>outLen<sp/>to<sp/>see<sp/>if<sp/>function<sp/>reset<sp/>outLen</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="798" column="5" declfile="dox_comments/header_files/ed25519.h" declline="798" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gae0b508cadfa20f8127843eacf809d1f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_export_key</definition>
+        <argsstring>(ed25519_key *key, byte *priv, word32 *privSz, byte *pub, word32 *pubSz)</argsstring>
+        <name>wc_ed25519_export_key</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>pubSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519_KEY構造体とは別にプライベートキーと公開鍵をエクスポートします。秘密鍵をバッファーPrivに格納し、PRIVSZでこのバッファに書き込まれたバイトを設定します。公開鍵をバッファPUBに格納し、Pubszでこのバッファに書き込まれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 キーペアを正常にエクスポートすると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力値のいずれかがnullに評価された場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたバッファーがキーペアを保存するのに十分な大きさでない場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーペアをエクスポートするためのED25519_Key構造体へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。秘密鍵を正常にエクスポートした後、OUTに書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するバッファへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。公開鍵のエクスポートに成功した後に書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>pub[32];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pubSz<sp/>=<sp/>sizeof(pub);</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>priv[32];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>privSz<sp/>=<sp/>sizeof(priv);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_export_key(&amp;key,<sp/>priv,<sp/>&amp;pubSz,<sp/>pub,<sp/>&amp;pubSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+<simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="845" column="5" declfile="dox_comments/header_files/ed25519.h" declline="845" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga4b937a0ee9dbddf4268d6bb15bd28ba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_check_key</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_check_key</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ed25519_key構造の公開キーを秘密鍵と一致させます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 プライベートキーと公開鍵が一致した場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGS 指定されたキーがnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プライベートキーと公開キーを保持しているED25519_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>57<sp/>byte<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/><sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>the<sp/>corresponding<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init_key(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_import_private_key(priv,<sp/>sizeof(priv),<sp/>pub,<sp/>sizeof(pub),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ed25519_check_key(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>checking<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="879" column="5" declfile="dox_comments/header_files/ed25519.h" declline="879" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1gaed1e30023d2bdef963c25f32e393e2fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_size</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_size</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519-32バイトのサイズを返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ED25519_KEY_SIZE 有効な秘密鍵のサイズ（32バイト）。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGS 指定されたキーがnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーサイズを取得するためのED25519_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">keySz<sp/>=<sp/>wc_ed25519_size(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(keySz<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>determining<sp/>key<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="906" column="5" declfile="dox_comments/header_files/ed25519.h" declline="906" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga51c10ac3881e6ed6d2e9d0e581af38e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_priv_size</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_priv_size</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、秘密鍵サイズ（secret + public）をバイト単位で返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ED25519_PRV_KEY_SIZE 秘密鍵のサイズ（64バイト）。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 重要な引数がnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーサイズを取得するためのED25519_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>Ed25519<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>key_size<sp/>=<sp/>wc_ed25519_priv_size(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="935" column="5" declfile="dox_comments/header_files/ed25519.h" declline="935" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga2572d9e947fabfe4de13b20c5f8c3531" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_pub_size</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_pub_size</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は圧縮鍵サイズをバイト単位で返します（公開鍵）。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ED25519_PUB_KEY_SIZE 圧縮された公開キーのサイズ（32バイト）。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 重要な引数がnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーサイズを取得するためのED25519_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ed25519_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_ed25519_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>Ed25519<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>key_size<sp/>=<sp/>wc_ed25519_pub_size(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="963" column="5" declfile="dox_comments/header_files/ed25519.h" declline="963" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ED25519_1ga385c63999812fb1b09eac65f39b6056a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ed25519_sig_size</definition>
+        <argsstring>(ed25519_key *key)</argsstring>
+        <name>wc_ed25519_sig_size</name>
+        <param>
+          <type>ed25519_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ED25519シグネチャのサイズ（バイト数64）を返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ED25519_SIG_SIZE ED25519署名（64バイト）のサイズ。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 重要な引数がnullの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名サイズを取得するためのED25519_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sigSz;</highlight></codeline>
+<codeline><highlight class="normal">ed25519_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>wc_ed25519_sig_size(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(sigSz<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>determining<sp/>sig<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>0131415 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ed25519.h" line="991" column="5" declfile="dox_comments/header_files/ed25519.h" declline="991" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

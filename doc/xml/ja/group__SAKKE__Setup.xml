@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__SAKKE__Setup" kind="group">
+    <compoundname>SAKKE_Setup</compoundname>
+    <title>Setup SAKKE Key</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga8e36230d7ad3f67f9403e7420cd3f424" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSakkeKey</definition>
+        <argsstring>(SakkeKey *key, void *heap, int devId)</argsstring>
+        <name>wc_InitSakkeKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="5" column="5" declfile="dox_comments/header_files/sakke.h" declline="5" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga4220e71ed52a0c66736b6de0c5485a72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSakkeKey_ex</definition>
+        <argsstring>(SakkeKey *key, int keySize, int curveId, void *heap, int devId)</argsstring>
+        <name>wc_InitSakkeKey_ex</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keySize</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>curveId</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="9" column="5" declfile="dox_comments/header_files/sakke.h" declline="9" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga365aef228533bcfd6d3277003a967638" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_FreeSakkeKey</definition>
+        <argsstring>(SakkeKey *key)</argsstring>
+        <name>wc_FreeSakkeKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="14" column="6" declfile="dox_comments/header_files/sakke.h" declline="14" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1gaad6fac8f0ff7ba4790d1a66e173e5943" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeSakkeKey</definition>
+        <argsstring>(SakkeKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_MakeSakkeKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="19" column="5" declfile="dox_comments/header_files/sakke.h" declline="19" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1gaa999f9e7a09f988e4a910f7a84a10959" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeSakkePublicKey</definition>
+        <argsstring>(SakkeKey *key, ecc_point *pub)</argsstring>
+        <name>wc_MakeSakkePublicKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>pub</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="23" column="5" declfile="dox_comments/header_files/sakke.h" declline="23" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga2843dbd4bd4063ee9694caa94bd6c6d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportSakkeKey</definition>
+        <argsstring>(SakkeKey *key, byte *data, word32 *sz)</argsstring>
+        <name>wc_ExportSakkeKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="45" column="5" declfile="dox_comments/header_files/sakke.h" declline="45" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga78804246a7a02471bf9f129765f3b76c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportSakkeKey</definition>
+        <argsstring>(SakkeKey *key, const byte *data, word32 sz)</argsstring>
+        <name>wc_ImportSakkeKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="49" column="5" declfile="dox_comments/header_files/sakke.h" declline="49" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga3f90e7eaabd5f972c12b31542baad568" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportSakkePrivateKey</definition>
+        <argsstring>(SakkeKey *key, byte *data, word32 *sz)</argsstring>
+        <name>wc_ExportSakkePrivateKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="53" column="5" declfile="dox_comments/header_files/sakke.h" declline="53" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga842f32c52a8f17dc7b8dadb245bbac14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportSakkePrivateKey</definition>
+        <argsstring>(SakkeKey *key, const byte *data, word32 sz)</argsstring>
+        <name>wc_ImportSakkePrivateKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="57" column="5" declfile="dox_comments/header_files/sakke.h" declline="57" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1gac3c19a1bbfb06659999956ed0ee3bf26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportSakkePublicKey</definition>
+        <argsstring>(SakkeKey *key, byte *data, word32 *sz, int raw)</argsstring>
+        <name>wc_ExportSakkePublicKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="79" column="5" declfile="dox_comments/header_files/sakke.h" declline="79" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga89cc2527610ffe0f06aa48b15797fbe2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportSakkePublicKey</definition>
+        <argsstring>(SakkeKey *key, const byte *data, word32 sz, int trusted)</argsstring>
+        <name>wc_ImportSakkePublicKey</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trusted</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="84" column="5" declfile="dox_comments/header_files/sakke.h" declline="84" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SAKKE__Setup_1ga70d25896dd503c8b3d60e8e2e3db8db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SetSakkeIdentity</definition>
+        <argsstring>(SakkeKey *key, const byte *id, word16 idSz)</argsstring>
+        <name>wc_SetSakkeIdentity</name>
+        <param>
+          <type>SakkeKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>idSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/sakke.h" line="94" column="5" declfile="dox_comments/header_files/sakke.h" declline="94" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>サークキーを確立するための操作</para>
+<para>初期化Sakkeキー使用前（<ref refid="group__SAKKE__Setup_1ga8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref>または<ref refid="group__SAKKE__Setup_1ga4220e71ed52a0c66736b6de0c5485a72" kindref="member">wc_InitSakkeKey_ex()</ref>）。
+新しいキー（<ref refid="group__SAKKE__Setup_1gaad6fac8f0ff7ba4790d1a66e173e5943" kindref="member">wc_MakeSakkeKey()</ref>）を作成するか、既存のキー（<ref refid="group__SAKKE__Setup_1ga78804246a7a02471bf9f129765f3b76c" kindref="member">wc_ImportSakkeKey()</ref>）をインポートします。
+将来の使用のための新しいキーを作成した後、キー（<ref refid="group__SAKKE__Setup_1ga2843dbd4bd4063ee9694caa94bd6c6d7" kindref="member">wc_ExportSakkeKey()</ref>）をエクスポートします。
+KMS Sakkeキーのプライベート部分のみが利用可能な場合は、公開キー（<ref refid="group__SAKKE__Setup_1gaa999f9e7a09f988e4a910f7a84a10959" kindref="member">wc_MakeSakkePublicKey()</ref>）を作成します。
+秘密鍵（<ref refid="group__SAKKE__Setup_1ga3f90e7eaabd5f972c12b31542baad568" kindref="member">wc_ExportSakkePrivateKey()</ref>）をStorageからKMSからエクスポートします。
+秘密鍵（<ref refid="group__SAKKE__Setup_1ga842f32c52a8f17dc7b8dadb245bbac14" kindref="member">wc_ImportSakkePrivateKey()</ref>）をストレージからKMSにインポートします。
+公開キー（<ref refid="group__SAKKE__Setup_1gac3c19a1bbfb06659999956ed0ee3bf26" kindref="member">wc_ExportSakkePublicKey()</ref>）をKMSから輸出してクライアントに渡します。
+公開キー（<ref refid="group__SAKKE__Setup_1ga89cc2527610ffe0f06aa48b15797fbe2" kindref="member">wc_ImportSakkePublicKey()</ref>）をクライアントにインポートします。
+（<ref refid="group__SAKKE__Setup_1ga70d25896dd503c8b3d60e8e2e3db8db4" kindref="member">wc_SetSakkeIdentity()</ref>）をクライアントに使用するIDを設定します。
+終了したら、Sakke Key（<ref refid="group__SAKKE__Setup_1ga365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref>）を無料で無料で送信します。</para>
+
+
+
+
+
+
+
+
+
+    </detaileddescription>
+  </compounddef>
+</doxygen>

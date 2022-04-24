@@ -1,0 +1,3687 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ecc_8h" kind="file" language="C++">
+    <compoundname>ecc.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_make_key</definition>
+        <argsstring>(WC_RNG *rng, int keysize, ecc_key *key)</argsstring>
+        <name>wc_ecc_make_key</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keysize</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は新しいECC_KEYを生成し、キーに保存します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功に戻った。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E RNGまたはキーがNULLに評価された場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 指定されたキーサイズがサポートされているキーの正しい範囲にない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ECCキーの計算中にメモリの割り当てエラーがある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECCキーの計算中にエラーが発生した場合に返される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成するための初期化されたRNGオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keysize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYの希望の長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>keを生成するECC_KEYへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>ecc<sp/>key</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gac4c90785cdf60171aaa73e2e02481637" kindref="member">wc_ecc_shared_secret</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="53" column="5" declfile="dox_comments/header_files/ecc.h" declline="53" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaa8e76458324962efb703a7102473cebd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_make_key_ex</definition>
+        <argsstring>(WC_RNG *rng, int keysize, ecc_key *key, int curve_id)</argsstring>
+        <name>wc_ecc_make_key_ex</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keysize</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>curve_id</declname>
+        </param>
+        <briefdescription>
+<para>この関数は新しいECC_KEYを生成し、キーに保存します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功に戻った。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E RNGまたはキーがNULLに評価された場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 指定されたキーサイズがサポートされているキーの正しい範囲にない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ECCキーの計算中にメモリの割り当てエラーがある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECCキーの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECCキーの計算中にエラーが発生した場合に返される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>作成されたキーを保存するポインター。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keysize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CavenIDに基づいて設定されたバイト単位で作成するキーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キー作成で使用されるRNG</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>curve_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KEに使用するカーブ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>curveId<sp/>=<sp/>ECC_SECP521R1;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>keySize<sp/>=<sp/>wc_ecc_get_curve_size_from_id(curveId);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_make_key_ex(&amp;rng,<sp/>keySize,<sp/>&amp;key,<sp/>curveId);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>MP_OKAY)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>handling</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_ecc_get_curve_size_from_id</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="114" column="5" declfile="dox_comments/header_files/ecc.h" declline="114" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga95e451a312f105efde2c4c3e8dfa433f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_check_key</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_check_key</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>ECCキーの妥当性について正気チェックを実行します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY 成功、キーは大丈夫です。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーがNULLの場合は返します。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_INF_E WC_ECC_POINT_IS_AT_INFINITYが1を返す場合に返します</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>チェックするキーへのポインター</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>check_result;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">check_result<sp/>=<sp/>wc_ecc_check_key(&amp;key);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(check_result<sp/>==<sp/>MP_OKAY)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>key<sp/>check<sp/>succeeded</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>key<sp/>check<sp/>failed</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gad0284c4ea20805e8e7eeb4d3054f8879" kindref="member">wc_ecc_point_is_at_infinity</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="150" column="5" declfile="dox_comments/header_files/ecc.h" declline="150" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gac1e0c1089cf94c596485ac36d811abc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ecc_key_free</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_key_free</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、使用された後にECC_KEYキーを解放します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEY構造体へのポインタFreへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>and<sp/>perform<sp/>ECC<sp/>operations</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_key_free(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga194a89747b82360f3d8a22184698ecac" kindref="member">wc_ecc_key_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gae59c1deab699da68ecc68c102285990b" kindref="member">wc_ecc_init_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="171" column="6" declfile="dox_comments/header_files/ecc.h" declline="171" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gac4c90785cdf60171aaa73e2e02481637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_shared_secret</definition>
+        <argsstring>(ecc_key *private_key, ecc_key *public_key, byte *out, word32 *outlen)</argsstring>
+        <name>wc_ecc_shared_secret</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>private_key</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>public_key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ローカルの秘密鍵と受信した公開キーを使用して、新しい秘密キーを生成します。この共有されたシークレットキーをバッファーに保存し、アウトレンを更新して、出力バッファーに書き込まれたバイト数を保持します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 共有されたシークレットキーの生成に成功したときに返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメーターのいずれかがnullと評価する場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 引数として指定された秘密鍵のタイプ、private_keyがecc_privatekeyではない場合、またはpublic publicおよびprivateキータイプ（ecc-＆gt; dpによって与えられる）が同等ではない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 新しいECCポイントを生成するエラーが発生した場合</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 生成された共有シークレットキーが提供されたバッファーに保存するには長すぎる場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 共有キーの計算中にエラーが発生した場合は返される可能性があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 共有KEの計算中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>private_key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ローカル秘密鍵を含むECC_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>public_key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>受信した公開キーを含むECC_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された共有シークレットキーを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファーの長さを含むWord32オブジェクトへのポインタ。共有された秘密KEを正常に生成すると、出力バッファーに書き込まれた長さで上書きされます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>priv,<sp/>pub;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>secret[1024];<sp/>//<sp/>can<sp/>hold<sp/>1024<sp/>byte<sp/>shared<sp/>secret<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>secretSz<sp/>=<sp/>sizeof(secret);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;priv);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;priv);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>receive<sp/>public<sp/>key,<sp/>and<sp/>initialise<sp/>into<sp/>pub</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_shared_secret(&amp;priv,<sp/>&amp;pub,<sp/>secret,<sp/>&amp;secretSz);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>generate<sp/>secret<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>shared<sp/>secret<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="246" column="5" declfile="dox_comments/header_files/ecc.h" declline="246" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gab49f07573edb8ad3eb168c866594ca05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_shared_secret_ex</definition>
+        <argsstring>(ecc_key *private_key, ecc_point *point, byte *out, word32 *outlen)</argsstring>
+        <name>wc_ecc_shared_secret_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>private_key</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <briefdescription>
+<para>秘密鍵とパブリックポイントの間にECC共有秘密を作成します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY 成功を示します。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 引数がnullの場合、エラーが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E private_key-＆gt;タイプがecc_privatekeyまたはprivate_key-＆gt; idxが検証に失敗しない場合、エラーが返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E アウトレンが小さすぎるときのエラー。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 新しいポイントを作成するためのエラー。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_VAL 初期化失敗が発生したときに可能です。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 初期化の障害が発生したときに可能です</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>private_key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プライベートECCキー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するポイント（公開キー）。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>共有秘密の出力宛先。ANSI X9.63からEC-DHに適合します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最大サイズを入力し、結果として得られるシークレットのサイズを出力します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>shared_secret[];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>secret_size;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>result;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">result<sp/>=<sp/>wc_ecc_shared_secret_ex(&amp;key,<sp/>point,</highlight></codeline>
+<codeline><highlight class="normal">&amp;shared_secret,<sp/>&amp;secret_size);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(result<sp/>!=<sp/>MP_OKAY)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" kindref="member">wc_ecc_verify_hash_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="292" column="5" declfile="dox_comments/header_files/ecc.h" declline="292" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_sign_hash</definition>
+        <argsstring>(const byte *in, word32 inlen, byte *out, word32 *outlen, WC_RNG *rng, ecc_key *key)</argsstring>
+        <name>wc_ecc_sign_hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、信頼性を保証するためにECC_KEYオブジェクトを使用してメッセージダイジェストに署名します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージダイジェストの署名を正常に生成したときに返されました</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメーターのいずれかがnullに評価された場合、または生成された署名を保存できない出力バッファーが小さすぎる場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力キーが秘密鍵ではない場合、またはECC OIDが無効な場合</para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E RNGが満足のいくキーを正常に生成できない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM メッセージSignaturの計算中にエラーがある場合は返却される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージハッシュを含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するためのバッファ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。メッセージ署名の生成に成功したときに書き込まれたバイトを保存します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するためのプライベートECCキーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[512];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>digest[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>hash<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_sign_hash(digest,<sp/>sizeof(digest),<sp/>sig,<sp/>&amp;sigSz,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga7bff199922e080b6733aa2dd342f5cb7" kindref="member">wc_ecc_verify_hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="361" column="5" declfile="dox_comments/header_files/ecc.h" declline="361" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gacab051d94dc346cb2df5f3a209dded1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_sign_hash_ex</definition>
+        <argsstring>(const byte *in, word32 inlen, WC_RNG *rng, ecc_key *key, mp_int *r, mp_int *s)</argsstring>
+        <name>wc_ecc_sign_hash_ex</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>メッセージダイジェストに署名します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY メッセージダイジェストの署名を正常に生成したときに返されました</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力キーが秘密鍵ではない場合、またはECC IDXが無効な場合、またはいずれかの入力パラメータがNULLに評価されている場合、または出力バッファが小さすぎて生成された署名を保存するには小さすぎる場合</para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E RNGが満足のいくキーを正常に生成できない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM メッセージSignaturの計算中にエラーがある場合は返却される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージが消化します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ダイジェストの長さ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_RNG構造体へのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プライベートECCキー。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名のRコンポーネントの宛先。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名のSコンポーネントの宛先</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>sigSz;</highlight></codeline>
+<codeline><highlight class="normal">mp_int<sp/>r;<sp/>//<sp/>destination<sp/>for<sp/>r<sp/>component<sp/>of<sp/>signature.</highlight></codeline>
+<codeline><highlight class="normal">mp_int<sp/>s;<sp/>//<sp/>destination<sp/>for<sp/>s<sp/>component<sp/>of<sp/>signature.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[512];<sp/>//<sp/>will<sp/>hold<sp/>generated<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>digest[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>hash<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">mp_init(&amp;r);<sp/>//<sp/>initialize<sp/>r<sp/>component</highlight></codeline>
+<codeline><highlight class="normal">mp_init(&amp;s);<sp/>//<sp/>initialize<sp/>s<sp/>component</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);<sp/>//<sp/>make<sp/>public/private<sp/>key<sp/>pair</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_sign_hash_ex(digest,<sp/>sizeof(digest),<sp/>&amp;rng,<sp/>&amp;key,<sp/>&amp;r,<sp/>&amp;s);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>MP_OKAY<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>message<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" kindref="member">wc_ecc_verify_hash_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="432" column="5" declfile="dox_comments/header_files/ecc.h" declline="432" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga7bff199922e080b6733aa2dd342f5cb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_verify_hash</definition>
+        <argsstring>(const byte *sig, word32 siglen, const byte *hash, word32 hashlen, int *stat, ecc_key *key)</argsstring>
+        <name>wc_ecc_verify_hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashlen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>stat</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、真正性を確保するためにハッシュのECCシグネチャを検証します。答えを介して、有効な署名に対応する1、無効な署名に対応する0で答えを返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名検証に正常に実行されたときに返されます。注：これは署名が検証されていることを意味するわけではありません。信頼性情報は代わりにSTATで格納されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメーターのいずれかをnullに評価しました</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E メッセージ署名の計算中にエラーが発生した場合に返される可能性があります。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM メッセージSignaturの計算中にエラーがある場合は返却される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認する署名を含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>siglen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名の長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認されたメッセージのハッシュを含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージのハッシュの長さが確認されました</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証の結果へのポインタ。1メッセージが正常に認証されたことを示します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を確認するためのパブリックECCキーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret,<sp/>verified<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[1024]<sp/>{<sp/>initialize<sp/>with<sp/>received<sp/>signature<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>digest[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>message<sp/>hash<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_verify_hash(sig,<sp/>sizeof(sig),<sp/>digest,sizeof(digest),</highlight></codeline>
+<codeline><highlight class="normal">&amp;verified,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>performing<sp/>verification</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(<sp/>verified<sp/>==<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>the<sp/>signature<sp/>is<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" kindref="member">wc_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" kindref="member">wc_ecc_verify_hash_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="500" column="5" declfile="dox_comments/header_files/ecc.h" declline="500" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_verify_hash_ex</definition>
+        <argsstring>(mp_int *r, mp_int *s, const byte *hash, word32 hashlen, int *stat, ecc_key *key)</argsstring>
+        <name>wc_ecc_verify_hash_ex</name>
+        <param>
+          <type>mp_int *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashlen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>stat</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>ECC署名を確認します。結果はstatに書き込まれます。1は有効で、0は無効です。注：返品値を使用して有効でテストしないでください。statのみを使用してください。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY 成功した場合（署名が無効であっても）</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 引数がnullの場合、またはkey-idxが無効である場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E INTまたはポイントの割り当てエラー</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名Rコンポーネント</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名Sコンポーネント</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたハッシュ（メッセージダイジェスト）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ（オクテット）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名の結果、1 ==有効、0 ==無効</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>対応するパブリックECC KE</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">mp_int<sp/>r;</highlight></codeline>
+<codeline><highlight class="normal">mp_int<sp/>s;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>stat;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[]<sp/>=<sp/>{<sp/>Some<sp/>hash<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_ecc_verify_hash_ex(&amp;r,<sp/>&amp;s,<sp/>hash,<sp/>hashlen,<sp/>&amp;stat,<sp/>&amp;key)<sp/>==<sp/>MP_OKAY)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Check<sp/>stat</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga7bff199922e080b6733aa2dd342f5cb7" kindref="member">wc_ecc_verify_hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="539" column="5" declfile="dox_comments/header_files/ecc.h" declline="539" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_init</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_init</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、メッセージ検証または鍵交渉で将来の使用のためにECC_KEYオブジェクトを初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_Keyオブジェクトの初期化に成功したときに返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するECCキーオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gac18946c6b472d27e4be56740d71880bd" kindref="member">wc_ecc_free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="563" column="5" declfile="dox_comments/header_files/ecc.h" declline="563" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gae59c1deab699da68ecc68c102285990b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_init_ex</definition>
+        <argsstring>(ecc_key *key, void *heap, int devId)</argsstring>
+        <name>wc_ecc_init_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、メッセージ検証または鍵交渉で将来の使用のためにECC_KEYオブジェクトを初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_Keyオブジェクトの初期化に成功したときに返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYオブジェクトへのポインタは、初期化します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>非同期ハードウェアで使用するID</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ヒープ識別のポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init_ex(&amp;key,<sp/>heap,<sp/>devId);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gac18946c6b472d27e4be56740d71880bd" kindref="member">wc_ecc_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="589" column="5" declfile="dox_comments/header_files/ecc.h" declline="589" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga194a89747b82360f3d8a22184698ecac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ecc_key *</type>
+        <definition>ecc_key* wc_ecc_key_new</definition>
+        <argsstring>(void *heap)</argsstring>
+        <name>wc_ecc_key_new</name>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+<para>この関数はユーザー定義ヒープを使用し、キー構造のスペースを割り当てます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_Keyオブジェクトの初期化に成功したときに返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wc_ecc_key_new(&amp;heap);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gac1e0c1089cf94c596485ac36d811abc5" kindref="member">wc_ecc_key_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="611" column="9" declfile="dox_comments/header_files/ecc.h" declline="611" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gac18946c6b472d27e4be56740d71880bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_free</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_free</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECC_KEYオブジェクトが使用された後に解放されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 整数は、WolfSSLのエラーまたは成功状況を示すことを返しました</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_Keyオブジェクトへの先向き</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>and<sp/>perform<sp/>secure<sp/>exchanges</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_free(&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="632" column="5" declfile="dox_comments/header_files/ecc.h" declline="632" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga5b4a7aa3018bd18ca7b9235010b13626" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ecc_fp_free</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_ecc_fp_free</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は固定小数点キャッシュを解放します。これはECCで使用でき、計算時間を高速化します。この機能を使用するには、FP_ECC（固定小数点ECC）を定義する必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえリターン</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key<sp/>and<sp/>perform<sp/>secure<sp/>exchanges</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_ecc_fp_free();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gac18946c6b472d27e4be56740d71880bd" kindref="member">wc_ecc_free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="657" column="6" declfile="dox_comments/header_files/ecc.h" declline="657" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga9696066946daccbf59c35dbf164be89b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_is_valid_idx</definition>
+        <argsstring>(int n)</argsstring>
+        <name>wc_ecc_is_valid_idx</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>ECC IDXが有効かどうかを確認します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1 有効な場合は返品してください。</para>
+</simplesect>
+<simplesect kind="return"><para>0 無効な場合は返品してください</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>チェックするIDX番号</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>is_valid;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">is_valid<sp/>=<sp/>wc_ecc_is_valid_idx(key.idx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(is_valid<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>idx<sp/>is<sp/>valid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>(is_valid<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>idx<sp/>is<sp/>not<sp/>valid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="691" column="5" declfile="dox_comments/header_files/ecc.h" declline="691" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ecc_point *</type>
+        <definition>ecc_point* wc_ecc_new_point</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_ecc_new_point</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>新しいECCポイントを割り当てます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>p 新しく割り当てられたポイント。</para>
+</simplesect>
+<simplesect kind="return"><para>NULL エラーにNULLを返します</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(point<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>point<sp/>creation<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Do<sp/>stuff<sp/>with<sp/>point</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" kindref="member">wc_ecc_del_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" kindref="member">wc_ecc_cmp_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" kindref="member">wc_ecc_copy_point</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="719" column="11" declfile="dox_comments/header_files/ecc.h" declline="719" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ecc_del_point</definition>
+        <argsstring>(ecc_point *p)</argsstring>
+        <name>wc_ecc_del_point</name>
+        <param>
+          <type>ecc_point *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>メモリからECCポイントを解放します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえリターン</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>無料のポイント</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(point<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>point<sp/>creation<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Do<sp/>stuff<sp/>with<sp/>point</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_del_point(point);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" kindref="member">wc_ecc_new_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" kindref="member">wc_ecc_cmp_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" kindref="member">wc_ecc_copy_point</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="747" column="6" declfile="dox_comments/header_files/ecc.h" declline="747" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga402a981bb51a35788fda0b183f34f430" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_copy_point</definition>
+        <argsstring>(ecc_point *p, ecc_point *r)</argsstring>
+        <name>wc_ecc_copy_point</name>
+        <param>
+          <type>ecc_point *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+<para>あるポイントの値を別のポイントにコピーします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ECC_BAD_ARG_E pまたはrがnullの場合、エラーがスローされます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_OKAY ポイントは正常にコピーされました</para>
+</simplesect>
+<simplesect kind="return"><para>ret 内部関数からのエラー。になることができます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コピーするポイント。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>作成されたポイント</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>copied_point;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>copy_return;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">copy_return<sp/>=<sp/>wc_ecc_copy_point(point,<sp/>copied_point);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(copy_return<sp/>!=<sp/>MP_OKAY)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" kindref="member">wc_ecc_new_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" kindref="member">wc_ecc_cmp_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" kindref="member">wc_ecc_del_point</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="780" column="5" declfile="dox_comments/header_files/ecc.h" declline="780" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_cmp_point</definition>
+        <argsstring>(ecc_point *a, ecc_point *b)</argsstring>
+        <name>wc_ecc_cmp_point</name>
+        <param>
+          <type>ecc_point *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>ポイントの値を別のポイントと比較します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BAD_FUNC_ARG 一方または両方の引数はnullです。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EQ ポイントは同じです。</para>
+</simplesect>
+<simplesect kind="return"><para>ret MP_LTまたはMP_GTのいずれかで、ポイントが等しくないことを意味します。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>比較する最初のポイント。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>比較する2番目のポイント</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>point_to_compare;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>cmp_result;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">point_to_compare<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">cmp_result<sp/>=<sp/>wc_ecc_cmp_point(point,<sp/>point_to_compare);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(cmp_result<sp/>==<sp/>BAD_FUNC_ARG)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>arguments<sp/>are<sp/>invalid</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>(cmp_result<sp/>==<sp/>MP_EQ)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Points<sp/>are<sp/>equal</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Points<sp/>are<sp/>not<sp/>equal</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" kindref="member">wc_ecc_new_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" kindref="member">wc_ecc_del_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" kindref="member">wc_ecc_copy_point</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="823" column="5" declfile="dox_comments/header_files/ecc.h" declline="823" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gad0284c4ea20805e8e7eeb4d3054f8879" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_point_is_at_infinity</definition>
+        <argsstring>(ecc_point *p)</argsstring>
+        <name>wc_ecc_point_is_at_infinity</name>
+        <param>
+          <type>ecc_point *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>ポイントが無限大にあるかどうかを確認します。ポイントが無限大である場合は1を返します。＆lt;エラー時に0。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>1 Pは無限です。</para>
+</simplesect>
+<simplesect kind="return"><para>0 Pは無限ではありません。</para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認するポイント</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>is_infinity;</highlight></codeline>
+<codeline><highlight class="normal">point<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">is_infinity<sp/>=<sp/>wc_ecc_point_is_at_infinity(point);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(is_infinity<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>(is_infinity<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Point<sp/>is<sp/>not<sp/>at<sp/>infinity</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>(is_infinity<sp/>==<sp/>1)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Point<sp/>is<sp/>at<sp/>infinity</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" kindref="member">wc_ecc_new_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" kindref="member">wc_ecc_del_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" kindref="member">wc_ecc_cmp_point</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" kindref="member">wc_ecc_copy_point</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="864" column="5" declfile="dox_comments/header_files/ecc.h" declline="864" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga458a55243d54350363c0b4615d02dafd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_mulmod</definition>
+        <argsstring>(mp_int *k, ecc_point *G, ecc_point *R, mp_int *a, mp_int *modulus, int map)</argsstring>
+        <name>wc_ecc_mulmod</name>
+        <param>
+          <type>mp_int *</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>mp_int *</type>
+          <declname>modulus</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>map</declname>
+        </param>
+        <briefdescription>
+<para>ECC固定点の乗算を実行します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY 成功した操作のリターン。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 複数の精密整数（MP_INT）ライブラリで使用するための整数の初期化中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マルチリカンド。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>G</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>乗算する基点。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>商品の目的地</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>modulus</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>曲線のモジュラス。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ゼロ以外のマップをアフィン座標に戻すと、それ以外の場合はヤコビアンモンゴメリーフォームに残っています</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecc_point*<sp/>base;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>destination;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>points</highlight></codeline>
+<codeline><highlight class="normal">base<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">destination<sp/>=<sp/>wc_ecc_new_point();</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Setup<sp/>other<sp/>arguments</highlight></codeline>
+<codeline><highlight class="normal">mp_int<sp/>multiplicand;</highlight></codeline>
+<codeline><highlight class="normal">mp_int<sp/>modulus;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>map;</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="898" column="5" declfile="dox_comments/header_files/ecc.h" declline="898" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_export_x963</definition>
+        <argsstring>(ecc_key *key, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ecc_export_x963</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECCキーをECC_KEY構造からエクスポートし、結果を格納します。キーはANSI X9.63形式で保存されます。Outlenの出力バッファーに書き込まれたバイトを保存します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_KEYを正常にエクスポートすることで返されました</para>
+</simplesect>
+<simplesect kind="return"><para>LENGTH_ONLY_E 出力バッファーがnullに評価された場合に返されますが、他の2つの入力パラメーターが有効です。関数がキーを保存するのに必要な長さのみを返していることを示します</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力パラメーターのいずれかがnullである場合、またはキーがサポートされていない場合に返されます（無効なインデックスがあります）</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 出力バッファーが小さすぎてECCキーを保存できない場合は返されます。出力バッファーが小さすぎる場合、必要なサイズはアウトレンで返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECC_KEの処理中にエラーが発生した場合に返却される可能性があります。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートするECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ANSI x9.63フォーマットキーを保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファのサイズ。キーの保存に成功した場合は、出力バッファに書き込まれたバイトを保持します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buff[1024];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>buffSz<sp/>=<sp/>sizeof(buff);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_export_x963(&amp;key,<sp/>buff,<sp/>&amp;buffSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga4880d9d5c603856ad2714de4d864bc71" kindref="member">wc_ecc_export_x963_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga1c4116facdbb32a302c7f03cd20adac7" kindref="member">wc_ecc_import_x963</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="964" column="5" declfile="dox_comments/header_files/ecc.h" declline="964" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga4880d9d5c603856ad2714de4d864bc71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_export_x963_ex</definition>
+        <argsstring>(ecc_key *key, byte *out, word32 *outLen, int compressed)</argsstring>
+        <name>wc_ecc_export_x963_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compressed</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECCキーをECC_KEY構造からエクスポートし、結果を格納します。キーはANSI X9.63形式で保存されます。Outlenの出力バッファーに書き込まれたバイトを保存します。この関数により、圧縮パラメーターを介して証明書を圧縮する追加のオプションが可能になります。このパラメーターがtrueの場合、キーはANSI X9.63圧縮形式に保存されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_KEYを正常にエクスポートすることで返されました</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN hand_comp_keyがコンパイル時に有効になっていない場合は返されますが、キーは圧縮形式で要求されました</para>
+</simplesect>
+<simplesect kind="return"><para>LENGTH_ONLY_E 出力バッファーがnullに評価された場合に返されますが、他の2つの入力パラメーターが有効です。関数がキーを保存するのに必要な長さのみを返していることを示します</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力パラメーターのいずれかがnullである場合、またはキーがサポートされていない場合に返されます（無効なインデックスがあります）</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 出力バッファーが小さすぎてECCキーを保存できない場合は返されます。出力バッファーが小さすぎる場合、必要なサイズはアウトレンで返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECC_KEの処理中にエラーが発生した場合に返却される可能性があります。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートするECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ANSI x9.63フォーマットキーを保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファのサイズ。キーを正常に保存すると、出力バッファーに書き込まれたバイトが保持されます</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>compressed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを圧縮形式で保存するかどうかのインジケータ。1 ==圧縮、0 == Un Compresse</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buff[1024];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>buffSz<sp/>=<sp/>sizeof(buff);</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_export_x963_ex(&amp;key,<sp/>buff,<sp/>&amp;buffSz,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" kindref="member">wc_ecc_export_x963</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga1c4116facdbb32a302c7f03cd20adac7" kindref="member">wc_ecc_import_x963</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1035" column="5" declfile="dox_comments/header_files/ecc.h" declline="1035" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga1c4116facdbb32a302c7f03cd20adac7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_import_x963</definition>
+        <argsstring>(const byte *in, word32 inLen, ecc_key *key)</argsstring>
+        <name>wc_ecc_import_x963</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ANSI X9.63形式に保存されているキーを含むバッファーからパブリックECCキーをインポートします。この関数は、have_comp_keyオプションを介してコンパイル時に圧縮キーが有効になっている限り、圧縮キーと非圧縮キーの両方を処理します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_KEYのインポートに正常にインポートすることで戻りました</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN hand_comp_keyがコンパイル時に有効になっていない場合は返されますが、キーは圧縮形式で保存されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E InまたはKeyがnullに評価される場合、またはInlenが均一である場合に返されます（x9.63規格によると、キーは奇妙でなければなりません）</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E ECCキーの解析中にエラーがある場合は返されます。ECCキーが有効なANSI X9.63フォーマットに格納されていないことを示すことがあります。</para>
+</simplesect>
+<simplesect kind="return"><para>IS_POINT_E エクスポートされた公開キーがECC曲線のポイントではない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECC_KEの処理中にエラーが発生した場合に返却される可能性があります。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ANSI X9.63フォーマットされたECCキーを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>インポートされたKEを保存するECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buff[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>ANSI<sp/>X9.63<sp/>formatted<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>pubKey;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;pubKey);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_import_x963(buff,<sp/>sizeof(buff),<sp/>&amp;pubKey);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>importing<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" kindref="member">wc_ecc_export_x963</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" kindref="member">wc_ecc_import_private_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1098" column="5" declfile="dox_comments/header_files/ecc.h" declline="1098" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_import_private_key</definition>
+        <argsstring>(const byte *priv, word32 privSz, const byte *pub, word32 pubSz, ecc_key *key)</argsstring>
+        <name>wc_ecc_import_private_key</name>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、生の秘密鍵を含むバッファーからパブリック/プライベートECCキーペアをインポートし、ANSI X9.63フォーマットされた公開キーを含む2番目のバッファーをインポートします。この関数は、have_comp_keyオプションを介してコンパイル時に圧縮キーが有効になっている限り、圧縮キーと非圧縮キーの両方を処理します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 habe_comp_keyがコンパイル時に有効になっていない場合は、ecc_key not_compiled_inを正常にインポートしましたが、キーは圧縮形式で保存されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E InまたはKeyがnullに評価される場合、またはInlenが均一である場合に返されます（x9.63規格によると、キーは奇妙でなければなりません）</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E ECCキーの解析中にエラーがある場合は返されます。ECCキーが有効なANSI X9.63フォーマットに格納されていないことを示すことがあります。</para>
+</simplesect>
+<simplesect kind="return"><para>IS_POINT_E エクスポートされた公開キーがECC曲線のポイントではない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECC_KEの処理中にエラーが発生した場合に返却される可能性があります。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生の秘密鍵を含むバッファへのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵バッファのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ANSI x9.63フォーマットされたECC公開鍵を含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開キー入力バッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>インポートされたプライベート/公開キーパイを保存するECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>ANSI<sp/>X9.63<sp/>formatted<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>the<sp/>raw<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_import_private_key(priv,<sp/>sizeof(priv),<sp/>pub,<sp/>sizeof(pub),</highlight></codeline>
+<codeline><highlight class="normal">&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>importing<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" kindref="member">wc_ecc_export_x963</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" kindref="member">wc_ecc_import_private_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1167" column="5" declfile="dox_comments/header_files/ecc.h" declline="1167" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga78967e166f0aa6de07dc5e4b870155c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_rs_to_sig</definition>
+        <argsstring>(const char *r, const char *s, byte *out, word32 *outlen)</argsstring>
+        <name>wc_ecc_rs_to_sig</name>
+        <param>
+          <type>const char *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECCシグネチャのR部分とS部分をDER符号化ECDSAシグネチャに変換します。この機能は、outlenでは、出力バッファに書き込まれた長さも記憶されています。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 署名を正常に変換することで戻ってきました</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E いずれかの入力パラメータがNULLに評価された場合、または入力バッファがDERエンコードされたECDSAシグネチャを保持するのに十分な大きさでない場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E ECC_KEYの処理エラーがある場合、返品される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM ECC_KEの処理中にエラーが発生した場合に返却される可能性があります。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名のR部分を文字列として含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名のs部分を文字列として含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DERエンコードされたECDSA署名を保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用可能な出力バッファーの長さ。署名をECDSAフォーマに正常に変換した後、バッファーに書き込まれたバイトを保存します</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>generate<sp/>R<sp/>and<sp/>S</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>r[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>R<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>s[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>S<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>sig[wc_ecc_sig_size(key)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>signature<sp/>size<sp/>will<sp/>be<sp/>2<sp/>*<sp/>ECC<sp/>key<sp/>size<sp/>+<sp/>~10<sp/>bytes<sp/>for<sp/>ASN.1<sp/>overhead</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>sigSz<sp/>=<sp/>sizeof(sig);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_rs_to_sig(r,<sp/>s,<sp/>sig,<sp/>&amp;sigSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>converting<sp/>parameters<sp/>to<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" kindref="member">wc_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gafbedbdc67061a9912c49def9824fd3ba" kindref="member">wc_ecc_sig_size</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1233" column="5" declfile="dox_comments/header_files/ecc.h" declline="1233" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaabd246d8560804e89c3c17c02708ccbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_import_raw</definition>
+        <argsstring>(ecc_key *key, const char *qx, const char *qy, const char *d, const char *curveName)</argsstring>
+        <name>wc_ecc_import_raw</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>qx</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>qy</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>curveName</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECC署名の生コンポーネントでECC_KEY構造を埋めます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECC_KEY構造に正常にインポートすると戻ります</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力値のいずれかがnullに評価された場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ECC_Keyのパラメータを格納するためのエラーの初期化スペースがある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 入力Curvenameがecc_setsで定義されていない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 入力パラメータの処理中にエラーが発生した場合に返される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEY構造へのポインタを埋める</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ASCIIヘックス文字列としてベースポイントのxコンポーネントを含むバッファーへのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>qy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ASCIIヘックス文字列としてベースポイントのY成分を含むバッファーへのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ASCIIヘックス文字列として秘密鍵を含むバッファーへのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>curveName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_SETにあるように、ECC曲線名を含む文字列へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;key);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>qx[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>x<sp/>component<sp/>of<sp/>base<sp/>point<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>qy[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>y<sp/>component<sp/>of<sp/>base<sp/>point<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>d[]<sp/><sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_import_raw(&amp;key,qx,<sp/>qy,<sp/>d,<sp/>&quot;ECC-256&quot;);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>key<sp/>with<sp/>given<sp/>inputs</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" kindref="member">wc_ecc_import_private_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1298" column="5" declfile="dox_comments/header_files/ecc.h" declline="1298" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaff92a6958d7493d07534089312cf3c74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_export_private_only</definition>
+        <argsstring>(ecc_key *key, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ecc_export_private_only</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECC_KEY構造から秘密鍵のみをエクスポートします。バッファーに秘密鍵を保存し、アウトレンのこのバッファーに書き込まれたバイトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 秘密鍵を正常にエクスポートすると返されます</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E 入力値のいずれかがnullに評価された場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ECC_Keyのパラメータを格納するためのエラーの初期化スペースがある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 入力Curvenameがecc_setsで定義されていない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 入力パラメーターを処理するエラーがある場合、返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 入力パラメータの処理中にエラーが発生した場合に返される可能性があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵をエクスポートするECC_KEY構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を保存するバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サイズが入手可能なword32オブジェクトへのポインタ。秘密鍵のエクスポートに正常に書き込まれた後に書き込まれたバイト数を設定します。</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">char<sp/>priv[ECC_KEY_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>privSz<sp/>=<sp/>sizeof(priv);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_export_private_only(&amp;key,<sp/>priv,<sp/>&amp;privSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>exporting<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" kindref="member">wc_ecc_import_private_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1361" column="5" declfile="dox_comments/header_files/ecc.h" declline="1361" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaaacd531f73fb2a5070d154e75795e298" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_export_point_der</definition>
+        <argsstring>(const int curve_idx, ecc_point *point, byte *out, word32 *outLen)</argsstring>
+        <name>wc_ecc_export_point_der</name>
+        <param>
+          <type>const int</type>
+          <declname>curve_idx</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>derへのエクスポートポイント。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功に戻った。</para>
+</simplesect>
+<simplesect kind="return"><para>ECC_BAD_ARG_E curve_idxが0未満または無効の場合に返されます。また、いつ戻りますか</para>
+</simplesect>
+<simplesect kind="return"><para>LENGTH_ONLY_E アウトレンは設定されていますが、他に何もありません。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E outlennが1 + 2 *曲線サイズよりも小さい場合は返します。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当てに問題がある場合は返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>curve_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_SETSから使用される曲線のインデックス。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>derへのエクスポートを指します。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力の宛先。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力に許可された最大サイズ、出力の最終サイズの宛先</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>curve_idx;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>outLen;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_export_point_der(curve_idx,<sp/>point,<sp/>out,<sp/>&amp;outLen);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga79c33de66f5ae16a005bcee4b0679af0" kindref="member">wc_ecc_import_point_der</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1393" column="5" declfile="dox_comments/header_files/ecc.h" declline="1393" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga79c33de66f5ae16a005bcee4b0679af0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_import_point_der</definition>
+        <argsstring>(byte *in, word32 inLen, const int curve_idx, ecc_point *point)</argsstring>
+        <name>wc_ecc_import_point_der</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>curve_idx</declname>
+        </param>
+        <param>
+          <type>ecc_point *</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Derフォーマットからのインポートポイント。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ECC_BAD_ARG_E 引数がnullの場合、またはInlenが偶数の場合は返します。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E エラー初期化がある場合に返します</para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN habe_comp_keyが真実でない場合は返され、inは圧縮証明書です</para>
+</simplesect>
+<simplesect kind="return"><para>MP_OKAY 成功した操作</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>からのポイントをインポートするためのDer Buffer。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DERバッファの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>curve_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>曲線のインデックス。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ポイントの目的地</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>in[];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>inLen;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>curve_idx;</highlight></codeline>
+<codeline><highlight class="normal">ecc_point*<sp/>point;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_import_point_der(in,<sp/>inLen,<sp/>curve_idx,<sp/>point);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gaaacd531f73fb2a5070d154e75795e298" kindref="member">wc_ecc_export_point_der</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1425" column="5" declfile="dox_comments/header_files/ecc.h" declline="1425" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga95af657f43c1ee93d3900d2a47cdd69f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_size</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_size</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ecc_key構造体のキーサイズをオクテットで返します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Given 有効なキーは、オクテットのキーサイズを返します</para>
+</simplesect>
+<simplesect kind="return"><para>0 与えられたキーがNULLの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーサイズを取得するためのECCキー構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">keySz<sp/>=<sp/>wc_ecc_size(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>keySz<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>determining<sp/>key<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1453" column="5" declfile="dox_comments/header_files/ecc.h" declline="1453" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gaf145568b65104e008a7311cffb11b562" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_sig_size_calc</definition>
+        <argsstring>(int sz)</argsstring>
+        <name>wc_ecc_sig_size_calc</name>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、次のようにして指定されたECCシグネチャの最悪の場合のサイズを返します。（KEYSZ * 2）+ SIG_HEADER_SZ + ECC_MAX_PAD_SZ。実際のシグネチャサイズは、WC_ECC_SIGN_HASHで計算できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>returns オクテットの最大署名サイズ</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iz</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sigSz<sp/>=<sp/>wc_ecc_sig_size_calc(32);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>sigSz<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>determining<sp/>sig<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" kindref="member">wc_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gafbedbdc67061a9912c49def9824fd3ba" kindref="member">wc_ecc_sig_size</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1479" column="5" declfile="dox_comments/header_files/ecc.h" declline="1479" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gafbedbdc67061a9912c49def9824fd3ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_sig_size</definition>
+        <argsstring>(ecc_key *key)</argsstring>
+        <name>wc_ecc_sig_size</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、次のようにして指定されたECCシグネチャの最悪の場合のサイズを返します。（KEYSZ * 2）+ SIG_HEADER_SZ + ECC_MAX_PAD_SZ。実際のシグネチャサイズは、WC_ECC_SIGN_HASHで計算できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 有効なキーが与えられた場合、オクテットで最大署名サイズを返します</para>
+</simplesect>
+<simplesect kind="return"><para>0 与えられたキーがNULLの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名サイズを取得するためのECCキー構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sigSz;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>make<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">sigSz<sp/>=<sp/>wc_ecc_sig_size(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>sigSz<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>determining<sp/>sig<sp/>size</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" kindref="member">wc_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gaf145568b65104e008a7311cffb11b562" kindref="member">wc_ecc_sig_size_calc</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1512" column="5" declfile="dox_comments/header_files/ecc.h" declline="1512" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga091b51afec328348efa56673d37fb155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ecEncCtx *</type>
+        <definition>ecEncCtx* wc_ecc_ctx_new</definition>
+        <argsstring>(int flags, WC_RNG *rng)</argsstring>
+        <name>wc_ecc_ctx_new</name>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、ECCとの安全なメッセージ交換を可能にするために、新しいECCコンテキストオブジェクトのスペースを割り当て、初期化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 新しいECENCCTXオブジェクトの生成に成功した場合は、そのオブジェクトへのポインタを返します</para>
+</simplesect>
+<simplesect kind="return"><para>NULL 関数が新しいライセンスCTXオブジェクトの生成に失敗した場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>これがサーバーであるかクライアントのコンテキストオプションがあるかどうかを示します.req_resp_client、およびreq_resp_server</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SALを生成するためのRNGオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_CLIENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>new<sp/>ecEncCtx<sp/>object</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" kindref="member">wc_ecc_encrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gad21887dbd46653ab137968663baa9368" kindref="member">wc_ecc_encrypt_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" kindref="member">wc_ecc_decrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1546" column="10" declfile="dox_comments/header_files/ecc.h" declline="1546" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga704e43c4cb0dac4e24fd2a413776f361" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_ecc_ctx_free</definition>
+        <argsstring>(ecEncCtx *)</argsstring>
+        <name>wc_ecc_ctx_free</name>
+        <param>
+          <type>ecEncCtx *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、メッセージの暗号化と復号化に使用されるECENCCTXオブジェクトを解放します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none 戻り値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ecencctxオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_CLIENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>do<sp/>secure<sp/>communication</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_ctx_free(&amp;ctx);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1572" column="6" declfile="dox_comments/header_files/ecc.h" declline="1572" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gab70c7e43da7725ffddcd0da19758448c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_ctx_reset</definition>
+        <argsstring>(ecEncCtx *ctx, WC_RNG *rng)</argsstring>
+        <name>wc_ecc_ctx_reset</name>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECENCCTX構造をリセットして、新しいコンテキストオブジェクトを解放して割り当てる必要がないことを避けます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECENCCTX構造が正常にリセットされている場合、返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RNGまたはCTXがNULLの場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E ECCオブジェクトの新しい塩を生成するエラーがある場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECENCCTXオブジェクトへのポインタはリセットします</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>新しいSALを生成するためのRNGオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_CLIENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>do<sp/>secure<sp/>communication</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_ctx_reset(&amp;ctx,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>do<sp/>more<sp/>secure<sp/>communication</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1603" column="5" declfile="dox_comments/header_files/ecc.h" declline="1603" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga71eb3904a72e85b649aef3846cc4efeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_ctx_set_algo</definition>
+        <argsstring>(ecEncCtx *ctx, byte encAlgo, byte kdfAlgo, byte macAlgo)</argsstring>
+        <name>wc_ecc_ctx_set_algo</name>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>encAlgo</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>kdfAlgo</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>macAlgo</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、wc_ecc_ctx_newの後にオプションで呼び出すことができます。暗号化、KDF、およびMACアルゴリズムをECENCCTXオブジェクトに設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECENCCTXオブジェクトの情報を正常に設定すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 指定されたecencctxオブジェクトがNULLの場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>情報を設定するECENCCTXへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>encAlgo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用する暗号化アルゴリズム</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kdfAlgo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するKDFアルゴリズム。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>macAlgo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するMacアルゴリズム</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">if(wc_ecc_ctx_set_algo(&amp;ctx,<sp/>ecAES_128_CTR,<sp/>ecHKDF_SHA256,<sp/>ecHMAC_SHA256)))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>setting<sp/>info</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1634" column="5" declfile="dox_comments/header_files/ecc.h" declline="1634" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gabe2a16ce8a9aec9953904ecd38648308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const byte *</type>
+        <definition>const byte* wc_ecc_ctx_get_own_salt</definition>
+        <argsstring>(ecEncCtx *)</argsstring>
+        <name>wc_ecc_ctx_get_own_salt</name>
+        <param>
+          <type>ecEncCtx *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、ECENCCTXオブジェクトの塩を返します。この関数は、ECENCCTX＆APOS;の状態がECSRV_INITまたはECCLI_INITである場合にのみ呼び出される必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 成功すると、Ecencctx塩を返します</para>
+</simplesect>
+<simplesect kind="return"><para>NULL ecencctxオブジェクトがNULLの場合、またはECENCCTXの状態がecsrv_initまたはeccli_initでない場合に返されます。後者の2つのケースでは、この機能はECSRV_BAD_STATEまたはECCLI_BAD_STATEにECENCCTX＆APOSを設定します。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SALを取得するためのecencctxオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte*<sp/>salt;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_CLIENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">salt<sp/>=<sp/>wc_ecc_ctx_get_own_salt(&amp;ctx);</highlight></codeline>
+<codeline><highlight class="normal">if(salt<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>getting<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga97cddc33a77f01610a0523a65ba4616b" kindref="member">wc_ecc_ctx_set_peer_salt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1669" column="12" declfile="dox_comments/header_files/ecc.h" declline="1669" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga97cddc33a77f01610a0523a65ba4616b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_ctx_set_peer_salt</definition>
+        <argsstring>(ecEncCtx *ctx, const byte *salt)</argsstring>
+        <name>wc_ecc_ctx_set_peer_salt</name>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ECENCCTXオブジェクトのピアソルトを設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECENCCTXオブジェクトのピアソルトを正常に設定すると戻ります。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 指定されたEcencCTXオブジェクトがnullであるか、無効なプロトコルがある場合、または与えられた塩がnullの場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ENC_STATE_E ECENCCTX＆APOS;の状態がECSRV_SALT_GETまたはECCLI_SALT_GETの場合に返されます。後者の2つのケースでは、この機能はECSRV_BAD_STATEまたはECCLI_BAD_STATEにECENCCTX＆APOSを設定します。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>塩を設定するECENCCTXへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ピア＆アポスのサルへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>cliCtx,<sp/>srvCtx;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte*<sp/>cliSalt,<sp/>srvSalt;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">cliCtx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_CLIENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">srvCtx<sp/>=<sp/>wc_ecc_ctx_new(REQ_RESP_SERVER,<sp/>&amp;rng);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">cliSalt<sp/>=<sp/>wc_ecc_ctx_get_own_salt(&amp;cliCtx);</highlight></codeline>
+<codeline><highlight class="normal">srvSalt<sp/>=<sp/>wc_ecc_ctx_get_own_salt(&amp;srvCtx);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_ctx_set_peer_salt(&amp;cliCtx,<sp/>srvSalt);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gabe2a16ce8a9aec9953904ecd38648308" kindref="member">wc_ecc_ctx_get_own_salt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1707" column="5" declfile="dox_comments/header_files/ecc.h" declline="1707" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga9e16a5e6f2da3a9a15ffbcfacc0cdd03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_ctx_set_info</definition>
+        <argsstring>(ecEncCtx *ctx, const byte *info, int sz)</argsstring>
+        <name>wc_ecc_ctx_set_info</name>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、wc_ecc_ctx_set_peer_saltの前後にオプションで呼び出されることができます。ECENCCTXオブジェクトのオプションの情報を設定します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ECENCCTXオブジェクトの情報を正常に設定すると返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 与えられたECENCCTXオブジェクトがNULLの場合、入力情報はNULLまたはITのサイズがInvaliです。</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>情報を設定するECENCCTXへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>設定する情報を含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>情報バフのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ecEncCtx*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>info[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>information<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>ctx,<sp/>get<sp/>salt,</highlight></codeline>
+<codeline><highlight class="normal">if(wc_ecc_ctx_set_info(&amp;ctx,<sp/>info,<sp/>sizeof(info)))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>setting<sp/>info</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1738" column="5" declfile="dox_comments/header_files/ecc.h" declline="1738" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_encrypt</definition>
+        <argsstring>(ecc_key *privKey, ecc_key *pubKey, const byte *msg, word32 msgSz, byte *out, word32 *outSz, ecEncCtx *ctx)</argsstring>
+        <name>wc_ecc_encrypt</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>privKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>pubKey</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outSz</declname>
+        </param>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、特定の入力メッセージをMSGからOUTに暗号化します。この関数は、オプションのCTXオブジェクトをパラメーターとして使用します。供給されると、暗号化はECENCCTX＆APOS;のエンカルゴ、KDFalgo、およびMacalgoに基づいて進行します。CTXが提供されていない場合、処理はデフォルトのアルゴリズム、ECAES_128_CBC、ECHKDF_SHA256、およびECHMAC_SHA256で完了します。この関数では、メッセージがCTXで指定された暗号化タイプに従ってパディングされる必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力メッセージの暗号化に成功したら返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG PRIVKEY、PUBKEY、MSG、MSGSZ、OUT、OUTSZがNULLの場合、またはCTXオブジェクトがサポートされていない暗号化タイプを指定します。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ENC_STATE_E 指定されたCTXオブジェクトが暗号化に適していない状態にある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供された出力バッファーが小さすぎて暗号化された暗号文を保存できない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 共有秘密鍵のメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>privKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する秘密鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コミュニケーションを希望するピアの公開鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを暗号化するためのバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msgSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するバッファーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を保存するバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>OUTバッファーで使用可能なサイズを含むWord32オブジェクトへのポインタ。メッセージを正常に暗号化すると、出力バッファーに書き込まれたバイト数を保持します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>オプション：ECENCCTXオブジェクトへのポインター私たちに異なる暗号化アルゴリズムを指定する</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>msg<sp/>to<sp/>encrypt.<sp/>Ensure<sp/>padded<sp/>to<sp/>block<sp/>size<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(msg)];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>outSz<sp/>=<sp/>sizeof(out);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>cli,<sp/>serv;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cli<sp/>with<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>serv<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ecEncCtx*<sp/>cliCtx,<sp/>servCtx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cliCtx<sp/>and<sp/>servCtx</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>exchange<sp/>salts</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_encrypt(&amp;cli,<sp/>&amp;serv,<sp/>msg,<sp/>sizeof(msg),<sp/>out,<sp/>&amp;outSz,<sp/>cliCtx);</highlight></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1gad21887dbd46653ab137968663baa9368" kindref="member">wc_ecc_encrypt_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" kindref="member">wc_ecc_decrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1799" column="5" declfile="dox_comments/header_files/ecc.h" declline="1799" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1gad21887dbd46653ab137968663baa9368" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_encrypt_ex</definition>
+        <argsstring>(ecc_key *privKey, ecc_key *pubKey, const byte *msg, word32 msgSz, byte *out, word32 *outSz, ecEncCtx *ctx, int compressed)</argsstring>
+        <name>wc_ecc_encrypt_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>privKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>pubKey</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outSz</declname>
+        </param>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compressed</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、特定の入力メッセージをMSGからOUTに暗号化します。この関数は、オプションのCTXオブジェクトをパラメーターとして使用します。供給されると、暗号化はECENCCTX＆APOS;のエンカルゴ、KDFalgo、およびMacalgoに基づいて進行します。CTXが提供されていない場合、処理はデフォルトのアルゴリズム、ECAES_128_CBC、ECHKDF_SHA256、およびECHMAC_SHA256で完了します。この関数では、メッセージがCTXで指定された暗号化タイプに従ってパディングされる必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力メッセージの暗号化に成功したら返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG PRIVKEY、PUBKEY、MSG、MSGSZ、OUT、OUTSZがNULLの場合、またはCTXオブジェクトがサポートされていない暗号化タイプを指定します。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ENC_STATE_E 指定されたCTXオブジェクトが暗号化に適していない状態にある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供された出力バッファーが小さすぎて暗号化された暗号文を保存できない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 共有秘密鍵のメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>privKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する秘密鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コミュニケーションを希望するピアの公開鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを暗号化するためのバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msgSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するバッファーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を保存するバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>OUTバッファーで使用可能なサイズを含むWord32オブジェクトへのポインタ。メッセージを正常に暗号化すると、出力バッファーに書き込まれたバイト数を保持します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>オプション：使用するさまざまな暗号化アルゴリズムを指定するECENCCTXオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>compressed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開キーフィールドは、圧縮形式で出力されることになります</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>msg<sp/>to<sp/>encrypt.<sp/>Ensure<sp/>padded<sp/>to<sp/>block<sp/>size<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(msg)];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>outSz<sp/>=<sp/>sizeof(out);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>cli,<sp/>serv;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cli<sp/>with<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>serv<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ecEncCtx*<sp/>cliCtx,<sp/>servCtx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cliCtx<sp/>and<sp/>servCtx</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>exchange<sp/>salts</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_encrypt_ex(&amp;cli,<sp/>&amp;serv,<sp/>msg,<sp/>sizeof(msg),<sp/>out,<sp/>&amp;outSz,<sp/>cliCtx,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>1);</highlight></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" kindref="member">wc_ecc_encrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" kindref="member">wc_ecc_decrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1863" column="5" declfile="dox_comments/header_files/ecc.h" declline="1863" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_decrypt</definition>
+        <argsstring>(ecc_key *privKey, ecc_key *pubKey, const byte *msg, word32 msgSz, byte *out, word32 *outSz, ecEncCtx *ctx)</argsstring>
+        <name>wc_ecc_decrypt</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>privKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>pubKey</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msgSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outSz</declname>
+        </param>
+        <param>
+          <type>ecEncCtx *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数はMSGからOUTへの暗号文を復号化します。この関数は、オプションのCTXオブジェクトをパラメーターとして使用します。供給されると、暗号化はECENCCTX＆APOS;のエンカルゴ、KDFalgo、およびMacalgoに基づいて進行します。CTXが提供されていない場合、処理はデフォルトのアルゴリズム、ECAES_128_CBC、ECHKDF_SHA256、およびECHMAC_SHA256で完了します。この関数では、メッセージがCTXで指定された暗号化タイプに従ってパディングされる必要があります。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力メッセージを正常に復号化すると返されます</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG PRIVKEY、PUBKEY、MSG、MSGSZ、OUT、OUTSZがNULLの場合、またはCTXオブジェクトがサポートされていない暗号化タイプを指定します。</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ENC_STATE_E 指定されたCTXオブジェクトが復号化に適していない状態にある場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 供給された出力バッファーが小さすぎて復号化されたプレーンテキストを保存できない場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 共有秘密鍵のメモリの割り当て中にエラーがある場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>privKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する秘密鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コミュニケーションを希望するピアの公開鍵を含むECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファへのポインタは、ciphertextを保持して復号化します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msgSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズを解読します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>OUTバッファーで使用可能なサイズを含むWord32オブジェクトへのポインタ。Ciphertextを正常に復号化すると、出力バッファーに書き込まれたバイト数を保持します</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>オプション：さまざまな復号化アルゴリズムを指定するECENCCTXオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>cipher[]<sp/>=<sp/>{<sp/>initialize<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">ciphertext<sp/>to<sp/>decrypt.<sp/>Ensure<sp/>padded<sp/>to<sp/>block<sp/>size<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[sizeof(cipher)];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>plainSz<sp/>=<sp/>sizeof(plain);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>cli,<sp/>serv;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cli<sp/>with<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>serv<sp/>with<sp/>received<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ecEncCtx*<sp/>cliCtx,<sp/>servCtx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>cliCtx<sp/>and<sp/>servCtx</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>exchange<sp/>salts</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_decrypt(&amp;cli,<sp/>&amp;serv,<sp/>cipher,<sp/>sizeof(cipher),</highlight></codeline>
+<codeline><highlight class="normal">plain,<sp/>&amp;plainSz,<sp/>cliCtx);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" kindref="member">wc_ecc_encrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ECC_1gad21887dbd46653ab137968663baa9368" kindref="member">wc_ecc_encrypt_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1926" column="5" declfile="dox_comments/header_files/ecc.h" declline="1926" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECC_1ga83efa53f7f2e43256ed3be8c199f9e7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ecc_set_nonblock</definition>
+        <argsstring>(ecc_key *key, ecc_nb_ctx_t *ctx)</argsstring>
+        <name>wc_ecc_set_nonblock</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>ecc_nb_ctx_t *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>非ブロッキング操作のECCサポートを有効にします。次のビルドオプションを使用して単一の精度（SP）数学をサポート：WolfsSl_sp_nonBlock Wolfssl_sp_small Wolfssl_sp_no_malloc wc_ecc_nonblock。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 コールバックコンテキストを正常に設定したときに返されました入力メッセージ</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYオブジェクトへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sのスタックデータキャッシュを備えたecc_nb_ctx_t構造へのポインタ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>ecc;</highlight></codeline>
+<codeline><highlight class="normal">ecc_nb_ctx_t<sp/>nb_ctx;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_init(&amp;ecc);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_ecc_set_nonblock(&amp;ecc,<sp/>&amp;nb_ctx);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_ecc_verify_hash_ex(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;r,<sp/>&amp;s,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>r/s<sp/>as<sp/>mp_int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hash,<sp/>hashSz,<sp/>//<sp/>computed<sp/>hash<sp/>digest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;verify_res,<sp/><sp/>//<sp/>verification<sp/>result<sp/>1=success</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;key</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>TODO:<sp/>Real-time<sp/>work<sp/>can<sp/>be<sp/>called<sp/>here<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>while<sp/>(ret<sp/>==<sp/>FP_WOULDBLOCK);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_ecc_free(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ecc.h" line="1970" column="5" declfile="dox_comments/header_files/ecc.h" declline="1970" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga6d0f268d7b0d7ad4b3fac490c1397fc8" kindref="member">wc_ecc_make_key</ref>(WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>keysize,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="group__ECC_1gaa8e76458324962efb703a7102473cebd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaa8e76458324962efb703a7102473cebd" kindref="member">wc_ecc_make_key_ex</ref>(WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>keysize,<sp/>ecc_key*<sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>curve_id);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="group__ECC_1ga95e451a312f105efde2c4c3e8dfa433f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga95e451a312f105efde2c4c3e8dfa433f" kindref="member">wc_ecc_check_key</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="group__ECC_1gac1e0c1089cf94c596485ac36d811abc5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gac1e0c1089cf94c596485ac36d811abc5" kindref="member">wc_ecc_key_free</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246" refid="group__ECC_1gac4c90785cdf60171aaa73e2e02481637" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gac4c90785cdf60171aaa73e2e02481637" kindref="member">wc_ecc_shared_secret</ref>(ecc_key*<sp/>private_key,<sp/>ecc_key*<sp/>public_key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>outlen);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292" refid="group__ECC_1gab49f07573edb8ad3eb168c866594ca05" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gab49f07573edb8ad3eb168c866594ca05" kindref="member">wc_ecc_shared_secret_ex</ref>(ecc_key*<sp/>private_key,<sp/>ecc_point*<sp/>point,</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>*outlen);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361" refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga94996d8a8db851ea9c61f252131b51c4" kindref="member">wc_ecc_sign_hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inlen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>*outlen,</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_RNG*<sp/>rng,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"></highlight></codeline>
+<codeline lineno="432" refid="group__ECC_1gacab051d94dc346cb2df5f3a209dded1e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gacab051d94dc346cb2df5f3a209dded1e" kindref="member">wc_ecc_sign_hash_ex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inlen,<sp/>WC_RNG*<sp/>rng,</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ecc_key*<sp/>key,<sp/>mp_int<sp/>*r,<sp/>mp_int<sp/>*s);</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"></highlight></codeline>
+<codeline lineno="500" refid="group__ECC_1ga7bff199922e080b6733aa2dd342f5cb7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga7bff199922e080b6733aa2dd342f5cb7" kindref="member">wc_ecc_verify_hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,<sp/>word32<sp/>siglen,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash,</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>hashlen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>stat,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight></codeline>
+<codeline lineno="539" refid="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga5b1bb1c6ce3f9238c8f23a3e516952bb" kindref="member">wc_ecc_verify_hash_ex</ref>(mp_int<sp/>*r,<sp/>mp_int<sp/>*s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash,</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>hashlen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>stat,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"></highlight></codeline>
+<codeline lineno="563" refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaaa0c3f56e07df66db857966e26106e18" kindref="member">wc_ecc_init</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"></highlight></codeline>
+<codeline lineno="589" refid="group__ECC_1gae59c1deab699da68ecc68c102285990b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gae59c1deab699da68ecc68c102285990b" kindref="member">wc_ecc_init_ex</ref>(ecc_key*<sp/>key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>devId);</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"></highlight></codeline>
+<codeline lineno="611" refid="group__ECC_1ga194a89747b82360f3d8a22184698ecac" refkind="member"><highlight class="normal">ecc_key*<sp/><ref refid="group__ECC_1ga194a89747b82360f3d8a22184698ecac" kindref="member">wc_ecc_key_new</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap);</highlight></codeline>
+<codeline lineno="612"><highlight class="normal"></highlight></codeline>
+<codeline lineno="632" refid="group__ECC_1gac18946c6b472d27e4be56740d71880bd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gac18946c6b472d27e4be56740d71880bd" kindref="member">wc_ecc_free</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="633"><highlight class="normal"></highlight></codeline>
+<codeline lineno="657" refid="group__ECC_1ga5b4a7aa3018bd18ca7b9235010b13626" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga5b4a7aa3018bd18ca7b9235010b13626" kindref="member">wc_ecc_fp_free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="658"><highlight class="normal"></highlight></codeline>
+<codeline lineno="691" refid="group__ECC_1ga9696066946daccbf59c35dbf164be89b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga9696066946daccbf59c35dbf164be89b" kindref="member">wc_ecc_is_valid_idx</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="692"><highlight class="normal"></highlight></codeline>
+<codeline lineno="719" refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" refkind="member"><highlight class="normal">ecc_point*<sp/><ref refid="group__ECC_1ga5a95789e0ef237f77f682c99d366167d" kindref="member">wc_ecc_new_point</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="720"><highlight class="normal"></highlight></codeline>
+<codeline lineno="747" refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaf56f44972208a70b5a897261567eb8b9" kindref="member">wc_ecc_del_point</ref>(ecc_point*<sp/>p);</highlight></codeline>
+<codeline lineno="748"><highlight class="normal"></highlight></codeline>
+<codeline lineno="780" refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga402a981bb51a35788fda0b183f34f430" kindref="member">wc_ecc_copy_point</ref>(ecc_point*<sp/>p,<sp/>ecc_point<sp/>*r);</highlight></codeline>
+<codeline lineno="781"><highlight class="normal"></highlight></codeline>
+<codeline lineno="823" refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga15f05f3dc6e2221ff6651a41da4ad9d6" kindref="member">wc_ecc_cmp_point</ref>(ecc_point*<sp/>a,<sp/>ecc_point<sp/>*<ref refid="random_8h_1ac5f0c3220b340f4f78d34bca64c6c699" kindref="member">b</ref>);</highlight></codeline>
+<codeline lineno="824"><highlight class="normal"></highlight></codeline>
+<codeline lineno="864" refid="group__ECC_1gad0284c4ea20805e8e7eeb4d3054f8879" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gad0284c4ea20805e8e7eeb4d3054f8879" kindref="member">wc_ecc_point_is_at_infinity</ref>(ecc_point<sp/>*p);</highlight></codeline>
+<codeline lineno="865"><highlight class="normal"></highlight></codeline>
+<codeline lineno="898" refid="group__ECC_1ga458a55243d54350363c0b4615d02dafd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga458a55243d54350363c0b4615d02dafd" kindref="member">wc_ecc_mulmod</ref>(mp_int*<sp/>k,<sp/>ecc_point<sp/>*G,<sp/>ecc_point<sp/>*R,</highlight></codeline>
+<codeline lineno="899"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mp_int*<sp/>a,<sp/>mp_int*<sp/>modulus,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>map);</highlight></codeline>
+<codeline lineno="900"><highlight class="normal"></highlight></codeline>
+<codeline lineno="964" refid="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga8ec718ac07b173a6e9f4dd5405bcbd57" kindref="member">wc_ecc_export_x963</ref>(ecc_key*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="965"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1035" refid="group__ECC_1ga4880d9d5c603856ad2714de4d864bc71" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga4880d9d5c603856ad2714de4d864bc71" kindref="member">wc_ecc_export_x963_ex</ref>(ecc_key*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compressed);</highlight></codeline>
+<codeline lineno="1036"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1098" refid="group__ECC_1ga1c4116facdbb32a302c7f03cd20adac7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga1c4116facdbb32a302c7f03cd20adac7" kindref="member">wc_ecc_import_x963</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="1099"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1167" refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gafc1bedd2b71b7d4ed72d1d01c62b7859" kindref="member">wc_ecc_import_private_key</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,<sp/>word32<sp/>privSz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pub,</highlight></codeline>
+<codeline lineno="1168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>pubSz,<sp/>ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="1169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1233" refid="group__ECC_1ga78967e166f0aa6de07dc5e4b870155c4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga78967e166f0aa6de07dc5e4b870155c4" kindref="member">wc_ecc_rs_to_sig</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>r,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>s,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outlen);</highlight></codeline>
+<codeline lineno="1234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1298" refid="group__ECC_1gaabd246d8560804e89c3c17c02708ccbf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaabd246d8560804e89c3c17c02708ccbf" kindref="member">wc_ecc_import_raw</ref>(ecc_key*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>qx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>qy,</highlight></codeline>
+<codeline lineno="1299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>curveName);</highlight></codeline>
+<codeline lineno="1300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1361" refid="group__ECC_1gaff92a6958d7493d07534089312cf3c74" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaff92a6958d7493d07534089312cf3c74" kindref="member">wc_ecc_export_private_only</ref>(ecc_key*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="1362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1393" refid="group__ECC_1gaaacd531f73fb2a5070d154e75795e298" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaaacd531f73fb2a5070d154e75795e298" kindref="member">wc_ecc_export_point_der</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>curve_idx,<sp/>ecc_point*<sp/>point,</highlight></codeline>
+<codeline lineno="1394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="1395"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1425" refid="group__ECC_1ga79c33de66f5ae16a005bcee4b0679af0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga79c33de66f5ae16a005bcee4b0679af0" kindref="member">wc_ecc_import_point_der</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>curve_idx,</highlight></codeline>
+<codeline lineno="1426"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ecc_point*<sp/>point);</highlight></codeline>
+<codeline lineno="1427"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1453" refid="group__ECC_1ga95af657f43c1ee93d3900d2a47cdd69f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga95af657f43c1ee93d3900d2a47cdd69f" kindref="member">wc_ecc_size</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="1454"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1479" refid="group__ECC_1gaf145568b65104e008a7311cffb11b562" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gaf145568b65104e008a7311cffb11b562" kindref="member">wc_ecc_sig_size_calc</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz);</highlight></codeline>
+<codeline lineno="1480"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1481"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1512" refid="group__ECC_1gafbedbdc67061a9912c49def9824fd3ba" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gafbedbdc67061a9912c49def9824fd3ba" kindref="member">wc_ecc_sig_size</ref>(ecc_key*<sp/>key);</highlight></codeline>
+<codeline lineno="1513"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1514"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1546" refid="group__ECC_1ga091b51afec328348efa56673d37fb155" refkind="member"><highlight class="normal">ecEncCtx*<sp/><ref refid="group__ECC_1ga091b51afec328348efa56673d37fb155" kindref="member">wc_ecc_ctx_new</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="1547"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1572" refid="group__ECC_1ga704e43c4cb0dac4e24fd2a413776f361" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga704e43c4cb0dac4e24fd2a413776f361" kindref="member">wc_ecc_ctx_free</ref>(ecEncCtx*);</highlight></codeline>
+<codeline lineno="1573"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1603" refid="group__ECC_1gab70c7e43da7725ffddcd0da19758448c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gab70c7e43da7725ffddcd0da19758448c" kindref="member">wc_ecc_ctx_reset</ref>(ecEncCtx*<sp/>ctx,<sp/>WC_RNG*<sp/>rng);<sp/><sp/></highlight><highlight class="comment">/*<sp/>reset<sp/>for<sp/>use<sp/>again<sp/>w/o<sp/>alloc/free<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1604"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1634" refid="group__ECC_1ga71eb3904a72e85b649aef3846cc4efeb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga71eb3904a72e85b649aef3846cc4efeb" kindref="member">wc_ecc_ctx_set_algo</ref>(ecEncCtx*<sp/>ctx,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>encAlgo,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>kdfAlgo,</highlight></codeline>
+<codeline lineno="1635"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>macAlgo);</highlight></codeline>
+<codeline lineno="1636"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1669" refid="group__ECC_1gabe2a16ce8a9aec9953904ecd38648308" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/><ref refid="group__ECC_1gabe2a16ce8a9aec9953904ecd38648308" kindref="member">wc_ecc_ctx_get_own_salt</ref>(ecEncCtx*);</highlight></codeline>
+<codeline lineno="1670"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1707" refid="group__ECC_1ga97cddc33a77f01610a0523a65ba4616b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga97cddc33a77f01610a0523a65ba4616b" kindref="member">wc_ecc_ctx_set_peer_salt</ref>(ecEncCtx*<sp/>ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>salt);</highlight></codeline>
+<codeline lineno="1708"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1738" refid="group__ECC_1ga9e16a5e6f2da3a9a15ffbcfacc0cdd03" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga9e16a5e6f2da3a9a15ffbcfacc0cdd03" kindref="member">wc_ecc_ctx_set_info</ref>(ecEncCtx*<sp/>ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>info,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz);</highlight></codeline>
+<codeline lineno="1739"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1799" refid="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga8d3cb6594810b8800fa567534117b7e0" kindref="member">wc_ecc_encrypt</ref>(ecc_key*<sp/>privKey,<sp/>ecc_key*<sp/>pubKey,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>msg,</highlight></codeline>
+<codeline lineno="1800"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>msgSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outSz,<sp/>ecEncCtx*<sp/>ctx);</highlight></codeline>
+<codeline lineno="1801"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1863" refid="group__ECC_1gad21887dbd46653ab137968663baa9368" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1gad21887dbd46653ab137968663baa9368" kindref="member">wc_ecc_encrypt_ex</ref>(ecc_key*<sp/>privKey,<sp/>ecc_key*<sp/>pubKey,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>msg,</highlight></codeline>
+<codeline lineno="1864"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>msgSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outSz,<sp/>ecEncCtx*<sp/>ctx,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compressed);</highlight></codeline>
+<codeline lineno="1865"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1926" refid="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga04a37c183aa782be024f704c3e1d9336" kindref="member">wc_ecc_decrypt</ref>(ecc_key*<sp/>privKey,<sp/>ecc_key*<sp/>pubKey,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>msg,</highlight></codeline>
+<codeline lineno="1927"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>msgSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outSz,<sp/>ecEncCtx*<sp/>ctx);</highlight></codeline>
+<codeline lineno="1928"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1929"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1970" refid="group__ECC_1ga83efa53f7f2e43256ed3be8c199f9e7e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ECC_1ga83efa53f7f2e43256ed3be8c199f9e7e" kindref="member">wc_ecc_set_nonblock</ref>(ecc_key<sp/>*key,<sp/>ecc_nb_ctx_t*<sp/>ctx);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ecc.h"/>
+  </compounddef>
+</doxygen>

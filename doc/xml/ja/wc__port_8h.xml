@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="wc__port_8h" kind="file" language="C++">
+    <compoundname>wc_port.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfCrypt_Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfCrypt_Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>WolfCryptが使用するリソースを初期化するために使用されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功すると。</para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 INITリソースの障害時</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Init()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Init<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" kindref="member">wolfCrypt_Cleanup</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_port.h" line="21" column="5" declfile="dox_comments/header_files/wc_port.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfCrypt_Cleanup</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfCrypt_Cleanup</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>WolfCryptによって使用されるリソースをクリーンアップするために使用されます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功すると。</para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 リソースの清掃が失敗したとき</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パラメータはありません</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Cleanup()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Cleanup<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_port.h" line="43" column="5" declfile="dox_comments/header_files/wc_port.h" declline="43" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" kindref="member">wolfCrypt_Cleanup</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/wc_port.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pwdbased_8h" kind="file" language="C++">
+    <compoundname>pwdbased.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Password_1ga14653d81b16cb2233b04600fb8659e47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PBKDF1</definition>
+        <argsstring>(byte *output, const byte *passwd, int pLen, const byte *salt, int sLen, int iterations, int kLen, int typeH)</argsstring>
+        <name>wc_PBKDF1</name>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>passwd</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>kLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>typeH</declname>
+        </param>
+        <briefdescription>
+<para>この機能はパスワードベースの鍵導出機能1（PBKDF1）を実装し、入力パスワードを連結塩と共により安全な鍵に変換し、出力に記憶する。これにより、HASH関数としてSHAとMD5を選択できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力パスワードからキーの派生に正常に戻された</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 無効なハッシュタイプが与えられた場合（有効なタイプはMD5とSHA）、反復が1未満、または要求されたキーの長さ（KLEN）が提供されたハッシュのハッシュ長より大きい場合に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E SHAまたはMD5オブジェクトにメモリを割り当てるエラーがある場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成されたキーを保存するバッファーへのポインタ。少なくともクレンの長さである必要があります</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キー派生に使用するパスワードを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの派生に使用するパスワードの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>鍵由来に使用する塩を含む緩衝液へのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>塩の長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュを処理する回数</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>派生キーの望ましい長さ。選択したハッシュのダイジェストサイズよりも長くはないはずです</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュアルゴリズム有効な選択肢はMD5とSHのです</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[MD5_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pass[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PBKDF1(key,<sp/>pass,<sp/>sizeof(pass),<sp/>salt,<sp/>sizeof(salt),<sp/>1000,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(key),<sp/>MD5);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>deriving<sp/>key<sp/>from<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Password_1gaed5d83aea55e222fa66436b99b148a0f" kindref="member">wc_PBKDF2</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Password_1ga63474b7677d3f946786134af2bc3f55d" kindref="member">wc_PKCS12_PBKDF</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pwdbased.h" line="46" column="5" declfile="dox_comments/header_files/pwdbased.h" declline="46" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Password_1gaed5d83aea55e222fa66436b99b148a0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PBKDF2</definition>
+        <argsstring>(byte *output, const byte *passwd, int pLen, const byte *salt, int sLen, int iterations, int kLen, int typeH)</argsstring>
+        <name>wc_PBKDF2</name>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>passwd</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>kLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>typeH</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、パスワードベースのキー派生関数2（PBKDF2）を実装し、連結した塩を含む入力パスワードをより安全なキーに変換し、それを出力に保存します。これにより、ユーザーは、MD5、SHA、SHA256、SHA384、SHA512、Blake2Bなど、サポートされているHMACハッシュ機能のいずれかを選択できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力パスワードからキーの派生に正常に戻された</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 無効なハッシュタイプが与えられている場合、または繰り返しが1未満の場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E HMACオブジェクトの割り当てメモリがある場合に返されます</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成されたキーを保存するバッファーへのポインタ。クレン・ロングであるべきです</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キー派生に使用するパスワードを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの派生に使用するパスワードの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>鍵由来に使用する塩を含む緩衝液へのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>塩の長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュを処理する回数</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>派生キーの望ましい長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュアルゴリズム有効な選択肢は次のとおりです.MD5、SHA、SHA256、SHA384、SHA512、およびBLAKE2</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[64];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pass[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PBKDF2(key,<sp/>pass,<sp/>sizeof(pass),<sp/>salt,<sp/>sizeof(salt),<sp/>2048,<sp/>sizeof(key),</highlight></codeline>
+<codeline><highlight class="normal">SHA512);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>deriving<sp/>key<sp/>from<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Password_1ga14653d81b16cb2233b04600fb8659e47" kindref="member">wc_PBKDF1</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Password_1ga63474b7677d3f946786134af2bc3f55d" kindref="member">wc_PKCS12_PBKDF</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pwdbased.h" line="95" column="5" declfile="dox_comments/header_files/pwdbased.h" declline="95" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Password_1ga63474b7677d3f946786134af2bc3f55d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS12_PBKDF</definition>
+        <argsstring>(byte *output, const byte *passwd, int pLen, const byte *salt, int sLen, int iterations, int kLen, int typeH, int purpose)</argsstring>
+        <name>wc_PKCS12_PBKDF</name>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>passwd</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>kLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>typeH</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>purpose</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、RFC 7292付録Bに記載されているパスワードベースのキー派生関数（PBKDF）を実装します。この関数は、入力パスワードを連結した塩でより安全なキーに変換し、それを出力に保存します。これにより、ユーザーは、MD5、SHA、SHA256、SHA384、SHA512、Blake2Bなど、サポートされているHMACハッシュ機能のいずれかを選択できます。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力パスワードからキーの派生に正常に戻された</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 返された無効なハッシュタイプが与えられた場合、繰り返しは1未満、または要求されたキーの長さ（klen）が提供されたハッシュのハッシュ長よりも大きいです。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 割り当てメモリがある場合は返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM キー生成中にエラーが発生した場合に返される場合があります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成されたキーを保存するバッファーへのポインタ。クレン・ロングであるべきです</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キー派生に使用するパスワードを含むバッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの派生に使用するパスワードの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>鍵由来に使用する塩を含む緩衝液へのポインター</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>塩の長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュを処理する回数</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>派生キーの望ましい長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュアルゴリズム有効な選択肢は次のとおりです.MD5、SHA、SHA256、SHA384、SHA512、およびBLAKE2B</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>これは、キー生成の目的を示すバイト隔離器です。キー出力を多様化するために使用され、次のように割り当てる必要があります。ID= 1：擬似ランダムビットは、暗号化または復号化を実行するための重要な材料として使用する必要があります。ID = 2：擬似ランダムビットは、暗号化または復号化にIV（初期値）を使用します。ID = 3：擬似ランダムビットは、マッピングの整合性キーとして使用されます</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[64];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pass[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS512_PBKDF(key,<sp/>pass,<sp/>sizeof(pass),<sp/>salt,<sp/>sizeof(salt),<sp/>2048,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(key),<sp/>SHA512,<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>deriving<sp/>key<sp/>from<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Password_1ga14653d81b16cb2233b04600fb8659e47" kindref="member">wc_PBKDF1</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Password_1gaed5d83aea55e222fa66436b99b148a0f" kindref="member">wc_PBKDF2</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pwdbased.h" line="164" column="5" declfile="dox_comments/header_files/pwdbased.h" declline="164" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="group__Password_1ga14653d81b16cb2233b04600fb8659e47" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Password_1ga14653d81b16cb2233b04600fb8659e47" kindref="member">wc_PBKDF1</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>passwd,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pLen,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>salt,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iterations,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kLen,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>typeH);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="group__Password_1gaed5d83aea55e222fa66436b99b148a0f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Password_1gaed5d83aea55e222fa66436b99b148a0f" kindref="member">wc_PBKDF2</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>passwd,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pLen,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>salt,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iterations,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kLen,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>typeH);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="group__Password_1ga63474b7677d3f946786134af2bc3f55d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Password_1ga63474b7677d3f946786134af2bc3f55d" kindref="member">wc_PKCS12_PBKDF</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>passwd,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pLen,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>salt,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iterations,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>typeH,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>purpose);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/pwdbased.h"/>
+  </compounddef>
+</doxygen>

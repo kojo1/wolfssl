@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cryptocb_8h" kind="file" language="C++">
+    <compoundname>cryptocb.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_CryptoCb_RegisterDevice</definition>
+        <argsstring>(int devId, CryptoDevCallbackFunc cb, void *ctx)</argsstring>
+        <name>wc_CryptoCb_RegisterDevice</name>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <param>
+          <type>CryptoDevCallbackFunc</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、キーストア、セキュア要素、HSM、PKCS11、TPMなどの外部ハードウェアに暗号操作をオフロードするための一意のデバイス識別子（devid）とコールバック関数を登録します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para>Crypto CallbacksのStsafeの例については、wolfcrypt/src/port/st/stsafe.cおよびwolfssl_stsafe_cryptodevcb関数を参照してください</para>
+<para>TPMベースのCryptoコールバックの場合は、WolfTPM SRC / TPM2_WRAPのWOLFTPM2_CRYPTODEVCB関数を参照してください。</para>
+<para><simplesect kind="return"><para>CRYPTOCB_UNAVAILABLE ソフトウェア暗号の使用にフォールバックします</para>
+</simplesect>
+<simplesect kind="return"><para>0 成功のために</para>
+</simplesect>
+<simplesect kind="return"><para>negative 失敗の価値</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>-2ではなく一意の値（invalid_devid）</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プロトタイプを備えたコールバック関数：typedef int（<emphasis> cryptodevCallbackfunc）（int devid、wc_cryptoinf）</emphasis> info, void* ctx);</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#include<sp/>&lt;wolfssl/wolfcrypt/settings.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;wolfssl/wolfcrypt/cryptocb.h&gt;</highlight></codeline>
+<codeline><highlight class="normal">static<sp/>int<sp/>myCryptoCb_Func(int<sp/>devId,<sp/>wc_CryptoInfo*<sp/>info,<sp/>void*<sp/>ctx)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>ret<sp/>=<sp/>CRYPTOCB_UNAVAILABLE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(info-&gt;algo_type<sp/>==<sp/>WC_ALGO_TYPE_PK)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifndef<sp/>NO_RSA</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(info-&gt;pk.type<sp/>==<sp/>WC_PK_TYPE_RSA)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(info-&gt;pk.rsa.type)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>RSA_PUBLIC_ENCRYPT:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>RSA_PUBLIC_DECRYPT:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>RSA<sp/>public<sp/>op</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaFunction(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.in,<sp/>info-&gt;pk.rsa.inLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.out,<sp/>info-&gt;pk.rsa.outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.type,<sp/>info-&gt;pk.rsa.key,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>RSA_PRIVATE_ENCRYPT:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>RSA_PRIVATE_DECRYPT:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>RSA<sp/>private<sp/>op</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaFunction(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.in,<sp/>info-&gt;pk.rsa.inLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.out,<sp/>info-&gt;pk.rsa.outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.type,<sp/>info-&gt;pk.rsa.key,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.rsa.rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>HAVE_ECC</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(info-&gt;pk.type<sp/>==<sp/>WC_PK_TYPE_ECDSA_SIGN)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>ECDSA</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_ecc_sign_hash(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.eccsign.in,<sp/>info-&gt;pk.eccsign.inlen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.eccsign.out,<sp/>info-&gt;pk.eccsign.outlen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.eccsign.rng,<sp/>info-&gt;pk.eccsign.key);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#ifdef<sp/>HAVE_ED25519</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(info-&gt;pk.type<sp/>==<sp/>WC_PK_TYPE_ED25519_SIGN)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>ED25519<sp/>sign</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_ed25519_sign_msg_ex(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.ed25519sign.in,<sp/>info-&gt;pk.ed25519sign.inLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.ed25519sign.out,<sp/>info-&gt;pk.ed25519sign.outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.ed25519sign.key,<sp/>info-&gt;pk.ed25519sign.type,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.ed25519sign.context,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info-&gt;pk.ed25519sign.contextLen);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>devId<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">wc_CryptoCb_RegisterDevice(devId,<sp/>myCryptoCb_Func,<sp/>&amp;myCtx);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_SetDevId(ctx,<sp/>devId);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="cryptocb_8h_1ac37e9ab04179e38eefdb89a13a68a97f" kindref="member">wc_CryptoCb_UnRegisterDevice</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a706356ae2ac664740d36b2a53abe5c36" kindref="member">wolfSSL_SetDevId</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a4eb1f02e6f8e0d20e7739c81478f0930" kindref="member">wolfSSL_CTX_SetDevId</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/cryptocb.h" line="88" column="6" declfile="dox_comments/header_files/cryptocb.h" declline="88" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="cryptocb_8h_1ac37e9ab04179e38eefdb89a13a68a97f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_CryptoCb_UnRegisterDevice</definition>
+        <argsstring>(int devId)</argsstring>
+        <name>wc_CryptoCb_UnRegisterDevice</name>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、固有のデバイス識別子（devid）コールバック関数を除外します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえリターン</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>devId</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>-2ではなく一意の値（invalid_devid</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wc_CryptoCb_UnRegisterDevice(devId);</highlight></codeline>
+<codeline><highlight class="normal">devId<sp/>=<sp/>INVALID_DEVID;</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_SetDevId(ctx,<sp/>devId);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" kindref="member">wc_CryptoCb_RegisterDevice</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a706356ae2ac664740d36b2a53abe5c36" kindref="member">wolfSSL_SetDevId</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a4eb1f02e6f8e0d20e7739c81478f0930" kindref="member">wolfSSL_CTX_SetDevId</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/cryptocb.h" line="111" column="6" declfile="dox_comments/header_files/cryptocb.h" declline="111" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" kindref="member">wc_CryptoCb_RegisterDevice</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>devId,<sp/>CryptoDevCallbackFunc<sp/>cb,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ctx);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="cryptocb_8h_1ac37e9ab04179e38eefdb89a13a68a97f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="cryptocb_8h_1ac37e9ab04179e38eefdb89a13a68a97f" kindref="member">wc_CryptoCb_UnRegisterDevice</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>devId);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/cryptocb.h"/>
+  </compounddef>
+</doxygen>

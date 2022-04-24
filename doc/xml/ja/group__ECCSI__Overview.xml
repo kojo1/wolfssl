@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__ECCSI__Overview" kind="group">
+    <compoundname>ECCSI_Overview</compoundname>
+    <title>Overview of ECCSI</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>ECCSI（アイデンティティベースの暗号化のための楕円曲線ベースの証明書のない署名）は、RFC 6507で指定されています。<ulink url="https://tools.ietf.org/html/rfc6507">https://tools.ietf.org/html/rfc6507</ulink>).</para><para>アイデンティティベースの暗号化には、クライアントのIDに基づいてキーを生成するキー管理サービスがあります。秘密鍵（SSK）と公開鍵（PVT）は、署名者に配信され、公開鍵（PVT）はリクエストに応じて検証者にのみ配信されます。
+
+wolfcryptは次の能力を提供します。<orderedlist>
+
+<listitem><para>KMSキーを作成し、</para></listitem><listitem><para>署名キーペアを生成し、</para></listitem><listitem><para>キーペアの署名を検証し、</para></listitem><listitem><para>署名メッセージと</para></listitem><listitem><para>メッセージを確認します。</para></listitem></orderedlist>
+</para>
+<para>KMS：<orderedlist><listitem><para>ECCSIキーの初期化：<ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para></listitem><listitem><para>ECCSIキーを作成および保存またはロードします：<orderedlist><listitem><para><ref refid="group__ECCSI__Setup_1ga50bd581ed54d1aca0be0520fd196f585" kindref="member">wc_MakeEccsiKey()</ref>, <ref refid="group__ECCSI__Setup_1gabb672e78507abc2e1a93f260529e004a" kindref="member">wc_ExportEccsiKey()</ref>, <ref refid="group__ECCSI__Setup_1ga346390f4dbf184a72a3238430ee6d54b" kindref="member">wc_ExportEccsiPublicKey()</ref> or</para>
+</listitem><listitem><para><ref refid="group__ECCSI__Setup_1ga700c559a604fc54778077bbbc70c5441" kindref="member">wc_ImportEccsiKey()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>リクエストを待つ：<orderedlist><listitem><para>クライアントから署名IDを受け取ります。</para></listitem><listitem><para>ID：<ref refid="group__ECCSI__Operations_1ga53b58464921d21f6466ae8ed0ae834b8" kindref="member">wc_MakeEccsiPair()</ref>からキーペアの署名を生成します</para></listitem><listitem><para>結果のエンコード：<orderedlist><listitem><para>署名者の場合、キーペアの署名：<ref refid="group__ECCSI__Operations_1gaa75cf5b1c3a80606b6db94e3fe31033c" kindref="member">wc_EncodeEccsiPair()</ref></para></listitem></orderedlist>
+</para>
+</listitem><listitem><para>KPAKと結果を送信します</para></listitem></orderedlist>
+</para>
+</listitem><listitem><para>無料のECCSIキー：<ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref></para></listitem></orderedlist>
+</para>
+<para>クライアント、署名者：<orderedlist><listitem><para>ECCSIキーの初期化：<ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para></listitem><listitem><para>（キャッシュされていないペアに署名するとき）KPAKと署名ペアをKMSからリクエストします<orderedlist><listitem><para>署名IDをKMSに送信します。</para></listitem><listitem><para>KMSからキーペアの署名を受け取ります。</para></listitem><listitem><para>KMS公開キーをロード：<ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para></listitem><listitem><para>キーペアの署名をデコード：<ref refid="group__ECCSI__Operations_1ga8bf2233bc94052a2972597a513ac0a26" kindref="member">wc_DecodeEccsiPair()</ref></para></listitem><listitem><para>キーペアの検証：<ref refid="group__ECCSI__Operations_1ga08e58acfbbcf01e91a159c1fa7921a50" kindref="member">wc_ValidateEccsiPair()</ref></para></listitem></orderedlist>
+</para>
+</listitem><listitem><para>（上記で行われない場合）KMS公開キーをロード：<ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para></listitem><listitem><para>（キャッシュされていない場合）IDとPVTのハッシュを計算：<ref refid="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" kindref="member">wc_HashEccsiId()</ref></para></listitem><listitem><para>各メッセージについて：<orderedlist><listitem><para>アイデンティティのハッシュを設定：<ref refid="group__ECCSI__Setup_1ga902a78834dd7bd6080e47099b779bc00" kindref="member">wc_SetEccsiHash()</ref></para></listitem><listitem><para>署名メッセージ：<ref refid="group__ECCSI__Operations_1ga64f67314f1760c19c6d9cb543f22bcf2" kindref="member">wc_SignEccsiHash()</ref></para></listitem><listitem><para>ハッシュID、メッセージ、署名をピアに送信します。</para></listitem></orderedlist>
+</para>
+</listitem><listitem><para>無料のECCSIキー：<ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref></para></listitem></orderedlist>
+</para>
+<para>クライアント、検証剤：<orderedlist><listitem><para>署名者からハッシュID、メッセージ、署名を受け取ります。</para></listitem><listitem><para>KMSからハッシュIDにKPAK（キャッシュされていない場合）とPVT（キャッシュされていない場合）をリクエストします。</para></listitem><listitem><para>KMSからハッシュIDに対してKPAK（キャッシュされていない場合）およびPVT（キャッシュされていない場合）を受け取ります。</para></listitem><listitem><para>ECCSIキーの初期化：<ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para></listitem><listitem><para>KMS公開キーをロード：<ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para></listitem><listitem><para>PVTをデコード：<ref refid="group__ECCSI__Operations_1gab5816f2dbd951785d9ed25930dec5974" kindref="member">wc_DecodeEccsiPvtFromSig()</ref></para></listitem><listitem><para>IDとPVTのハッシュを計算します：<ref refid="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" kindref="member">wc_HashEccsiId()</ref></para></listitem><listitem><para>ECCSIキーペアを設定：<ref refid="group__ECCSI__Setup_1ga7a10e19ecb684b279cc3c6fc079c21f9" kindref="member">wc_SetEccsiPair()</ref></para></listitem><listitem><para>メッセージの署名を確認する：<ref refid="group__ECCSI__Operations_1ga22e6ca729bd78ede754da6a08da4ddbc" kindref="member">wc_VerifyEccsiHash()</ref></para></listitem><listitem><para>無料のECCSIキー：<ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref></para></listitem></orderedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

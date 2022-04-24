@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="wc__encrypt_8h" kind="file" language="C++">
+    <compoundname>wc_encrypt.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__AES_1ga7f27a5f5f50fe1da277fafff27fa2173" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_AesCbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 inSz, const byte *key, word32 keySz, const byte *iv)</argsstring>
+        <name>wc_AesCbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>入力バッファーから暗号を復号化し、AESでCipher Block Chainingを使用して出力バッファに出力バッファーに入れます。この関数は、AES構造を初期化する必要はありません。代わりに、キーとIV（初期化ベクトル）を取り、これらを使用してAESオブジェクトを初期化してから暗号テキストを復号化します。</para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 正常に復号化されたメッセージ</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_ALIGN_E ブロック整列エラーに戻りました</para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キー長が無効である場合、またはaesオブジェクトがaessetiv中にnullの場合に返されます</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E wolfssl_small_stackが有効になっていて、xmallocがAESオブジェクトのインスタンス化に失敗した場合</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたメッセージのプレーンテキストを保存する出力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号テキストを含む入力バッファーへのポインタは、復号化されます</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力メッセージのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化のための16、24、または32バイトシークレットキー</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用されるキーのサイズ</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>some<sp/>16,<sp/>24,<sp/>or<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>some<sp/>16<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[AES_BLOCK_SIZE<sp/>*<sp/>n];<sp/>//n<sp/>being<sp/>a<sp/>positive<sp/>integer<sp/>making</highlight></codeline>
+<codeline><highlight class="normal">cipher<sp/>some<sp/>multiple<sp/>of<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>fill<sp/>cipher<sp/>with<sp/>cipher<sp/>text</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plain<sp/>[AES_BLOCK_SIZE<sp/>*<sp/>n];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_AesCbcDecryptWithKey(plain,<sp/>cipher,<sp/>AES_BLOCK_SIZE,<sp/>key,</highlight></codeline>
+<codeline><highlight class="normal">AES_BLOCK_SIZE,<sp/>iv))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Decrypt<sp/>Error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__AES_1gad52b440a630fb94e4250a37b7682ab3b" kindref="member">wc_AesSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga58d80e002c87e2d5d1c8b01f0a7156fc" kindref="member">wc_AesSetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1gaed1e38cd30d917165183fc68dd4b218b" kindref="member">wc_AesCbcEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__AES_1ga35713fdddf94f25ca7bd1a60249b041c" kindref="member">wc_AesCbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="45" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="45" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des_CbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーン（CBC）モードを使用してデスコラプトを使用します。この関数は、wc_des_cbcdecryptの代わりに、ユーザーがDES構造体を直接インスタンス化せずにメッセージを復号化できるようにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para>3</para>
+<para><simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体の割り当てスペースが割り当てられている場合に返された</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>decryptにciphertextの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する8バイトのキーを含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する8バイトのIVを含むバッファへのポインタ。IVが提供されていない場合は、IVのデフォルト</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),<sp/>key,</highlight></codeline>
+<codeline><highlight class="normal">iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gab608cc56cab33a74e928951856c6467e" kindref="member">wc_Des_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="87" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="87" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga185c52a79aec5dab46d3b909b17174da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcEncryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des_CbcEncryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力プレーンテキストを暗号化し、出力バッファーに結果の暗号文を保存します。暗号ブロックチェーン（CBC）モードを使用してデスコラプトを使用します。この関数は、WC_DES_CBCENCRYPTの代わりであり、ユーザーがDES構造を直接インスタンス化することなくメッセージを暗号化できるようにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para>3</para>
+<para><simplesect kind="return"><para>0 データの暗号化に正常に暗号化した後に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造にメモリを割り当てるエラーがある場合、apos;が返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 暗号化中に任意のエラーに戻ります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最終暗号化データ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるデータは、DESブロックサイズにパッドで塗装する必要があります。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するキーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトル</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" kindref="member">wc_Des_CbcEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="126" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="126" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gacbf21084c40f2dcb73785252404dfebc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcEncryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des3_CbcEncryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、入力プレーンテキストを暗号化し、出力バッファーに結果の暗号文を保存します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。この関数は、WC_DES3_CBCENCRYPTの代わりであり、ユーザーがDES3構造を直接インスタンス化することなくメッセージを暗号化できるようにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para>3</para>
+<para><simplesect kind="return"><para>0 データの暗号化に正常に暗号化した後に返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造にメモリを割り当てるエラーがある場合、apos;が返されます。</para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 暗号化中に任意のエラーに戻ります</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最終暗号化データ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるデータは、DESブロックサイズにパッドで塗装する必要があります。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するキーへのポインタ。</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化ベクトル</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" kindref="member">wc_Des3_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga185c52a79aec5dab46d3b909b17174da" kindref="member">wc_Des_CbcEncryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="168" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="168" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des3_CbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。この関数は、wc_des3_cbcdecryptの代わりに、ユーザーがDES3構造を直接インスタンス化せずにメッセージを復号化できるようにします。</para>
+        </briefdescription>
+        <detaileddescription>
+<para>3</para>
+<para><simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました</para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体の割り当てスペースが割り当てられている場合に返された</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファーへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>decryptにciphertextの長さ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する24バイトのキーを含むバッファへのポインタ</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する8バイトのIVを含むバッファへのポインタ。IVが提供されていない場合は、IVのデフォルト</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>24<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),</highlight></codeline>
+<codeline><highlight class="normal">key,<sp/>iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/wc_encrypt.h" line="210" column="6" declfile="dox_comments/header_files/wc_encrypt.h" declline="210" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="group__AES_1ga7f27a5f5f50fe1da277fafff27fa2173" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__AES_1ga7f27a5f5f50fe1da277fafff27fa2173" kindref="member">wc_AesCbcDecryptWithKey</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inSz,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/>word32<sp/>keySz,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>iv);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>sz,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>iv);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="group__DES_1ga185c52a79aec5dab46d3b909b17174da" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__DES_1ga185c52a79aec5dab46d3b909b17174da" kindref="member">wc_Des_CbcEncryptWithKey</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>sz,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>iv);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="group__DES_1gacbf21084c40f2dcb73785252404dfebc" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__DES_1gacbf21084c40f2dcb73785252404dfebc" kindref="member">wc_Des3_CbcEncryptWithKey</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>sz,</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>iv);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210" refid="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" kindref="member">wc_Des3_CbcDecryptWithKey</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>sz,</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>iv);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/wc_encrypt.h"/>
+  </compounddef>
+</doxygen>
