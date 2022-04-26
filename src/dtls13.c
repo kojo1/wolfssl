@@ -353,8 +353,22 @@ static int Dtls13SendFragFromBuffer(WOLFSSL *ssl, byte *output, word16 length)
     return SendBuffered(ssl);
 }
 
+static int Dtls13SendNow(WOLFSSL *ssl, enum HandShakeType handshakeType)
+{
+    if (!ssl->options.groupMessages)
+        return 1;
+
+    if (handshakeType == client_hello || handshakeType == hello_retry_request ||
+        handshakeType == finished || handshakeType == session_ticket ||
+        handshakeType == session_ticket || handshakeType == key_update)
+        return 1;
+
+    return 0;
+}
+
 static int Dtls13SendFragment(WOLFSSL *ssl, byte *output, word16 output_size,
-    word16 length, enum HandShakeType handshakeType, int hashOutput)
+    word16 length, enum HandShakeType handshakeType, int hashOutput,
+    int sendImmediately)
 {
     word16 recordHeaderLength;
     word16 recordLength;
@@ -397,7 +411,12 @@ static int Dtls13SendFragment(WOLFSSL *ssl, byte *output, word16 output_size,
         return Dtls13SendFragFromBuffer(ssl, output, length);
 
     ssl->buffers.outputBuffer.length += length;
-    return SendBuffered(ssl);
+
+    ret = 0;
+    if (sendImmediately)
+        ret = SendBuffered(ssl);
+
+    return ret;
 }
 
 static void Dtls13FreeFragmentsBuffer(WOLFSSL *ssl)
@@ -706,8 +725,8 @@ static int Dtls13SendOneFragmentRtx(WOLFSSL *ssl, Dtls13RtxFSM *fsm,
     if (rtxRecord == NULL)
         return MEMORY_E;
 
-    ret = Dtls13SendFragment(
-        ssl, message, outputSize, length, handshakeType, hashOutput);
+    ret = Dtls13SendFragment(ssl, message, outputSize, length, handshakeType,
+        hashOutput, Dtls13SendNow(ssl, handshakeType));
 
     if (ret == 0 || ret == WANT_WRITE)
         Dtls13RtxAddRecord(fsm, rtxRecord);
@@ -1107,6 +1126,7 @@ static int Dtls13RtxSendBuffered(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
     Dtls13RtxRecord *r;
     word32 newRn[2];
     byte *output;
+    int isLast;
     int sendSz;
     word32 now;
     int ret;
@@ -1125,6 +1145,7 @@ static int Dtls13RtxSendBuffered(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
 
     r = fsm->rtxRecords;
     while (r != NULL) {
+        isLast = r->next == NULL;
         WOLFSSL_MSG("Dtls13Rtx One Record");
 
         headerLength = Dtls13GetRlHeaderLength(r->epoch != 0);
@@ -1153,8 +1174,8 @@ static int Dtls13RtxSendBuffered(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
         if (ret != 0)
             return ret;
 
-        ret = Dtls13SendFragment(
-            ssl, output, sendSz, r->length + headerLength, r->handshakeType, 0);
+        ret = Dtls13SendFragment(ssl, output, sendSz, r->length + headerLength,
+            r->handshakeType, 0, isLast);
         if (ret != 0 && ret != WANT_WRITE)
             return ret;
 
