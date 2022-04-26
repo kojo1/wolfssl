@@ -629,7 +629,6 @@ static void Dtls13RtxRemoveCurAck(WOLFSSL *ssl, Dtls13RtxFSM *fsm)
     }
 }
 
-/* recordNumber is a size 2 array */
 static int Dtls13RtxMsgRecvd(
     WOLFSSL *ssl, enum HandShakeType hs, Dtls13RtxFSM *fsm, word32 fragOffset)
 {
@@ -1183,6 +1182,9 @@ int Dtls13RecordRecvd(WOLFSSL *ssl)
 {
     word32 seq[2];
     int ret;
+
+    if (ssl->curRL.type != handshake)
+        return 0;
 
     Dtls13MakeRN(
         ssl->keys.curEpoch, ssl->keys.curSeq_hi, ssl->keys.curSeq_lo, seq);

@@ -17733,7 +17733,11 @@ int ProcessReplyEx(WOLFSSL* ssl, int allowSocketErr)
 
                     continue;
                 }
-                Dtls13UpdateWindow(ssl);
+                ret = Dtls13UpdateWindow(ssl);
+                if (ret != 1) {
+                    WOLFSSL_ERROR(ret);
+                    return ret;
+                }
 
                 ret = Dtls13RecordRecvd(ssl);
                 if (ret != 0) {
