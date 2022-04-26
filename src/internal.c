@@ -15103,7 +15103,7 @@ static WC_INLINE int Dtls13UpdateWindow(WOLFSSL* ssl)
 {
     if (ssl->dtls13DecryptEpoch == NULL) {
         WOLFSSL_MSG("Can't find decrypting Epoch");
-        return 0;
+        return BAD_STATE_E;
     }
 
     return _DtlsUpdateWindow(ssl, &ssl->dtls13DecryptEpoch->nextPeerSeqNumberHi,
