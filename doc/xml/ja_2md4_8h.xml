@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2md4_8h" kind="file" language="C++">
+    <compoundname>md4.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__MD4_1ga1653eb745101affe251a18c3835d121a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_InitMd4</definition>
+        <argsstring>(Md4 *)</argsstring>
+        <name>wc_InitMd4</name>
+        <param>
+          <type>Md4 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はMD4を初期化します。これはWC_MD4HASHによって自動的に呼び出されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function initializes md4. This is automatically called by wc_Md4Hash.</para>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga41d7e1cb68522b5105d9ae2840d2a95a" kindref="member">wc_Md4Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully initializing</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the md4 structure to use for encryption</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga41d7e1cb68522b5105d9ae2840d2a95a" kindref="member">wc_Md4Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/md4.h" line="20" column="6" declfile="dox_comments/header_files/ja/md4.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD4_1ga41d7e1cb68522b5105d9ae2840d2a95a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Md4Update</definition>
+        <argsstring>(Md4 *md4, const byte *data, word32 len)</argsstring>
+        <name>wc_Md4Update</name>
+        <param>
+          <type>Md4 *</type>
+          <declname>md4</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be called to continually hash the provided byte array of length len.</para>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD4構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga1653eb745101affe251a18c3835d121a" kindref="member">wc_InitMd4</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully adding the data to the digest.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the md4 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to be hashed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of data to be hashed</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga1653eb745101affe251a18c3835d121a" kindref="member">wc_InitMd4</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/md4.h" line="46" column="6" declfile="dox_comments/header_files/ja/md4.h" declline="46" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Md4Final</definition>
+        <argsstring>(Md4 *md4, byte *hash)</argsstring>
+        <name>wc_Md4Final</name>
+        <param>
+          <type>Md4 *</type>
+          <declname>md4</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Finalizes hashing of data. Result is placed into hash.</para>
+<para><simplesect kind="return"><para>0 ファイナライズに成功したときに返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するMD4構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga1653eb745101affe251a18c3835d121a" kindref="member">wc_InitMd4</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully finalizing.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>md4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the md4 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">md4<sp/>md4[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitMd4(md4))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_Initmd4<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md4Update(md4,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Md4Final(md4,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_Md4Hash </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD4_1ga1653eb745101affe251a18c3835d121a" kindref="member">wc_InitMd4</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/md4.h" line="68" column="6" declfile="dox_comments/header_files/ja/md4.h" declline="68" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="20"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD4_1ga1653eb745101affe251a18c3835d121a" kindref="member">wc_InitMd4</ref>(Md4*);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD4_1ga41d7e1cb68522b5105d9ae2840d2a95a" kindref="member">wc_Md4Update</ref>(Md4*<sp/>md4,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__MD4_1ga8501c82489b2a14cc28309d75809a80e" kindref="member">wc_Md4Final</ref>(Md4*<sp/>md4,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/md4.h"/>
+  </compounddef>
+</doxygen>

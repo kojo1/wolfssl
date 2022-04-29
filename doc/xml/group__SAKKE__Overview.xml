@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__SAKKE__Overview" kind="group">
+    <compoundname>SAKKE_Overview</compoundname>
+    <title>Overview of SAKKE Key</title>
+    <briefdescription>
+<para>SAKKE (Sakai-Kasahara Key Encryption) is specified in RFC 6508 (<ulink url="https://tools.ietf.org/html/rfc6508">https://tools.ietf.org/html/rfc6508</ulink>). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>SAKKE is used to transfer a secret to a peer using Identity Based cryptography.<linebreak/>
+The Key Management Service (KMS) is responsible for issuing Receiver Secret Keys (RSKs). Data up to (2^hashlen)^hashlen bytes of data can be transferred.<linebreak/>
+The sender must know the identity of the receiver and the KMS Public Key.<linebreak/>
+The receiver must have obtained a Receiver Secret Key (RSK) for the identity from a KMS in order to derive the secret.</para>
+<para>KMS:<orderedlist>
+<listitem><para>Initialize SAKKE Key: <ref refid="ja_2sakke_8h_1a8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref></para>
+</listitem><listitem><para>Make and save or load SAKKE Key:<orderedlist>
+<listitem><para><ref refid="ja_2sakke_8h_1aad6fac8f0ff7ba4790d1a66e173e5943" kindref="member">wc_MakeSakkeKey()</ref>, <ref refid="ja_2sakke_8h_1a2843dbd4bd4063ee9694caa94bd6c6d7" kindref="member">wc_ExportSakkeKey()</ref>, <ref refid="ja_2sakke_8h_1ac3c19a1bbfb06659999956ed0ee3bf26" kindref="member">wc_ExportSakkePublicKey()</ref> or</para>
+</listitem><listitem><para><ref refid="ja_2sakke_8h_1a78804246a7a02471bf9f129765f3b76c" kindref="member">wc_ImportSakkeKey()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Wait for request:<orderedlist>
+<listitem><para>Make an RSK base on ID for the client: <ref refid="ja_2sakke_8h_1a80fa7df0d204b8402a3ca9166357a6c8" kindref="member">wc_MakeSakkeRsk()</ref></para>
+</listitem><listitem><para>Encode RSK for transfer to client: <ref refid="ja_2sakke_8h_1a331ab89daa227785d3e42e3a8708f5a3" kindref="member">wc_EncodeSakkeRsk()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Free SAKKE Key: <ref refid="ja_2sakke_8h_1a365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Key Exchange, Peer A:<orderedlist>
+<listitem><para>Initialize SAKKE Key: <ref refid="ja_2sakke_8h_1a8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref></para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="ja_2sakke_8h_1a89cc2527610ffe0f06aa48b15797fbe2" kindref="member">wc_ImportSakkePublicKey()</ref></para>
+</listitem><listitem><para>Generate a random SSV: <ref refid="ja_2sakke_8h_1a9c9667b24840a6b04bb821998f00f346" kindref="member">wc_GenerateSakkeSSV()</ref></para>
+</listitem><listitem><para>Set the identity of Peer B: <ref refid="ja_2sakke_8h_1a70d25896dd503c8b3d60e8e2e3db8db4" kindref="member">wc_SetSakkeIdentity()</ref></para>
+</listitem><listitem><para>Make an encapsulated SSV and auth data: <ref refid="ja_2sakke_8h_1ac4a5296a71c321231584a9fdb0bc189b" kindref="member">wc_MakeSakkeEncapsulatedSSV()</ref></para>
+</listitem><listitem><para>Send encapsulated data to Peer B</para>
+</listitem><listitem><para>Free SAKKE Key: <ref refid="ja_2sakke_8h_1a365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Key Exchange, Peer B:<orderedlist>
+<listitem><para>Receive encapsulated data.</para>
+</listitem><listitem><para>Initialize SAKKE Key: <ref refid="ja_2sakke_8h_1a8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref></para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="ja_2sakke_8h_1a89cc2527610ffe0f06aa48b15797fbe2" kindref="member">wc_ImportSakkePublicKey()</ref></para>
+</listitem><listitem><para>Decode RSK transferred from KMS or stored locally: <ref refid="ja_2sakke_8h_1a65b74643d963b984d636876f6a22b351" kindref="member">wc_DecodeSakkeRsk()</ref></para>
+</listitem><listitem><para>[Optional] Validate RSK before first use: <ref refid="ja_2sakke_8h_1a71d432b9a290e7527a12ada1ecdef9ec" kindref="member">wc_ValidateSakkeRsk()</ref></para>
+</listitem><listitem><para>Set the identity: <ref refid="ja_2sakke_8h_1a70d25896dd503c8b3d60e8e2e3db8db4" kindref="member">wc_SetSakkeIdentity()</ref></para>
+</listitem><listitem><para>Set the RSK and, optionally precomputation table: <ref refid="ja_2sakke_8h_1abed34ea9252ea8795a2bb1ac51138ee1" kindref="member">wc_SetSakkeRsk()</ref></para>
+</listitem><listitem><para>Derive SSV with auth data: <ref refid="ja_2sakke_8h_1a456e97f619be9fd875f3939caf3def11" kindref="member">wc_DeriveSakkeSSV()</ref></para>
+</listitem><listitem><para>Free SAKKE Key: <ref refid="ja_2sakke_8h_1a365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Transfer secret, Peer A:<orderedlist>
+<listitem><para>Initialize SAKKE Key: <ref refid="ja_2sakke_8h_1a8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref></para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="ja_2sakke_8h_1a89cc2527610ffe0f06aa48b15797fbe2" kindref="member">wc_ImportSakkePublicKey()</ref></para>
+</listitem><listitem><para>Set the identity of Peer B: <ref refid="ja_2sakke_8h_1a70d25896dd503c8b3d60e8e2e3db8db4" kindref="member">wc_SetSakkeIdentity()</ref></para>
+</listitem><listitem><para>Make an encapsulation of the SSV and auth data: <ref refid="ja_2sakke_8h_1ac4a5296a71c321231584a9fdb0bc189b" kindref="member">wc_MakeSakkeEncapsulatedSSV()</ref></para>
+</listitem><listitem><para>Send encapsulated data to Peer B</para>
+</listitem><listitem><para>Free SAKKE Key: <ref refid="ja_2sakke_8h_1a365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Transfer secret, Peer B:<orderedlist>
+<listitem><para>Initialize SAKKE Key: <ref refid="ja_2sakke_8h_1a8e36230d7ad3f67f9403e7420cd3f424" kindref="member">wc_InitSakkeKey()</ref></para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="ja_2sakke_8h_1a89cc2527610ffe0f06aa48b15797fbe2" kindref="member">wc_ImportSakkePublicKey()</ref></para>
+</listitem><listitem><para>Decode RSK transferred from KMS or stored locally: <ref refid="ja_2sakke_8h_1a65b74643d963b984d636876f6a22b351" kindref="member">wc_DecodeSakkeRsk()</ref></para>
+</listitem><listitem><para>[Optional] Validate RSK before first use: <ref refid="ja_2sakke_8h_1a71d432b9a290e7527a12ada1ecdef9ec" kindref="member">wc_ValidateSakkeRsk()</ref></para>
+</listitem><listitem><para>Receive encapsulated data.</para>
+</listitem><listitem><para>Set the identity: <ref refid="ja_2sakke_8h_1a70d25896dd503c8b3d60e8e2e3db8db4" kindref="member">wc_SetSakkeIdentity()</ref></para>
+</listitem><listitem><para>Set the RSK and, optionally precomputation table: <ref refid="ja_2sakke_8h_1abed34ea9252ea8795a2bb1ac51138ee1" kindref="member">wc_SetSakkeRsk()</ref></para>
+</listitem><listitem><para>Derive SSV and auth data: <ref refid="ja_2sakke_8h_1a456e97f619be9fd875f3939caf3def11" kindref="member">wc_DeriveSakkeSSV()</ref></para>
+</listitem><listitem><para>Free SAKKE Key: <ref refid="ja_2sakke_8h_1a365aef228533bcfd6d3277003a967638" kindref="member">wc_FreeSakkeKey()</ref> </para>
+</listitem></orderedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

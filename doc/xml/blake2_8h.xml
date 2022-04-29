@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="blake2_8h" kind="file" language="C++">
+    <compoundname>blake2.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="blake2_8h_1aaf6561f8d08663ab210594bda385ad1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitBlake2b</definition>
+        <argsstring>(Blake2b *b2b, word32 digestSz)</argsstring>
+        <name>wc_InitBlake2b</name>
+        <param>
+          <type>Blake2b *</type>
+          <declname>b2b</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>digestSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はBlake2 Hash関数で使用するためのBlake2b構造を初期化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Blake2B構造の初期化に成功し、ダイジェストサイズを設定したときに返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b2b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するためにBlake2b構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Blake2b<sp/>b2b;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>Blake2b<sp/>structure<sp/>with<sp/>64<sp/>byte<sp/>digest</highlight></codeline>
+<codeline><highlight class="normal">wc_InitBlake2b(&amp;b2b,<sp/>64);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="blake2_8h_1ad6ddadab52a5eb3707d390343980a7a9" kindref="member">wc_Blake2bUpdate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/blake2.h" line="14" column="5" declfile="dox_comments/header_files/ja/blake2.h" declline="14" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="blake2_8h_1ad6ddadab52a5eb3707d390343980a7a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Blake2bUpdate</definition>
+        <argsstring>(Blake2b *b2b, const byte *data, word32 sz)</argsstring>
+        <name>wc_Blake2bUpdate</name>
+        <param>
+          <type>Blake2b *</type>
+          <declname>b2b</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、与えられた入力データとBlake2Bハッシュを更新します。この関数は、wc_initblake2bの後に呼び出され、最後のハッシュ：wc_blake2bfinalの準備ができているまで繰り返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 与えられたデータを使用してBlake2B構造を正常に更新すると返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>-1 入力データの圧縮中に障害が発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b2b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>更新するBlake2b構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加するデータを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">Blake2b<sp/>b2b;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>Blake2b<sp/>structure<sp/>with<sp/>64<sp/>byte<sp/>digest</highlight></codeline>
+<codeline><highlight class="normal">wc_InitBlake2b(&amp;b2b,<sp/>64);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>input<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Blake2bUpdate(&amp;b2b,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>blake2b</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="blake2_8h_1aaf6561f8d08663ab210594bda385ad1d" kindref="member">wc_InitBlake2b</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="blake2_8h_1a3c92841bec7fc83c525683c79ba5de7b" kindref="member">wc_Blake2bFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/blake2.h" line="40" column="5" declfile="dox_comments/header_files/ja/blake2.h" declline="40" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="blake2_8h_1a3c92841bec7fc83c525683c79ba5de7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Blake2bFinal</definition>
+        <argsstring>(Blake2b *b2b, byte *final, word32 requestSz)</argsstring>
+        <name>wc_Blake2bFinal</name>
+        <param>
+          <type>Blake2b *</type>
+          <declname>b2b</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>final</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>requestSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、以前に供給された入力データのBlake2bハッシュを計算します。出力ハッシュは長さREQUESTSZ、あるいは要求された場合はB2B構造のDigestSZを使用します。この関数は、wc_initblake2bの後に呼び出され、wc_blake2bupdateは必要な各入力データに対して処理されています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Blake2B Hashの計算に成功したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>-1 blake2bハッシュを解析している間に失敗がある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b2b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>更新するBlake2b構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>final</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Blake2Bハッシュを保存するバッファへのポインタ。長さrequestszにする必要があります <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">Blake2b<sp/>b2b;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[64];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>Blake2b<sp/>structure<sp/>with<sp/>64<sp/>byte<sp/>digest</highlight></codeline>
+<codeline><highlight class="normal">wc_InitBlake2b(&amp;b2b,<sp/>64);</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>//<sp/>call<sp/>wc_Blake2bUpdate<sp/>to<sp/>add<sp/>data<sp/>to<sp/>hash</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Blake2bFinal(&amp;b2b,<sp/>hash,<sp/>64);</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>blake2b<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="blake2_8h_1aaf6561f8d08663ab210594bda385ad1d" kindref="member">wc_InitBlake2b</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="blake2_8h_1ad6ddadab52a5eb3707d390343980a7a9" kindref="member">wc_Blake2bUpdate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/blake2.h" line="66" column="5" declfile="dox_comments/header_files/ja/blake2.h" declline="66" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="14"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="blake2_8h_1aaf6561f8d08663ab210594bda385ad1d" kindref="member">wc_InitBlake2b</ref>(Blake2b*<sp/>b2b,<sp/>word32<sp/>digestSz);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="blake2_8h_1ad6ddadab52a5eb3707d390343980a7a9" kindref="member">wc_Blake2bUpdate</ref>(Blake2b*<sp/>b2b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>sz);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="blake2_8h_1a3c92841bec7fc83c525683c79ba5de7b" kindref="member">wc_Blake2bFinal</ref>(Blake2b*<sp/>b2b,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">,<sp/>word32<sp/>requestSz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/blake2.h"/>
+  </compounddef>
+</doxygen>

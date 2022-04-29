@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_dfc8448f8129746d23a901ae20f5c7b5" kind="dir">
+    <compoundname>dox_comments/header_files/ja</compoundname>
+    <innerfile refid="aes_8h">aes.h</innerfile>
+    <innerfile refid="arc4_8h">arc4.h</innerfile>
+    <innerfile refid="asn_8h">asn.h</innerfile>
+    <innerfile refid="asn__public_8h">asn_public.h</innerfile>
+    <innerfile refid="blake2_8h">blake2.h</innerfile>
+    <innerfile refid="bn_8h">bn.h</innerfile>
+    <innerfile refid="camellia_8h">camellia.h</innerfile>
+    <innerfile refid="chacha_8h">chacha.h</innerfile>
+    <innerfile refid="chacha20__poly1305_8h">chacha20_poly1305.h</innerfile>
+    <innerfile refid="coding_8h">coding.h</innerfile>
+    <innerfile refid="compress_8h">compress.h</innerfile>
+    <innerfile refid="cryptocb_8h">cryptocb.h</innerfile>
+    <innerfile refid="curve25519_8h">curve25519.h</innerfile>
+    <innerfile refid="curve448_8h">curve448.h</innerfile>
+    <innerfile refid="des3_8h">des3.h</innerfile>
+    <innerfile refid="dh_8h">dh.h</innerfile>
+    <innerfile refid="doxygen__groups_8h">doxygen_groups.h</innerfile>
+    <innerfile refid="doxygen__pages_8h">doxygen_pages.h</innerfile>
+    <innerfile refid="dsa_8h">dsa.h</innerfile>
+    <innerfile refid="ecc_8h">ecc.h</innerfile>
+    <innerfile refid="eccsi_8h">eccsi.h</innerfile>
+    <innerfile refid="ed25519_8h">ed25519.h</innerfile>
+    <innerfile refid="ed448_8h">ed448.h</innerfile>
+    <innerfile refid="error-crypt_8h">error-crypt.h</innerfile>
+    <innerfile refid="evp_8h">evp.h</innerfile>
+    <innerfile refid="hash_8h">hash.h</innerfile>
+    <innerfile refid="hmac_8h">hmac.h</innerfile>
+    <innerfile refid="iotsafe_8h">iotsafe.h</innerfile>
+    <innerfile refid="logging_8h">logging.h</innerfile>
+    <innerfile refid="md2_8h">md2.h</innerfile>
+    <innerfile refid="md4_8h">md4.h</innerfile>
+    <innerfile refid="md5_8h">md5.h</innerfile>
+    <innerfile refid="memory_8h">memory.h</innerfile>
+    <innerfile refid="pem_8h">pem.h</innerfile>
+    <innerfile refid="pkcs11_8h">pkcs11.h</innerfile>
+    <innerfile refid="pkcs7_8h">pkcs7.h</innerfile>
+    <innerfile refid="poly1305_8h">poly1305.h</innerfile>
+    <innerfile refid="psa_8h">psa.h</innerfile>
+    <innerfile refid="pwdbased_8h">pwdbased.h</innerfile>
+    <innerfile refid="random_8h">random.h</innerfile>
+    <innerfile refid="ripemd_8h">ripemd.h</innerfile>
+    <innerfile refid="rsa_8h">rsa.h</innerfile>
+    <innerfile refid="sakke_8h">sakke.h</innerfile>
+    <innerfile refid="sha_8h">sha.h</innerfile>
+    <innerfile refid="sha256_8h">sha256.h</innerfile>
+    <innerfile refid="sha512_8h">sha512.h</innerfile>
+    <innerfile refid="signature_8h">signature.h</innerfile>
+    <innerfile refid="siphash_8h">siphash.h</innerfile>
+    <innerfile refid="srp_8h">srp.h</innerfile>
+    <innerfile refid="ssl_8h">ssl.h</innerfile>
+    <innerfile refid="tfm_8h">tfm.h</innerfile>
+    <innerfile refid="types_8h">types.h</innerfile>
+    <innerfile refid="wc__encrypt_8h">wc_encrypt.h</innerfile>
+    <innerfile refid="wc__port_8h">wc_port.h</innerfile>
+    <innerfile refid="wolfio_8h">wolfio.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="dox_comments/header_files/ja/"/>
+  </compounddef>
+</doxygen>

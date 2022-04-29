@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="chacha_8h" kind="file" language="C++">
+    <compoundname>chacha.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="chacha_8h_1a7c442f1ad9951da5ab60c74d8b8f679b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Chacha_SetIV</definition>
+        <argsstring>(ChaCha *ctx, const byte *inIv, word32 counter)</argsstring>
+        <name>wc_Chacha_SetIV</name>
+        <param>
+          <type>ChaCha *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inIv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>counter</declname>
+        </param>
+        <briefdescription>
+<para>この関数はChachaオブジェクトの初期化ベクトル（nonce）を設定し、暗号として使用するために初期化します。WC_CHACHA_SETKEYを使用して、キーが設定された後に呼び出されるべきです。暗号化の各ラウンドに差し違いを使用する必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 初期化ベクトルを正常に設定すると返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG CTX入力引数の処理中にエラーが発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IVを設定するChacha構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inIv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Chacha構造を初期化するための12バイトの初期化ベクトルを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ChaCha<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Chacha_SetKey</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[12];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>iv</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Chacha_SetIV(&amp;enc,<sp/>iv,<sp/>0)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>ChaCha<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a812a1f0abb94ee607e8b7ad54c765d61" kindref="member">wc_Chacha_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a0fff82149fb438bdbf5ea56ff436bc47" kindref="member">wc_Chacha_Process</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/chacha.h" line="21" column="5" declfile="dox_comments/header_files/ja/chacha.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="chacha_8h_1a0fff82149fb438bdbf5ea56ff436bc47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Chacha_Process</definition>
+        <argsstring>(ChaCha *ctx, byte *cipher, const byte *plain, word32 msglen)</argsstring>
+        <name>wc_Chacha_Process</name>
+        <param>
+          <type>ChaCha *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>cipher</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>plain</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>msglen</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、バッファ入力からテキストを処理し、暗号化または復号化し、結果をバッファ出力に格納します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力の暗号化または復号化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG CTX入力引数の処理中にエラーが発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IVを設定するChacha構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力暗号文または復号化された平文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化する入力平文を含むバッファへのポインタまたは復号化する入力暗号文 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ChaCha<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Chacha_SetKey<sp/>and<sp/>wc_Chacha_SetIV</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Chacha_Process(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>processing<sp/>ChaCha<sp/>cipher</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a812a1f0abb94ee607e8b7ad54c765d61" kindref="member">wc_Chacha_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a0fff82149fb438bdbf5ea56ff436bc47" kindref="member">wc_Chacha_Process</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/chacha.h" line="45" column="5" declfile="dox_comments/header_files/ja/chacha.h" declline="45" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="chacha_8h_1a812a1f0abb94ee607e8b7ad54c765d61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Chacha_SetKey</definition>
+        <argsstring>(ChaCha *ctx, const byte *key, word32 keySz)</argsstring>
+        <name>wc_Chacha_SetKey</name>
+        <param>
+          <type>ChaCha *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はChachaオブジェクトのキーを設定し、それを暗号として使用するために初期化します。NONCEをWC_CHACHA_SETIVで設定する前に、WC_CHACHA_PROCESSを使用した暗号化に使用する前に呼び出す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 キーの設定に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG CTX入力引数の処理中にエラーが発生した場合、またはキーが16または32バイトの長さがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを設定するChacha構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Chacha構造を初期化するための16または32バイトのキーを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ChaCha<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Chacha_SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>ChaCha<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a7c442f1ad9951da5ab60c74d8b8f679b" kindref="member">wc_Chacha_SetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="chacha_8h_1a0fff82149fb438bdbf5ea56ff436bc47" kindref="member">wc_Chacha_Process</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/chacha.h" line="67" column="5" declfile="dox_comments/header_files/ja/chacha.h" declline="67" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="21"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chacha_8h_1a7c442f1ad9951da5ab60c74d8b8f679b" kindref="member">wc_Chacha_SetIV</ref>(ChaCha*<sp/>ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>inIv,<sp/>word32<sp/>counter);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chacha_8h_1a0fff82149fb438bdbf5ea56ff436bc47" kindref="member">wc_Chacha_Process</ref>(ChaCha*<sp/>ctx,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>cipher,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>plain,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>msglen);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="chacha_8h_1a812a1f0abb94ee607e8b7ad54c765d61" kindref="member">wc_Chacha_SetKey</ref>(ChaCha*<sp/>ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,<sp/>word32<sp/>keySz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/chacha.h"/>
+  </compounddef>
+</doxygen>

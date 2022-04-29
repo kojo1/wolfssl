@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="signature_8h" kind="file" language="C++">
+    <compoundname>signature.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="signature_8h_1acfc8f430e5657eaba850e8d4a8738a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SignatureGetSize</definition>
+        <argsstring>(enum wc_SignatureType sig_type, const void *key, word32 key_len)</argsstring>
+        <name>wc_SignatureGetSize</name>
+        <param>
+          <type>enum wc_SignatureType</type>
+          <declname>sig_type</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>key_len</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、結果のシグネチャの最大サイズを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns sig_type_e sig_typeがサポートされていない場合sig_typeが無効な場合はbad_func_argを返します。正の戻り値は、署名の最大サイズを示します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wc_signature_type_eccまたはwc_signature_type_rsaなどの署名型列挙型値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYやRSAKEYなどのキー構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>Get<sp/>signature<sp/>length</highlight></codeline>
+<codeline><highlight class="normal">enum<sp/>wc_SignatureType<sp/>sig_type<sp/>=<sp/>WC_SIGNATURE_TYPE_ECC;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>eccKey;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>sigLen;</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;eccKey);</highlight></codeline>
+<codeline><highlight class="normal">sigLen<sp/>=<sp/>wc_SignatureGetSize(sig_type,<sp/>&amp;eccKey,<sp/>sizeof(eccKey));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(sigLen<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="hash_8h_1a1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="signature_8h_1aabcf535ee019c9af3524de51b55489aa" kindref="member">wc_SignatureGenerate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="signature_8h_1a2d1bdafeb57d4c28209e3dea6e4700c8" kindref="member">wc_SignatureVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/signature.h" line="23" column="5" declfile="dox_comments/header_files/ja/signature.h" declline="23" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="signature_8h_1a2d1bdafeb57d4c28209e3dea6e4700c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SignatureVerify</definition>
+        <argsstring>(enum wc_HashType hash_type, enum wc_SignatureType sig_type, const byte *data, word32 data_len, const byte *sig, word32 sig_len, const void *key, word32 key_len)</argsstring>
+        <name>wc_SignatureVerify</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <param>
+          <type>enum wc_SignatureType</type>
+          <declname>sig_type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>data_len</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sig_len</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>key_len</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、データをハッシュし、結果のハッシュとキーを使用して署名を使用して署名を使用して署名を検証します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>SIG_TYPE_E -231、署名タイプが有効/利用可能です </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG -173、関数の不良引数が提供されています </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E -132、出力バッファが小さすぎたり入力が大きすぎたりします。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&quot;wc_hash_type_sha256&quot;などの &quot;enum wc_hashtype&quot;からのハッシュ型。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wc_signature_type_eccまたはwc_signature_type_rsaなどの署名型列挙型値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータを含むバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データバッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を出力するためのバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>シグネチャ出力バッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYやRSAKEYなどのキー構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>eccKey;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Import<sp/>the<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;eccKey);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_import_x963(eccPubKeyBuf,<sp/>eccPubKeyLen,<sp/>&amp;eccKey);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Perform<sp/>signature<sp/>verification<sp/>using<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_SignatureVerify(</highlight></codeline>
+<codeline><highlight class="normal">WC_HASH_TYPE_SHA256,<sp/>WC_SIGNATURE_TYPE_ECC,</highlight></codeline>
+<codeline><highlight class="normal">fileBuf,<sp/>fileLen,</highlight></codeline>
+<codeline><highlight class="normal">sigBuf,<sp/>sigLen,</highlight></codeline>
+<codeline><highlight class="normal">&amp;eccKey,<sp/>sizeof(eccKey));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Signature<sp/>Verification:<sp/>%s</highlight></codeline>
+<codeline><highlight class="normal">(%d)\n&quot;,<sp/>(ret<sp/>==<sp/>0)<sp/>?<sp/>&quot;Pass&quot;<sp/>:<sp/>&quot;Fail&quot;,<sp/>ret);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_free(&amp;eccKey);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="signature_8h_1acfc8f430e5657eaba850e8d4a8738a3a" kindref="member">wc_SignatureGetSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="signature_8h_1aabcf535ee019c9af3524de51b55489aa" kindref="member">wc_SignatureGenerate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/signature.h" line="61" column="5" declfile="dox_comments/header_files/ja/signature.h" declline="61" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="signature_8h_1aabcf535ee019c9af3524de51b55489aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SignatureGenerate</definition>
+        <argsstring>(enum wc_HashType hash_type, enum wc_SignatureType sig_type, const byte *data, word32 data_len, byte *sig, word32 *sig_len, const void *key, word32 key_len, WC_RNG *rng)</argsstring>
+        <name>wc_SignatureGenerate</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <param>
+          <type>enum wc_SignatureType</type>
+          <declname>sig_type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>data_len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sig_len</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>key_len</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、キーを使用してデータから署名を生成します。まずデータのハッシュを作成し、キーを使用してハッシュに署名します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>SIG_TYPE_E -231、署名タイプが有効/利用可能です </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG -173、関数の不良引数が提供されています </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E -132、出力バッファが小さすぎたり入力が大きすぎたりします。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&quot;wc_hash_type_sha256&quot;などの &quot;enum wc_hashtype&quot;からのハッシュ型。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wc_signature_type_eccまたはwc_signature_type_rsaなどの署名型列挙型値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータを含むバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データバッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を出力するためのバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>シグネチャ出力バッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECC_KEYやRSAKEYなどのキー構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キー構造のサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">ecc_key<sp/>eccKey;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_init(&amp;eccKey);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Generate<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_ecc_make_key(&amp;rng,<sp/>32,<sp/>&amp;eccKey);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Get<sp/>signature<sp/>length<sp/>and<sp/>allocate<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">sigLen<sp/>=<sp/>wc_SignatureGetSize(sig_type,<sp/>&amp;eccKey,<sp/>sizeof(eccKey));</highlight></codeline>
+<codeline><highlight class="normal">sigBuf<sp/>=<sp/>malloc(sigLen);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Perform<sp/>signature<sp/>verification<sp/>using<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_SignatureGenerate(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_SIGNATURE_TYPE_ECC,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fileBuf,<sp/>fileLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sigBuf,<sp/>&amp;sigLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&amp;eccKey,<sp/>sizeof(eccKey),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Signature<sp/>Generation:<sp/>%s</highlight></codeline>
+<codeline><highlight class="normal">(%d)\n&quot;,<sp/>(ret<sp/>==<sp/>0)<sp/>?<sp/>&quot;Pass&quot;<sp/>:<sp/>&quot;Fail&quot;,<sp/>ret);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">free(sigBuf);</highlight></codeline>
+<codeline><highlight class="normal">wc_ecc_free(&amp;eccKey);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="signature_8h_1acfc8f430e5657eaba850e8d4a8738a3a" kindref="member">wc_SignatureGetSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="signature_8h_1a2d1bdafeb57d4c28209e3dea6e4700c8" kindref="member">wc_SignatureVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/signature.h" line="115" column="5" declfile="dox_comments/header_files/ja/signature.h" declline="115" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="23"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="signature_8h_1acfc8f430e5657eaba850e8d4a8738a3a" kindref="member">wc_SignatureGetSize</ref>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_SignatureType<sp/>sig_type,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>key,<sp/>word32<sp/>key_len);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="signature_8h_1a2d1bdafeb57d4c28209e3dea6e4700c8" kindref="member">wc_SignatureVerify</ref>(</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash_type,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_SignatureType<sp/>sig_type,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>data_len,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,<sp/>word32<sp/>sig_len,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>key,<sp/>word32<sp/>key_len);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="signature_8h_1aabcf535ee019c9af3524de51b55489aa" kindref="member">wc_SignatureGenerate</ref>(</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash_type,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_SignatureType<sp/>sig_type,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>data_len,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,<sp/>word32<sp/>*sig_len,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>key,<sp/>word32<sp/>key_len,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/signature.h"/>
+  </compounddef>
+</doxygen>

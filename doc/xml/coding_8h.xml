@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="coding_8h" kind="file" language="C++">
+    <compoundname>coding.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base64_Decode</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base64_Decode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、与えられたBASS64符号化入力、IN、および出力バッファを出力バッファOUTに格納します。また、変数outlen内の出力バッファに書き込まれたサイズも設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Base64エンコード入力の復号化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 復号化された入力を保存するには、出力バッファが小さすぎる場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_E 入力バッファ内の文字がBASE64範囲（[A-ZA-Z0-9 + / =]）の外側にある場合、またはBASE64エンコード入力に無効な行が終了した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードする入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードする入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされたメッセージを保存する出力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>encoded[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>decode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(encoded)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>requires<sp/>at<sp/>least<sp/>(sizeof(encoded)<sp/>*<sp/>3<sp/>+<sp/>3)<sp/>/<sp/>4<sp/>room</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>outLen<sp/>=<sp/>sizeof(decoded);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>Base64_Decode(encoded,sizeof(encoded),<sp/>decoded,<sp/>&amp;outLen)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decoding<sp/>input<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1aa54ee91323023c05ed66d2d1775cf3a6" kindref="member">Base16_Decode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="25" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base64_Encode</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base64_Encode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能は与えられた入力を符号化し、符号化結果を出力バッファOUTに格納します。エスケープ％0A行末の代わりに、従来の &apos;\ N&apos;行の終わりを持つデータを書き込みます。正常に完了すると、この機能はまた、出力バッファに書き込まれたバイト数に統一されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Base64エンコード入力の復号化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 出力バッファが小さすぎてエンコードされた入力を保存する場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 出力バッファがエンコード中に部屋の外に実行された場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされたメッセージを保存する出力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>encode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>encoded[MAX_BUFFER_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>outLen<sp/>=<sp/>sizeof(encoded);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>Base64_Encode(plain,<sp/>sizeof(plain),<sp/>encoded,<sp/>&amp;outLen)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>input<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1a641517420860cf7fbcb3e12d8684ba5e" kindref="member">Base64_EncodeEsc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="52" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="52" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="coding_8h_1a641517420860cf7fbcb3e12d8684ba5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base64_EncodeEsc</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base64_EncodeEsc</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能は与えられた入力を符号化し、符号化結果を出力バッファOUTに格納します。それは &apos;\ n "行の終わりではなく、％0aエスケープ行の終わりを持つデータを書き込みます。正常に完了すると、この機能はまた、出力バッファに書き込まれたバイト数に統一されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Base64エンコード入力の復号化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 出力バッファが小さすぎてエンコードされた入力を保存する場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 出力バッファがエンコード中に部屋の外に実行された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_E 入力メッセージのデコードの処理中にエラーが発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされたメッセージを保存する出力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>encode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>encoded[MAX_BUFFER_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>outLen<sp/>=<sp/>sizeof(encoded);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>Base64_EncodeEsc(plain,<sp/>sizeof(plain),<sp/>encoded,<sp/>&amp;outLen)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>input<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="79" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="79" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="coding_8h_1aa32de9849e6eee532d7bccf36f0c81e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base64_Encode_NoNl</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base64_Encode_NoNl</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能は与えられた入力を符号化し、符号化結果を出力バッファOUTに格納します。それは新しい行なしでデータを書き込みます。正常に完了すると、この関数はまた、出力バッファに書き込まれたバイト数に統一されたものを設定します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Base64エンコード入力の復号化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 出力バッファが小さすぎてエンコードされた入力を保存する場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 出力バッファがエンコード中に部屋の外に実行された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_E 入力メッセージのデコードの処理中にエラーが発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードする入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされたメッセージを保存する出力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>encode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>encoded[MAX_BUFFER_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>outLen<sp/>=<sp/>sizeof(encoded);</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>Base64_Encode_NoNl(plain,<sp/>sizeof(plain),<sp/>encoded,<sp/>&amp;outLen)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>input<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="105" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="105" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="coding_8h_1aa54ee91323023c05ed66d2d1775cf3a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base16_Decode</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base16_Decode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、与えられたBASE16符号化入力、IN、および出力バッファへの結果を記憶する。また、変数outlen内の出力バッファに書き込まれたサイズも設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Base16エンコード入力の復号にうまく復号化したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 出力バッファが復号化された入力を保存するにも小さすぎる場合、または入力長が2つの倍数でない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_INPUT_E 入力バッファ内の文字がBASE16の範囲外にある場合は返されます（[0-9a-f]） </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードする入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードする入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされたメッセージを保存する出力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>encoded[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>decode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(encoded)];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>outLen<sp/>=<sp/>sizeof(decoded);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>Base16_Decode(encoded,sizeof(encoded),<sp/>decoded,<sp/>&amp;outLen)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decoding<sp/>input<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1acf19c534784d96277ff3ea08f0819797" kindref="member">Base16_Encode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="132" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="132" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="coding_8h_1acf19c534784d96277ff3ea08f0819797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Base16_Encode</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 *outLen)</argsstring>
+        <name>Base16_Encode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>BASE16出力へのエンコード入力。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG IN、OUT、またはoutlenがNULLの場合、またはoutlenがInlen Plus 1を超えている場合は返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされる入力バッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Contents<sp/>of<sp/>something<sp/>to<sp/>be<sp/>encoded<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[NECESSARY_OUTPUT_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>outSz<sp/>=<sp/>sizeof(out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(Base16_Encode(in,<sp/>sizeof(in),<sp/>out,<sp/>&amp;outSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>encode<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="coding_8h_1aa54ee91323023c05ed66d2d1775cf3a6" kindref="member">Base16_Decode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/coding.h" line="158" column="5" declfile="dox_comments/header_files/ja/coding.h" declline="158" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="25"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1a444e1dc2fbf13a85a4439088d2ef15b1" kindref="member">Base64_Decode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1aabad3b035053b8ffe8fc1bc29cd8ce8d" kindref="member">Base64_Encode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1a641517420860cf7fbcb3e12d8684ba5e" kindref="member">Base64_EncodeEsc</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1aa32de9849e6eee532d7bccf36f0c81e2" kindref="member">Base64_Encode_NoNl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1aa54ee91323023c05ed66d2d1775cf3a6" kindref="member">Base16_Decode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="coding_8h_1acf19c534784d96277ff3ea08f0819797" kindref="member">Base16_Encode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32*<sp/>outLen);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/coding.h"/>
+  </compounddef>
+</doxygen>

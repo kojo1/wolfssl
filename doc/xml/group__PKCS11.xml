@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__PKCS11" kind="group">
+    <compoundname>PKCS11</compoundname>
+    <title>Algorithms - PKCS11</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__PKCS11_1ga9031d1249b9eff01d5cc48e89a41b66b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Pkcs11_Initialize</definition>
+        <argsstring>(Pkcs11Dev *dev, const char *library, void *heap)</argsstring>
+        <name>wc_Pkcs11_Initialize</name>
+        <param>
+          <type>Pkcs11Dev *</type>
+          <declname>dev</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>library</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="4" column="5" declfile="dox_comments/header_files/pkcs11.h" declline="4" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__PKCS11_1ga43adec95bc084cbbb9b38e41549e2914" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Pkcs11_Finalize</definition>
+        <argsstring>(Pkcs11Dev *dev)</argsstring>
+        <name>wc_Pkcs11_Finalize</name>
+        <param>
+          <type>Pkcs11Dev *</type>
+          <declname>dev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="10" column="6" declfile="dox_comments/header_files/pkcs11.h" declline="10" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__PKCS11_1ga4fbb734d10f21e922b74883bd4302959" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Pkcs11Token_Init</definition>
+        <argsstring>(Pkcs11Token *token, Pkcs11Dev *dev, int slotId, const char *tokenName, const unsigned char *userPin, int userPinSz)</argsstring>
+        <name>wc_Pkcs11Token_Init</name>
+        <param>
+          <type>Pkcs11Token *</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>Pkcs11Dev *</type>
+          <declname>dev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>slotId</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>tokenName</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>userPin</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>userPinSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="15" column="5" declfile="dox_comments/header_files/pkcs11.h" declline="15" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__PKCS11_1gade7db7223319876157ab0657296925be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Pkcs11Token_Final</definition>
+        <argsstring>(Pkcs11Token *token)</argsstring>
+        <name>wc_Pkcs11Token_Final</name>
+        <param>
+          <type>Pkcs11Token *</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="22" column="6" declfile="dox_comments/header_files/pkcs11.h" declline="22" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__PKCS11_1gadeb94a3ad102211b64c830e6ba88b1df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Pkcs11Token_Open</definition>
+        <argsstring>(Pkcs11Token *token, int readWrite)</argsstring>
+        <name>wc_Pkcs11Token_Open</name>
+        <param>
+          <type>Pkcs11Token *</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>readWrite</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="27" column="5" declfile="dox_comments/header_files/pkcs11.h" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__PKCS11_1ga55edf6acdc9ffd3c72dcdf7a3a28244c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Pkcs11Token_Close</definition>
+        <argsstring>(Pkcs11Token *token)</argsstring>
+        <name>wc_Pkcs11Token_Close</name>
+        <param>
+          <type>Pkcs11Token *</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/pkcs11.h" line="32" column="6" declfile="dox_comments/header_files/pkcs11.h" declline="32" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

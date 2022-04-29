@@ -1,0 +1,711 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2sha256_8h" kind="file" language="C++">
+    <compoundname>sha256.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSha256</definition>
+        <argsstring>(wc_Sha256 *)</argsstring>
+        <name>wc_InitSha256</name>
+        <param>
+          <type>wc_Sha256 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はSHA256を初期化します。これはWC_SHA256HASHによって自動的に呼び出されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function initializes SHA256. This is automatically called by wc_Sha256Hash.</para>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" kindref="member">wc_Sha256Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully initializing</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the sha256 structure to use for encryption</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" kindref="member">wc_Sha256Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="20" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="20" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha256Update</definition>
+        <argsstring>(wc_Sha256 *sha, const byte *data, word32 len)</argsstring>
+        <name>wc_Sha256Update</name>
+        <param>
+          <type>wc_Sha256 *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be called to continually hash the provided byte array of length len.</para>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA256構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully adding the data to the digest.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the sha256 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to be hashed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of data to be hashed</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="46" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="46" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha256Final</definition>
+        <argsstring>(wc_Sha256 *sha256, byte *hash)</argsstring>
+        <name>wc_Sha256Final</name>
+        <param>
+          <type>wc_Sha256 *</type>
+          <declname>sha256</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。SHA256構造体の状態をリセットします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Finalizes hashing of data. Result is placed into hash. Resets state of sha256 struct.</para>
+<para><simplesect kind="return"><para>0 ファイナライズに成功したときに返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA256構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga1bdc0465034921e2138f24312ef6ee7a" kindref="member">wc_Sha256GetHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully finalizing.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the sha256 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Final(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga1bdc0465034921e2138f24312ef6ee7a" kindref="member">wc_Sha256GetHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="71" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="71" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gace5049fe9f8671646e8b24317a28e076" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Sha256Free</definition>
+        <argsstring>(wc_Sha256 *)</argsstring>
+        <name>wc_Sha256Free</name>
+        <param>
+          <type>wc_Sha256 *</type>
+        </param>
+        <briefdescription>
+<para>SHA256構造をリセットします。注：これは、wolfssl_ti_hashが定義されている場合にのみサポートされています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Resets the Sha256 structure. Note: this is only supported if you have WOLFSSL_TI_HASH defined.</para>
+<para><simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(&amp;sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(&amp;sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(&amp;sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Free(&amp;sha256);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" kindref="member">wc_Sha256Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the sha256 structure to be freed.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(&amp;sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Update(&amp;sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Final(&amp;sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha256Free(&amp;sha256);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" kindref="member">wc_Sha256Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="96" column="6" declfile="dox_comments/header_files/ja/sha256.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga1bdc0465034921e2138f24312ef6ee7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha256GetHash</definition>
+        <argsstring>(wc_Sha256 *sha256, byte *hash)</argsstring>
+        <name>wc_Sha256GetHash</name>
+        <param>
+          <type>wc_Sha256 *</type>
+          <declname>sha256</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>ハッシュデータを取得します。結果はハッシュに入れられます。SHA256構造体の状態をリセットしません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets hash data. Result is placed into hash. Does not reset state of sha256 struct.</para>
+<para><simplesect kind="return"><para>0 ファイナライズに成功したときに返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA256構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256GetHash(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned upon successfully finalizing.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha256</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the sha256 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha256<sp/>sha256[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha256(sha256))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha256<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256Update(sha256,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha256GetHash(sha256,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="118" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="118" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSha224</definition>
+        <argsstring>(wc_Sha224 *)</argsstring>
+        <name>wc_InitSha224</name>
+        <param>
+          <type>wc_Sha224 *</type>
+        </param>
+        <briefdescription>
+<para>SHA224構造を初期化するために使用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used to initialize a Sha224 struct.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>1 SHA224がNULLなので、エラーが返されました。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">if(wc_InitSha224(&amp;sha224)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>1 Error returned because sha224 is null.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha224</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a Sha224 struct to initialize.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">if(wc_InitSha224(&amp;sha224)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="137" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="137" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha224Update</definition>
+        <argsstring>(wc_Sha224 *sha224, const byte *data, word32 len)</argsstring>
+        <name>wc_Sha224Update</name>
+        <param>
+          <type>wc_Sha224 *</type>
+          <declname>sha224</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be called to continually hash the provided byte array of length len.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>1 関数が失敗した場合はエラーが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SHA224またはデータがNULLの場合、エラーが返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha224</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA224構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>/*<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha224(&amp;sha224))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha224<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>wc_Sha224Update(&amp;sha224,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>wc_Sha224Final(&amp;sha224,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>1 Error returned if function fails. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Error returned if sha224 or data is null.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha224</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the Sha224 structure to use for encryption. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data to be hashed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of data to be hashed.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>/*<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha224(&amp;sha224))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha224<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>wc_Sha224Update(&amp;sha224,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>wc_Sha224Final(&amp;sha224,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="165" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="165" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha224Final</definition>
+        <argsstring>(wc_Sha224 *sha224, byte *hash)</argsstring>
+        <name>wc_Sha224Final</name>
+        <param>
+          <type>wc_Sha224 *</type>
+          <declname>sha224</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。SHA224構造体の状態をリセットします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Finalizes hashing of data. Result is placed into hash. Resets state of sha224 struct.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha224</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA224構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>/*<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha224(&amp;sha224))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha224<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha224Update(&amp;sha224,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha224Final(&amp;sha224,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha224</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the sha224 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha224<sp/>sha224;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>/*<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha224(&amp;sha224))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha224<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha224Update(&amp;sha224,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_Sha224Final(&amp;sha224,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha256.h" line="191" column="5" declfile="dox_comments/header_files/ja/sha256.h" declline="191" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="20"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref>(wc_Sha256*);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga5440ec7de4b3e4d2d61525f8d370f501" kindref="member">wc_Sha256Update</ref>(wc_Sha256*<sp/>sha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref>(wc_Sha256*<sp/>sha256,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gace5049fe9f8671646e8b24317a28e076" kindref="member">wc_Sha256Free</ref>(wc_Sha256*);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga1bdc0465034921e2138f24312ef6ee7a" kindref="member">wc_Sha256GetHash</ref>(wc_Sha256*<sp/>sha256,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref>(wc_Sha224*);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref>(wc_Sha224*<sp/>sha224,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref>(wc_Sha224*<sp/>sha224,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/sha256.h"/>
+  </compounddef>
+</doxygen>

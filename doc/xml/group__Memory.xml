@@ -1,0 +1,969 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__Memory" kind="group">
+    <compoundname>Memory</compoundname>
+    <title>Memory Handling</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * wolfSSL_Malloc</definition>
+        <argsstring>(size_t size, void *heap, int type)</argsstring>
+        <name>wolfSSL_Malloc</name>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はmalloc（）と似ていますが、WolfSSLが使用するように構成されているメモリ割り当て関数を呼び出します。デフォルトでは、WolfSSLはmalloc（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_MALLOCは、WOLFSSLによって直接呼び出されませんが、代わりにMacro XMallocによって呼び出されます。デフォルトのビルドの場合、size引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is similar to malloc(), but calls the memory allocation function which wolfSSL has been configured to use. By default, wolfSSL uses malloc(). This can be changed using the wolfSSL memory abstraction layer - see <ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators()</ref>. Note wolfSSL_Malloc is not called directly by wolfSSL, but instead called by macro XMALLOC. For the default build only the size argument exists. If using WOLFSSL_STATIC_MEMORY build then heap and type arguments are included.</para>
+<para><simplesect kind="return"><para>pointer 成功した場合、この関数は割り当てられたメモリへのポインタを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>error エラーがある場合は、NULLが返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるメモリのサイズ（バイト） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref></para>
+</simplesect>
+<simplesect kind="return"><para>pointer If successful, this function returns a pointer to allocated memory. </para>
+</simplesect>
+<simplesect kind="return"><para>error If there is an error, NULL will be returned.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size, in bytes, of the memory to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>heap hint to use for memory. Can be NULL </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dynamic type (see DYNAMIC_TYPE_ list in types.h)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="19" column="6" declfile="dox_comments/header_files/ja/memory.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_Free</definition>
+        <argsstring>(void *ptr, void *heap, int type)</argsstring>
+        <name>wolfSSL_Free</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はfree（）と似ていますが、WolfSSLが使用するように構成されているメモリフリー機能を呼び出します。デフォルトでは、WolfSSLはfree（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_FREEはWOLFSSLによって直接呼び出されませんが、代わりにマクロXFreeによって呼び出されます。デフォルトのビルドの場合、PTR引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is similar to free(), but calls the memory free function which wolfSSL has been configured to use. By default, wolfSSL uses free(). This can be changed using the wolfSSL memory abstraction layer - see <ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators()</ref>. Note wolfSSL_Free is not called directly by wolfSSL, but instead called by macro XFREE. For the default build only the ptr argument exists. If using WOLFSSL_STATIC_MEMORY build then heap and type arguments are included.</para>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解放されるメモリへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>process<sp/>data<sp/>as<sp/>desired</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(tenInts)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wolfSSL_Free(tenInts);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_Alloc </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the memory to be freed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>heap hint to use for memory. Can be NULL </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dynamic type (see DYNAMIC_TYPE_ list in types.h)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>process<sp/>data<sp/>as<sp/>desired</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(tenInts)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wolfSSL_Free(tenInts);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_Alloc </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="43" column="7" declfile="dox_comments/header_files/ja/memory.h" declline="43" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1ga6840dd0596a324ccb6e5534404024233" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * wolfSSL_Realloc</definition>
+        <argsstring>(void *ptr, size_t size, void *heap, int type)</argsstring>
+        <name>wolfSSL_Realloc</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はREALLOC（）と似ていますが、WolfSSLが使用するように構成されているメモリ再割り当て機能を呼び出します。デフォルトでは、WolfSSLはRealLoc（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_REALLOCはWOLFSSLによって直接呼び出されませんが、代わりにマクロXreallocによって呼び出されます。デフォルトのビルドの場合、size引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is similar to realloc(), but calls the memory re-allocation function which wolfSSL has been configured to use. By default, wolfSSL uses realloc(). This can be changed using the wolfSSL memory abstraction layer - see <ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators()</ref>. Note wolfSSL_Realloc is not called directly by wolfSSL, but instead called by macro XREALLOC. For the default build only the size argument exists. If using WOLFSSL_STATIC_MEMORY build then heap and type arguments are included.</para>
+<para><simplesect kind="return"><para>pointer 成功した場合、この関数はマイポイントを再割り当てするためのポインタを返します。これはPTRと同じポインタ、または新しいポインタの場所であり得る。 </para>
+</simplesect>
+<simplesect kind="return"><para>Null エラーがある場合は、NULLが返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>再割り当てされているメモリへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるバイト数。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">int*<sp/>twentyInts<sp/>=<sp/>(int*)wolfSSL_Realloc(tenInts,<sp/>sizeof(int)*20);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref></para>
+</simplesect>
+<simplesect kind="return"><para>pointer If successful, this function returns a pointer to re-allocated memory. This may be the same pointer as ptr, or a new pointer location. </para>
+</simplesect>
+<simplesect kind="return"><para>Null If there is an error, NULL will be returned.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the previously-allocated memory, to be reallocated. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of bytes to allocate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>heap hint to use for memory. Can be NULL </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dynamic type (see DYNAMIC_TYPE_ list in types.h)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">int*<sp/>twentyInts<sp/>=<sp/>(int*)wolfSSL_Realloc(tenInts,<sp/>sizeof(int)*20);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="65" column="6" declfile="dox_comments/header_files/ja/memory.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1gaf58de387b90207e5d5da550192d830d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetAllocators</definition>
+        <argsstring>(wolfSSL_Malloc_cb, wolfSSL_Free_cb, wolfSSL_Realloc_cb)</argsstring>
+        <name>wolfSSL_SetAllocators</name>
+        <param>
+          <type>wolfSSL_Malloc_cb</type>
+        </param>
+        <param>
+          <type>wolfSSL_Free_cb</type>
+        </param>
+        <param>
+          <type>wolfSSL_Realloc_cb</type>
+        </param>
+        <briefdescription>
+<para>この機能は、WolfSSLが使用する割り当て関数を登録します。デフォルトでは、システムがそれをサポートしている場合、Malloc / FreeとRealLocが使用されます。この機能を使用すると、実行時にユーザーは独自のメモリハンドラをインストールできます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function registers the allocation functions used by wolfSSL. By default, if the system supports it, malloc/free and realloc are used. Using this function allows the user at runtime to install their own memory handlers.</para>
+<para><simplesect kind="return"><para>Success 成功した場合、この関数は0を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数ポインタが提供されていない場合に返されるエラーです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>malloc_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するWolfSSLのメモリ割り当て機能関数署名は、上記のwolfssl_malloc_cbプロトタイプと一致する必要があります。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>free_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するWolfSSLのメモリフリー機能関数シグネチャは、上記のwolfssl_free_cbプロトタイプと一致する必要があります。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">static<sp/>void*<sp/>MyMalloc(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>malloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void<sp/>MyFree(void*<sp/>ptr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>free<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void*<sp/>MyRealloc(void*<sp/>ptr,<sp/>size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>realloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>custom<sp/>memory<sp/>functions<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wolfSSL_SetAllocators(MyMalloc,<sp/>MyFree,<sp/>MyRealloc);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>set<sp/>memory<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none</para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful this function will return 0. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG is the error that will be returned if a function pointer is not provided.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>malloc_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory allocation function for wolfSSL to use. Function signature must match wolfSSL_Malloc_cb prototype, above. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>free_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory free function for wolfSSL to use. Function signature must match wolfSSL_Free_cb prototype, above. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>realloc_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory re-allocation function for wolfSSL to use. Function signature must match wolfSSL_Realloc_cb prototype, above.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">static<sp/>void*<sp/>MyMalloc(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>malloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void<sp/>MyFree(void*<sp/>ptr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>free<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void*<sp/>MyRealloc(void*<sp/>ptr,<sp/>size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>realloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>custom<sp/>memory<sp/>functions<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wolfSSL_SetAllocators(MyMalloc,<sp/>MyFree,<sp/>MyRealloc);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>set<sp/>memory<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="99" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="99" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1gad76da4cbbc588140893371d654c3ef7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_StaticBufferSz</definition>
+        <argsstring>(byte *buffer, word32 sz, int flag)</argsstring>
+        <name>wolfSSL_StaticBufferSz</name>
+        <param>
+          <type>byte *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、静的メモリ機能が使用されている場合（<ndash/>enable-staticMemory）の場合に使用できます。メモリの「バケット」に最適なバッファサイズを示します。これにより、パーティション化された後に追加の未使用のメモリが終了しないように、バッファサイズを計算する方法が可能になります。返された値は、正の場合、使用するコンピュータのバッファサイズです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is available when static memory feature is used (<ndash/>enable-staticmemory). It gives the optimum buffer size for memory “buckets”. This allows for a way to compute buffer size so that no extra unused memory is left at the end after it has been partitioned. The returned value, if positive, is the computed buffer size to use.</para>
+<para><simplesect kind="return"><para>Success バッファサイズ計算を正常に完了すると、正の値が返されます。この返された値は最適なバッファサイズです。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure すべての負の値はエラーの場合と見なされます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>buffer[1000];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>size<sp/>=<sp/>sizeof(buffer);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>optimum;</highlight></codeline>
+<codeline><highlight class="normal">optimum<sp/>=<sp/>wolfSSL_StaticBufferSz(buffer,<sp/>size,<sp/>WOLFMEM_GENERAL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(optimum<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>optimum<sp/>buffer<sp/>size<sp/>to<sp/>make<sp/>use<sp/>of<sp/>all<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">optimum);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success On successfully completing buffer size calculations a positive value is returned. This returned value is for optimum buffer size. </para>
+</simplesect>
+<simplesect kind="return"><para>Failure All negative values are considered to be error cases.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>desired type of memory ie WOLFMEM_GENERAL or WOLFMEM_IO_POOL</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>buffer[1000];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>size<sp/>=<sp/>sizeof(buffer);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>optimum;</highlight></codeline>
+<codeline><highlight class="normal">optimum<sp/>=<sp/>wolfSSL_StaticBufferSz(buffer,<sp/>size,<sp/>WOLFMEM_GENERAL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(optimum<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>optimum<sp/>buffer<sp/>size<sp/>to<sp/>make<sp/>use<sp/>of<sp/>all<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">optimum);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="124" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="124" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1gaa357c5b56f7227f1a2649f03578428fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_MemoryPaddingSz</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_MemoryPaddingSz</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この機能は、静的メモリ機能が使用されている場合（<ndash/>enable-staticMemory）の場合に使用できます。メモリの各パーティションに必要なパディングのサイズを示します。このパディングサイズは、メモリアライメントのために追加のメモリ管理構造を含む必要があるサイズになります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is available when static memory feature is used (<ndash/>enable-staticmemory). It gives the size of padding needed for each partition of memory. This padding size will be the size needed to contain a memory management structure along with any extra for memory alignment.</para>
+<para><simplesect kind="return"><para>On 正常なメモリパディング計算戻り値は正の値になります </para>
+</simplesect>
+<simplesect kind="return"><para>All 負の値はエラーケースと見なされます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>padding;</highlight></codeline>
+<codeline><highlight class="normal">padding<sp/>=<sp/>wolfSSL_MemoryPaddingSz();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(padding<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>padding<sp/>size<sp/>needed<sp/>for<sp/>each<sp/>\”bucket\”<sp/>of<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">padding);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>calculation<sp/>of<sp/>buffer<sp/>for<sp/>IO<sp/>POOL<sp/>size<sp/>is<sp/>number<sp/>of<sp/>buckets</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>times<sp/>(padding<sp/>+<sp/>WOLFMEM_IO_SZ)</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref></para>
+</simplesect>
+<simplesect kind="return"><para>On successfully memory padding calculation the return value will be a positive value </para>
+</simplesect>
+<simplesect kind="return"><para>All negative values are considered error cases.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>padding;</highlight></codeline>
+<codeline><highlight class="normal">padding<sp/>=<sp/>wolfSSL_MemoryPaddingSz();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(padding<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>padding<sp/>size<sp/>needed<sp/>for<sp/>each<sp/>\”bucket\”<sp/>of<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">padding);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>calculation<sp/>of<sp/>buffer<sp/>for<sp/>IO<sp/>POOL<sp/>size<sp/>is<sp/>number<sp/>of<sp/>buckets</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>times<sp/>(padding<sp/>+<sp/>WOLFMEM_IO_SZ)</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="145" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="145" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1ga7bcea80bb2e9107e342eb99e17238aa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * XMALLOC</definition>
+        <argsstring>(size_t n, void *heap, int type)</argsstring>
+        <name>XMALLOC</name>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>これは実際には関数ではなく、むしろプリプロセッサマクロであり、ユーザーは自分のMalloc、Realloc、および標準のCメモリ関数の代わりに自由な関数に置き換えることができます。外部メモリ機能を使用するには、xmalloc_userを定義します。これにより、メモリ機能をフォームの外部関数に置き換えます.extern void * xmalloc（size_t n、void * heap、int型）; extern void * XrealLoc（void * p、size_t n、void *ヒープ、int型）。 extern void xfree（void * p、void * heap、int型）; wolfssl_malloc、wolfssl_realloc、wolfssl_freeの代わりに基本的なCメモリ機能を使用するには、NO_WOLFSSL_MEMORYを定義します。これにより、メモリ関数が次のものに置き換えられます。::define Xmalloc（s、h、t）（（void）h、（void）t、malloc（（s）））::define xfree（p、h、t）{void * xp =（p）; if（（xp））free（（xp））; #define xrealloc（p、n、h、t）Realloc（（p）、（n））これらのオプションのどれも選択されていない場合、システムはデフォルトで使用されます。 WolfSSLメモリ機能ユーザーはコールバックフックを介してカスタムメモリ機能を設定できます（Wolfssl_Malloc、WolfSSL_Realloc、wolfssl_freeを参照）。このオプションは、メモリ関数を次のものに置き換えます。::define xmalloc（s、h、t）（（void）H、（Void）T、wolfssl_malloc（（s）））::define xfree（p、h、t）{void * XP =（P）; if（（xp））wolfssl_free（（xp））; #define xrealloc（p、n、h、t）wolfssl_realloc（（p）、（n）） </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is not actually a function, but rather a preprocessor macro, which allows the user to substitute in their own malloc, realloc, and free functions in place of the standard C memory functions. To use external memory functions, define XMALLOC_USER. This will cause the memory functions to be replaced by external functions of the form: extern void <emphasis>XMALLOC(size_t n, void</emphasis> heap, int type); extern void <emphasis>XREALLOC(void *p, size_t n, void</emphasis> heap, int type); extern void XFREE(void <emphasis>p, void</emphasis> heap, int type); To use the basic C memory functions in place of wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free, define NO_WOLFSSL_MEMORY. This will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) free((xp));} #define XREALLOC(p, n, h, t) realloc((p), (n)) If none of these options are selected, the system will default to use the wolfSSL memory functions. A user can set custom memory functions through callback hooks, (see wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free). This option will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, wolfSSL_Malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) wolfSSL_Free((xp));} #define XREALLOC(p, n, h, t) wolfSSL_Realloc((p), (n))</para>
+<para><simplesect kind="return"><para>pointer 成功したメモリへのポインタを返します </para>
+</simplesect>
+<simplesect kind="return"><para>NULL 失敗した </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるメモリのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>（カスタムXMalloc関数で使用されています）使用するヒープへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>XMALLOC(sizeof(int)*10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(tenInts<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>allocating<sp/>space</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>MEMORY_E;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref></para>
+</simplesect>
+<simplesect kind="return"><para>pointer Return a pointer to allocated memory on success </para>
+</simplesect>
+<simplesect kind="return"><para>NULL on failure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of memory to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(used by custom XMALLOC function) pointer to the heap to use <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory allocation types for user hints. See enum in types.h</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>XMALLOC(sizeof(int)*10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(tenInts<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>allocating<sp/>space</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>MEMORY_E;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/types.h" line="21" column="6" declfile="dox_comments/header_files/ja/types.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1ga11a7b13821236105c79c9004cf3ca371" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * XREALLOC</definition>
+        <argsstring>(void *p, size_t n, void *heap, int type)</argsstring>
+        <name>XREALLOC</name>
+        <param>
+          <type>void *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>これは実際には関数ではなく、むしろプリプロセッサマクロであり、ユーザーは自分のMalloc、Realloc、および標準のCメモリ関数の代わりに自由な関数に置き換えることができます。外部メモリ機能を使用するには、xmalloc_userを定義します。これにより、メモリ機能をフォームの外部関数に置き換えます.extern void * xmalloc（size_t n、void * heap、int型）; extern void * XrealLoc（void * p、size_t n、void *ヒープ、int型）。 extern void xfree（void * p、void * heap、int型）; wolfssl_malloc、wolfssl_realloc、wolfssl_freeの代わりに基本的なCメモリ機能を使用するには、NO_WOLFSSL_MEMORYを定義します。これにより、メモリ関数が次のものに置き換えられます。::define Xmalloc（s、h、t）（（void）h、（void）t、malloc（（s）））::define xfree（p、h、t）{void * xp =（p）; if（（xp））free（（xp））; #define xrealloc（p、n、h、t）Realloc（（p）、（n））これらのオプションのどれも選択されていない場合、システムはデフォルトで使用されます。 WolfSSLメモリ機能ユーザーはコールバックフックを介してカスタムメモリ機能を設定できます（Wolfssl_Malloc、WolfSSL_Realloc、wolfssl_freeを参照）。このオプションは、メモリ関数を次のものに置き換えます。::define xmalloc（s、h、t）（（void）H、（Void）T、wolfssl_malloc（（s）））::define xfree（p、h、t）{void * XP =（P）; if（（xp））wolfssl_free（（xp））; #define xrealloc（p、n、h、t）wolfssl_realloc（（p）、（n）） </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is not actually a function, but rather a preprocessor macro, which allows the user to substitute in their own malloc, realloc, and free functions in place of the standard C memory functions. To use external memory functions, define XMALLOC_USER. This will cause the memory functions to be replaced by external functions of the form: extern void <emphasis>XMALLOC(size_t n, void</emphasis> heap, int type); extern void <emphasis>XREALLOC(void *p, size_t n, void</emphasis> heap, int type); extern void XFREE(void <emphasis>p, void</emphasis> heap, int type); To use the basic C memory functions in place of wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free, define NO_WOLFSSL_MEMORY. This will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) free((xp));} #define XREALLOC(p, n, h, t) realloc((p), (n)) If none of these options are selected, the system will default to use the wolfSSL memory functions. A user can set custom memory functions through callback hooks, (see wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free). This option will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, wolfSSL_Malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) wolfSSL_Free((xp));} #define XREALLOC(p, n, h, t) wolfSSL_Realloc((p), (n))</para>
+<para><simplesect kind="return"><para>Return 成功したメモリを割り当てるポインタ </para>
+</simplesect>
+<simplesect kind="return"><para>NULL 失敗した </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reallocateへのアドレスへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるメモリのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>（カスタムXrealloc関数で使用されています）使用するヒープへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)XMALLOC(sizeof(int)*10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">int*<sp/>twentyInts<sp/>=<sp/>(int*)XREALLOC(tenInts,<sp/>sizeof(int)*20,<sp/>NULL,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Return a pointer to allocated memory on success </para>
+</simplesect>
+<simplesect kind="return"><para>NULL on failure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the address to reallocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of memory to allocate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(used by custom XREALLOC function) pointer to the heap to use <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory allocation types for user hints. See enum in types.h</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)XMALLOC(sizeof(int)*10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">int*<sp/>twentyInts<sp/>=<sp/>(int*)XREALLOC(tenInts,<sp/>sizeof(int)*20,<sp/>NULL,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/types.h" line="42" column="6" declfile="dox_comments/header_files/ja/types.h" declline="42" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Memory_1gae4dc607e12745ea1fe128d411792c62f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void XFREE</definition>
+        <argsstring>(void *p, void *heap, int type)</argsstring>
+        <name>XFREE</name>
+        <param>
+          <type>void *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>これは実際には関数ではなく、むしろプリプロセッサマクロであり、ユーザーは自分のMalloc、Realloc、および標準のCメモリ関数の代わりに自由な関数に置き換えることができます。外部メモリ機能を使用するには、xmalloc_userを定義します。これにより、メモリ機能をフォームの外部関数に置き換えます.extern void * xmalloc（size_t n、void * heap、int型）; extern void * XrealLoc（void * p、size_t n、void *ヒープ、int型）。 extern void xfree（void * p、void * heap、int型）; wolfssl_malloc、wolfssl_realloc、wolfssl_freeの代わりに基本的なCメモリ機能を使用するには、NO_WOLFSSL_MEMORYを定義します。これにより、メモリ関数が次のものに置き換えられます。::define Xmalloc（s、h、t）（（void）h、（void）t、malloc（（s）））::define xfree（p、h、t）{void * xp =（p）; if（（xp））free（（xp））; #define xrealloc（p、n、h、t）Realloc（（p）、（n））これらのオプションのどれも選択されていない場合、システムはデフォルトで使用されます。 WolfSSLメモリ機能ユーザーはコールバックフックを介してカスタムメモリ機能を設定できます（Wolfssl_Malloc、WolfSSL_Realloc、wolfssl_freeを参照）。このオプションは、メモリ関数を次のものに置き換えます。::define xmalloc（s、h、t）（（void）H、（Void）T、wolfssl_malloc（（s）））::define xfree（p、h、t）{void * XP =（P）; if（（xp））wolfssl_free（（xp））; #define xrealloc（p、n、h、t）wolfssl_realloc（（p）、（n）） </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is not actually a function, but rather a preprocessor macro, which allows the user to substitute in their own malloc, realloc, and free functions in place of the standard C memory functions. To use external memory functions, define XMALLOC_USER. This will cause the memory functions to be replaced by external functions of the form: extern void <emphasis>XMALLOC(size_t n, void</emphasis> heap, int type); extern void <emphasis>XREALLOC(void *p, size_t n, void</emphasis> heap, int type); extern void XFREE(void <emphasis>p, void</emphasis> heap, int type); To use the basic C memory functions in place of wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free, define NO_WOLFSSL_MEMORY. This will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) free((xp));} #define XREALLOC(p, n, h, t) realloc((p), (n)) If none of these options are selected, the system will default to use the wolfSSL memory functions. A user can set custom memory functions through callback hooks, (see wolfSSL_Malloc, wolfSSL_Realloc, wolfSSL_Free). This option will replace the memory functions with: #define XMALLOC(s, h, t) ((void)h, (void)t, wolfSSL_Malloc((s))) #define XFREE(p, h, t) {void* xp = (p); if((xp)) wolfSSL_Free((xp));} #define XREALLOC(p, n, h, t) wolfSSL_Realloc((p), (n))</para>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>無料のアドレスへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するヒープへの（カスタムXFree関数で使用されています）。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>XMALLOC(sizeof(int)<sp/>*<sp/>10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(tenInts<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>allocating<sp/>space</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>MEMORY_E;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the address to free </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>h</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(used by custom XFREE function) pointer to the heap to use </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>memory allocation types for user hints. See enum in types.h</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>XMALLOC(sizeof(int)<sp/>*<sp/>10,<sp/>NULL,<sp/>DYNAMIC_TYPE_TMP_BUFFER);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(tenInts<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>allocating<sp/>space</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>MEMORY_E;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Memory_1gaf0fc661c35c4a42a35a2e85b37a3e83b" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1ga6840dd0596a324ccb6e5534404024233" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gacbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Memory_1gaf58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/types.h" line="63" column="6" declfile="dox_comments/header_files/ja/types.h" declline="63" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

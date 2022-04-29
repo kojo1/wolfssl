@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__ARC4" kind="group">
+    <compoundname>ARC4</compoundname>
+    <title>Algorithms - ARC4</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ARC4_1gab3279b6c8a427aee0f1c1aa03bb558b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Arc4Process</definition>
+        <argsstring>(Arc4 *arc4, byte *out, const byte *in, word32 length)</argsstring>
+        <name>wc_Arc4Process</name>
+        <param>
+          <type>Arc4 *</type>
+          <declname>arc4</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>This function encrypts an input message from the buffer in, placing the ciphertext in the output buffer out, or decrypts a ciphertext from the buffer in, placing the plaintext in the output buffer out, using ARC4 encryption. This function is used for both encryption and decryption. Before this method may be called, one must first initialize the ARC4 structure using wc_Arc4SetKey. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、バッファ内の入力メッセージを暗号化し、出力バッファーに暗号文を配置するか、またはバッファーから暗号文を復号化したり、ARC4暗号化を使用して、出力バッファーOUTを出力したりします。この関数は暗号化と復号化の両方に使用されます。この方法が呼び出される可能性がある場合は、まずWC_ARC4SETKEYを使用してARC4構造を初期化する必要があります。</para>
+<para><simplesect kind="return"><para>none</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arc4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the ARC4 structure used to process the message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the output buffer in which to store the processed message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the message to process </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the message to process</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Arc4<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>plain<sp/>text<sp/>to<sp/>encode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decrypted[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>encrypt<sp/>the<sp/>plain<sp/>into<sp/>cipher</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4Process(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>decrypt<sp/>the<sp/>cipher</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4Process(&amp;enc,<sp/>decrypted,<sp/>cipher,<sp/>sizeof(cipher));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ARC4_1gae6215dc5593f0accc5430e217d93f8c1" kindref="member">wc_Arc4SetKey</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arc4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージの処理に使用されるARC4構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>処理されたメッセージを保存する出力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>プロセスするメッセージを含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Arc4<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>plain<sp/>text<sp/>to<sp/>encode<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decrypted[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>encrypt<sp/>the<sp/>plain<sp/>into<sp/>cipher</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4Process(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>decrypt<sp/>the<sp/>cipher</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4Process(&amp;enc,<sp/>decrypted,<sp/>cipher,<sp/>sizeof(cipher));</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ARC4_1gae6215dc5593f0accc5430e217d93f8c1" kindref="member">wc_Arc4SetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/arc4.h" line="35" column="5" declfile="dox_comments/header_files/arc4.h" declline="35" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ARC4_1gae6215dc5593f0accc5430e217d93f8c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Arc4SetKey</definition>
+        <argsstring>(Arc4 *arc4, const byte *key, word32 length)</argsstring>
+        <name>wc_Arc4SetKey</name>
+        <param>
+          <type>Arc4 *</type>
+          <declname>arc4</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the key for a ARC4 object, initializing it for use as a cipher. It should be called before using it for encryption with wc_Arc4Process. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数はARC4オブジェクトのキーを設定し、それを暗号として使用するために初期化します。WC_ARC4PROCESSを使用した暗号化に使用する前に呼び出される必要があります。</para>
+<para><simplesect kind="return"><para>none</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arc4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an arc4 structure to be used for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key with which to initialize the arc4 structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the key used to initialize the arc4 structure</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Arc4<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ARC4_1gab3279b6c8a427aee0f1c1aa03bb558b0" kindref="member">wc_Arc4Process</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arc4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用されるARC4構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ARC4構造を初期化するためのキー <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Arc4<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Arc4SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ARC4_1gab3279b6c8a427aee0f1c1aa03bb558b0" kindref="member">wc_Arc4Process</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/arc4.h" line="59" column="5" declfile="dox_comments/header_files/arc4.h" declline="59" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

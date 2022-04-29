@@ -1,0 +1,1247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="iotsafe_8h" kind="file" language="C++">
+    <compoundname>iotsafe.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="iotsafe_8h_1a6eef6129679bffcce2eb294c8c075da7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CTX_iotsafe_enable</definition>
+        <argsstring>(WOLFSSL_CTX *ctx)</argsstring>
+        <name>wolfSSL_CTX_iotsafe_enable</name>
+        <param>
+          <type>WOLFSSL_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は与えられたコンテキストでのIoTセーフサポートを有効にします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IOTセーフサポートを有効にする必要があるWOLFSSL_CTXオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功した <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX<sp/>*ctx;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_CTX_new(wolfTLSv1_2_client_method());</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ctx)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_iotsafe_enable(ctx);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a70736338743dd73e0298461c521f150f" kindref="member">wolfSSL_iotsafe_on</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a44163df13fb7e31f998e9827cdd57894" kindref="member">wolfIoTSafe_SetCSIM_read_cb</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1aa8d75a901881864857d4b802e8a49ba3" kindref="member">wolfIoTSafe_SetCSIM_write_cb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="18" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="18" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a70736338743dd73e0298461c521f150f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_iotsafe_on</definition>
+        <argsstring>(WOLFSSL *ssl, byte privkey_id, byte ecdh_keypair_slot, byte peer_pubkey_slot, byte peer_cert_slot)</argsstring>
+        <name>wolfSSL_iotsafe_on</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>privkey_id</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>ecdh_keypair_slot</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>peer_pubkey_slot</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>peer_cert_slot</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、IOT-SAFE TLSコールバックを特定のSSLセッションに接続します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>スロットのIDが1バイトの長さの場合、SSLセッションをIoT-Safeアプレットに接続するように呼び出す必要があります。IOTセーフスロットのIDが2バイト以上の場合、\ REF WOLFSSL_IOTSAFE_ON_EX「WOLFSSL_IOTSAFE_ON_EX（）」を使用する必要があります。 <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コールバックが有効になるWolfSSLオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privkey_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ホストの秘密鍵を含むIOTセーフなアプレットスロットのID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecdh_keypair_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECDH鍵ペアを保存するためのIoT安全アプレットスロットのID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>peer_pubkey_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECDH用の他のエンドポイントの公開鍵を保存するためのIOT-SAFEアプレットスロットのID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>peer_cert_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証のための他のエンドポイントの公開鍵を保存するためのIOTセーフなアプレットスロットのID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN habe_pk_callbacksが無効になっている場合 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>Define<sp/>key<sp/>ids<sp/>for<sp/>IoT-Safe</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PRIVKEY_ID<sp/>0x02</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>ECDH_KEYPAIR_ID<sp/>0x03</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PEER_PUBKEY_ID<sp/>0x04</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PEER_CERT_ID<sp/>0x05</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Create<sp/>new<sp/>ssl<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ssl)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Enable<sp/>IoT-Safe<sp/>and<sp/>associate<sp/>key<sp/>slots</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_iotsafe_enable(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wolfSSL_iotsafe_on(ssl,<sp/>PRIVKEY_ID,<sp/>ECDH_KEYPAIR_ID,<sp/>PEER_PUBKEY_ID,<sp/>PEER_CERT_ID);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a3beca4356267e5c0442e89b0d29515fc" kindref="member">wolfSSL_iotsafe_on_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6eef6129679bffcce2eb294c8c075da7" kindref="member">wolfSSL_CTX_iotsafe_enable</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="53" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="53" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a3beca4356267e5c0442e89b0d29515fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_iotsafe_on_ex</definition>
+        <argsstring>(WOLFSSL *ssl, byte *privkey_id, byte *ecdh_keypair_slot, byte *peer_pubkey_slot, byte *peer_cert_slot, word16 id_size)</argsstring>
+        <name>wolfSSL_iotsafe_on_ex</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>privkey_id</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>ecdh_keypair_slot</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>peer_pubkey_slot</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>peer_cert_slot</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>id_size</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、IOT-SAFE TLSコールバックを特定のSSLセッションに接続します。これは、IOTセーフスロットのIDを参照で渡すことができ、IDフィールドの長さをパラメータ &quot;id_size&quot;で指定できます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コールバックが有効になるWolfSSLオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privkey_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ホストの秘密鍵を含むIoTセーフアプレットスロットのIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ecdh_keypair_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECDH鍵ペアを保存するIOT-SafeアプレットスロットのIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>peer_pubkey_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECDH用の他のエンドポイントの公開鍵を保存するIOTセーフアプレットスロットのIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>peer_cert_slot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証のために他のエンドポイントの公開鍵を保存するためのIOT-SAFEアプレットスロットのIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>各スロットIDのサイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN habe_pk_callbacksが無効になっている場合 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>Define<sp/>key<sp/>ids<sp/>for<sp/>IoT-Safe<sp/>(16<sp/>bit,<sp/>little<sp/>endian)</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PRIVKEY_ID<sp/>0x0201</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>ECDH_KEYPAIR_ID<sp/>0x0301</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PEER_PUBKEY_ID<sp/>0x0401</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>PEER_CERT_ID<sp/>0x0501</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>ID_SIZE<sp/>(sizeof(word16))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word16<sp/>privkey<sp/>=<sp/>PRIVKEY_ID,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ecdh_keypair<sp/>=<sp/>ECDH_KEYPAIR_ID,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_pubkey<sp/>=<sp/>PEER_PUBKEY_ID,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_cert<sp/>=<sp/>PEER_CERT_ID;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Create<sp/>new<sp/>ssl<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ssl)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Enable<sp/>IoT-Safe<sp/>and<sp/>associate<sp/>key<sp/>slots</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_iotsafe_enable(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wolfSSL_CTX_iotsafe_on_ex(ssl,<sp/>&amp;privkey,<sp/>&amp;ecdh_keypair,<sp/>&amp;peer_pubkey,<sp/>&amp;peer_cert,<sp/>ID_SIZE);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a70736338743dd73e0298461c521f150f" kindref="member">wolfSSL_iotsafe_on</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6eef6129679bffcce2eb294c8c075da7" kindref="member">wolfSSL_CTX_iotsafe_enable</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="98" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="98" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a44163df13fb7e31f998e9827cdd57894" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfIoTSafe_SetCSIM_read_cb</definition>
+        <argsstring>(wolfSSL_IOTSafe_CSIM_read_cb rf)</argsstring>
+        <name>wolfIoTSafe_SetCSIM_read_cb</name>
+        <param>
+          <type>wolfSSL_IOTSafe_CSIM_read_cb</type>
+          <declname>rf</declname>
+        </param>
+        <briefdescription>
+<para>AT + CSIMコマンドのリードコールバックを関連付けます。この入力関数は通常、モデムと通信するUARTチャネルの読み取りイベントに関連付けられています。読み取りコールバックが関連付けられているのは、同時にIoT-Safeサポートを使用するすべてのコンテキストのグローバルと変更です。 <emphasis>Example</emphasis> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><programlisting><codeline><highlight class="normal">//<sp/>USART<sp/>read<sp/>function,<sp/>defined<sp/>elsewhere</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>usart_read(char<sp/>*buf,<sp/>int<sp/>len);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wolfIoTSafe_SetCSIM_read_cb(usart_read);</highlight></codeline>
+</programlisting> <simplesect kind="see"><para><ref refid="iotsafe_8h_1aa8d75a901881864857d4b802e8a49ba3" kindref="member">wolfIoTSafe_SetCSIM_write_cb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="116" column="6" declfile="dox_comments/header_files/ja/iotsafe.h" declline="116" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1aa8d75a901881864857d4b802e8a49ba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfIoTSafe_SetCSIM_write_cb</definition>
+        <argsstring>(wolfSSL_IOTSafe_CSIM_write_cb wf)</argsstring>
+        <name>wolfIoTSafe_SetCSIM_write_cb</name>
+        <param>
+          <type>wolfSSL_IOTSafe_CSIM_write_cb</type>
+          <declname>wf</declname>
+        </param>
+        <briefdescription>
+<para>AT + CSIMコマンドの書き込みコールバックを関連付けます。この出力関数は通常、モデムと通信するUARTチャネル上のライトイベントに関連付けられています。Write Callbackが関連付けられているのは、同時にIoT-Safeサポートを使用するすべてのコンテキストのグローバルと変更です。 <emphasis>Example</emphasis> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><programlisting><codeline><highlight class="normal">//<sp/>USART<sp/>write<sp/>function,<sp/>defined<sp/>elsewhere</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>usart_write(const<sp/>char<sp/>*buf,<sp/>int<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal">wolfIoTSafe_SetCSIM_write_cb(usart_write);</highlight></codeline>
+</programlisting> <simplesect kind="see"><para><ref refid="iotsafe_8h_1a44163df13fb7e31f998e9827cdd57894" kindref="member">wolfIoTSafe_SetCSIM_read_cb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="129" column="6" declfile="dox_comments/header_files/ja/iotsafe.h" declline="129" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1aecea4a8c6bd52af24caf937d7f71331c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfIoTSafe_GetRandom</definition>
+        <argsstring>(unsigned char *out, word32 sz)</argsstring>
+        <name>wolfIoTSafe_GetRandom</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>IOTセーフ機能getrandomを使用して、指定されたサイズのランダムなバッファを生成します。この関数は、WolfCrypt RNGオブジェクトによって自動的に使用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ランダムなバイトシーケンスが格納されているバッファ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成するランダムシーケンスのサイズ（バイト単位） </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="139" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="139" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1affd32db718dcc77934345c2413f4c35b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfIoTSafe_GetCert</definition>
+        <argsstring>(uint8_t id, unsigned char *output, unsigned long sz)</argsstring>
+        <name>wolfIoTSafe_GetCert</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>IOT-Safeアプレット上のファイルに保存されている証明書をインポートし、ローカルにメモリに保存します。1バイトのファイルIDフィールドで動作します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書が保存されているIOTセーフ・アプレットのファイルID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書がインポートされるバッファー </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファ出力で使用可能な最大サイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the 輸入された証明書の長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#define<sp/>CRT_CLIENT_FILE_ID<sp/>0x03</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cert_buffer[2048];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Get<sp/>the<sp/>certificate<sp/>into<sp/>the<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">cert_buffer_size<sp/>=<sp/>wolfIoTSafe_GetCert(CRT_CLIENT_FILE_ID,<sp/>cert_buffer,<sp/>2048);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(cert_buffer_size<sp/>&lt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Bad<sp/>cli<sp/>cert\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Loaded<sp/>Client<sp/>certificate<sp/>from<sp/>IoT-Safe,<sp/>size<sp/>=<sp/>%lu\n&quot;,<sp/>cert_buffer_size);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>the<sp/>certificate<sp/>buffer<sp/>as<sp/>identity<sp/>for<sp/>the<sp/>TLS<sp/>client<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfSSL_CTX_use_certificate_buffer(cli_ctx,<sp/>cert_buffer,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cert_buffer_size,<sp/>SSL_FILETYPE_ASN1)<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Cannot<sp/>load<sp/>client<sp/>cert\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Client<sp/>certificate<sp/>successfully<sp/>imported.\n&quot;);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="170" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="170" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a9806038ab5de14c824deae33bb8c01c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfIoTSafe_GetCert_ex</definition>
+        <argsstring>(uint8_t *id, uint16_t id_sz, unsigned char *output, unsigned long sz)</argsstring>
+        <name>wolfIoTSafe_GetCert_ex</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>id_sz</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>IOT-Safeアプレット上のファイルに保存されている証明書をインポートし、ローカルにメモリに保存します。\ ref wolfiotsafe_getcert &quot;wolfiotsafe_getcert&quot;と同等です。ただし、2バイト以上のファイルIDで呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書が保存されているIOT-SAFEアプレットのファイルIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ファイルIDのサイズ：バイト数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書がインポートされるバッファー </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファ出力で使用可能な最大サイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the 輸入された証明書の長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">#define<sp/>CRT_CLIENT_FILE_ID<sp/>0x0302</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>ID_SIZE<sp/>(sizeof(word16))</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>cert_buffer[2048];</highlight></codeline>
+<codeline><highlight class="normal">word16<sp/>client_file_id<sp/>=<sp/>CRT_CLIENT_FILE_ID;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Get<sp/>the<sp/>certificate<sp/>into<sp/>the<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">cert_buffer_size<sp/>=<sp/>wolfIoTSafe_GetCert_ex(&amp;client_file_id,<sp/>ID_SIZE,<sp/>cert_buffer,<sp/>2048);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(cert_buffer_size<sp/>&lt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Bad<sp/>cli<sp/>cert\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Loaded<sp/>Client<sp/>certificate<sp/>from<sp/>IoT-Safe,<sp/>size<sp/>=<sp/>%lu\n&quot;,<sp/>cert_buffer_size);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>the<sp/>certificate<sp/>buffer<sp/>as<sp/>identity<sp/>for<sp/>the<sp/>TLS<sp/>client<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfSSL_CTX_use_certificate_buffer(cli_ctx,<sp/>cert_buffer,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cert_buffer_size,<sp/>SSL_FILETYPE_ASN1)<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;Cannot<sp/>load<sp/>client<sp/>cert\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;Client<sp/>certificate<sp/>successfully<sp/>imported.\n&quot;);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="207" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="207" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1ab7e739d7ce0c943d1b615a42737b0c23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_import_public</definition>
+        <argsstring>(ecc_key *key, byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_import_public</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>IOTセーフアプレットに格納されているECC 256ビットの公開鍵をECC_Keyオブジェクトにインポートします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IOT-SAFEアプレットからインポートされたキーを含むECC_KEYオブジェクト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵が保存されているIOTセーフアプレットのキーID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a86a293394d882a1226d744c114353b0c" kindref="member">wc_iotsafe_ecc_export_public</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" kindref="member">wc_iotsafe_ecc_export_private</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="218" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="218" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a86a293394d882a1226d744c114353b0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_export_public</definition>
+        <argsstring>(ecc_key *key, byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_export_public</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>ECC_KEYオブジェクトからIOT-SAFEアプレットへの書き込み可能なパブリックキースロットにECC 256ビット公開鍵をエクスポートします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートする鍵を含むecc_keyオブジェクト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵が保存されているIOTセーフアプレットのキーID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1af4aaa4e97066a606092a4978b1a96122" kindref="member">wc_iotsafe_ecc_import_public_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" kindref="member">wc_iotsafe_ecc_export_private</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="229" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="229" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1af4aaa4e97066a606092a4978b1a96122" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_import_public_ex</definition>
+        <argsstring>(ecc_key *key, byte *key_id, word16 id_size)</argsstring>
+        <name>wc_iotsafe_ecc_import_public_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>key_id</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>id_size</declname>
+        </param>
+        <briefdescription>
+<para>ECC_KEYオブジェクトからIOT-SAFEアプレットへの書き込み可能なパブリックキースロットにECC 256ビット公開鍵をエクスポートします。\ ref WC_IOTSAFE_ECC_IMPORT_PUBLIC「WC_IOTSAFE_ECC_IMPORT_PUBLIC」と同等のものは、2バイト以上のキーIDで呼び出すことができる点を除きます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートする鍵を含むecc_keyオブジェクト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵が保存されるIOTセーフアプレットのキーIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーIDサイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ab7e739d7ce0c943d1b615a42737b0c23" kindref="member">wc_iotsafe_ecc_import_public</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" kindref="member">wc_iotsafe_ecc_export_private</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="242" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="242" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_export_private</definition>
+        <argsstring>(ecc_key *key, byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_export_private</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>ECC 256ビットキーをECC_KEYオブジェクトからIOTセーフアプレットに書き込み可能なプライベートキースロットにエクスポートします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートする鍵を含むecc_keyオブジェクト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵が保存されるIOTセーフアプレットのキーID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a3c02c8dd0b44f96fe7198c4201ab7460" kindref="member">wc_iotsafe_ecc_export_private_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ab7e739d7ce0c943d1b615a42737b0c23" kindref="member">wc_iotsafe_ecc_import_public</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a86a293394d882a1226d744c114353b0c" kindref="member">wc_iotsafe_ecc_export_public</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="254" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="254" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a3c02c8dd0b44f96fe7198c4201ab7460" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_export_private_ex</definition>
+        <argsstring>(ecc_key *key, byte *key_id, word16 id_size)</argsstring>
+        <name>wc_iotsafe_ecc_export_private_ex</name>
+        <param>
+          <type>ecc_key *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>key_id</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>id_size</declname>
+        </param>
+        <briefdescription>
+<para>ECC 256ビットキーをECC_KEYオブジェクトからIOTセーフアプレットに書き込み可能なプライベートキースロットにエクスポートします。\ ref WC_IOTSAFE_ECC_EXPORT_PRIVATE「WC_IOTSAFE_ECC_EXPORT_PRIVATE」を除き、2バイト以上のキーIDを呼び出すことができる点を除き、 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エクスポートする鍵を含むecc_keyオブジェクト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵が保存されるIOTセーフアプレットのキーIDへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーIDサイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" kindref="member">wc_iotsafe_ecc_export_private</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ab7e739d7ce0c943d1b615a42737b0c23" kindref="member">wc_iotsafe_ecc_import_public</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a86a293394d882a1226d744c114353b0c" kindref="member">wc_iotsafe_ecc_export_public</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="267" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="267" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_sign_hash</definition>
+        <argsstring>(byte *in, word32 inlen, byte *out, word32 *outlen, byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_sign_hash</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>事前計算された256ビットハッシュに署名して、IOT-SAFEアプレットに、以前に保存されたプライベートキー、またはプリプロビジョニングされています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サインするメッセージハッシュを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するためのバッファ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。バイトを保存します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージ署名の生成に成功したときに書き込まれたペイロードに署名するための秘密鍵を含むスロットのIOTセーフアプレットのキーID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a91fbd4d4022a37d9d3f694f5310356e0" kindref="member">wc_iotsafe_ecc_sign_hash_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" kindref="member">wc_iotsafe_ecc_verify_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="282" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="282" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a91fbd4d4022a37d9d3f694f5310356e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_sign_hash_ex</definition>
+        <argsstring>(byte *in, word32 inlen, byte *out, word32 *outlen, byte *key_id, word16 id_size)</argsstring>
+        <name>wc_iotsafe_ecc_sign_hash_ex</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outlen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>key_id</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>id_size</declname>
+        </param>
+        <briefdescription>
+<para>事前計算された256ビットハッシュに署名して、IOT-SAFEアプレットに、以前に保存されたプライベートキー、またはプリプロビジョニングされています。\ ref wc_iotsafe_ecc_sign_hash &quot;wc_iotsafe_ecc_sign_hash&quot;と同等です。ただし、2バイト以上のキーIDで呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サインするメッセージハッシュを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するメッセージの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された署名を保存するためのバッファ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの最大長。バイトを保存します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を含むスロットのIOT-SAFEアプレットのキーIDへのポインタメッセージ署名の生成に成功したときに書き込まれるペイロードに署名する </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーIDサイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" kindref="member">wc_iotsafe_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" kindref="member">wc_iotsafe_ecc_verify_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="298" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="298" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_verify_hash</definition>
+        <argsstring>(byte *sig, word32 siglen, byte *hash, word32 hashlen, int *res, byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_verify_hash</name>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashlen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>res</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>予め計算された256ビットハッシュに対するECCシグネチャを、IOT-SAFEアプレット内のプリプロビジョニング、またはプロビジョニングされたプリプロビジョニングを使用します。結果はRESに書き込まれます。1が有効で、0が無効です。注：有効なテストに戻り値を使用しないでください。Resのみを使用してください。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功すると（署名が無効であっても） </para>
+</simplesect>
+<simplesect kind="return"><para>&lt; 故障の場合は0 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名を含むバッファ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたハッシュ（メッセージダイジェスト） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ（オクテット） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名の結果、1 ==有効、0 ==無効 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a68e3fb2f5072122536ead39523370521" kindref="member">wc_iotsafe_ecc_verify_hash_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" kindref="member">wc_iotsafe_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="313" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="313" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1a68e3fb2f5072122536ead39523370521" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_verify_hash_ex</definition>
+        <argsstring>(byte *sig, word32 siglen, byte *hash, word32 hashlen, int *res, byte *key_id, word16 id_size)</argsstring>
+        <name>wc_iotsafe_ecc_verify_hash_ex</name>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>siglen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashlen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>res</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>key_id</declname>
+        </param>
+        <param>
+          <type>word16</type>
+          <declname>id_size</declname>
+        </param>
+        <briefdescription>
+<para>予め計算された256ビットハッシュに対するECCシグネチャを、IOT-SAFEアプレット内のプリプロビジョニング、またはプロビジョニングされたプリプロビジョニングを使用します。結果はRESに書き込まれます。1が有効で、0が無効です。注：有効なテストに戻り値を使用しないでください。Resのみを使用してください。\ ref WC_IOTSAFE_ECC_VERIFY_HASH &quot;WC_IOTSAFE_ECC_VERIFY_HASH&quot;を除き、2バイト以上のキーIDで呼び出すことができる点を除きます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功すると（署名が無効であっても） </para>
+</simplesect>
+<simplesect kind="return"><para>&lt; 故障の場合は0 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証する署名を含むバッファ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたハッシュ（メッセージダイジェスト） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashlen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ（オクテット） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名の結果、1 ==有効、0 ==無効 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パブリックECCキーがIOTセーフアプレットに保存されているスロットのID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" kindref="member">wc_iotsafe_ecc_verify_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" kindref="member">wc_iotsafe_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="329" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="329" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_iotsafe_ecc_gen_k</definition>
+        <argsstring>(byte key_id)</argsstring>
+        <name>wc_iotsafe_ecc_gen_k</name>
+        <param>
+          <type>byte</type>
+          <declname>key_id</declname>
+        </param>
+        <briefdescription>
+<para>ECC 256ビットのキーペアを生成し、それを（書き込み可能な）スロットにIOTセーフなアプレットに保存します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ECC 256ビットのキーペアを生成し、それを（書き込み可能な）スロットにIOTセーフなアプレットに保存します。\ ref wc_iotsafe_ecc_gen_k &quot;wc_iotsafe_ecc_gen_k&quot;と同等です。ただし、2バイト以上のキーIDで呼び出すことができます。</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECCキーペアがIOTセーフアプレットに格納されているスロットのID。 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para>wc_iotsafe_ecc_gen_k_ex </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" kindref="member">wc_iotsafe_ecc_sign_hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" kindref="member">wc_iotsafe_ecc_verify_hash</ref></para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ECCキーペアがIOTセーフアプレットに格納されているスロットのID。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーIDサイズ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 成功すると </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a91fbd4d4022a37d9d3f694f5310356e0" kindref="member">wc_iotsafe_ecc_sign_hash_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="iotsafe_8h_1a68e3fb2f5072122536ead39523370521" kindref="member">wc_iotsafe_ecc_verify_hash_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/iotsafe.h" line="340" column="5" declfile="dox_comments/header_files/ja/iotsafe.h" declline="340" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="18"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a6eef6129679bffcce2eb294c8c075da7" kindref="member">wolfSSL_CTX_iotsafe_enable</ref>(WOLFSSL_CTX<sp/>*ctx);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a70736338743dd73e0298461c521f150f" kindref="member">wolfSSL_iotsafe_on</ref>(WOLFSSL<sp/>*ssl,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>privkey_id,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>ecdh_keypair_slot,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>peer_pubkey_slot,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>peer_cert_slot);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a3beca4356267e5c0442e89b0d29515fc" kindref="member">wolfSSL_iotsafe_on_ex</ref>(WOLFSSL<sp/>*ssl,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*privkey_id,</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*ecdh_keypair_slot,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*peer_pubkey_slot,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*peer_cert_slot,<sp/>word16<sp/>id_size);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a44163df13fb7e31f998e9827cdd57894" kindref="member">wolfIoTSafe_SetCSIM_read_cb</ref>(wolfSSL_IOTSafe_CSIM_read_cb<sp/>rf);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1aa8d75a901881864857d4b802e8a49ba3" kindref="member">wolfIoTSafe_SetCSIM_write_cb</ref>(wolfSSL_IOTSafe_CSIM_write_cb<sp/>wf);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1aecea4a8c6bd52af24caf937d7f71331c" kindref="member">wolfIoTSafe_GetRandom</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>sz);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1affd32db718dcc77934345c2413f4c35b" kindref="member">wolfIoTSafe_GetCert</ref>(uint8_t<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*output,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>sz);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a9806038ab5de14c824deae33bb8c01c8" kindref="member">wolfIoTSafe_GetCert_ex</ref>(uint8_t<sp/>*</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>uint16_t<sp/>id_sz,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*output,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>sz);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1ab7e739d7ce0c943d1b615a42737b0c23" kindref="member">wc_iotsafe_ecc_import_public</ref>(ecc_key<sp/>*key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a86a293394d882a1226d744c114353b0c" kindref="member">wc_iotsafe_ecc_export_public</ref>(ecc_key<sp/>*key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1af4aaa4e97066a606092a4978b1a96122" kindref="member">wc_iotsafe_ecc_import_public_ex</ref>(ecc_key<sp/>*key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*key_id,<sp/>word16<sp/>id_size);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1ac94250323984ce9d24fcc7dfe92905be" kindref="member">wc_iotsafe_ecc_export_private</ref>(ecc_key<sp/>*key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a3c02c8dd0b44f96fe7198c4201ab7460" kindref="member">wc_iotsafe_ecc_export_private_ex</ref>(ecc_key<sp/>*key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*key_id,<sp/>word16<sp/>id_size);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1aadd1681d49fe6e8ecf07fd7bd5b320e6" kindref="member">wc_iotsafe_ecc_sign_hash</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*in,<sp/>word32<sp/>inlen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*out,<sp/>word32<sp/>*outlen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a91fbd4d4022a37d9d3f694f5310356e0" kindref="member">wc_iotsafe_ecc_sign_hash_ex</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*in,<sp/>word32<sp/>inlen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*out,<sp/>word32<sp/>*outlen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*key_id,<sp/>word16<sp/>id_size);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a6fd2aeede427f8df6d193f0a21dc614b" kindref="member">wc_iotsafe_ecc_verify_hash</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*sig,<sp/>word32<sp/>siglen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*hash,<sp/>word32<sp/>hashlen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*res,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1a68e3fb2f5072122536ead39523370521" kindref="member">wc_iotsafe_ecc_verify_hash_ex</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*sig,<sp/>word32<sp/>siglen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*hash,<sp/>word32<sp/>hashlen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*res,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>*key_id,<sp/>word16<sp/>id_size);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="iotsafe_8h_1ac4ae5e67687a25a7419e43f9c2617249" kindref="member">wc_iotsafe_ecc_gen_k</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>key_id);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/iotsafe.h"/>
+  </compounddef>
+</doxygen>

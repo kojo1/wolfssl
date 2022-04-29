@@ -1,0 +1,860 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2hash_8h" kind="file" language="C++">
+    <compoundname>hash.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__wolfCrypt_1gaf65683ae961b7560c7b226bfda0befde" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HashGetOID</definition>
+        <argsstring>(enum wc_HashType hash_type)</argsstring>
+        <name>wc_HashGetOID</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <briefdescription>
+<para>This function will return the OID for the wc_HashType provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は提供されたwc_hashtypeのOIDを返します。</para>
+<para><simplesect kind="return"><para>OID returns value greater than 0 </para>
+</simplesect>
+<simplesect kind="return"><para>HASH_TYPE_E hash type not supported. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG one of the provided arguments is incorrect.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>oid<sp/>=<sp/>wc_HashGetOID(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(oid<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref></para>
+</simplesect>
+<simplesect kind="return"><para>OID 戻り値0を超えてください </para>
+</simplesect>
+<simplesect kind="return"><para>HASH_TYPE_E ハッシュ型はサポートされていません。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 提供された引数の1つが正しくありません。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>oid<sp/>=<sp/>wc_HashGetOID(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(oid<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="25" column="5" declfile="dox_comments/header_files/hash.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HashGetDigestSize</definition>
+        <argsstring>(enum wc_HashType hash_type)</argsstring>
+        <name>wc_HashGetDigestSize</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <briefdescription>
+<para>This function returns the size of the digest (output) for a hash_type. The returns size is used to make sure the output buffer provided to wc_Hash is large enough. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、hash_typeのダイジェスト（出力）のサイズを返します。返品サイズは、WC_HASHに提供される出力バッファが十分に大きいことを確認するために使用されます。</para>
+<para><simplesect kind="return"><para>Success A positive return value indicates the digest size for the hash. </para>
+</simplesect>
+<simplesect kind="return"><para>Error Returns HASH_TYPE_E if hash_type is not supported. </para>
+</simplesect>
+<simplesect kind="return"><para>Failure Returns BAD_FUNC_ARG if an invalid hash_type was used.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_MSG(&quot;Invalid<sp/>hash<sp/>type/len&quot;);</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>BAD_FUNC_ARG;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 正の戻り値は、ハッシュのダイジェストサイズを示します。 </para>
+</simplesect>
+<simplesect kind="return"><para>Error hash_typeがサポートされていない場合はhash_type_eを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure 無効なhash_typeが使用された場合、bad_func_argを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_MSG(&quot;Invalid<sp/>hash<sp/>type/len&quot;);</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>BAD_FUNC_ARG;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="53" column="5" declfile="dox_comments/header_files/hash.h" declline="53" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Hash</definition>
+        <argsstring>(enum wc_HashType hash_type, const byte *data, word32 data_len, byte *hash, word32 hash_len)</argsstring>
+        <name>wc_Hash</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>data_len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hash_len</declname>
+        </param>
+        <briefdescription>
+<para>This function performs a hash on the provided data buffer and returns it in the hash buffer provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、提供されたデータバッファ上にハッシュを実行し、提供されたハッシュバッファにそれを返します。</para>
+<para><simplesect kind="return"><para>0 Success, else error (such as BAD_FUNC_ARG or BUFFER_E).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buffer containing the data to hash. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the data buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buffer used to output the final hash to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the hash buffer.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>ret<sp/>=<sp/>wc_Hash(hash_type,<sp/>data,<sp/>data_len,<sp/>hash_data,<sp/>hash_len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 そうでなければ、それ以外の誤り（bad_func_argやbuffer_eなど）。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&quot;wc_hash_type_sha256&quot;などの &quot;enum wc_hashtype&quot;からのハッシュ型。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータを含むバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データバッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最後のハッシュを出力するために使用されるバッファへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>ret<sp/>=<sp/>wc_Hash(hash_type,<sp/>data,<sp/>data_len,<sp/>hash_data,<sp/>hash_len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="84" column="5" declfile="dox_comments/header_files/hash.h" declline="84" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Md5Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Md5Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully hashing the data. </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E memory error, unable to allocate memory. This is only possible with the small stack option enabled.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>byte*<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>data_len;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>hash;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Md5Hash(data,<sp/>data_len,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Hash<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 データを正常にハッシュしたときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは、小さなスタックオプションが有効になっているだけです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>byte*<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>data_len;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>hash;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Md5Hash(data,<sp/>data_len,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>//<sp/>Md5<sp/>Hash<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1ga129e1faa6dde2f621ee68d3c102598e8" kindref="member">wc_Md5Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__MD5_1gab7c2a1abde9ab76e8d2123b89deabcc4" kindref="member">wc_InitMd5</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="119" column="5" declfile="dox_comments/header_files/hash.h" declline="119" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ShaHash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_ShaHash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully …. </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E memory error, unable to allocate memory. This is only possible with the small stack option enabled.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 うまく返されました...。 </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは、小さなスタックオプションが有効になっているだけです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7ff04c6050595b53c468c0135121cd65" kindref="member">wc_ShaFinal</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga4fb84a31d74cf14094b59bbd78f7cf89" kindref="member">wc_InitSha</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="144" column="5" declfile="dox_comments/header_files/hash.h" declline="144" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha256Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Sha256Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully … </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E memory error, unable to allocate memory. This is only possible with the small stack option enabled.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 うまく返されました... </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは、小さなスタックオプションが有効になっているだけです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa455afae95c1ed3ed3b1d9559c96b266" kindref="member">wc_Sha256Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga9bfb6a099a810c3b1e2137bf113fd7fe" kindref="member">wc_InitSha256</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="169" column="5" declfile="dox_comments/header_files/hash.h" declline="169" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha224Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Sha224Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gad4aa60ac1f2cec740ac485e09747d032" kindref="member">wc_InitSha224</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga2bbd4f366884580d1de1b27b306c01be" kindref="member">wc_Sha224Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga5525da308cea4a5f54d9b5a6bc26dfc3" kindref="member">wc_Sha224Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="193" column="5" declfile="dox_comments/header_files/hash.h" declline="193" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gae9f53c7cc4d1095960c7da01887028b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha512Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Sha512Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully hashing the inputted data </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E memory error, unable to allocate memory. This is only possible with the small stack option enabled.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7743789b491a860b2c7c745f8f759f55" kindref="member">wc_InitSha512</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 入力されたデータを正常にハッシュしたときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは、小さなスタックオプションが有効になっているだけです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga7743789b491a860b2c7c745f8f759f55" kindref="member">wc_InitSha512</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="218" column="5" declfile="dox_comments/header_files/hash.h" declline="218" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SHA_1gab07a857afa0c05ca33394c6a56ce8b74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha384Hash</definition>
+        <argsstring>(const byte *data, word32 len, byte *hash)</argsstring>
+        <name>wc_Sha384Hash</name>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function, handles all the hashing and places the result into hash. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>利便性機能は、すべてのハッシュを処理し、その結果をハッシュに入れます。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully hashing the data </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E memory error, unable to allocate memory. This is only possible with the small stack option enabled.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the data to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Byte array to hold hash value.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SHA_1gab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga0cab272b70b7d520382281e73f033d53" kindref="member">wc_InitSha384</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 データを正常にハッシュしたときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>Memory_E メモリエラー、メモリを割り当てることができません。これは、小さなスタックオプションが有効になっているだけです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データの長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SHA_1gab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1gaa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SHA_1ga0cab272b70b7d520382281e73f033d53" kindref="member">wc_InitSha384</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="243" column="5" declfile="dox_comments/header_files/hash.h" declline="243" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="18"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__wolfCrypt_1gaf65683ae961b7560c7b226bfda0befde" kindref="member">wc_HashGetOID</ref>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash_type);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash_type);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref>(</highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash_type,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>data_len,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash,<sp/>word32<sp/>hash_len);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__MD5_1ga2414467cfbe10dc6b761723fa236f679" kindref="member">wc_Md5Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gaf49325d625b78b73b6ca2550e9c0fc5f" kindref="member">wc_ShaHash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gaf28a9d703104901dd7989bfda8307da6" kindref="member">wc_Sha256Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1ga705c7ca2dbbae6ce25ccc9e421dc7fea" kindref="member">wc_Sha224Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__SHA_1gab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/hash.h"/>
+  </compounddef>
+</doxygen>

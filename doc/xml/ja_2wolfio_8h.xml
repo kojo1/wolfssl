@@ -1,0 +1,1307 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2wolfio_8h" kind="file" language="C++">
+    <compoundname>wolfio.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ja_2wolfio_8h_1ae3835c5f5d25d7202d77b5102c15b6af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EmbedReceive</definition>
+        <argsstring>(WOLFSSL *ssl, char *buf, int sz, void *ctx)</argsstring>
+        <name>EmbedReceive</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success この関数は、読み取られたバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_WANT_READ 最後のエラーがsocket_ewouldbolcokまたはsocket_eagainであれば、メッセージを返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_TIMEOUT &quot;Socket Timeout&quot;メッセージを返しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_RST 最後のエラーがsocket_econnresetの場合、 &quot;Connection Reset&quot;メッセージで返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_ISR 最後のエラーがsocket_eintrの場合、 &quot;Socket Interrupted&quot;メッセージが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_WANT_READ 最後のエラーがsocket_econneRefusedの場合、「接続拒否」メッセージを返しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_CLOSE 最後のエラーがSOCKET_ECONNABORTEDの場合、「接続中止」メッセージで返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_GENERAL 最後のエラーが指定されていない場合は、「一般的なエラー」メッセージで返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのチャーポインタ表現。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>protocol<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>buf;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>bytesRead<sp/>=<sp/>EmbedReceive(ssl,<sp/>buf,<sp/>sz,<sp/>ctx);</highlight></codeline>
+<codeline><highlight class="normal">if(bytesRead<sp/>&lt;=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>There<sp/>were<sp/>no<sp/>bytes<sp/>read.<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1afc6a824ea988d7a9e72bdb66ccd16e98" kindref="member">EmbedSend</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_SSLSetIORecv </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="30" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="30" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1afc6a824ea988d7a9e72bdb66ccd16e98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EmbedSend</definition>
+        <argsstring>(WOLFSSL *ssl, char *buf, int sz, void *ctx)</argsstring>
+        <name>EmbedSend</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success この関数は送信されたバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_WANT_WRITE 最後のエラーがsocket_ewouldblockまたはsocket_eagainであれば、 &quot;Block&quot;メッセージを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_RST 最後のエラーがsocket_econnresetの場合、 &quot;Connection Reset&quot;メッセージで返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_ISR 最後のエラーがsocket_eintrの場合、 &quot;Socket Interrupted&quot;メッセージが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_CLOSE 最後のエラーがsocket_epipeの場合、 &quot;Socket Epipe&quot;メッセージを返しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_GENERAL 最後のエラーが指定されていない場合は、「一般的なエラー」メッセージで返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファを表す文字ポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>buf;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>dSent<sp/>=<sp/>EmbedSend(ssl,<sp/>buf,<sp/>sz,<sp/>ctx);</highlight></codeline>
+<codeline><highlight class="normal">if(dSent<sp/>&lt;=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>No<sp/>byes<sp/>sent.<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1ae3835c5f5d25d7202d77b5102c15b6af" kindref="member">EmbedReceive</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_SSLSetIOSend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="58" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="58" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a417fef63b002458cc61305b281d02bd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EmbedReceiveFrom</definition>
+        <argsstring>(WOLFSSL *ssl, char *buf, int sz, void *)</argsstring>
+        <name>EmbedReceiveFrom</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success この関数は、実行が成功した場合に読み込まれたNBバイトを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_WANT_READ 接続が拒否された場合、または「ブロック」エラーが発生した場合は機能にスローされました。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_TIMEOUT ソケットがタイムアウトした場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_RST 接続がリセットされている場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_ISR ソケットが中断された場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_GENERAL 一般的なエラーがあった場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファへの定数の文字ポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズを表すint型。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>protocol<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>WOLFSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>buf;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz<sp/>=<sp/>sizeof(buf)/sizeof(char);</highlight></codeline>
+<codeline><highlight class="normal">(void*)ctx;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>nb<sp/>=<sp/>EmbedReceiveFrom(ssl,<sp/>buf,<sp/>sz,<sp/>ctx);</highlight></codeline>
+<codeline><highlight class="normal">if(nb<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>nb<sp/>is<sp/>the<sp/>number<sp/>of<sp/>bytes<sp/>written<sp/>and<sp/>is<sp/>positive</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1aa7e05edee0ed00dee1ddc8331de146f2" kindref="member">EmbedSendTo</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_SSLSetIORecv </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ssl_8h_1a07da5ada53a2a68ee8e7a6dab9b5f429" kindref="member">wolfSSL_dtls_get_current_timeout</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="89" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="89" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1aa7e05edee0ed00dee1ddc8331de146f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EmbedSendTo</definition>
+        <argsstring>(WOLFSSL *ssl, char *buf, int sz, void *ctx)</argsstring>
+        <name>EmbedSendTo</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success この関数は送信されたバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_WANT_WRITE 最後のエラーがsocket_ewouldblockまたはsocket_eagainエラーの場合、 &quot;Block&quot;メッセージを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_RST 最後のエラーがsocket_econnresetの場合、 &quot;Connection Reset&quot;メッセージで返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_ISR 最後のエラーがsocket_eintrの場合、 &quot;Socket Interrupted&quot;メッセージが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_CONN_CLOSE 最後のエラーがwolfssl_cbio_err_conn_croseの場合、 &quot;Socket Epipe&quot;メッセージを返しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>WOLFSSL_CBIO_ERR_GENERAL 最後のエラーが指定されていない場合は、「一般的なエラー」メッセージで返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファを表す文字ポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">char*<sp/>buf;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ctx;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>sEmbed<sp/>=<sp/>EmbedSendto(ssl,<sp/>buf,<sp/>sz,<sp/>ctx);</highlight></codeline>
+<codeline><highlight class="normal">if(sEmbed<sp/>&lt;=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>No<sp/>bytes<sp/>sent.<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a417fef63b002458cc61305b281d02bd1" kindref="member">EmbedReceiveFrom</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_SSLSetIOSend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="119" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="119" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a5d729a9e59a637463265da430c17d916" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int EmbedGenerateCookie</definition>
+        <argsstring>(WOLFSSL *ssl, unsigned char *buf, int sz, void *)</argsstring>
+        <name>EmbedGenerateCookie</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success この関数は、バッファにコピーされたバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>GEN_COOKIE_E getPeernameがEmbedGenerateCookieに失敗した場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファを表すバイトポインタ。xmemcpy（）からの宛先です。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buffer[BUFFER_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>sz<sp/>=<sp/>sizeof(buffer)/sizeof(byte);</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>EmbedGenerateCookie(ssl,<sp/>buffer,<sp/>sz,<sp/>ctx);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>&gt;<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>EmbedGenerateCookie<sp/>code<sp/>block<sp/>for<sp/>success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1ab9f02653021cb43291bbc4a7c7f39370" kindref="member">wolfSSL_CTX_SetGenCookie</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="144" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="144" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1adcf5bc87f6feafabcaf28221f4aca00c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void EmbedOcspRespFree</definition>
+        <argsstring>(void *ctx, byte *resp)</argsstring>
+        <name>EmbedOcspRespFree</name>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>resp</declname>
+        </param>
+        <briefdescription>
+<para><linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ヒープヒントへのvoidポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">void*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>resp;<sp/>//<sp/>Response<sp/>buffer.</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">EmbedOcspRespFree(ctx,<sp/>resp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga40598eacaa03af2e003e95f57ddd30a9" kindref="member">wolfSSL_CertManagerSetOCSP_Cb</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1gac17294be4393a23f98c7004217376dae" kindref="member">wolfSSL_CertManagerEnableOCSPStapling</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertManager_1ga05b1f36d81c5cf5316336a2f54d53e68" kindref="member">wolfSSL_CertManagerEnableOCSP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="162" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="162" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_CTX_SetIORecv</definition>
+        <argsstring>(WOLFSSL_CTX *ctx, CallbackIORecv CBIORecv)</argsstring>
+        <name>wolfSSL_CTX_SetIORecv</name>
+        <param>
+          <type>WOLFSSL_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>CallbackIORecv</type>
+          <declname>CBIORecv</declname>
+        </param>
+        <briefdescription>
+<para>データ。デフォルトでは、WolfSSLはシステムのTCP RECV（）関数を使用するコールバックとしてEmbedReceive（）を使用します。ユーザは、メモリ、他のネットワークモジュール、またはどこからでも入力するように機能を登録できます。関数の機能とエラーコードのためのガイドとして、src / io.cの埋め込みReceive（）関数を参照してください。特に、データが準備ができていないときに、IO_ERR_WANT_READを非ブロック受信用に返す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_ctx_new（）で作成されたSSLコンテキストへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Receive<sp/>callback<sp/>prototype</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>MyEmbedReceive(WOLFSSL*<sp/>ssl,<sp/>char*<sp/>buf,<sp/>int<sp/>sz,<sp/>void*<sp/>ctx);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>the<sp/>custom<sp/>receive<sp/>callback<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_SetIORecv(ctx,<sp/>MyEmbedReceive);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>MyEmbedReceive(WOLFSSL*<sp/>ssl,<sp/>char*<sp/>buf,<sp/>int<sp/>sz,<sp/>void*<sp/>ctx)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>EmbedReceive<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="184" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="184" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_SetIOReadCtx</definition>
+        <argsstring>(WOLFSSL *ssl, void *ctx)</argsstring>
+        <name>wolfSSL_SetIOReadCtx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>コールバック関数デフォルトでは、WolfSSLは、WolfSSLがシステムのTCPライブラリを使用している場合、wolfssl_set_fd（）に渡されたファイル記述子をコンテキストとして設定します。自分の受信コールバックを登録した場合は、セッションの特定のコンテキストを設定することができます。たとえば、メモリバッファを使用している場合、コンテキストは、メモリバッファーのどこにありかを説明する構造へのポインタであり得る。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたSSLセッションへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sockfd;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Manually<sp/>setting<sp/>the<sp/>socket<sp/>fd<sp/>as<sp/>the<sp/>receive<sp/>CTX,<sp/>for<sp/>example</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIOReadCtx(ssl,<sp/>&amp;sockfd);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="203" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="203" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_SetIOWriteCtx</definition>
+        <argsstring>(WOLFSSL *ssl, void *ctx)</argsstring>
+        <name>wolfSSL_SetIOWriteCtx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>コールバック関数デフォルトでは、WolfSSLは、WolfSSLがシステムのTCPライブラリを使用している場合、wolfssl_set_fd（）に渡されたファイル記述子をコンテキストとして設定します。独自の送信コールバックを登録した場合は、セッションの特定のコンテキストを設定することができます。たとえば、メモリバッファを使用している場合、コンテキストは、メモリバッファーのどこにありかを説明する構造へのポインタであり得る。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたSSLセッションへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sockfd;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Manually<sp/>setting<sp/>the<sp/>socket<sp/>fd<sp/>as<sp/>the<sp/>send<sp/>CTX,<sp/>for<sp/>example</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIOWriteCtx(ssl,<sp/>&amp;sockfd);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="222" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="222" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__IO_1gacad3fa14e99066bf182bdb9bbf174cf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * wolfSSL_GetIOReadCtx</definition>
+        <argsstring>(WOLFSSL *ssl)</argsstring>
+        <name>wolfSSL_GetIOReadCtx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSL構造体のIOCB_READCTXメンバーを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns the IOCB_ReadCtx member of the WOLFSSL struct.</para>
+<para><simplesect kind="return"><para>pointer この関数は、wolfssl構造体のiocb_readctxメンバーへのvoidポインタを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>NULL wolfssl構造体がNULLの場合に返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ioRead;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ioRead<sp/>=<sp/>wolfSSL_GetIOReadCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(ioRead<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Failure<sp/>case.<sp/>The<sp/>ssl<sp/>object<sp/>was<sp/>NULL.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__IO_1ga1ba8cfc5d1f1d0d0e568e802066a79a1" kindref="member">wolfSSL_GetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a788b0750c9aab950a7891a6aad670ced" kindref="member">wolfSSL_SetIOReadFlags</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend</para>
+</simplesect>
+<simplesect kind="return"><para>pointer This function returns a void pointer to the IOCB_ReadCtx member of the WOLFSSL structure. </para>
+</simplesect>
+<simplesect kind="return"><para>NULL returned if the WOLFSSL struct is NULL.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ioRead;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ioRead<sp/>=<sp/>wolfSSL_GetIOReadCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(ioRead<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Failure<sp/>case.<sp/>The<sp/>ssl<sp/>object<sp/>was<sp/>NULL.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__IO_1ga1ba8cfc5d1f1d0d0e568e802066a79a1" kindref="member">wolfSSL_GetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a788b0750c9aab950a7891a6aad670ced" kindref="member">wolfSSL_SetIOReadFlags</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="245" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="245" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__IO_1ga1ba8cfc5d1f1d0d0e568e802066a79a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * wolfSSL_GetIOWriteCtx</definition>
+        <argsstring>(WOLFSSL *ssl)</argsstring>
+        <name>wolfSSL_GetIOWriteCtx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSL構造のIOCB_WRITECTXメンバーを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns the IOCB_WriteCtx member of the WOLFSSL structure.</para>
+<para><simplesect kind="return"><para>pointer この関数は、WolfSSL構造のIOCB_WRITECTXメンバーへのvoidポインタを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>NULL wolfssl構造体がNULLの場合に返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ioWrite;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ioWrite<sp/>=<sp/>wolfSSL_GetIOWriteCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(ioWrite<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>function<sp/>returned<sp/>NULL.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__IO_1gacad3fa14e99066bf182bdb9bbf174cf7" kindref="member">wolfSSL_GetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend</para>
+</simplesect>
+<simplesect kind="return"><para>pointer This function returns a void pointer to the IOCB_WriteCtx member of the WOLFSSL structure. </para>
+</simplesect>
+<simplesect kind="return"><para>NULL returned if the WOLFSSL struct is NULL.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>ioWrite;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ioWrite<sp/>=<sp/>wolfSSL_GetIOWriteCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(ioWrite<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>The<sp/>function<sp/>returned<sp/>NULL.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__IO_1gacad3fa14e99066bf182bdb9bbf174cf7" kindref="member">wolfSSL_GetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="267" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="267" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1a788b0750c9aab950a7891a6aad670ced" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_SetIOReadFlags</definition>
+        <argsstring>(WOLFSSL *ssl, int flags)</argsstring>
+        <name>wolfSSL_SetIOReadFlags</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>与えられたSSLセッション受信コールバックは、デフォルトのwolfssl埋め込み受信コールバック、またはユーザによって指定されたカスタムコールバックであり得る（wolfssl_ctx_setiorecvを参照）。デフォルトのフラグ値は、WolfSSLによってwolfsslによって0の値に設定されます。デフォルトのWolfSSL受信コールバックはRECV（）関数を使用してソケットからデータを受信します。 「Recv（）」ページから：「Recv（）関数へのflags引数は、1つ以上の値をOR処理するか、MSG_OOBプロセス帯域外データ、MSG_PEEK PEEK、MSG_PEEK PEEK、MSG_WAITALLがフルを待っています要求またはエラー。 MSG_OOBフラグは、通常のデータストリームで受信されないであろう帯域外データの受信を要求します。一部のプロトコルは通常のデータキューの先頭に迅速なデータを配置し、このフラグをそのようなプロトコルで使用することはできません。 MSG_PEEKフラグは、受信操作によって受信キューの先頭からのデータをキューから削除することなくデータを返します。したがって、以降の受信呼び出しは同じデータを返します。 MSG_WAITALLフラグは、完全な要求が満たされるまで操作ブロックを要求します。ただし、信号がキャッチされている場合は、呼び出し側よりも少ないデータが少なく、エラーまたは切断が発生するか、または受信されるデータが返されるものとは異なるタイプのデータを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたSSLセッションへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Manually<sp/>setting<sp/>recv<sp/>flags<sp/>to<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIOReadFlags(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="285" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="285" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1aa4b0dac579c5abefc70071f5be5568f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_SetIOWriteFlags</definition>
+        <argsstring>(WOLFSSL *ssl, int flags)</argsstring>
+        <name>wolfSSL_SetIOWriteFlags</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>SSLセッションを考えると送信コールバックは、デフォルトのWolfSSL EmbedEndコールバック、またはユーザーによって指定されたカスタムコールバックのいずれかです（WolfSSL_CTX_SetiosEndを参照）。デフォルトのフラグ値は、wolfsslによって0の値に設定されます。デフォルトのWolfSSL Send Callbackはsend（）関数を使用してソケットからデータを送信します。send（）manページから： "flagsパラメータには、次のうち1つ以上が含まれていてもよい。フラグMSG_OOBは、この概念（例えばSOCK_STREAM）をサポートするソケットに「帯域外」データを送信するために使用される。基礎となるプロトコルは、「帯域外」のデータもサポートする必要があります。MSG_DONTROUTEは通常、診断プログラムまたはルーティングプログラムによってのみ使用されます。」 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたSSLセッションへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Manually<sp/>setting<sp/>send<sp/>flags<sp/>to<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIOWriteFlags(ssl,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_CTX_SetIOSend </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="303" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="303" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__IO_1gaa877d2207c64ec05a6c7f5270f494fdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_SetIO_NetX</definition>
+        <argsstring>(WOLFSSL *ssl, NX_TCP_SOCKET *nxsocket, ULONG waitoption)</argsstring>
+        <name>wolfSSL_SetIO_NetX</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>NX_TCP_SOCKET *</type>
+          <declname>nxsocket</declname>
+        </param>
+        <param>
+          <type>ULONG</type>
+          <declname>waitoption</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、wolfssl構造内のnxctx構造体のNxSocketメンバーとNXWAITメンバーを設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the nxSocket and nxWait members of the nxCtx struct within the WOLFSSL structure.</para>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxSocket</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>NXCTX構造のNXSOCTOCKメンバーに設定されているNX_TCP_SOCKETを入力するためのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">NX_TCP_SOCKET*<sp/>nxSocket;</highlight></codeline>
+<codeline><highlight class="normal">ULONG<sp/>waitOption;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(ssl<sp/>!=<sp/>NULL<sp/>||<sp/>nxSocket<sp/>!=<sp/>NULL<sp/>||<sp/>waitOption<sp/>&lt;=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIO_NetX(ssl,<sp/>nxSocket,<sp/>waitOption);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>You<sp/>need<sp/>to<sp/>pass<sp/>in<sp/>good<sp/>parameters.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>set_fd </para>
+</simplesect>
+<simplesect kind="see"><para>NetX_Send </para>
+</simplesect>
+<simplesect kind="see"><para>NetX_Receive</para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxSocket</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to type NX_TCP_SOCKET that is set to the nxSocket member of the nxCTX structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>waitOption</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a ULONG type that is set to the nxWait member of the nxCtx structure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">NX_TCP_SOCKET*<sp/>nxSocket;</highlight></codeline>
+<codeline><highlight class="normal">ULONG<sp/>waitOption;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">if(ssl<sp/>!=<sp/>NULL<sp/>||<sp/>nxSocket<sp/>!=<sp/>NULL<sp/>||<sp/>waitOption<sp/>&lt;=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIO_NetX(ssl,<sp/>nxSocket,<sp/>waitOption);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>You<sp/>need<sp/>to<sp/>pass<sp/>in<sp/>good<sp/>parameters.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>set_fd </para>
+</simplesect>
+<simplesect kind="see"><para>NetX_Send </para>
+</simplesect>
+<simplesect kind="see"><para>NetX_Receive </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="327" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="327" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2wolfio_8h_1ab9f02653021cb43291bbc4a7c7f39370" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_CTX_SetGenCookie</definition>
+        <argsstring>(WOLFSSL_CTX *ctx, CallbackGenCookie cb)</argsstring>
+        <name>wolfSSL_CTX_SetGenCookie</name>
+        <param>
+          <type>WOLFSSL_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>CallbackGenCookie</type>
+          <declname>cb</declname>
+        </param>
+        <briefdescription>
+<para>wolfssl_ctx構造CallBackGencookie Typeは関数ポインタで、署名：int（* callbackgencookie）（wolfssl * ssl、unsigned char * buf、int sz、void * ctx）を持っています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたWolfSSL構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>SetGenCookieCB(WOLFSSL*<sp/>ssl,<sp/>unsigned<sp/>char*<sp/>buf,<sp/>int<sp/>sz,<sp/>void*<sp/>ctx){</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Callback<sp/>function<sp/>body.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_SetGenCookie(ssl-&gt;ctx,<sp/>SetGenCookieCB);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>CallbackGenCookie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="347" column="7" declfile="dox_comments/header_files/ja/wolfio.h" declline="347" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Setup_1gabe0bbfdb4c1c5f3e7b693e4901655e60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void * wolfSSL_GetCookieCtx</definition>
+        <argsstring>(WOLFSSL *ssl)</argsstring>
+        <name>wolfSSL_GetCookieCtx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSL構造のIOCB_COOKIECTXメンバーを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns the IOCB_CookieCtx member of the WOLFSSL structure.</para>
+<para><simplesect kind="return"><para>pointer この関数は、iocb_cookiectxに格納されているvoidポインタ値を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>NULL WolfSSL構造体がNULLの場合 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>cookie;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">cookie<sp/>=<sp/>wolfSSL_GetCookieCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(cookie<sp/>!=<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>You<sp/>have<sp/>the<sp/>cookie</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_SetCookieCtx </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1ab9f02653021cb43291bbc4a7c7f39370" kindref="member">wolfSSL_CTX_SetGenCookie</ref></para>
+</simplesect>
+<simplesect kind="return"><para>pointer The function returns a void pointer value stored in the IOCB_CookieCtx. </para>
+</simplesect>
+<simplesect kind="return"><para>NULL if the WOLFSSL struct is NULL</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(<sp/>method<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">void*<sp/>cookie;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">cookie<sp/>=<sp/>wolfSSL_GetCookieCtx(ssl);</highlight></codeline>
+<codeline><highlight class="normal">if(cookie<sp/>!=<sp/>NULL){</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>You<sp/>have<sp/>the<sp/>cookie</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_SetCookieCtx </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2wolfio_8h_1ab9f02653021cb43291bbc4a7c7f39370" kindref="member">wolfSSL_CTX_SetGenCookie</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="368" column="6" declfile="dox_comments/header_files/ja/wolfio.h" declline="368" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Setup_1ga810737146144bf3d3ef78e965b08c883" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetIO_ISOTP</definition>
+        <argsstring>(WOLFSSL *ssl, isotp_wolfssl_ctx *ctx, can_recv_fn recv_fn, can_send_fn send_fn, can_delay_fn delay_fn, word32 receive_delay, char *receive_buffer, int receive_buffer_size, void *arg)</argsstring>
+        <name>wolfSSL_SetIO_ISOTP</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>isotp_wolfssl_ctx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>can_recv_fn</type>
+          <declname>recv_fn</declname>
+        </param>
+        <param>
+          <type>can_send_fn</type>
+          <declname>send_fn</declname>
+        </param>
+        <param>
+          <type>can_delay_fn</type>
+          <declname>delay_fn</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>receive_delay</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>receive_buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>receive_buffer_size</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSLがWolfSSL_ISOTPでコンパイルされている場合に使用する場合は、WolfSSLの場合はISO-TPコンテキストを設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets up the ISO-TP context if wolfSSL, for use when wolfSSL is compiled with WOLFSSL_ISOTP.</para>
+<para><simplesect kind="return"><para>0 成功すると、故障のwolfssl_cbio_err_general </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfsslコンテキスト </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザーはこの関数が初期化されるISOTPコンテキストを作成しました </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>recv_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザーはバスを受信できます </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>send_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザーはバスを送ることができます </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delay_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザーマイクロ秒の粒度遅延関数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_delay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>各CANバスパケットを遅らせるためのマイクロ秒のセット数 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザーがデータを受信するためのバッファーが提供され、ISOTP_DEFAULT_BUFFER_SIZEバイトに割り当てられていることをお勧めします。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_buffer_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- receive_bufferのサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">struct<sp/>can_info<sp/>can_con_info;</highlight></codeline>
+<codeline><highlight class="normal">isotp_wolfssl_ctx<sp/>isotp_ctx;</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>*receive_buffer<sp/>=<sp/>malloc(ISOTP_DEFAULT_BUFFER_SIZE);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIO_ISOTP(ssl,<sp/>&amp;isotp_ctx,<sp/>can_receive,<sp/>can_send,<sp/>can_delay,<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>receive_buffer,<sp/>ISOTP_DEFAULT_BUFFER_SIZE,<sp/>&amp;can_con_info);</highlight></codeline>
+</programlisting></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, WOLFSSL_CBIO_ERR_GENERAL on failure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the wolfSSL context </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user created ISOTP context which this function initializes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>recv_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user CAN bus receive callback </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>send_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user CAN bus send callback </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delay_fn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user microsecond granularity delay function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_delay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a set amount of microseconds to delay each CAN bus packet </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a user supplied buffer to receive data, recommended that is allocated to ISOTP_DEFAULT_BUFFER_SIZE bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>receive_buffer_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The size of receive_buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an arbitrary pointer sent to recv_fn and send_fn</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">struct<sp/>can_info<sp/>can_con_info;</highlight></codeline>
+<codeline><highlight class="normal">isotp_wolfssl_ctx<sp/>isotp_ctx;</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>*receive_buffer<sp/>=<sp/>malloc(ISOTP_DEFAULT_BUFFER_SIZE);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx<sp/>=<sp/>wolfSSL_CTX_new(method);</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_SetIO_ISOTP(ssl,<sp/>&amp;isotp_ctx,<sp/>can_receive,<sp/>can_send,<sp/>can_delay,<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>receive_buffer,<sp/>ISOTP_DEFAULT_BUFFER_SIZE,<sp/>&amp;can_con_info);</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wolfio.h" line="395" column="5" declfile="dox_comments/header_files/ja/wolfio.h" declline="395" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="30"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1ae3835c5f5d25d7202d77b5102c15b6af" kindref="member">EmbedReceive</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ctx);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1afc6a824ea988d7a9e72bdb66ccd16e98" kindref="member">EmbedSend</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ctx);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a417fef63b002458cc61305b281d02bd1" kindref="member">EmbedReceiveFrom</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1aa7e05edee0ed00dee1ddc8331de146f2" kindref="member">EmbedSendTo</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ctx);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a5d729a9e59a637463265da430c17d916" kindref="member">EmbedGenerateCookie</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf,</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1adcf5bc87f6feafabcaf28221f4aca00c" kindref="member">EmbedOcspRespFree</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>ctx,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>resp);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a6a6cfa10f94cd42eb9f127e4c120a3b5" kindref="member">wolfSSL_CTX_SetIORecv</ref>(WOLFSSL_CTX*<sp/>ctx,<sp/>CallbackIORecv<sp/>CBIORecv);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a56e9756c6c60deeae2b43fb614e882c6" kindref="member">wolfSSL_SetIOReadCtx</ref>(<sp/>WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a83422045a99df509ea3110896758db14" kindref="member">wolfSSL_SetIOWriteCtx</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ctx);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="group__IO_1gacad3fa14e99066bf182bdb9bbf174cf7" kindref="member">wolfSSL_GetIOReadCtx</ref>(<sp/>WOLFSSL*<sp/>ssl);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="group__IO_1ga1ba8cfc5d1f1d0d0e568e802066a79a1" kindref="member">wolfSSL_GetIOWriteCtx</ref>(WOLFSSL*<sp/>ssl);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1a788b0750c9aab950a7891a6aad670ced" kindref="member">wolfSSL_SetIOReadFlags</ref>(<sp/>WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ja_2wolfio_8h_1aa4b0dac579c5abefc70071f5be5568f5" kindref="member">wolfSSL_SetIOWriteFlags</ref>(WOLFSSL*<sp/>ssl,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags);</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__IO_1gaa877d2207c64ec05a6c7f5270f494fdd" kindref="member">wolfSSL_SetIO_NetX</ref>(WOLFSSL*<sp/>ssl,<sp/>NX_TCP_SOCKET*<sp/>nxsocket,</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ULONG<sp/>waitoption);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="ja_2wolfio_8h_1ab9f02653021cb43291bbc4a7c7f39370" kindref="member">wolfSSL_CTX_SetGenCookie</ref>(WOLFSSL_CTX*<sp/>ctx,<sp/>CallbackGenCookie<sp/>cb);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="group__Setup_1gabe0bbfdb4c1c5f3e7b693e4901655e60" kindref="member">wolfSSL_GetCookieCtx</ref>(WOLFSSL*<sp/>ssl);</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="395"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Setup_1ga810737146144bf3d3ef78e965b08c883" kindref="member">wolfSSL_SetIO_ISOTP</ref>(WOLFSSL<sp/>*ssl,<sp/>isotp_wolfssl_ctx<sp/>*ctx,</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>can_recv_fn<sp/>recv_fn,<sp/>can_send_fn<sp/>send_fn,<sp/>can_delay_fn<sp/>delay_fn,</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>receive_delay,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*receive_buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>receive_buffer_size,</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*arg);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/wolfio.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__RIPEMD" kind="group">
+    <compoundname>RIPEMD</compoundname>
+    <title>Algorithms - RIPEMD</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__RIPEMD_1ga539358a5d938a7858f1919270261da82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitRipeMd</definition>
+        <argsstring>(RipeMd *)</argsstring>
+        <name>wc_InitRipeMd</name>
+        <param>
+          <type>RipeMd *</type>
+        </param>
+        <briefdescription>
+<para>この関数は、RIPemdのダイジェスト、バッファ、LOLEN ,HILENを初期化することによってRIPemd構造を初期化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function initializes a ripemd structure by initializing ripemd’s digest, buffer, loLen and hiLen.</para>
+<para><simplesect kind="return"><para>0 機能の実行に成功したことに戻ります。RIPEMD構造が初期化されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RIPEMD構造がNULLの場合に返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1ga3c19a3bb9af1cd99490e5dd83ad56d15" kindref="member">wc_RipeMdUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1gabbe2973fa63a7e0b2574ab87b1142545" kindref="member">wc_RipeMdFinal</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 returned on successful execution of the function. The RipeMd structure is initialized. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG returned if the RipeMd structure is NULL.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ripemd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the ripemd structure to initialize</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__RIPEMD_1ga3c19a3bb9af1cd99490e5dd83ad56d15" kindref="member">wc_RipeMdUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1gabbe2973fa63a7e0b2574ab87b1142545" kindref="member">wc_RipeMdFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ripemd.h" line="18" column="5" declfile="dox_comments/header_files/ja/ripemd.h" declline="18" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RIPEMD_1ga3c19a3bb9af1cd99490e5dd83ad56d15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RipeMdUpdate</definition>
+        <argsstring>(RipeMd *ripemd, const byte *data, word32 len)</argsstring>
+        <name>wc_RipeMdUpdate</name>
+        <param>
+          <type>RipeMd *</type>
+          <declname>ripemd</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>この関数はデータ入力のRIPemdダイジェストを生成し、結果をRIPemd-&gt; Digestバッファに格納します。WC_RIPEMDUPDATEを実行した後、生成されたRIPemd-&gt; Digestを既知の認証タグに比較してメッセージの信頼性を比較する必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function generates the RipeMd digest of the data input and stores the result in the ripemd-&gt;digest buffer. After running wc_RipeMdUpdate, one should compare the generated ripemd-&gt;digest to a known authentication tag to verify the authenticity of a message.</para>
+<para><simplesect kind="return"><para>0 機能の実行に成功したことに戻ります。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RIPEMD構造がNULLの場合、またはデータがNULLで、LENがゼロでない場合に返されます。データがNULLであり、LENが0の場合、この関数は実行されるはずです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ripemd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_INTRIPEMDで初期化されるRIPEMD構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>byte*<sp/>data;<sp/>//<sp/>The<sp/>data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">....</highlight></codeline>
+<codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdUpdate(&amp;md,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Failure<sp/>case<sp/>…</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1ga539358a5d938a7858f1919270261da82" kindref="member">wc_InitRipeMd</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1gabbe2973fa63a7e0b2574ab87b1142545" kindref="member">wc_RipeMdFinal</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned on successful execution of the function. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the RipeMd structure is NULL or if data is NULL and len is not zero. This function should execute if data is NULL and len is 0.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ripemd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the ripemd structure to be initialized with wc_InitRipeMd </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>data to be hashed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sizeof data in bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>byte*<sp/>data;<sp/>//<sp/>The<sp/>data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">....</highlight></codeline>
+<codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdUpdate(&amp;md,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Failure<sp/>case<sp/>…</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__RIPEMD_1ga539358a5d938a7858f1919270261da82" kindref="member">wc_InitRipeMd</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__RIPEMD_1gabbe2973fa63a7e0b2574ab87b1142545" kindref="member">wc_RipeMdFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ripemd.h" line="42" column="5" declfile="dox_comments/header_files/ja/ripemd.h" declline="42" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__RIPEMD_1gabbe2973fa63a7e0b2574ab87b1142545" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RipeMdFinal</definition>
+        <argsstring>(RipeMd *ripemd, byte *hash)</argsstring>
+        <name>wc_RipeMdFinal</name>
+        <param>
+          <type>RipeMd *</type>
+          <declname>ripemd</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>この関数は計算されたダイジェストをハッシュにコピーします。無傷のブロックがある場合、この方法ではブロックを0Sでパッケージし、ハッシュにコピーする前にそのブロックのラウンドをダイジェストに含めます。RIPEMDの状態がリセットされます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function copies the computed digest into hash. If there is a partial unhashed block, this method will pad the block with 0s, and include that block’s round in the digest before copying to hash. State of ripemd is reset.</para>
+<para><simplesect kind="return"><para>0 機能の実行に成功したことに戻ります。RIPEMD構造の状態がリセットされました。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RIPEMD構造体またはハッシュパラメータがNULLの場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ripemd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_INITRIPEMDで初期化するRIPEMD構造へのポインタ、およびWC_RIPEMDUPDATEからハッシュを含む。状態はリセットされます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/><sp/><sp/>digest[RIPEMD_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte*<sp/>data;<sp/>//<sp/>The<sp/>data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdUpdate(&amp;md,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>RipeMd<sp/>Update<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdFinal(&amp;md,<sp/>digest);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>RipeMd<sp/>Final<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none</para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned on successful execution of the function. The state of the RipeMd structure has been reset. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the RipeMd structure or hash parameters are NULL.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ripemd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the ripemd structure to be initialized with wc_InitRipeMd, and containing hashes from wc_RipeMdUpdate. State will be reset </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffer to copy digest to. Should be RIPEMD_DIGEST_SIZE bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RipeMd<sp/>md;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/><sp/><sp/>digest[RIPEMD_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte*<sp/>data;<sp/>//<sp/>The<sp/>data<sp/>to<sp/>be<sp/>hashed</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRipeMd(&amp;md);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdUpdate(&amp;md,<sp/>plain,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>RipeMd<sp/>Update<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RipeMdFinal(&amp;md,<sp/>digest);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>RipeMd<sp/>Final<sp/>Failure<sp/>Case.</highlight></codeline>
+<codeline><highlight class="normal">}...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ripemd.h" line="70" column="5" declfile="dox_comments/header_files/ja/ripemd.h" declline="70" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

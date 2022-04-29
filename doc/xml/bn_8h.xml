@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bn_8h" kind="file" language="C++">
+    <compoundname>bn.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="bn_8h_1a703adbf9556827f846f1450caeb13428" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_BN_mod_exp</definition>
+        <argsstring>(WOLFSSL_BIGNUM *r, const WOLFSSL_BIGNUM *a, const WOLFSSL_BIGNUM *p, const WOLFSSL_BIGNUM *m, WOLFSSL_BN_CTX *ctx)</argsstring>
+        <name>wolfSSL_BN_mod_exp</name>
+        <param>
+          <type>WOLFSSL_BIGNUM *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_BN_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、次の数学「R =（A ^ P）％M」を実行します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>SSL_SUCCESS 数学操作をうまく実行します。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE エラーケースに遭遇した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>結果を保持するための構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>電力で上げられる値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>によって上げる力。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用率 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIGNUM<sp/>r,a,p,m;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>big<sp/>number<sp/>values</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/><sp/>=<sp/>wolfSSL_BN_mod_exp(r,<sp/>a,<sp/>p,<sp/>m,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_BN_new </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_BN_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/bn.h" line="21" column="5" declfile="dox_comments/header_files/ja/bn.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="21"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bn_8h_1a703adbf9556827f846f1450caeb13428" kindref="member">wolfSSL_BN_mod_exp</ref>(WOLFSSL_BIGNUM<sp/>*r,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>WOLFSSL_BIGNUM<sp/>*a,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>WOLFSSL_BIGNUM<sp/>*p,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>WOLFSSL_BIGNUM<sp/>*m,<sp/>WOLFSSL_BN_CTX<sp/>*ctx);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/bn.h"/>
+  </compounddef>
+</doxygen>

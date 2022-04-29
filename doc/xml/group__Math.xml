@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__Math" kind="group">
+    <compoundname>Math</compoundname>
+    <title>Math API</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Math_1ga77c982dc08ad5f42bb4cf8958cc7d70d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>word32</type>
+        <definition>word32 CheckRunTimeFastMath</definition>
+        <argsstring>(void)</argsstring>
+        <name>CheckRunTimeFastMath</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数は、整数の最大サイズのランタイムFastMath設定をチェックします。FP_SIZEが正しく機能するために、FP_SIZEが各ライブラリーに一致しなければならないため、ユーザーがWolfCryptライブラリを独立して使用している場合に重要です。このチェックはCheckFastMathSettings（）として定義されています。これは、CheckRuntimeFastMathとFP_SIZEを比較するだけで、ミスマッチがある場合は0を返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function checks the runtime fastmath settings for the maximum size of an integer. It is important when a user is using a wolfCrypt library independently, as the FP_SIZE must match for each library in order for math to work correctly. This check is defined as CheckFastMathSettings(), which simply compares CheckRunTimeFastMath and FP_SIZE, returning 0 if there is a mismatch, or 1 if they match.</para>
+<para><simplesect kind="return"><para>FP_SIZE 数学ライブラリで利用可能な最大サイズに対応するFP_SIZEを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">if<sp/>(CheckFastMathSettings()<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>err_sys(&quot;Build<sp/>vs.<sp/>runtime<sp/>fastmath<sp/>FP_MAX_BITS<sp/>mismatch\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>This<sp/>is<sp/>converted<sp/>by<sp/>the<sp/>preprocessor<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>if<sp/>(<sp/>(CheckRunTimeFastMath()<sp/>==<sp/>FP_SIZE)<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>and<sp/>confirms<sp/>that<sp/>the<sp/>fast<sp/>math<sp/>settings<sp/>match</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>the<sp/>compile<sp/>time<sp/>settings</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Math_1ga9acc208a6ff8cb1cc97b8c6d1508f0f3" kindref="member">CheckRunTimeSettings</ref></para>
+</simplesect>
+<simplesect kind="return"><para>FP_SIZE Returns FP_SIZE, corresponding to the max size available for the math library.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">if<sp/>(CheckFastMathSettings()<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>err_sys(&quot;Build<sp/>vs.<sp/>runtime<sp/>fastmath<sp/>FP_MAX_BITS<sp/>mismatch\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>This<sp/>is<sp/>converted<sp/>by<sp/>the<sp/>preprocessor<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>if<sp/>(<sp/>(CheckRunTimeFastMath()<sp/>==<sp/>FP_SIZE)<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>and<sp/>confirms<sp/>that<sp/>the<sp/>fast<sp/>math<sp/>settings<sp/>match</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>the<sp/>compile<sp/>time<sp/>settings</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Math_1ga9acc208a6ff8cb1cc97b8c6d1508f0f3" kindref="member">CheckRunTimeSettings</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/tfm.h" line="17" column="8" declfile="dox_comments/header_files/ja/tfm.h" declline="17" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Math_1ga9acc208a6ff8cb1cc97b8c6d1508f0f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>word32</type>
+        <definition>word32 CheckRunTimeSettings</definition>
+        <argsstring>(void)</argsstring>
+        <name>CheckRunTimeSettings</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数はコンパイル時クラスの設定をチェックします。設定が正しく機能するためのライブラリ間のライブラリ間で一致する必要があるため、ユーザーがWolfCryptライブラリを独立して使用している場合は重要です。このチェックはCheckCtcSettings（）として定義されています。これは、CheckRuntimeSettingsとCTC_Settingsを比較するだけで、ミスマッチがある場合は0、または1が一致した場合は1を返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function checks the compile time class settings. It is important when a user is using a wolfCrypt library independently, as the settings must match between libraries for math to work correctly. This check is defined as CheckCtcSettings(), which simply compares CheckRunTimeSettings and CTC_SETTINGS, returning 0 if there is a mismatch, or 1 if they match.</para>
+<para><simplesect kind="return"><para>settings 実行時CTC_SETTINGS（コンパイル時設定）を返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">if<sp/>(CheckCtcSettings()<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>err_sys(&quot;Build<sp/>vs.<sp/>runtime<sp/>math<sp/>mismatch\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>This<sp/>is<sp/>converted<sp/>by<sp/>the<sp/>preprocessor<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>if<sp/>(<sp/>(CheckCtcSettings()<sp/>==<sp/>CTC_SETTINGS)<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>and<sp/>will<sp/>compare<sp/>whether<sp/>the<sp/>compile<sp/>time<sp/>class<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>match<sp/>the<sp/>current<sp/>settings</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Math_1ga77c982dc08ad5f42bb4cf8958cc7d70d" kindref="member">CheckRunTimeFastMath</ref></para>
+</simplesect>
+<simplesect kind="return"><para>settings Returns the runtime CTC_SETTINGS (Compile Time Settings)</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No Parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">if<sp/>(CheckCtcSettings()<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>err_sys(&quot;Build<sp/>vs.<sp/>runtime<sp/>math<sp/>mismatch\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>This<sp/>is<sp/>converted<sp/>by<sp/>the<sp/>preprocessor<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>if<sp/>(<sp/>(CheckCtcSettings()<sp/>==<sp/>CTC_SETTINGS)<sp/>!=<sp/>1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>and<sp/>will<sp/>compare<sp/>whether<sp/>the<sp/>compile<sp/>time<sp/>class<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>match<sp/>the<sp/>current<sp/>settings</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Math_1ga77c982dc08ad5f42bb4cf8958cc7d70d" kindref="member">CheckRunTimeFastMath</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/types.h" line="81" column="8" declfile="dox_comments/header_files/ja/types.h" declline="81" declcolumn="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

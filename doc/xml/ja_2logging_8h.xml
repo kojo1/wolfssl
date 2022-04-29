@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2logging_8h" kind="file" language="C++">
+    <compoundname>logging.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetLoggingCb</definition>
+        <argsstring>(wolfSSL_Logging_cb log_function)</argsstring>
+        <name>wolfSSL_SetLoggingCb</name>
+        <param>
+          <type>wolfSSL_Logging_cb</type>
+          <declname>log_function</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、WolfSSLログメッセージを処理するために使用されるロギングコールバックを登録します。デフォルトでは、システムがIT fprintf（）をSTDERRにサポートしている場合は、この関数を使用することによって、ユーザーによって何でも実行できます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function registers a logging callback that will be used to handle the wolfSSL log message. By default, if the system supports it fprintf() to stderr is used but by using this function anything can be done by the user.</para>
+<para><simplesect kind="return"><para>Success 成功した場合、この関数は0を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数ポインタが提供されていない場合に返されるエラーです。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Logging<sp/>callback<sp/>prototype</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>MyLoggingCallback(const<sp/>int<sp/>logLevel,<sp/>const<sp/>char*<sp/>const<sp/>logMessage);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>the<sp/>custom<sp/>logging<sp/>callback<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_SetLoggingCb(MyLoggingCallback);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>set<sp/>logging<sp/>callback</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>MyLoggingCallback(const<sp/>int<sp/>logLevel,<sp/>const<sp/>char*<sp/>const<sp/>logMessage)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>custom<sp/>logging<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful this function will return 0. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG is the error that will be returned if a function pointer is not provided.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to register as a logging callback. Function signature must follow the above prototype.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Logging<sp/>callback<sp/>prototype</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>MyLoggingCallback(const<sp/>int<sp/>logLevel,<sp/>const<sp/>char*<sp/>const<sp/>logMessage);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>the<sp/>custom<sp/>logging<sp/>callback<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_SetLoggingCb(MyLoggingCallback);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>set<sp/>logging<sp/>callback</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>MyLoggingCallback(const<sp/>int<sp/>logLevel,<sp/>const<sp/>char*<sp/>const<sp/>logMessage)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>custom<sp/>logging<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/logging.h" line="24" column="5" declfile="dox_comments/header_files/ja/logging.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_Debugging_ON</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Debugging_ON</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>ビルド時にロギングが有効になっている場合、この関数は実行時にロギングをオンにします。ビルド時にログ記録を有効にするには<ndash/>enable-debugまたはdebug_wolfsslを定義します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If logging has been enabled at build time this function turns on logging at runtime. To enable logging at build time use <ndash/>enable-debug or define DEBUG_WOLFSSL.</para>
+<para><simplesect kind="return"><para>0 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN このビルドに対してロギングが有効になっていない場合は返されるエラーです。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_ON();</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN is the error that will be returned if logging isn’t enabled for this build.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_ON();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/logging.h" line="38" column="6" declfile="dox_comments/header_files/ja/logging.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Debug_1gafa8dab742182b891d80300fb195399ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_Debugging_OFF</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_Debugging_OFF</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この関数はランタイムロギングメッセージをオフにします。彼らがすでに消えている場合は、行動はとられません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function turns off runtime logging messages. If they’re already off, no action is taken.</para>
+<para><simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_OFF();</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">wolfSSL_Debugging_OFF();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/logging.h" line="51" column="6" declfile="dox_comments/header_files/ja/logging.h" declline="51" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="24"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Logging_1ga48df7024025bb41d2cb614aa56d1c472" kindref="member">wolfSSL_SetLoggingCb</ref>(wolfSSL_Logging_cb<sp/>log_function);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Debug_1ga192a2501d23697c2b56ce26b1af0eb2c" kindref="member">wolfSSL_Debugging_ON</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__Debug_1gafa8dab742182b891d80300fb195399ce" kindref="member">wolfSSL_Debugging_OFF</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/logging.h"/>
+  </compounddef>
+</doxygen>

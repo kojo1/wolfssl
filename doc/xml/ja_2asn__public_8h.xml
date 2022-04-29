@@ -1,0 +1,757 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2asn__public_8h" kind="file" language="C++">
+    <compoundname>asn_public.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ASN_1gacd9209218503a6aa6750307200d3de76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitCert</definition>
+        <argsstring>(Cert *)</argsstring>
+        <name>wc_InitCert</name>
+        <param>
+          <type>Cert *</type>
+        </param>
+        <briefdescription>
+<para>This function initializes a default cert, with the default options: version = 3 (0x2), serial = 0, sigType = SHA_WITH_RSA, issuer = blank, daysValid = 500, selfSigned = 1 (true) use subject as issuer, subject = blank. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数はデフォルトの証明書を初期化します。デフォルトのオプション：version = 3（0x2）、sigtype = sha_with_rsa、issuer =空白、dayValid = 500、selfsigned = 1（true）発行者としての件名=空白</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an uninitialized cert structure to initialize</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitCert(&amp;myCert);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitCert(&amp;myCert);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/asn_public.h" line="22" column="5" declfile="dox_comments/header_files/asn_public.h" declline="22" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeCert</definition>
+        <argsstring>(Cert *cert, byte *derBuffer, word32 derSz, RsaKey *rsaKey, ecc_key *eccKey, WC_RNG *rng)</argsstring>
+        <name>wc_MakeCert</name>
+        <param>
+          <type>Cert *</type>
+          <declname>cert</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>derBuffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>derSz</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>rsaKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>eccKey</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>Used to make CA signed certs. Called after the subject information has been entered. This function makes an x509 Certificate v3 RSA or ECC from a cert input. It then writes this cert to derBuffer. It takes in either an rsaKey or an eccKey to generate the certificate. The certificate must be initialized with wc_InitCert before this method is called. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>CA署名付き証明書を作成するために使用されます。被写体情報が入力された後に呼び出されました。この関数は、証明書入力からX509証明書V3 RSAまたはECCを作成します。その後、この証明書をDerbufferに書き込みます。証明書を生成するためのRSAKEYまたはECCKEYのいずれかを取ります。このメソッドが呼び出される前に、証明書をWC_INITCERTで初期化する必要があります。</para>
+<para><simplesect kind="return"><para>Success On successfully making an x509 certificate from the specified input cert, returns the size of the cert generated. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory with XMALLOC </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if the provided derBuffer is too small to store the generated certificate </para>
+</simplesect>
+<simplesect kind="return"><para>Others Additional error messages may be returned if the cert generation is not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an initialized cert structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to hold the generated cert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the buffer in which to store the cert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an RsaKey structure containing the rsa key used to generate the certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an EccKey structure containing the ecc key used to generate the certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the random number generator used to make the cert</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitCert(&amp;myCert);</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>*<sp/>derCert<sp/>=<sp/>malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeCert(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>&amp;key,<sp/>NULL,<sp/>&amp;rng);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 指定された入力証明書からX509証明書を正常に行うと、生成された証明書のサイズを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたDerbufferが生成された証明書を保存するには小さすぎる場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>Others 証明書の生成が成功しなかった場合、追加のエラーメッセージが返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化された証明書構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された証明書を保持するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書を保存するバッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書の生成に使用されるRSAキーを含むRSAKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書の生成に使用されるECCキーを含むECCKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitCert(&amp;myCert);</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>*<sp/>derCert<sp/>=<sp/>malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeCert(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>&amp;key,<sp/>NULL,<sp/>&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/asn_public.h" line="67" column="6" declfile="dox_comments/header_files/asn_public.h" declline="67" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeCertReq</definition>
+        <argsstring>(Cert *cert, byte *derBuffer, word32 derSz, RsaKey *rsaKey, ecc_key *eccKey)</argsstring>
+        <name>wc_MakeCertReq</name>
+        <param>
+          <type>Cert *</type>
+          <declname>cert</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>derBuffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>derSz</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>rsaKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>eccKey</declname>
+        </param>
+        <briefdescription>
+<para>This function makes a certificate signing request using the input certificate and writes the output to derBuffer. It takes in either an rsaKey or an eccKey to generate the certificate request. <ref refid="group__ASN_1ga6cb11be9830690899b9ae7f8e424c7cf" kindref="member">wc_SignCert()</ref> will need to be called after this function to sign the certificate request. Please see the wolfCrypt test application (./wolfcrypt/test/test.c) for an example usage of this function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、入力証明書を使用して証明書署名要求を行い、出力をDerbufferに書き込みます。証明書要求を生成するRSAKEYまたはECCKEYのどちらかを取ります。この関数が証明書要求に署名するためにwc_signcert（）を呼び出す必要があります。この関数の使用例については、WolfCryptテストアプリケーション（./wolfcrypt/test/test.c）を参照してください。</para>
+<para><simplesect kind="return"><para>Success On successfully making an X.509 certificate request from the specified input cert, returns the size of the certificate request generated. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory with XMALLOC </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if the provided derBuffer is too small to store the generated certificate </para>
+</simplesect>
+<simplesect kind="return"><para>Other Additional error messages may be returned if the certificate request generation is not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an initialized cert structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to hold the generated certificate request </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the buffer in which to store the certificate request </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an RsaKey structure containing the rsa key used to generate the certificate request </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an EccKey structure containing the ecc key used to generate the certificate request</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert</highlight></codeline>
+<codeline><highlight class="normal">EccKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeCertReq(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>NULL,<sp/>&amp;key);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 指定された入力証明書からX.509証明書要求を正常に行うと、生成された証明書要求のサイズを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供されたDerbufferが生成された証明書を保存するには小さすぎる場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>Other 証明書要求生成が成功しなかった場合、追加のエラーメッセージが返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化された証明書構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derBuffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された証明書要求を保持するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書要求を保存するバッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書要求を生成するために使用されるRSAキーを含むRSAKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert</highlight></codeline>
+<codeline><highlight class="normal">EccKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeCertReq(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>NULL,<sp/>&amp;key);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/asn_public.h" line="114" column="6" declfile="dox_comments/header_files/asn_public.h" declline="114" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ASN_1ga6cb11be9830690899b9ae7f8e424c7cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SignCert</definition>
+        <argsstring>(int requestSz, int sigType, byte *derBuffer, word32 derSz, RsaKey *rsaKey, ecc_key *eccKey, WC_RNG *rng)</argsstring>
+        <name>wc_SignCert</name>
+        <param>
+          <type>int</type>
+          <declname>requestSz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sigType</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>derBuffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>derSz</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>rsaKey</declname>
+        </param>
+        <param>
+          <type>ecc_key *</type>
+          <declname>eccKey</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>This function signs buffer and adds the signature to the end of buffer. It takes in a signature type. Must be called after <ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert()</ref> or <ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq()</ref> if creating a CA signed cert. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数はバッファーに署名し、署名をバッファの最後に追加します。署名の種類を取ります。CA署名付き証明書を作成する場合は、wc_makecert（）またはwc_makecertreq（）の後に呼び出す必要があります。</para>
+<para><simplesect kind="return"><para>Success On successfully signing the certificate, returns the new size of the cert (including signature). </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory with XMALLOC </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if the provided buffer is too small to store the generated certificate </para>
+</simplesect>
+<simplesect kind="return"><para>Other Additional error messages may be returned if the cert generation is not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>requestSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the size of the certificate body we’re requesting to have signed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of signature to create. Valid options are: CTC_MD5wRSA, CTC_SHAwRSA, CTC_SHAwECDSA, CTC_SHA256wECDSA, andCTC_SHA256wRSA </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the certificate to be signed. On success: will hold the newly signed certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the (total) size of the buffer in which to store the newly signed certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an RsaKey structure containing the rsa key to used to sign the certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an EccKey structure containing the ecc key to used to sign the certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the random number generator used to sign the certificate</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert,<sp/>derCert</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_SignCert(myCert.bodySz,<sp/>myCert.sigType,derCert,FOURK_BUF,</highlight></codeline>
+<codeline><highlight class="normal">&amp;key,<sp/>NULL,</highlight></codeline>
+<codeline><highlight class="normal">&amp;rng);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 証明書に正常に署名する場合は、CERTの新しいサイズ（署名を含む）を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供された証明書を保存するには提供されたバッファが小さすぎる場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>Other 証明書の生成が成功しなかった場合、追加のエラーメッセージが返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>requestSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名したことを要求している証明書本文のサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>作成する署名の種類。有効なオプションは次のとおりです.CTC_MD5WRSA、CTC_SHAWRSA、CTC_SHAWECDSA、CTC_SHA256WECDSA、ANDCTC_SHA256WRSA </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名する証明書を含むバッファへのポインタ。成功：新たに署名された証明書を保持します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>新たに署名された証明書を保存するバッファの（合計）サイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rsaKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書に署名するために使用されるRSAキーを含むRSAKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eccKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書に署名するために使用されるECCキーを含むECCKey構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert,<sp/>derCert</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_SignCert(myCert.bodySz,<sp/>myCert.sigType,derCert,FOURK_BUF,</highlight></codeline>
+<codeline><highlight class="normal">&amp;key,<sp/>NULL,</highlight></codeline>
+<codeline><highlight class="normal">&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/asn_public.h" line="167" column="6" declfile="dox_comments/header_files/asn_public.h" declline="167" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ASN_1ga4d66835dcea8596ae7421ce3d46d9a46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeSelfCert</definition>
+        <argsstring>(Cert *cert, byte *derBuffer, word32 derSz, RsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_MakeSelfCert</name>
+        <param>
+          <type>Cert *</type>
+          <declname>cert</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>derBuffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>derSz</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>This function is a combination of the previous two functions, wc_MakeCert and wc_SignCert for self signing (the previous functions may be used for CA requests). It makes a certificate, and then signs it, generating a self-signed certificate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、以前の2つの関数、wc_makecert、および自己署名のためのwc_signcertの組み合わせです（前の関数はCA要求に使用される場合があります）。証明書を作成してから、それに署名し、自己署名証明書を生成します。</para>
+<para><simplesect kind="return"><para>Success On successfully signing the certificate, returns the new size of the cert. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory with XMALLOC </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if the provided buffer is too small to store the generated certificate </para>
+</simplesect>
+<simplesect kind="return"><para>Other Additional error messages may be returned if the cert generation is not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the cert to make and sign </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to hold the signed certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the buffer in which to store the signed certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an RsaKey structure containing the rsa key to used to sign the certificate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the random number generator used to generate and sign the certificate</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert,<sp/>derCert</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeSelfCert(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>&amp;key,<sp/>NULL,<sp/>&amp;rng);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga6cb11be9830690899b9ae7f8e424c7cf" kindref="member">wc_SignCert</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 証明書に正常に署名する場合は、CERTの新しいサイズを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 提供された証明書を保存するには提供されたバッファが小さすぎる場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>Other 証明書の生成が成功しなかった場合、追加のエラーメッセージが返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>作成して署名する証明書へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名付き証明書を保持するためのバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名付き証明書を保存するバッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書に署名するために使用されるRSAキーを含むRSAKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Cert<sp/>myCert;</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>derCert<sp/>=<sp/>(byte*)malloc(FOURK_BUF);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>myCert,<sp/>derCert</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">word32<sp/>certSz;</highlight></codeline>
+<codeline><highlight class="normal">certSz<sp/>=<sp/>wc_MakeSelfCert(&amp;myCert,<sp/>derCert,<sp/>FOURK_BUF,<sp/>&amp;key,<sp/>NULL,<sp/>&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__ASN_1ga6cb11be9830690899b9ae7f8e424c7cf" kindref="member">wc_SignCert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/asn_public.h" line="213" column="6" declfile="dox_comments/header_files/asn_public.h" declline="213" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="13"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ASN_1gacd9209218503a6aa6750307200d3de76" kindref="member">wc_InitCert</ref>(Cert*);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__ASN_1gaf5c9dd81eafddb0b911192d1a559865a" kindref="member">wc_MakeCert</ref>(Cert*<sp/>cert,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>derBuffer,<sp/>word32<sp/>derSz,<sp/>RsaKey*<sp/>rsaKey,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ecc_key*<sp/>eccKey,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__ASN_1ga1ab8dd06b7195bcfaae5fdf1d65a524e" kindref="member">wc_MakeCertReq</ref>(Cert*<sp/>cert,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>derBuffer,<sp/>word32<sp/>derSz,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>rsaKey,<sp/>ecc_key*<sp/>eccKey);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__ASN_1ga6cb11be9830690899b9ae7f8e424c7cf" kindref="member">wc_SignCert</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>requestSz,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sigType,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>derBuffer,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>derSz,<sp/>RsaKey*<sp/>rsaKey,<sp/>ecc_key*<sp/>eccKey,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__ASN_1ga4d66835dcea8596ae7421ce3d46d9a46" kindref="member">wc_MakeSelfCert</ref>(Cert*<sp/>cert,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>derBuffer,<sp/>word32<sp/>derSz,<sp/>RsaKey*<sp/>key,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/asn_public.h"/>
+  </compounddef>
+</doxygen>

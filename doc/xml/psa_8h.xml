@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="psa_8h" kind="file" language="C++">
+    <compoundname>psa.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="psa_8h_1aaa4cfb79ee5d8f25a89faa1f1de23d3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CTX_psa_enable</definition>
+        <argsstring>(WOLFSSL_CTX *ctx)</argsstring>
+        <name>wolfSSL_CTX_psa_enable</name>
+        <param>
+          <type>WOLFSSL_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、与えられたコンテキストでのPSAサポートを可能にします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSAサポートを有効にする必要があるWOLFSSL_CTXオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WOLFSSL_SUCCESS 成功した <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_CTX<sp/>*ctx;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_CTX_new(wolfTLSv1_2_client_method());</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ctx)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_psa_enable(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>WOLFSSL_SUCCESS)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;can&apos;t<sp/>enable<sp/>PSA<sp/>on<sp/>ctx&quot;);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="psa_8h_1a69aa2e5f10a1493bffeb51993ef4b09b" kindref="member">wolfSSL_set_psa_ctx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/psa.h" line="19" column="5" declfile="dox_comments/header_files/ja/psa.h" declline="19" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="psa_8h_1a69aa2e5f10a1493bffeb51993ef4b09b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_set_psa_ctx</definition>
+        <argsstring>(WOLFSSL *ssl, struct psa_ssl_ctx *ctx)</argsstring>
+        <name>wolfSSL_set_psa_ctx</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>struct psa_ssl_ctx *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>与えられたSSLセッションのPSAコンテキストを設定する機能 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CTXが有効になるWolfSSLへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Struct PSA_SSL_CTXへのポインタ（SSLセッションに固有である必要があります） </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WOLFSSL_SUCCESS 成功した <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>Create<sp/>new<sp/>ssl<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>psa_ssl_ctx<sp/>psa_ctx<sp/>=<sp/>{<sp/>0<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ssl)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>setup<sp/>PSA<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_set_psa_ctx(ssl,<sp/>ctx);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="psa_8h_1a49e96c7f54a0adeab54732a72291628c" kindref="member">wolfSSL_psa_set_private_key_id</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_psa_free_psa_ctx </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/psa.h" line="41" column="5" declfile="dox_comments/header_files/ja/psa.h" declline="41" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="psa_8h_1a11022744c54e21738db6addde5064319" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_free_psa_ctx</definition>
+        <argsstring>(struct psa_ssl_ctx *ctx)</argsstring>
+        <name>wolfSSL_free_psa_ctx</name>
+        <param>
+          <type>struct psa_ssl_ctx *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>この関数はPSAコンテキストによって使用されるリソースを解放します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="psa_8h_1a69aa2e5f10a1493bffeb51993ef4b09b" kindref="member">wolfSSL_set_psa_ctx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/psa.h" line="48" column="6" declfile="dox_comments/header_files/ja/psa.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="psa_8h_1a49e96c7f54a0adeab54732a72291628c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_psa_set_private_key_id</definition>
+        <argsstring>(struct psa_ssl_ctx *ctx, psa_key_id_t id)</argsstring>
+        <name>wolfSSL_psa_set_private_key_id</name>
+        <param>
+          <type>struct psa_ssl_ctx *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>psa_key_id_t</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、SSLセッションによって使用される秘密鍵を設定します </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>構造体PSA_SSL_CTXへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">//<sp/>Create<sp/>new<sp/>ssl<sp/>session</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">struct<sp/>psa_ssl_ctx<sp/>psa_ctx<sp/>=<sp/>{<sp/>0<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">psa_key_id_t<sp/>key_id;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>key<sp/>provisioning<sp/>already<sp/>done</highlight></codeline>
+<codeline><highlight class="normal">get_private_key_id(&amp;key_id);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(!ssl)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>NULL;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wolfSSL_psa_set_private_key_id(&amp;psa_ctx,<sp/>key_id);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_set_psa_ctx(ssl,<sp/>ctx);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="psa_8h_1a69aa2e5f10a1493bffeb51993ef4b09b" kindref="member">wolfSSL_set_psa_ctx</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/psa.h" line="74" column="5" declfile="dox_comments/header_files/ja/psa.h" declline="74" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="19"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="psa_8h_1aaa4cfb79ee5d8f25a89faa1f1de23d3a" kindref="member">wolfSSL_CTX_psa_enable</ref>(WOLFSSL_CTX<sp/>*ctx);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="psa_8h_1a69aa2e5f10a1493bffeb51993ef4b09b" kindref="member">wolfSSL_set_psa_ctx</ref>(WOLFSSL<sp/>*ssl,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>psa_ssl_ctx<sp/>*ctx);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="psa_8h_1a11022744c54e21738db6addde5064319" kindref="member">wolfSSL_free_psa_ctx</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>psa_ssl_ctx<sp/>*ctx);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="psa_8h_1a49e96c7f54a0adeab54732a72291628c" kindref="member">wolfSSL_psa_set_private_key_id</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>psa_ssl_ctx<sp/>*ctx,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>psa_key_id_t<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/psa.h"/>
+  </compounddef>
+</doxygen>

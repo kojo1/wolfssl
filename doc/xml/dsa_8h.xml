@@ -1,0 +1,615 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dsa_8h" kind="file" language="C++">
+    <compoundname>dsa.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitDsaKey</definition>
+        <argsstring>(DsaKey *key)</argsstring>
+        <name>wc_InitDsaKey</name>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、デジタル署名アルゴリズム（DSA）を介した認証に使用するためにDSAKEYオブジェクトを初期化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功に戻りました。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG NULLキーが渡された場合に返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitDsaKey(&amp;key);<sp/>//<sp/>initialize<sp/>DSA<sp/>key</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" kindref="member">wc_FreeDsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="14" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="14" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_FreeDsaKey</definition>
+        <argsstring>(DsaKey *key)</argsstring>
+        <name>wc_FreeDsaKey</name>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、使用された後にdsakeyオブジェクトを解放します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>use<sp/>for<sp/>authentication</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeDsaKey(&amp;key);<sp/>//<sp/>free<sp/>DSA<sp/>key</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" kindref="member">wc_FreeDsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="29" column="6" declfile="dox_comments/header_files/ja/dsa.h" declline="29" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1a5cd65c58747e0d3adc3fd6a775d2647a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DsaSign</definition>
+        <argsstring>(const byte *digest, byte *out, DsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_DsaSign</name>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この機能は入力ダイジェストに署名し、結果を出力バッファーに格納します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 入力ダイジェストに正常に署名したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名するハッシュへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を生成するための初期化されたDsakey構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>DSA<sp/>key,<sp/>load<sp/>private<sp/>Key</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>hash<sp/>digest<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>signature[40];<sp/>//<sp/>signature<sp/>will<sp/>be<sp/>40<sp/>bytes<sp/>(320<sp/>bits)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DsaSign(hash,<sp/>signature,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>DSA<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1a50f1058b42931866603b21c2d74dba3b" kindref="member">wc_DsaVerify</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="66" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="66" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1a50f1058b42931866603b21c2d74dba3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DsaVerify</definition>
+        <argsstring>(const byte *digest, const byte *sig, DsaKey *key, int *answer)</argsstring>
+        <name>wc_DsaVerify</name>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>answer</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、秘密鍵を考えると、ダイジェストの署名を検証します。回答パラメータでキーが正しく検証されているかどうか、正常な検証に対応する1、および失敗した検証に対応する0が格納されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 検証要求の処理に成功したときに返されます。注：これは、署名が検証されていることを意味するわけではなく、関数が成功したというだけです。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM DSA署名の処理にエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名の主題を含むダイジェストへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>確認する署名を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名を検証するための初期化されたDsakey構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>DSA<sp/>key,<sp/>load<sp/>public<sp/>Key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>verified;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>hash<sp/>digest<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>signature[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>signature<sp/>to<sp/>verify<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DsaVerify(hash,<sp/>signature,<sp/>&amp;key,<sp/>&amp;verified);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>processing<sp/>verify<sp/>request</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if<sp/>(answer<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>invalid<sp/>signature</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1a5cd65c58747e0d3adc3fd6a775d2647a" kindref="member">wc_DsaSign</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="105" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="105" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1ac50cb97a6cd51ee51a036a9d9534ea5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DsaPublicKeyDecode</definition>
+        <argsstring>(const byte *input, word32 *inOutIdx, DsaKey *key, word32 inSz)</argsstring>
+        <name>wc_DsaPublicKeyDecode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>inOutIdx</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、DSA公開鍵を含むDERフォーマットの証明書バッファを復号し、与えられたDSakey構造体にキーを格納します。また、入力読み取りの長さに応じてINOUTIDXパラメータを設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 dsakeyオブジェクトの公開鍵を正常に設定する </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 証明書バッファを読みながらエンコーディングにエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E DSAパラメータの1つが誤ってフォーマットされている場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DERフォーマットDSA公開鍵を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書の最後のインデックスを保存する整数へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するDsakey構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret,<sp/>idx=0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>//<sp/>DSA<sp/>public<sp/>key};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DsaPublicKeyDecode(derBuff,<sp/>&amp;idx,<sp/>&amp;key,<sp/>inSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>reading<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ae575e29a367b50aac79feafb169e68f3" kindref="member">wc_DsaPrivateKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="132" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="132" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1ae575e29a367b50aac79feafb169e68f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DsaPrivateKeyDecode</definition>
+        <argsstring>(const byte *input, word32 *inOutIdx, DsaKey *key, word32 inSz)</argsstring>
+        <name>wc_DsaPrivateKeyDecode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>inOutIdx</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、DSA秘密鍵を含むDERフォーマットの証明書バッファをデコードし、指定されたDSakey構造体にキーを格納します。また、入力読み取りの長さに応じてINOUTIDXパラメータを設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 dsakeyオブジェクトの秘密鍵を正常に設定するに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 証明書バッファを読みながらエンコーディングにエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E DSAパラメータの1つが誤ってフォーマットされている場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DERフォーマットDSA秘密鍵を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>証明書の最後のインデックスを保存する整数へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を保存するDSakey構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret,<sp/>idx=0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>//<sp/>DSA<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DsaPrivateKeyDecode(derBuff,<sp/>&amp;idx,<sp/>&amp;key,<sp/>inSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>reading<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ac50cb97a6cd51ee51a036a9d9534ea5a" kindref="member">wc_DsaPublicKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="159" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="159" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1ac64c42cb5a47dbf85d86175bdc5a6ce9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DsaKeyToDer</definition>
+        <argsstring>(DsaKey *key, byte *output, word32 inLen)</argsstring>
+        <name>wc_DsaKeyToDer</name>
+        <param>
+          <type>DsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <briefdescription>
+<para>DSAKEYキーをDERフォーマット、出力への書き込み（Inlen）、書き込まれたバイトを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>outLen 成功、書かれたバイト数 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたは出力はNULLまたはキー - &gt;タイプがDSA_PRIVATEではありません。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生しました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>変換するdsakey構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>変換キーの出力バッファへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>derSz;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>bufferSize<sp/>=<sp/>//<sp/>Sufficient<sp/>buffer<sp/>size;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>der[bufferSize];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitDsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_MakeDsaKey(&amp;rng,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">derSz<sp/>=<sp/>wc_DsaKeyToDer(&amp;key,<sp/>der,<sp/>bufferSize);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" kindref="member">wc_FreeDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1a6abb3e6c54c40bc9389140af1f4a7135" kindref="member">wc_MakeDsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="187" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="187" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1a6abb3e6c54c40bc9389140af1f4a7135" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeDsaKey</definition>
+        <argsstring>(WC_RNG *rng, DsaKey *dsa)</argsstring>
+        <name>wc_MakeDsaKey</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>dsa</declname>
+        </param>
+        <briefdescription>
+<para>DSAキーを作成します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MP_OKAY 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RNGまたはDSAのどちらかがnullです。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E バッファにメモリを割り当てることができませんでした。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E MP_INTの初期化エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_RNG構造体へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">DsaKey<sp/>dsa;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDsa(&amp;dsa);</highlight></codeline>
+<codeline><highlight class="normal">if(wc_MakeDsaKey(&amp;rng,<sp/>&amp;dsa)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>creating<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" kindref="member">wc_FreeDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1a5cd65c58747e0d3adc3fd6a775d2647a" kindref="member">wc_DsaSign</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="212" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="212" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dsa_8h_1a4bcee18ffc11d605b8663d035b698613" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeDsaParameters</definition>
+        <argsstring>(WC_RNG *rng, int modulus_size, DsaKey *dsa)</argsstring>
+        <name>wc_MakeDsaParameters</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>modulus_size</declname>
+        </param>
+        <param>
+          <type>DsaKey *</type>
+          <declname>dsa</declname>
+        </param>
+        <briefdescription>
+<para>FIPS 186-4は、modulus_size値の有効な値を定義します（1024,160）（2048,256）（3072,256） </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RNGまたはDSAはNULLまたはMODULUS_SIZEが無効です。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリを割り当てようとするエラーが発生しました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WolfCrypt RNGへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>modulus_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1024,2048、または3072は有効な値です。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if(wc_MakeDsaParameters(&amp;rng,<sp/>1024,<sp/>&amp;genKey)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="dsa_8h_1a6abb3e6c54c40bc9389140af1f4a7135" kindref="member">wc_MakeDsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1ac64c42cb5a47dbf85d86175bdc5a6ce9" kindref="member">wc_DsaKeyToDer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dsa.h" line="237" column="5" declfile="dox_comments/header_files/ja/dsa.h" declline="237" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="14"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1aa8651bbeccdccf8ea3d6177081d2a131" kindref="member">wc_InitDsaKey</ref>(DsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1ade8c76327ed2643a3b494fbdb9a6dfdd" kindref="member">wc_FreeDsaKey</ref>(DsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1a5cd65c58747e0d3adc3fd6a775d2647a" kindref="member">wc_DsaSign</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1a50f1058b42931866603b21c2d74dba3b" kindref="member">wc_DsaVerify</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>answer);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1ac50cb97a6cd51ee51a036a9d9534ea5a" kindref="member">wc_DsaPublicKeyDecode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32*<sp/>inOutIdx,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DsaKey*<sp/>key,<sp/>word32<sp/>inSz);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1ae575e29a367b50aac79feafb169e68f3" kindref="member">wc_DsaPrivateKeyDecode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32*<sp/>inOutIdx,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DsaKey*<sp/>key,<sp/>word32<sp/>inSz);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1ac64c42cb5a47dbf85d86175bdc5a6ce9" kindref="member">wc_DsaKeyToDer</ref>(DsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>inLen);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1a6abb3e6c54c40bc9389140af1f4a7135" kindref="member">wc_MakeDsaKey</ref>(WC_RNG<sp/>*rng,<sp/>DsaKey<sp/>*dsa);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dsa_8h_1a4bcee18ffc11d605b8663d035b698613" kindref="member">wc_MakeDsaParameters</ref>(WC_RNG<sp/>*rng,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>modulus_size,<sp/>DsaKey<sp/>*dsa);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/dsa.h"/>
+  </compounddef>
+</doxygen>

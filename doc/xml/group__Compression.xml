@@ -1,0 +1,277 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__Compression" kind="group">
+    <compoundname>Compression</compoundname>
+    <title>Compression</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Compression_1gab2733bd4aa35e51177d586c99942c48a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Compress</definition>
+        <argsstring>(byte *out, word32 outSz, const byte *in, word32 inSz, word32 flags)</argsstring>
+        <name>wc_Compress</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>This function compresses the given input data using Huffman coding and stores the output in out. Note that the output buffer should still be larger than the input buffer because there exists a certain input for which there will be no compression possible, which will still require a lookup table. It is recommended that one allocate srcSz + 0.1% + 12 for the output buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、ハフマン符号化を用いて与えられた入力データを圧縮し、出力をOUTに格納する。出力バッファは、圧縮が可能でないことが存在するため、出力バッファが入力バッファよりも大きいはずです。これはまだルックアップテーブルを必要とします。出力バッファに対してSRCSZ + 0.1％+ 12を割り当てることをお勧めします。</para>
+<para><simplesect kind="return"><para>On successfully compressing the input data, returns the number of bytes stored in the output buffer </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_INIT_E Returned if there is an error initializing the stream for compression </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_E Returned if an error occurs during compression</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the output buffer in which to store the compressed data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size available in the output buffer for storage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the message to compress </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the input message to compress </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flags</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flags to control how compression operates. Use 0 for normal decompression</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>message[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>compress<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>compressed[(sizeof(message)<sp/>+<sp/>sizeof(message)<sp/>*<sp/>.001<sp/>+<sp/>12<sp/>)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Recommends<sp/>at<sp/>least<sp/>srcSz<sp/>+<sp/>.1%<sp/>+<sp/>12</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Compress(compressed,<sp/>sizeof(compressed),<sp/>message,<sp/>sizeof(message),</highlight></codeline>
+<codeline><highlight class="normal">0)<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>compressing<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Compression_1ga83cab44e5ad5db4adb46a97dbb1f5dcf" kindref="member">wc_DeCompress</ref></para>
+</simplesect>
+<simplesect kind="return"><para>On 入力データの圧縮に成功し、出力バッファに格納されているバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_INIT_E 圧縮のためにストリームの初期化中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_E 圧縮中にエラーが発生した場合は返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>圧縮データを格納する出力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファで保存されているサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>圧縮するメッセージを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>圧縮する入力メッセージのサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>message[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>text<sp/>to<sp/>compress<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>compressed[(sizeof(message)<sp/>+<sp/>sizeof(message)<sp/>*<sp/>.001<sp/>+<sp/>12<sp/>)];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Recommends<sp/>at<sp/>least<sp/>srcSz<sp/>+<sp/>.1%<sp/>+<sp/>12</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Compress(compressed,<sp/>sizeof(compressed),<sp/>message,<sp/>sizeof(message),</highlight></codeline>
+<codeline><highlight class="normal">0)<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>compressing<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Compression_1ga83cab44e5ad5db4adb46a97dbb1f5dcf" kindref="member">wc_DeCompress</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/compress.h" line="39" column="5" declfile="dox_comments/header_files/compress.h" declline="39" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Compression_1ga83cab44e5ad5db4adb46a97dbb1f5dcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DeCompress</definition>
+        <argsstring>(byte *out, word32 outSz, const byte *in, word32 inSz)</argsstring>
+        <name>wc_DeCompress</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>This function decompresses the given compressed data using Huffman coding and stores the output in out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、ハフマン符号化を用いて所定の圧縮データを解凍し、出力をOUTに格納する。</para>
+<para><simplesect kind="return"><para>Success On successfully decompressing the input data, returns the number of bytes stored in the output buffer </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_INIT_E: Returned if there is an error initializing the stream for compression </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_E: Returned if an error occurs during compression</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the output buffer in which to store the decompressed data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size available in the output buffer for storage </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the message to decompress </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the input message to decompress</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>compressed[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>compressed<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decompressed[MAX_MESSAGE_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_DeCompress(decompressed,<sp/>sizeof(decompressed),</highlight></codeline>
+<codeline><highlight class="normal">compressed,<sp/>sizeof(compressed))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decompressing<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Compression_1gab2733bd4aa35e51177d586c99942c48a" kindref="member">wc_Compress</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 入力データの解凍に成功した場合は、出力バッファに格納されているバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_INIT_E: 圧縮のためにストリームの初期化中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>COMPRESS_E: 圧縮中にエラーが発生した場合は返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解凍されたデータを格納する出力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファで保存されているサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解凍するメッセージを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>compressed[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>compressed<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decompressed[MAX_MESSAGE_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_DeCompress(decompressed,<sp/>sizeof(decompressed),</highlight></codeline>
+<codeline><highlight class="normal">compressed,<sp/>sizeof(compressed))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decompressing<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Compression_1gab2733bd4aa35e51177d586c99942c48a" kindref="member">wc_Compress</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/compress.h" line="72" column="5" declfile="dox_comments/header_files/compress.h" declline="72" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

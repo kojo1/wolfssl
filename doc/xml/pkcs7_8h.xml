@@ -1,0 +1,982 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="pkcs7_8h" kind="file" language="C++">
+    <compoundname>pkcs7.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_InitWithCert</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *cert, word32 certSz)</argsstring>
+        <name>wc_PKCS7_InitWithCert</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>cert</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>certSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、DERフォーマットの証明書を使用してPKCS7構造を初期化します。空のPKCS7構造を初期化するには、NULL CERTとCERTSZの場合は0を渡すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 PKCS7構造の初期化に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E xmallocでメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 証明書ヘッダーの解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_OBJECT_ID_E 証明書から暗号化タイプの解析中にエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_EXPECT_0_E CERTファイルの暗号化仕様にフォーマットエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_BEFORE_DATE_E 日付が証明書開始日以前の場合返却 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_AFTER_DATE_E 日付が証明書の有効期限の後にある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_BITSTR_E 証明書からビット文字列を解析したエラーがある場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ECC_CURVE_OID_E 証明書からECCキーの解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_UNKNOWN_OID_E 証明書が不明なキーオブジェクトIDを使用している場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_VERSION_E allow_v1_extensionsオプションが定義されておらず、証明書がV1またはV2の証明書の場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 証明書拡張機能の処理中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_CRIT_EXT_E 証明書の処理中になじみのない重要な拡張機能が発生した場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_OID_E 署名暗号化タイプが提供されたファイル内の証明書の暗号化タイプと同じでない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_SIG_CONFIRM_E 認証署名が失敗したことを確認した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_NAME_INVALID_E 証明書の名前がCA名制約によって許可されていない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_NO_SIGNER_E 証明書の真正性を確認するためのCA署名者がない場合に返されました </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされた証明書を保存するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS7構造を初期化するためのDERフォーマットのASN.1証明書を含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>derBuff,<sp/>sizeof(derBuff))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>certificate<sp/>into<sp/>pkcs7<sp/>format</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a50ffee7d86334b031b873ca62c73ada0" kindref="member">wc_PKCS7_Free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="33" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="33" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a50ffee7d86334b031b873ca62c73ada0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_PKCS7_Free</definition>
+        <argsstring>(PKCS7 *pkcs7)</argsstring>
+        <name>wc_PKCS7_Free</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、PKCS7の初期化装置によって割り当てられたメモリを解放します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>and<sp/>use<sp/>PKCS7<sp/>object</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_Free(pkcs7);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="48" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="48" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a9c7bedf422dcb3771e2dc225b87d1634" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_EncodeData</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *output, word32 outputSz)</argsstring>
+        <name>wc_PKCS7_EncodeData</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outputSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はPKCS7データコンテンツタイプを構築し、PKCS7構造をパーセル可能なPKCS7データパケットを含むバッファにエンコードします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success PKCS7データをバッファに正常にエンコードすると、PKCS7構造内の索引を返します。このインデックスは、出力バッファに書き込まれたバイトにも対応しています。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 指定されたバッファがエンコードされた証明書を保持するのに十分な大きさでない場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>符号化するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされた証明書を保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7Buff[FOURK_BUF];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>derBuff,<sp/>sizeof(derBuff));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_EncodeData(&amp;pkcs7,<sp/>pkcs7Buff,<sp/>sizeof(pkcs7Buff));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="80" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="80" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a24a757763a40935b784ebd7c5b8aba9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_EncodeSignedData</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *output, word32 outputSz)</argsstring>
+        <name>wc_PKCS7_EncodeSignedData</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outputSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はPKCS7署名付きデータコンテンツタイプを構築し、PKCS7構造をPARSable PKCS7署名付きデータパケットを含むバッファにエンコードします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success PKCS7データをバッファに正常にエンコードすると、PKCS7構造内の索引を返します。このインデックスは、出力バッファに書き込まれたバイトにも対応しています。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG PKCS7構造が署名付きデータパケットを生成するための1つ以上の要求要素が欠落している場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PUBLIC_KEY_E 公開鍵の解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E バッファエラーが発生した場合は、小さすぎたり入力が大きすぎたりし過ぎました </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 指定されたバッファがエンコードされた証明書を保持するのに十分な大きさでない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>符号化するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされた証明書を保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{};<sp/>//<sp/>initialize<sp/>with<sp/>data<sp/>to<sp/>sign</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7Buff[FOURK_BUF];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>derBuff,<sp/>sizeof(derBuff));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.hashOID<sp/>=<sp/>SHAh;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.rng<sp/>=<sp/>&amp;rng;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_EncodeSignedData(&amp;pkcs7,<sp/>pkcs7Buff,<sp/>sizeof(pkcs7Buff));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_Free(&amp;pkcs7);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a6ff4dae009941bd81213605807141571" kindref="member">wc_PKCS7_VerifySignedData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="134" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="134" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a56d58b33ae2a77ebffef788dff227bcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_EncodeSignedData_ex</definition>
+        <argsstring>(PKCS7 *pkcs7, const byte *hashBuf, word32 hashSz, byte *outputHead, word32 *outputHeadSz, byte *outputFoot, word32 *outputFootSz)</argsstring>
+        <name>wc_PKCS7_EncodeSignedData_ex</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hashBuf</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>outputHead</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outputHeadSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>outputFoot</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>outputFootSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、PKCS7の署名付きデータコンテンツタイプを構築し、PKCS7構造をエンコードし、Parsable PKCS7署名付きデータパケットを含むヘッダーおよびフッターバッファにエンコードします。これにはコンテンツは含まれません。ハッシュを計算してデータに提供する必要があります </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0=Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG PKCS7構造が署名付きデータパケットを生成するための1つ以上の要求要素が欠落している場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PUBLIC_KEY_E 公開鍵の解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E バッファエラーが発生した場合は、小さすぎたり入力が大きすぎたりし過ぎました </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 指定されたバッファがエンコードされた証明書を保持するのに十分な大きさでない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>符号化するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashBuf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテンツデータの計算ハッシュへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ダイジェストのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outputHead</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされた証明書ヘッダーを保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outputHeadSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力ヘッダーバッファのサイズが入力され、実際のサイズを返します。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outputFoot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされた証明書フッターを保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{};<sp/>//<sp/>initialize<sp/>with<sp/>data<sp/>to<sp/>sign</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7HeadBuff[FOURK_BUF/2];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7FootBuff[FOURK_BUF/2];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pkcs7HeadSz<sp/>=<sp/>(word32)sizeof(pkcs7HeadBuff);</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pkcs7FootSz<sp/>=<sp/>(word32)sizeof(pkcs7HeadBuff);</highlight></codeline>
+<codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hashType<sp/>=<sp/>WC_HASH_TYPE_SHA;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/><sp/><sp/>hashBuf[WC_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>hashSz<sp/>=<sp/>wc_HashGetDigestSize(hashType);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>derBuff,<sp/>sizeof(derBuff));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.hashOID<sp/>=<sp/>SHAh;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.rng<sp/>=<sp/>&amp;rng;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>calculate<sp/>hash<sp/>for<sp/>content</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_HashInit(&amp;hash,<sp/>hashType);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_HashUpdate(&amp;hash,<sp/>hashType,<sp/>data,<sp/>sizeof(data));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_HashFinal(&amp;hash,<sp/>hashType,<sp/>hashBuf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_HashFree(&amp;hash,<sp/>hashType);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_EncodeSignedData_ex(&amp;pkcs7,<sp/>hashBuf,<sp/>hashSz,<sp/>pkcs7HeadBuff,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&amp;pkcs7HeadSz,<sp/>pkcs7FootBuff,<sp/>&amp;pkcs7FootSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_Free(&amp;pkcs7);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1adfa60d99d79a88d232623682f8201d3a" kindref="member">wc_PKCS7_VerifySignedData_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="208" column="5" declfile="dox_comments/header_files/ja/pkcs7.h" declline="208" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a6ff4dae009941bd81213605807141571" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_VerifySignedData</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *pkiMsg, word32 pkiMsgSz)</argsstring>
+        <name>wc_PKCS7_VerifySignedData</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pkiMsg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pkiMsgSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、送信されたPKCS7の署名付きデータメッセージを取り、証明書リストと証明書失効リストを抽出してから署名を検証します。与えられたPKCS7構造に抽出されたコンテンツを格納します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージから情報を抽出することに成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメータの1つが無効な場合は返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 与えられたPKIMSGから解析中のエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PKCS7_OID_E 与えられたPKIMSGが署名付きデータ型ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_VERSION_E PKCS7署名者情報がバージョン1ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PUBLIC_KEY_E 公開鍵の解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E バッファエラーが発生した場合は、小さすぎたり入力が大きすぎたりし過ぎません </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 指定されたバッファがエンコードされた証明書を保持するのに十分な大きさでない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解析された証明書を保存するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたメッセージを含むバッファへのポインタを検証および復号化する <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7Buff[]<sp/>=<sp/>{};<sp/>//<sp/>the<sp/>PKCS7<sp/>signature</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_VerifySignedData(&amp;pkcs7,<sp/>pkcs7Buff,<sp/>sizeof(pkcs7Buff));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_Free(&amp;pkcs7);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a24a757763a40935b784ebd7c5b8aba9c" kindref="member">wc_PKCS7_EncodeSignedData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="261" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="261" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1adfa60d99d79a88d232623682f8201d3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_VerifySignedData_ex</definition>
+        <argsstring>(PKCS7 *pkcs7, const byte *hashBuf, word32 hashSz, byte *pkiMsgHead, word32 pkiMsgHeadSz, byte *pkiMsgFoot, word32 pkiMsgFootSz)</argsstring>
+        <name>wc_PKCS7_VerifySignedData_ex</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hashBuf</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hashSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pkiMsgHead</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pkiMsgHeadSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pkiMsgFoot</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pkiMsgFootSz</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、送信されたPKCS7署名付きデータメッセージをHASH /ヘッダー/フッターとして取り出してから、証明書リストと証明書失効リストを抽出してから、署名を検証します。与えられたPKCS7構造に抽出されたコンテンツを格納します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 メッセージから情報を抽出することに成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメータの1つが無効な場合は返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 与えられたPKIMSGから解析中のエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PKCS7_OID_E 与えられたPKIMSGが署名付きデータ型ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_VERSION_E PKCS7署名者情報がバージョン1ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PUBLIC_KEY_E 公開鍵の解析中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E バッファエラーが発生した場合は、小さすぎたり入力が大きすぎたりし過ぎません </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 指定されたバッファがエンコードされた証明書を保持するのに十分な大きさでない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 署名を生成するエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解析された証明書を保存するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashBuf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>コンテンツデータの計算ハッシュへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ダイジェストのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsgHead</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたメッセージヘッダーを含むバッファへのポインタを検証およびデコードする </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsgHeadSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名付きメッセージヘッダーのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsgFoot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>署名されたメッセージフッターを含むバッファへのポインタを検証してデコードする <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{};<sp/>//<sp/>initialize<sp/>with<sp/>data<sp/>to<sp/>sign</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7HeadBuff[]<sp/>=<sp/>{};<sp/>//<sp/>initialize<sp/>with<sp/>PKCS7<sp/>header</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7FootBuff[]<sp/>=<sp/>{};<sp/>//<sp/>initialize<sp/>with<sp/>PKCS7<sp/>footer</highlight></codeline>
+<codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hashType<sp/>=<sp/>WC_HASH_TYPE_SHA;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/><sp/><sp/>hashBuf[WC_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>hashSz<sp/>=<sp/>wc_HashGetDigestSize(hashType);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.rng<sp/>=<sp/>&amp;rng;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>calculate<sp/>hash<sp/>for<sp/>content</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_HashInit(&amp;hash,<sp/>hashType);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_HashUpdate(&amp;hash,<sp/>hashType,<sp/>data,<sp/>sizeof(data));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_HashFinal(&amp;hash,<sp/>hashType,<sp/>hashBuf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_HashFree(&amp;hash,<sp/>hashType);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_VerifySignedData_ex(&amp;pkcs7,<sp/>hashBuf,<sp/>hashSz,<sp/>pkcs7HeadBuff,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sizeof(pkcs7HeadBuff),<sp/>pkcs7FootBuff,<sp/>sizeof(pkcs7FootBuff));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_Free(&amp;pkcs7);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a56d58b33ae2a77ebffef788dff227bcd" kindref="member">wc_PKCS7_EncodeSignedData_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="335" column="5" declfile="dox_comments/header_files/ja/pkcs7.h" declline="335" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1a3b5cb91f5b7a54493f356633b4b661bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_EncodeEnvelopedData</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *output, word32 outputSz)</argsstring>
+        <name>wc_PKCS7_EncodeEnvelopedData</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outputSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、PKCS7構造を編集し、PKCS7構造を符号化し、Parsable PKCS7エンベロープデータパケットを含むバッファに編集します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success エンベロープデータ形式でメッセージを正常にエンコードする上で返信され、出力バッファに書き込まれたサイズを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG: 入力パラメータの1つが無効な場合、またはPKCS7構造が必要な要素を欠落している場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ALGO_ID_E pkcs7構造がサポートされていないアルゴリズムタイプを使用している場合に返されます。現在、DESBとDES3Bのみがサポートされています </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 与えられた出力バッファが小さすぎて出力データを保存する場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E 暗号化の乱数発生器の初期化中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_FAILED 暗号化に使用される乱数発生器を使用して数字を生成するエラーが発生した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>符号化するPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンコードされた証明書を保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>derBuff[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pkcs7Buff[FOURK_BUF];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_PKCS7_InitWithCert(&amp;pkcs7,<sp/>derBuff,<sp/>sizeof(derBuff));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>message<sp/>and<sp/>data<sp/>to<sp/>encode</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.content<sp/>=<sp/>data;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.contentSz<sp/>=<sp/>dataSz;</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>etc.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_PKCS7_EncodeEnvelopedData(&amp;pkcs7,<sp/>pkcs7Buff,<sp/>sizeof(pkcs7Buff));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encoding<sp/>into<sp/>output<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1aa5c5a7881e48eb07028dc58d34e7ca1e" kindref="member">wc_PKCS7_DecodeEnvelopedData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="375" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="375" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="pkcs7_8h_1aa5c5a7881e48eb07028dc58d34e7ca1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_PKCS7_DecodeEnvelopedData</definition>
+        <argsstring>(PKCS7 *pkcs7, byte *pkiMsg, word32 pkiMsgSz, byte *output, word32 outputSz)</argsstring>
+        <name>wc_PKCS7_DecodeEnvelopedData</name>
+        <param>
+          <type>PKCS7 *</type>
+          <declname>pkcs7</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pkiMsg</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pkiMsgSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outputSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はPKCS7エンベロープデータコンテンツタイプをアントラップして復号化し、メッセージを出力にデコードします。渡されたPKCS7オブジェクトの秘密鍵を使用してメッセージを復号化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>On メッセージから情報を抽出するには、出力に書き込まれたバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメータの1つが無効な場合は返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 与えられたPKIMSGから解析中のエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>PKCS7_OID_E 与えられたPKIMSGがエンベロープデータ型ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_VERSION_E PKCS7署名者情報がバージョン0ではない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ALGO_ID_E pkcs7構造がサポートされていないアルゴリズムタイプを使用している場合に返されます。現在、Signature Generation for Signature GenerationのRSAKを使用して、DESBとDES3Bのみが暗号化でサポートされています。 </para>
+</simplesect>
+<simplesect kind="return"><para>PKCS7_RECIP_E 提供された受信者と一致するエンベロープデータに受信者が見つからない場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E バッファエラーが原因でRSAシグネチャ検証中にエラーがある場合は、小さすぎたり入力が大きすぎたりすると元に戻されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM 署名検証中にエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs7</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンベロープデータパッケージをデコードする秘密鍵を含むPKCS7構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>エンベロープデータパッケージを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkiMsgSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>包み込まれたデータパッケージのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされたメッセージを保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">PKCS7<sp/>pkcs7;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>received[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>enveloped<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[FOURK_BUF];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>decodedSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>pkcs7<sp/>with<sp/>certificate</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>update<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKey<sp/>=<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">pkcs7.privateKeySz<sp/>=<sp/>keySz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">decodedSz<sp/>=<sp/>wc_PKCS7_DecodeEnvelopedData(&amp;pkcs7,<sp/>received,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(received),decoded,<sp/>sizeof(decoded));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>decodedSz<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decoding<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="pkcs7_8h_1a3b5cb91f5b7a54493f356633b4b661bf" kindref="member">wc_PKCS7_EncodeEnvelopedData</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pkcs7.h" line="426" column="6" declfile="dox_comments/header_files/ja/pkcs7.h" declline="426" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="33"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1a2ea444dffff344d027f39dec06839ae6" kindref="member">wc_PKCS7_InitWithCert</ref>(PKCS7*<sp/>pkcs7,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>cert,<sp/>word32<sp/>certSz);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pkcs7_8h_1a50ffee7d86334b031b873ca62c73ada0" kindref="member">wc_PKCS7_Free</ref>(PKCS7*<sp/>pkcs7);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1a9c7bedf422dcb3771e2dc225b87d1634" kindref="member">wc_PKCS7_EncodeData</ref>(PKCS7*<sp/>pkcs7,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outputSz);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1a24a757763a40935b784ebd7c5b8aba9c" kindref="member">wc_PKCS7_EncodeSignedData</ref>(PKCS7*<sp/>pkcs7,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>outputSz);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pkcs7_8h_1a56d58b33ae2a77ebffef788dff227bcd" kindref="member">wc_PKCS7_EncodeSignedData_ex</ref>(PKCS7*<sp/>pkcs7,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hashBuf,<sp/></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>hashSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>outputHead,<sp/>word32*<sp/>outputHeadSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>outputFoot,<sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>word32*<sp/>outputFootSz);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1a6ff4dae009941bd81213605807141571" kindref="member">wc_PKCS7_VerifySignedData</ref>(PKCS7*<sp/>pkcs7,</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pkiMsg,<sp/>word32<sp/>pkiMsgSz);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="pkcs7_8h_1adfa60d99d79a88d232623682f8201d3a" kindref="member">wc_PKCS7_VerifySignedData_ex</ref>(PKCS7*<sp/>pkcs7,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hashBuf,<sp/></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>hashSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pkiMsgHead,<sp/>word32<sp/>pkiMsgHeadSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pkiMsgFoot,<sp/></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>pkiMsgFootSz);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1a3b5cb91f5b7a54493f356633b4b661bf" kindref="member">wc_PKCS7_EncodeEnvelopedData</ref>(PKCS7*<sp/>pkcs7,</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>outputSz);</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="426"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="pkcs7_8h_1aa5c5a7881e48eb07028dc58d34e7ca1e" kindref="member">wc_PKCS7_DecodeEnvelopedData</ref>(PKCS7*<sp/>pkcs7,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pkiMsg,</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>pkiMsgSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outputSz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/pkcs7.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__wolfCrypt" kind="group">
+    <compoundname>wolfCrypt</compoundname>
+    <title>wolfCrypt Init and Cleanup</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__wolfCrypt_1gaf65683ae961b7560c7b226bfda0befde" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HashGetOID</definition>
+        <argsstring>(enum wc_HashType hash_type)</argsstring>
+        <name>wc_HashGetOID</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <briefdescription>
+<para>This function will return the OID for the wc_HashType provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は提供されたwc_hashtypeのOIDを返します。</para>
+<para><simplesect kind="return"><para>OID returns value greater than 0 </para>
+</simplesect>
+<simplesect kind="return"><para>HASH_TYPE_E hash type not supported. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG one of the provided arguments is incorrect.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>oid<sp/>=<sp/>wc_HashGetOID(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(oid<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref></para>
+</simplesect>
+<simplesect kind="return"><para>OID 戻り値0を超えてください </para>
+</simplesect>
+<simplesect kind="return"><para>HASH_TYPE_E ハッシュ型はサポートされていません。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 提供された引数の1つが正しくありません。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>oid<sp/>=<sp/>wc_HashGetOID(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(oid<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="25" column="5" declfile="dox_comments/header_files/hash.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HashGetDigestSize</definition>
+        <argsstring>(enum wc_HashType hash_type)</argsstring>
+        <name>wc_HashGetDigestSize</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <briefdescription>
+<para>This function returns the size of the digest (output) for a hash_type. The returns size is used to make sure the output buffer provided to wc_Hash is large enough. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、hash_typeのダイジェスト（出力）のサイズを返します。返品サイズは、WC_HASHに提供される出力バッファが十分に大きいことを確認するために使用されます。</para>
+<para><simplesect kind="return"><para>Success A positive return value indicates the digest size for the hash. </para>
+</simplesect>
+<simplesect kind="return"><para>Error Returns HASH_TYPE_E if hash_type is not supported. </para>
+</simplesect>
+<simplesect kind="return"><para>Failure Returns BAD_FUNC_ARG if an invalid hash_type was used.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_MSG(&quot;Invalid<sp/>hash<sp/>type/len&quot;);</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>BAD_FUNC_ARG;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success 正の戻り値は、ハッシュのダイジェストサイズを示します。 </para>
+</simplesect>
+<simplesect kind="return"><para>Error hash_typeがサポートされていない場合はhash_type_eを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure 無効なhash_typeが使用された場合、bad_func_argを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_MSG(&quot;Invalid<sp/>hash<sp/>type/len&quot;);</highlight></codeline>
+<codeline><highlight class="normal">return<sp/>BAD_FUNC_ARG;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" kindref="member">wc_Hash</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="53" column="5" declfile="dox_comments/header_files/hash.h" declline="53" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga0a2c6803a9ba6e8ff9cca961cff340a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Hash</definition>
+        <argsstring>(enum wc_HashType hash_type, const byte *data, word32 data_len, byte *hash, word32 hash_len)</argsstring>
+        <name>wc_Hash</name>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash_type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>data_len</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>hash_len</declname>
+        </param>
+        <briefdescription>
+<para>This function performs a hash on the provided data buffer and returns it in the hash buffer provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、提供されたデータバッファ上にハッシュを実行し、提供されたハッシュバッファにそれを返します。</para>
+<para><simplesect kind="return"><para>0 Success, else error (such as BAD_FUNC_ARG or BUFFER_E).</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A hash type from the “enum wc_HashType” such as “WC_HASH_TYPE_SHA256”. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buffer containing the data to hash. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the data buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buffer used to output the final hash to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the hash buffer.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>ret<sp/>=<sp/>wc_Hash(hash_type,<sp/>data,<sp/>data_len,<sp/>hash_data,<sp/>hash_len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 そうでなければ、それ以外の誤り（bad_func_argやbuffer_eなど）。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hash_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&quot;wc_hash_type_sha256&quot;などの &quot;enum wc_hashtype&quot;からのハッシュ型。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュへのデータを含むバッファへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data_len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>データバッファの長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最後のハッシュを出力するために使用されるバッファへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">enum<sp/>wc_HashType<sp/>hash_type<sp/>=<sp/>WC_HASH_TYPE_SHA256;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>hash_len<sp/>=<sp/>wc_HashGetDigestSize(hash_type);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(hash_len<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>ret<sp/>=<sp/>wc_Hash(hash_type,<sp/>data,<sp/>data_len,<sp/>hash_data,<sp/>hash_len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Success</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga1126e1ba7ad303f3fde1cdea53615752" kindref="member">wc_HashGetDigestSize</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hash.h" line="84" column="5" declfile="dox_comments/header_files/hash.h" declline="84" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfCrypt_Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfCrypt_Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>WolfCryptによって使用されるリソースを初期化するために使用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used to initialize resources used by wolfCrypt.</para>
+<para><simplesect kind="return"><para>0 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 initリソースが失敗すると。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Init()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Init<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" kindref="member">wolfCrypt_Cleanup</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 upon failure of init resources.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Init()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Init<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" kindref="member">wolfCrypt_Cleanup</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_port.h" line="15" column="5" declfile="dox_comments/header_files/ja/wc_port.h" declline="15" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__wolfCrypt_1ga5d1e63497a975c3a6c0080e44a84131c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfCrypt_Cleanup</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfCrypt_Cleanup</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>WolfCryptによって使用されるリソースをクリーンアップするために使用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used to clean up resources used by wolfCrypt.</para>
+<para><simplesect kind="return"><para>0 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 リソースのクリーンアップが失敗したとき。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Cleanup()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Cleanup<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 upon failure of cleaning up resources.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wolfCrypt_Cleanup()<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;Error<sp/>with<sp/>wolfCrypt_Cleanup<sp/>call&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_port.h" line="31" column="5" declfile="dox_comments/header_files/ja/wc_port.h" declline="31" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

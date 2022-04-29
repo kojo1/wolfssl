@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="wolfssl_API" kind="page">
+    <compoundname>wolfssl_API</compoundname>
+    <title>wolfSSL API Reference</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para><ref refid="group__CertManager" kindref="compound">CertManager API</ref></para>
+</listitem><listitem><para><ref refid="group__Memory" kindref="compound">Memory Handling</ref></para>
+</listitem><listitem><para><ref refid="group__openSSL" kindref="compound">OpenSSL API</ref></para>
+</listitem><listitem><para><ref refid="group__CertsKeys" kindref="compound">wolfSSL Certificates and Keys</ref></para>
+</listitem><listitem><para><ref refid="group__IO" kindref="compound">wolfSSL Connection, Session, and I/O</ref></para>
+</listitem><listitem><para><ref refid="group__Setup" kindref="compound">wolfSSL Context and Session Set Up</ref></para>
+</listitem><listitem><para><ref refid="group__Debug" kindref="compound">wolfSSL Error Handling and Reporting</ref></para>
+</listitem><listitem><para><ref refid="group__TLS" kindref="compound">wolfSSL Initialization/Shutdown</ref> </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sha512_8h" kind="file" language="C++">
+    <compoundname>sha512.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="sha512_8h_1a7743789b491a860b2c7c745f8f759f55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSha512</definition>
+        <argsstring>(wc_Sha512 *)</argsstring>
+        <name>wc_InitSha512</name>
+        <param>
+          <type>wc_Sha512 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はSHA512を初期化します。これはWC_SHA512HASHによって自動的に呼び出されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha512<sp/>sha512[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha512(sha512))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha512<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Update(sha512,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Final(sha512,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="hash_8h_1ae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a63f59a22bb14be19813b812245cd5bce" kindref="member">wc_Sha512Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="20" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="20" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="sha512_8h_1a63f59a22bb14be19813b812245cd5bce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha512Update</definition>
+        <argsstring>(wc_Sha512 *sha, const byte *data, word32 len)</argsstring>
+        <name>wc_Sha512Update</name>
+        <param>
+          <type>wc_Sha512 *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha512</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA512構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha512<sp/>sha512[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha512(sha512))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha512<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Update(sha512,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Final(sha512,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="hash_8h_1ae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7743789b491a860b2c7c745f8f759f55" kindref="member">wc_InitSha512</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="46" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="46" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="sha512_8h_1a7baaf6e1ae836f0e6dcfbb49263c71ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha512Final</definition>
+        <argsstring>(wc_Sha512 *sha512, byte *hash)</argsstring>
+        <name>wc_Sha512Final</name>
+        <param>
+          <type>wc_Sha512 *</type>
+          <declname>sha512</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ハッシュを確定するとうまく返されました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha512</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA512構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha512<sp/>sha512[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha512(sha512))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha512<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Update(sha512,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha512Final(sha512,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="hash_8h_1ae9f53c7cc4d1095960c7da01887028b9" kindref="member">wc_Sha512Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7743789b491a860b2c7c745f8f759f55" kindref="member">wc_InitSha512</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="71" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="71" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="sha512_8h_1a0cab272b70b7d520382281e73f033d53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSha384</definition>
+        <argsstring>(wc_Sha384 *)</argsstring>
+        <name>wc_InitSha384</name>
+        <param>
+          <type>wc_Sha384 *</type>
+        </param>
+        <briefdescription>
+<para>この関数はSHA384を初期化します。これはWC_SHA384HASHによって自動的に呼び出されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha384<sp/>sha384[1];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha384(sha384))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha384<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Update(sha384,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Final(sha384,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="hash_8h_1ab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a7471a17f0fa32a5f1be1c4f8bae049ba" kindref="member">wc_Sha384Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1aa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="92" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="92" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="sha512_8h_1a7471a17f0fa32a5f1be1c4f8bae049ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha384Update</definition>
+        <argsstring>(wc_Sha384 *sha, const byte *data, word32 len)</argsstring>
+        <name>wc_Sha384Update</name>
+        <param>
+          <type>wc_Sha384 *</type>
+          <declname>sha</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 データをダイジェストに正常に追加すると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha384</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA384構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha384<sp/>sha384[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha384(sha384))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha384<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Update(sha384,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Final(sha384,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="hash_8h_1ab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1aa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a0cab272b70b7d520382281e73f033d53" kindref="member">wc_InitSha384</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="118" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="118" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="sha512_8h_1aa13c014024fba0bef68e9d2201a68c50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Sha384Final</definition>
+        <argsstring>(wc_Sha384 *sha384, byte *hash)</argsstring>
+        <name>wc_Sha384Final</name>
+        <param>
+          <type>wc_Sha384 *</type>
+          <declname>sha384</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>hash</declname>
+        </param>
+        <briefdescription>
+<para>データのハッシュを確定します。結果はハッシュに入れられます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ファイナライズに成功したときに返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sha384</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するSHA384構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Sha384<sp/>sha384[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>hashed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSha384(sha384))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSha384<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Update(sha384,<sp/>data,<sp/>len);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>wc_Sha384Final(sha384,<sp/>hash);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="hash_8h_1ab07a857afa0c05ca33394c6a56ce8b74" kindref="member">wc_Sha384Hash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1aa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="sha512_8h_1a0cab272b70b7d520382281e73f033d53" kindref="member">wc_InitSha384</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/sha512.h" line="143" column="5" declfile="dox_comments/header_files/ja/sha512.h" declline="143" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="20"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1a7743789b491a860b2c7c745f8f759f55" kindref="member">wc_InitSha512</ref>(wc_Sha512*);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1a63f59a22bb14be19813b812245cd5bce" kindref="member">wc_Sha512Update</ref>(wc_Sha512*<sp/>sha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1a7baaf6e1ae836f0e6dcfbb49263c71ae" kindref="member">wc_Sha512Final</ref>(wc_Sha512*<sp/>sha512,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1a0cab272b70b7d520382281e73f033d53" kindref="member">wc_InitSha384</ref>(wc_Sha384*);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1a7471a17f0fa32a5f1be1c4f8bae049ba" kindref="member">wc_Sha384Update</ref>(wc_Sha384*<sp/>sha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>data,<sp/>word32<sp/>len);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sha512_8h_1aa13c014024fba0bef68e9d2201a68c50" kindref="member">wc_Sha384Final</ref>(wc_Sha384*<sp/>sha384,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>hash);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/sha512.h"/>
+  </compounddef>
+</doxygen>

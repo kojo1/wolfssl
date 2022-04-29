@@ -1,0 +1,3428 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="rsa_8h" kind="file" language="C++">
+    <compoundname>rsa.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitRsaKey</definition>
+        <argsstring>(RsaKey *key, void *heap)</argsstring>
+        <name>wc_InitRsaKey</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+<para>この関数は提供されたRSAKEY構造体を初期化します。また、ユーザー定義メモリオーバーライドで使用するためのヒープ識別子も取ります（XMALLOC、XFREE、XREALLOCを参照）。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 暗号化と復号化で使用するためのRSA構造の初期化に成功したときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGS RSAキーポインタがNULLに評価された場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するRSAKEY構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;enc,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>RSA<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_RsaInitCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a0e5ef34d84c264a1affa8d3a6478b4ce" kindref="member">wc_FreeRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="20" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="20" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1aba7b6eef17f80e711309f53f2c17dfc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitRsaKey_Id</definition>
+        <argsstring>(RsaKey *key, unsigned char *id, int len, void *heap, int devId)</argsstring>
+        <name>wc_InitRsaKey_Id</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+<para>この関数は提供されたRSAKEY構造体を初期化します。IDとLENは、DEVIDがデバイスを識別している間にデバイス上のキーを識別するために使用されます。また、ユーザー定義メモリオーバーライドで使用するためのヒープ識別子も取ります（XMALLOC、XFREE、XREALLOCを参照）。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 暗号化と復号化で使用するためのRSA構造の初期化に成功したときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGS RSAキーポインタがNULLに評価された場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E LENがRSA_MAX_ID_LENよりも小さい場合、または大きい場合は返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するRSAKEY構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デバイス上のキーの識別子 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト数の識別子の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリオーバーライドで使用するためのヒープ識別子へのポインタ。メモリ割り当てのカスタム処理を可能にします。このヒープは、このRSAオブジェクトで使用するためにメモリを割り当てるときに使用されるデフォルトになります。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char*<sp/>id<sp/>=<sp/>(unsigned<sp/>char*)&quot;RSA2048&quot;;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>len<sp/>=<sp/>6;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>devId<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_CryptoDev_RegisterDevice(devId,<sp/>wc_Pkcs11_CryptoDevCb,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;token);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>associating<sp/>callback<sp/>and<sp/>token<sp/>with<sp/>device<sp/>id</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey_Id(&amp;enc,<sp/>id,<sp/>len,<sp/>NULL,<sp/>devId);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>RSA<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RsaInitCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a0e5ef34d84c264a1affa8d3a6478b4ce" kindref="member">wc_FreeRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="54" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="54" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSetRNG</definition>
+        <argsstring>(RsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_RsaSetRNG</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この関数はRNGをキーに関連付けます。WC_RSA_BLINDINGが有効になっている場合は必要です。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功に戻った </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARGS RSAキーの場合、RNGポインタがNULLに評価された場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>関連付けられるRSAKEY構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="75" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="75" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a0e5ef34d84c264a1affa8d3a6478b4ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_FreeRsaKey</definition>
+        <argsstring>(RsaKey *key)</argsstring>
+        <name>wc_FreeRsaKey</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、MP_Clearを使用して提供されたRSAKEY構造体を解放します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 キーの解放に成功したら返品されます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;enc,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">...<sp/>set<sp/>key,<sp/>do<sp/>encryption</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;enc);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="91" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="91" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a72130d1043824f7e8a5df91fc6832539" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPublicEncrypt</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_RsaPublicEncrypt</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この関数はメッセージをINから暗号化し、その結果を格納します。初期化された公開鍵と乱数発生器が必要です。副作用として、この関数はounlenの中で書き込まれたバイトを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 入力メッセージの暗号化に成功したら、成功の場合は0を返し、障害の場合はゼロ未満です。また、outlenの値を格納することによって、OUTに書き込まれた数のバイト数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメータのいずれかが無効な場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E CipherTextを保存するには、出力バッファが小さすぎる場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E 提供されたRNG構造体を使用してランダムブロックを生成するエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ZERO_E メッセージの暗号化中に使用されている数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化する入力メッセージを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するメッセージの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力暗号文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する公開鍵を含むRSAKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>pub;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>n[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>n<sp/>component<sp/>of<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>e[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>e<sp/>component<sp/>of<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>plaintext<sp/>of<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[256];<sp/>//<sp/>256<sp/>bytes<sp/>is<sp/>large<sp/>enough<sp/>to<sp/>store<sp/>2048<sp/>bit<sp/>RSA</highlight></codeline>
+<codeline><highlight class="normal">ciphertext</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;pub,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">wc_RsaPublicKeyDecodeRaw(n,<sp/>sizeof(n),<sp/>e,<sp/>sizeof(e),<sp/>&amp;pub);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>with<sp/>received<sp/>public<sp/>key<sp/>parameters</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicEncrypt(msg,<sp/>sizeof(msg),<sp/>out,<sp/>sizeof(out),<sp/>&amp;pub,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a674c968fd03a8b88931e412df8db7732" kindref="member">wc_RsaPrivateDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="137" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="137" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a27ae50a0bc76cb4eea37fdbb565ae2a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPrivateDecryptInline</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, RsaKey *key)</argsstring>
+        <name>wc_RsaPrivateDecryptInline</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は復号化のためにWC_RSAPrivateCrypt関数によって利用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 復号化データの長さ </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_PAD_E RSAUNPADエラー、フォーマットの悪いフォーマット </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a674c968fd03a8b88931e412df8db7732" kindref="member">wc_RsaPrivateDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="154" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="154" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a674c968fd03a8b88931e412df8db7732" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPrivateDecrypt</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key)</argsstring>
+        <name>wc_RsaPrivateDecrypt</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は秘密のRSA復号化を提供します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 復号化データの長さ </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E -125、メモリエラーが発生しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG -173、関数の不良引数が提供されています </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicEncrypt(in,<sp/>inLen,<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPrivateDecrypt(out,<sp/>ret,<sp/>plain,<sp/>sizeof(plain),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>RsaUnPad </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RsaFunction </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a27ae50a0bc76cb4eea37fdbb565ae2a6" kindref="member">wc_RsaPrivateDecryptInline</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="182" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="182" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a8299328ea8ddff961b79038bc97a4044" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSSL_Sign</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_RsaSSL_Sign</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>提供された配列に秘密鍵と署名します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>RSA_BUFFER_E: -131、RSAバッファエラー、出力が小さすぎたり入力が大きすぎたりする </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する暗号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する鍵。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaSSL_Sign(in,<sp/>inLen,<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">memset(plain,<sp/>0,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaSSL_Verify(out,<sp/>ret,<sp/>plain,<sp/>sizeof(plain),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_RsaPad </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="208" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="208" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a192d864bacce51770e774e304a343585" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSSL_VerifyInline</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, RsaKey *key)</argsstring>
+        <name>wc_RsaSSL_VerifyInline</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>メッセージがRSAキーによって署名されたことを確認するために使用されます。出力は入力と同じバイト配列を使用します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>&gt;0 テキストの長さ </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラーが発生しました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファ入力の長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された情報のポインタへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">long<sp/>e<sp/>=<sp/>65537;<sp/>//<sp/>standard<sp/>value<sp/>to<sp/>use<sp/>for<sp/>exponent</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>e,<sp/>&amp;rng);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>some<sp/>RSA<sp/>encrypted<sp/>information<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>out;</highlight></codeline>
+<codeline><highlight class="normal">if(wc_RsaSSL_VerifyInline(in,<sp/>sizeof(in),<sp/>&amp;out,<sp/>&amp;key)<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a1e996b7382fa0951cd5000d11fc4c0ea" kindref="member">wc_RsaSSL_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8299328ea8ddff961b79038bc97a4044" kindref="member">wc_RsaSSL_Sign</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="239" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="239" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a1e996b7382fa0951cd5000d11fc4c0ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSSL_Verify</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key)</argsstring>
+        <name>wc_RsaSSL_Verify</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>メッセージがキーによって署名されたことを確認するために使用されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success エラーのないテキストの長さ。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaSSL_Sign(in,<sp/>inLen,<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">memset(plain,<sp/>0,<sp/>sizeof(plain));</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaSSL_Verify(out,<sp/>ret,<sp/>plain,<sp/>sizeof(plain),<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8299328ea8ddff961b79038bc97a4044" kindref="member">wc_RsaSSL_Sign</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="265" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="265" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_Sign</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, enum wc_HashType hash, int mgf, RsaKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_RsaPSS_Sign</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>提供された配列に秘密鍵と署名します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>RSA_BUFFER_E: -131、RSAバッファエラー、出力が小さすぎたり入力が大きすぎたりする </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する暗号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージに入るハッシュ型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能識別子 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Sign((byte*)szMessage,<sp/>(word32)XSTRLEN(szMessage)+1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pSignature,<sp/>sizeof(pSignature),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Verify(pSignature,<sp/>sz,<sp/>pt,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;=<sp/>0)return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="308" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="308" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_Verify</definition>
+        <argsstring>(byte *in, word32 inLen, byte *out, word32 outLen, enum wc_HashType hash, int mgf, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_Verify</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>入力署名を復号化して、メッセージがキーによって署名されたことを確認します。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success エラーのないテキストの長さ。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージに入るハッシュ型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能識別子 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Sign((byte*)szMessage,<sp/>(word32)XSTRLEN(szMessage)+1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pSignature,<sp/>sizeof(pSignature),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Verify(pSignature,<sp/>sz,<sp/>pt,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;=<sp/>0)return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3de78c85b8d5cf9d7b755292d6e75e3c" kindref="member">wc_RsaPSS_VerifyInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="354" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="354" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a3de78c85b8d5cf9d7b755292d6e75e3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_VerifyInline</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, enum wc_HashType hash, int mgf, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_VerifyInline</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>入力署名を復号化して、メッセージがRSAキーによって署名されたことを確認します。出力は入力と同じバイト配列を使用します。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>&gt;0 テキストの長さ </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラーが発生しました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファ入力の長さ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータを含むアドレスへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージに入るハッシュ型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能識別子 _Example_ <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>pSignatureSz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_VerifyInline(pSignature,<sp/>sz,<sp/>pt,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;=<sp/>0)return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="405" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="405" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_VerifyCheck</definition>
+        <argsstring>(byte *in, word32 inLen, byte *out, word32 outLen, const byte *digest, word32 digestLen, enum wc_HashType hash, int mgf, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_VerifyCheck</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>digestLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>RSA-PSSで署名されたメッセージを確認してください。塩の長さはハッシュ長に等しい。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the PSSデータの長さが成功し、負に障害が発生します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータを含むアドレスへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digestLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュアルゴリズム </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>pSignatureSz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_VerifyCheck(pSignature,<sp/>sz,<sp/>pt,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>digest,<sp/>digestSz,<sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&lt;=<sp/>0)<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="465" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="465" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a4beef229be508f04004789e1e51ac859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_VerifyCheck_ex</definition>
+        <argsstring>(byte *in, word32 inLen, byte *out, word32 outLen, const byte *digest, word32 digestLen, enum wc_HashType hash, int mgf, int saltLen, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_VerifyCheck_ex</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>digestLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>saltLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>RSA-PSSで署名されたメッセージを確認してください。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the PSSデータの長さが成功し、負に障害が発生します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータを含むアドレスへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digestLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュアルゴリズム </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用される塩の長さ。RSA_PSSS_SALT_LEN_DEFAULT（-1）塩の長さはハッシュ長と同じです。RSA_PSS_SALT_LEN_DISCOVERは、塩の長さがデータから決定されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>pSignatureSz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_VerifyCheck_ex(pSignature,<sp/>sz,<sp/>pt,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>digest,<sp/>digestSz,<sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>saltLen,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&lt;=<sp/>0)<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="527" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="527" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_VerifyCheckInline</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, const byte *digest, word32 digentLen, enum wc_HashType hash, int mgf, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_VerifyCheckInline</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>digentLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>RSA-PSSで署名されたメッセージを確認してください。入力バッファは出力バッファに再利用されます。塩の長さはハッシュ長に等しい。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the PSSデータの長さが成功し、負に障害が発生します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digestLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージに入るハッシュ型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能識別子 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>pSignatureSz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_VerifyCheckInline(pSignature,<sp/>sz,<sp/>pt,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>digest,<sp/>digestSz,<sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&lt;=<sp/>0)<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="587" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="587" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_VerifyCheckInline_ex</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, const byte *digest, word32 digentLen, enum wc_HashType hash, int mgf, int saltLen, RsaKey *key)</argsstring>
+        <name>wc_RsaPSS_VerifyCheckInline_ex</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>digest</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>digentLen</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>saltLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>RSA-PSSで署名されたメッセージを確認してください。入力バッファは出力バッファに再利用されます。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the PSSデータの長さが成功し、負に障害が発生します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されるバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>格納する復号化データのバイト配列。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>digestLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージに入るハッシュ型 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マスク生成機能識別子 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用される塩の長さ。RSA_PSSS_SALT_LEN_DEFAULT（-1）塩の長さはハッシュ長と同じです。RSA_PSS_SALT_LEN_DISCOVERは、塩の長さがデータから決定されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>pSignatureSz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaPSS_VerifyCheckInline_ex(pSignature,<sp/>sz,<sp/>pt,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>digest,<sp/>digestSz,<sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>saltLen,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>&lt;=<sp/>0)<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="646" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="646" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_CheckPadding</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *sig, word32 sigSz, enum wc_HashType hashType)</argsstring>
+        <name>wc_RsaPSS_CheckPadding</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sigSz</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <briefdescription>
+<para>PSSデータを確認して、署名が一致するようにします。塩の長さはハッシュ長に等しい。wc_rsa_blindingが有効な場合、キーはWC_RSASETRNGによってRNGに関連付けられなければなりません。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BAD_PADDING_E PSSデータが無効な場合、NULLがINまたはSIGまたはINSZに渡されると、BAD_FUNC_ARGはハッシュアルゴリズムの長さと同じではありません。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータを保持するバッファ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータのサイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>sizeof(pSignature),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">verify<sp/>=<sp/>wc_RsaPSS_Verify(pSignature,<sp/>sz,<sp/>out,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(verify<sp/>&lt;=<sp/>0)return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_CheckPadding(digest,<sp/>digestSz,<sp/>out,<sp/>verify,<sp/>hash);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3de78c85b8d5cf9d7b755292d6e75e3c" kindref="member">wc_RsaPSS_VerifyInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="701" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="701" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPSS_CheckPadding_ex</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *sig, word32 sigSz, enum wc_HashType hashType, int saltLen, int bits)</argsstring>
+        <name>wc_RsaPSS_CheckPadding_ex</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>sig</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sigSz</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hashType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>saltLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bits</declname>
+        </param>
+        <briefdescription>
+<para>PSSデータを確認して、署名が一致するようにします。塩の長さはハッシュ長に等しい。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BAD_PADDING_E PSSデータが無効な場合、NULLがINまたはSIGまたはINSZに渡されると、BAD_FUNC_ARGはハッシュアルゴリズムの長さと同じではありません。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリ例外 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証中のデータのハッシュ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータを保持するバッファ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PSSデータのサイズ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hashType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュアルゴリズム </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用される塩の長さ。RSA_PSSS_SALT_LEN_DEFAULT（-1）塩の長さはハッシュ長と同じです。RSA_PSS_SALT_LEN_DISCOVERは、塩の長さがデータから決定されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSetRNG(&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>WC_RSA_EXPONENT,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>digestSz<sp/>=<sp/>wc_HashGetDigestSize(WC_HASH_TYPE_SHA256);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_Hash(WC_HASH_TYPE_SHA256,<sp/>message,<sp/>sz,<sp/>digest,<sp/>digestSz);</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_Sign(digest,<sp/>digestSz,<sp/>pSignature,<sp/>sizeof(pSignature),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&gt;<sp/>0<sp/>){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sz<sp/>=<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">verify<sp/>=<sp/>wc_RsaPSS_Verify(pSignature,<sp/>sz,<sp/>out,<sp/>outLen,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WC_HASH_TYPE_SHA256,<sp/>WC_MGF1SHA256,<sp/>&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(verify<sp/>&lt;=<sp/>0)return<sp/>-1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPSS_CheckPadding_ex(digest,<sp/>digestSz,<sp/>out,<sp/>verify,<sp/>hash,<sp/>saltLen,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeRsaKey(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">wc_FreeRng(&amp;rng);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3de78c85b8d5cf9d7b755292d6e75e3c" kindref="member">wc_RsaPSS_VerifyInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="755" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="755" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1aa4149b9e60fcc1eba1e7a263bb10a558" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaEncryptSize</definition>
+        <argsstring>(RsaKey *key)</argsstring>
+        <name>wc_RsaEncryptSize</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>提供されたキー構造の暗号化サイズを返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 提供されたキー構造の暗号化サイズ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>sz<sp/>=<sp/>wc_RsaEncryptSize(&amp;key);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_InitRsaKey_ex </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" kindref="member">wc_MakeRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="769" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="769" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ac52250c3b5c69ff052dfa6605cf49837" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPrivateKeyDecode</definition>
+        <argsstring>(const byte *input, word32 *inOutIdx, RsaKey *key, word32 inSz)</argsstring>
+        <name>wc_RsaPrivateKeyDecode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>inOutIdx</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はDerフォーマットされたRSA秘密鍵を解析し、秘密鍵を抽出し、それを与えられたResakey構造に格納します。IDXに解析された距離も設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 DERエンコード入力から秘密鍵の解析に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 入力バッファから秘密鍵を解析するエラーがある場合に返されます。これは、入力秘密鍵がASN.1規格に従って正しくフォーマットされていない場合に発生する可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_RSA_KEY_E RSAキー入力の秘密鍵要素を読み取るエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードするDERフォーマット秘密鍵を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーが始まるバッファ内のインデックスへのポインタ（通常は0）。この関数の副作用として、InoutIDXは入力バッファを介して解析された距離を記憶します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされた秘密鍵を保存するRSAKEY構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>der[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>RSA<sp/>private<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;enc,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPrivateKeyDecode(der,<sp/>&amp;idx,<sp/>&amp;enc,<sp/>sizeof(der));</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a2610326206b322f33f59e31a845e24b9" kindref="member">wc_RsaPublicKeyDecode</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" kindref="member">wc_MakeRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="796" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="796" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a2610326206b322f33f59e31a845e24b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPublicKeyDecode</definition>
+        <argsstring>(const byte *input, word32 *inOutIdx, RsaKey *key, word32 inSz)</argsstring>
+        <name>wc_RsaPublicKeyDecode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>inOutIdx</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はDerフォーマットのRSA公開鍵を解析し、公開鍵を抽出し、それを指定されたResakey構造に格納します。IDXに解析された距離も設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 DERエンコード入力から公開鍵の解析に成功したときに返された </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 入力バッファから公開鍵を解析したエラーがある場合に返されます。これは、入力公開鍵がASN.1規格に従って正しくフォーマットされていない場合に発生する可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_OBJECT_ID_E ASN.1オブジェクトIDがRSA公開鍵のそれと一致しない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_EXPECT_0_E 入力キーがASN.1規格に従って正しくフォーマットされていない場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_BITSTR_E 入力キーがASN.1規格に従って正しくフォーマットされていない場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_RSA_KEY_E RSAキー入力の公開鍵要素を読み取るエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号する入力DERエンコードRSA公開鍵を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーが始まるバッファ内のインデックスへのポインタ（通常は0）。この関数の副作用として、InoutIDXは入力バッファを介して解析された距離を記憶します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>デコードされた公開鍵を保存するRSAKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>pub;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>der[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>DER-encoded<sp/>RSA<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;pub,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicKeyDecode(der,<sp/>&amp;idx,<sp/>&amp;pub,<sp/>sizeof(der));</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>public<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a437b3432338f18022e9b62d109ce0518" kindref="member">wc_RsaPublicKeyDecodeRaw</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="826" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="826" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a437b3432338f18022e9b62d109ce0518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPublicKeyDecodeRaw</definition>
+        <argsstring>(const byte *n, word32 nSz, const byte *e, word32 eSz, RsaKey *key)</argsstring>
+        <name>wc_RsaPublicKeyDecodeRaw</name>
+        <param>
+          <type>const byte *</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>eSz</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、公開弾性率（n）と指数（e）を撮影して、RSA公開鍵の生の要素を復号します。これらの生の要素を提供されたRSAKEY構造体に格納し、暗号化/復号化プロセスで使用することができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 公開鍵の生の要素をRSAKEY構造に復号したときに返された </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG いずれかの入力引数がNULLに評価された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 複数の精密整数（MP_INT）ライブラリで使用するための整数の初期化中にエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_GETINT_E 提供されたRSAキー要素、nまたはeのいずれかを読むエラーがある場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Public RSAキーのRAWモジュラスパラメータを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Nを含むバッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Public RSAキーのRAW指数パラメータを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Eを含むバッファのサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>pub;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>n[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>n<sp/>component<sp/>of<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>e[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>e<sp/>component<sp/>of<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;pub,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicKeyDecodeRaw(n,<sp/>sizeof(n),<sp/>e,<sp/>sizeof(e),<sp/>&amp;pub);</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>public<sp/>key<sp/>elements</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a2610326206b322f33f59e31a845e24b9" kindref="member">wc_RsaPublicKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="855" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="855" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a428f841fea0e37d3c855c31b32f39dbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaKeyToDer</definition>
+        <argsstring>(RsaKey *key, byte *output, word32 inLen)</argsstring>
+        <name>wc_RsaKeyToDer</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <briefdescription>
+<para>この機能はRSAKEYキーをDERフォーマットに変換します。結果は出力に書き込まれ、書き込まれたバイト数を返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたは出力がNULLの場合、またはキー - &gt;タイプがRSA_PRIVATEでない場合、またはINLENが出力バッファに十分な大きさでない場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化されたRSAKEY構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力バッファへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte*<sp/>der;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Allocate<sp/>memory<sp/>for<sp/>der</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>derSz<sp/>=<sp/>//<sp/>Amount<sp/>of<sp/>memory<sp/>allocated<sp/>for<sp/>der;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">long<sp/>e<sp/>=<sp/>65537;<sp/>//<sp/>standard<sp/>value<sp/>to<sp/>use<sp/>for<sp/>exponent</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_MakeRsaKey(&amp;key,<sp/>2048,<sp/>e,<sp/>&amp;rng);<sp/>//<sp/>generate<sp/>2048<sp/>bit<sp/>long</highlight></codeline>
+<codeline><highlight class="normal">private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if(wc_RsaKeyToDer(&amp;key,<sp/>der,<sp/>derSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>the<sp/>error<sp/>thrown</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4a7ac764a306106a2d805de0ce03f78a" kindref="member">wc_RsaKeyToPublicDer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" kindref="member">wc_MakeRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="random_8h_1a1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="888" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="888" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a9c5787bc3306eb65bec0f018314d309c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPublicEncrypt_ex</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key, WC_RNG *rng, int type, enum wc_HashType hash, int mgf, byte *label, word32 labelSz)</argsstring>
+        <name>wc_RsaPublicEncrypt_ex</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>labelSz</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、どのパディングを使用するかを選択しながらRSA暗号化を実行します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>size 正常に暗号化されていると、暗号化されたバッファのサイズが返されます </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E RSAバッファエラー、出力が小さすぎたり入力が大きすぎたりする </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化のためのバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するバッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたMSGが作成されました </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたMSGを保持するために利用可能なバッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化RSAキー構造体 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化されたWC_RNG構造体 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するパディングの種類（WC_RSA_OAEP_PADまたはWC_RSA_PKCSV15_PAD） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュの種類（選択はhash.hにあります） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するマスク生成機能の種類 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージに関連付けるオプションのラベル <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>“I<sp/>use<sp/>Turing<sp/>Machines<sp/>to<sp/>ask<sp/>questions”</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[256];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicEncrypt_ex(in,<sp/>sizeof(in),<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,<sp/>&amp;rng,</highlight></codeline>
+<codeline><highlight class="normal">WC_RSA_OAEP_PAD,<sp/>WC_HASH_TYPE_SHA,<sp/>WC_MGF1SHA1,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a72130d1043824f7e8a5df91fc6832539" kindref="member">wc_RsaPublicEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1aa51e899f36d2429b30213b3374f76521" kindref="member">wc_RsaPrivateDecrypt_ex</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="923" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="923" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1aa51e899f36d2429b30213b3374f76521" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPrivateDecrypt_ex</definition>
+        <argsstring>(const byte *in, word32 inLen, byte *out, word32 outLen, RsaKey *key, int type, enum wc_HashType hash, int mgf, byte *label, word32 labelSz)</argsstring>
+        <name>wc_RsaPrivateDecrypt_ex</name>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outLen</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>labelSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はRSAを使用してメッセージを復号化し、どのパディングタイプのオプションを指定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>size 復号化が成功すると、復号化されたメッセージのサイズが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E 必要な配列をMallocにMallocにするのに十分なメモリがない場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数に渡された引数が渡された場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化のためのバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化するバッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたMSGが作成されました </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化されたMSGを保持するために利用可能なバッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化RSAキー構造体 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するパディングの種類（WC_RSA_OAEP_PADまたはWC_RSA_PKCSV15_PAD） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュの種類（選択はhash.hにあります） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するマスク生成機能の種類 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージに関連付けるオプションのラベル <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>“I<sp/>use<sp/>Turing<sp/>Machines<sp/>to<sp/>ask<sp/>questions”</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[256];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[256];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicEncrypt_ex(in,<sp/>sizeof(in),<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal">&amp;rng,<sp/>WC_RSA_OAEP_PAD,<sp/>WC_HASH_TYPE_SHA,<sp/>WC_MGF1SHA1,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPrivateDecrypt_ex(out,<sp/>ret,<sp/>plain,<sp/>sizeof(plain),<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal">WC_RSA_OAEP_PAD,<sp/>WC_HASH_TYPE_SHA,<sp/>WC_MGF1SHA1,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="966" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="966" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a66a1aded8d710cec00046029be411ecb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaPrivateDecryptInline_ex</definition>
+        <argsstring>(byte *in, word32 inLen, byte **out, RsaKey *key, int type, enum wc_HashType hash, int mgf, byte *label, word32 labelSz)</argsstring>
+        <name>wc_RsaPrivateDecryptInline_ex</name>
+        <param>
+          <type>byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>byte **</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>enum wc_HashType</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mgf</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>labelSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数はRSAを使用してメッセージをインラインで復号化し、どのパディングタイプのオプションを示します。INバッファには、呼び出された後に復号化されたメッセージが含まれ、アウトバイトポインタはプレーンテキストがある「IN」バッファ内の場所を指します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>size 復号化が成功すると、復号化されたメッセージのサイズが返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E: 必要な配列をMallocにMallocにするのに十分なメモリがない場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_PAD_E: パディングのエラーが発生した場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_PADDING_E: 過去のパディングの解析中にエラーが発生した場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG: 関数に渡された引数が渡された場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化のためのバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化するバッファの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>&quot;in&quot;バッファの復号化されたメッセージの位置へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化RSAキー構造体 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するパディングの種類（WC_RSA_OAEP_PADまたはWC_RSA_PKCSV15_PAD） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュの種類（選択はhash.hにあります） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mgf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するマスク生成機能の種類 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージに関連付けるオプションのラベル <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>“I<sp/>use<sp/>Turing<sp/>Machines<sp/>to<sp/>ask<sp/>questions”</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[256];</highlight></codeline>
+<codeline><highlight class="normal">byte*<sp/>plain;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPublicEncrypt_ex(in,<sp/>sizeof(in),<sp/>out,<sp/>sizeof(out),<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal">&amp;rng,<sp/>WC_RSA_OAEP_PAD,<sp/>WC_HASH_TYPE_SHA,<sp/>WC_MGF1SHA1,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaPrivateDecryptInline_ex(out,<sp/>ret,<sp/>&amp;plain,<sp/>&amp;key,</highlight></codeline>
+<codeline><highlight class="normal">WC_RSA_OAEP_PAD,<sp/>WC_HASH_TYPE_SHA,<sp/>WC_MGF1SHA1,<sp/>NULL,<sp/>0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//handle<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1011" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="1011" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a65277ef2482b2a2af05c613b33cbf02a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaFlattenPublicKey</definition>
+        <argsstring>(RsaKey *key, byte *e, word32 *eSz, byte *n, word32 *nSz)</argsstring>
+        <name>wc_RsaFlattenPublicKey</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>eSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>nSz</declname>
+        </param>
+        <briefdescription>
+<para>RSAアルゴリズムに使用される個々の要素（E、N）にRSAKEY構造体を平らにします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 関数が正常に実行された場合は、エラーなしで返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG: いずれかのパラメータがNULL値で渡された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>RSA_BUFFER_E: 渡されたeまたはnバッファが正しいサイズではない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM: 内部関数にメモリエラーがある場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_VAL: 内部関数引数が無効な場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証に使用する鍵。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>eの値のバッファー。eはRSAモジュラ演算での大きな正の整数です。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>eバッファのサイズ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nの値のバッファー。NはRSAモジュラー演算では大きな正の整数です。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Rsa<sp/>key;<sp/>//<sp/>A<sp/>valid<sp/>RSA<sp/>key.</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>e[<sp/>buffer<sp/>sz<sp/>E.g.<sp/>256<sp/>];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>n[256];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>eSz<sp/>=<sp/>sizeof(e);</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>nSz<sp/>=<sp/>sizeof(n);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaFlattenPublicKey(&amp;key,<sp/>e,<sp/>&amp;eSz,<sp/>n,<sp/>&amp;nSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Failure<sp/>case.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_InitRsaKey_ex </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" kindref="member">wc_MakeRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1045" column="6" declfile="dox_comments/header_files/ja/rsa.h" declline="1045" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a4a7ac764a306106a2d805de0ce03f78a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaKeyToPublicDer</definition>
+        <argsstring>(RsaKey *key, byte *output, word32 inLen)</argsstring>
+        <name>wc_RsaKeyToPublicDer</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <briefdescription>
+<para>RSA公開鍵をDERフォーマットに変換します。出力に書き込み、書き込まれたバイト数を返します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>&gt;0 成功、書かれたバイト数。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたは出力がNULLの場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E エラー割り当てメモリが発生したときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>変換するRSAキー構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>保留された出力バッファー。（NULLが長さのみを返す場合） <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">const<sp/>int<sp/>BUFFER_SIZE<sp/>=<sp/>1024;<sp/>//<sp/>Some<sp/>adequate<sp/>size<sp/>for<sp/>the<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>output[BUFFER_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_RsaKeyToPublicDer(&amp;key,<sp/>output,<sp/>sizeof(output))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>Error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_RsaPublicKeyDerSize </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a754534e6ddb9db7c55de5793d442f904" kindref="member">wc_RsaKeyToPublicDer_ex</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1074" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="1074" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a754534e6ddb9db7c55de5793d442f904" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaKeyToPublicDer_ex</definition>
+        <argsstring>(RsaKey *key, byte *output, word32 inLen, int with_header)</argsstring>
+        <name>wc_RsaKeyToPublicDer_ex</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>with_header</declname>
+        </param>
+        <briefdescription>
+<para>RSA公開鍵をDERフォーマットに変換します。出力に書き込み、書き込まれたバイト数を返します。with_headerが0の場合（seq + n + e）だけがASN.1 Derフォーマットで返され、ヘッダーを除外します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>&gt;0 成功、書かれたバイト数。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたは出力がNULLの場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E エラー割り当てメモリが発生したときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>変換するRSAキー構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>保留された出力バッファー。（NULLが長さのみを返す場合） <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>key</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">const<sp/>int<sp/>BUFFER_SIZE<sp/>=<sp/>1024;<sp/>//<sp/>Some<sp/>adequate<sp/>size<sp/>for<sp/>the<sp/>buffer</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>output[BUFFER_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_RsaKeyToPublicDer_ex(&amp;key,<sp/>output,<sp/>sizeof(output),<sp/>0)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>Error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_RsaPublicKeyDerSize </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a4a7ac764a306106a2d805de0ce03f78a" kindref="member">wc_RsaKeyToPublicDer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1102" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="1102" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeRsaKey</definition>
+        <argsstring>(RsaKey *key, int size, long e, WC_RNG *rng)</argsstring>
+        <name>wc_MakeRsaKey</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>long</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、長さサイズ（ビット単位）のRSA秘密鍵を生成し、指数（e）を指定します。次に、このキーを提供されたRSAKEY構造体に格納するため、暗号化/復号化に使用できます。Eに使用するセキュア番号は65537です。サイズは、RSA_MIN_SIZEよりも大きく、RSA_MAX_SIZEよりも大きくなる必要があります。この機能が利用可能であるため、コンパイル時にオプションwolfssl_key_genを有効にする必要があります。これは、 - を使用してください./configureを使用する場合は、-enable-keygenで実現できます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 RSA秘密鍵の生成に成功したら返されました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力引数のいずれかがNULLの場合、サイズパラメータは必要な範囲外にあるか、eが誤って選択されている場合 </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E 提供されたRNG構造体を使用してランダムブロックを生成するエラーがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E RSAキーの生成中に使用された数学ライブラリにエラーがある場合に返されたRSAキーの生成中に使用された数学ライブラリにエラーがある場合に返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_CMP_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INVMOD_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MOD_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MUL_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ADD_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MULMOD_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_MEM RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_ZERO_E RSAキーの生成中に使用されている数学ライブラリにエラーがある場合は返される可能性があります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>生成された秘密鍵を保存するRSAKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ビット単位の希望のキー長。rsa_min_sizeより大きく、rsa_max_sizeよりも大きくなる必要があります。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>e</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成するために使用する指数パラメータ。安全な選択は65537です <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>priv;</highlight></codeline>
+<codeline><highlight class="normal">WC_WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">long<sp/>e<sp/>=<sp/>65537;<sp/>//<sp/>standard<sp/>value<sp/>to<sp/>use<sp/>for<sp/>exponent</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;priv,<sp/>NULL);<sp/>//<sp/>not<sp/>using<sp/>heap<sp/>hint.<sp/>No<sp/>custom<sp/>memory</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>generate<sp/>2048<sp/>bit<sp/>long<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_MakeRsaKey(&amp;priv,<sp/>2048,<sp/>e,<sp/>&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>private<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1143" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="1143" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1ab62eca8ad6726c5db562947e5e165a61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSetNonBlock</definition>
+        <argsstring>(RsaKey *key, RsaNb *nb)</argsstring>
+        <name>wc_RsaSetNonBlock</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>RsaNb *</type>
+          <declname>nb</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、ブロックされていないRSAコンテキストを設定します。RSANBコンテキストが設定されている場合、RSA関数を多くの小さな操作に分割する高速数学ベースの非ブロッキングEXPTMODが可能になります。wc_rsa_nonblockが定義されているときに有効になっています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたはNBがNULLの場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>RSAキー構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret,<sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">RsaNb<sp/><sp/>nb;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Enable<sp/>non-blocking<sp/>RSA<sp/>mode<sp/>-<sp/>provide<sp/>context</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RsaSetNonBlock(key,<sp/>&amp;nb);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">do<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>wc_RsaSSL_Sign(in,<sp/>inLen,<sp/>out,<sp/>outSz,<sp/>key,<sp/>rng);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>count++;<sp/>//<sp/>track<sp/>number<sp/>of<sp/>would<sp/>blocks</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(ret<sp/>==<sp/>FP_WOULDBLOCK)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>do<sp/>&quot;other&quot;<sp/>work<sp/>here</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>while<sp/>(ret<sp/>==<sp/>FP_WOULDBLOCK);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">printf(&quot;RSA<sp/>non-block<sp/>sign:<sp/>size<sp/>%d,<sp/>%d<sp/>times\n&quot;,<sp/>ret,<sp/>count);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1a623ecefb5f932cbdab21f9b777fa8ea9" kindref="member">wc_RsaSetNonBlockTime</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1179" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="1179" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rsa_8h_1a623ecefb5f932cbdab21f9b777fa8ea9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RsaSetNonBlockTime</definition>
+        <argsstring>(RsaKey *key, word32 maxBlockUs, word32 cpuMHz)</argsstring>
+        <name>wc_RsaSetNonBlockTime</name>
+        <param>
+          <type>RsaKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>maxBlockUs</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>cpuMHz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は最大ブロック時間の最大ブロック時間をマイクロ秒単位で設定します。それは、メガヘルツのCPU速度と共に事前計算されたテーブル（TFM.cexptModnbinstを参照）を使用して、提供された最大ブロック時間内に次の動作を完了できるかどうかを判断します。wc_rsa_nonblock_timeが定義されているときに有効になります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーがNULLの場合、またはWC_RSASETNONBLOCKが以前に呼び出され、キー - &gt; NBはNULLの場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>RSAキー構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxBlockUs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マイクロ秒をブロックする最大時間。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RsaKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">RsaNb<sp/><sp/>nb;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitRsaKey(&amp;key,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">wc_RsaSetNonBlock(key,<sp/>&amp;nb);</highlight></codeline>
+<codeline><highlight class="normal">wc_RsaSetNonBlockTime(&amp;key,<sp/>4000,<sp/>160);<sp/>//<sp/>Block<sp/>Max<sp/>=<sp/>4<sp/>ms,<sp/>CPU<sp/>=<sp/>160MHz</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="rsa_8h_1ab62eca8ad6726c5db562947e5e165a61" kindref="member">wc_RsaSetNonBlock</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/rsa.h" line="1200" column="5" declfile="dox_comments/header_files/ja/rsa.h" declline="1200" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="20"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a02c9b34d405c5f1c24956ee84a843ef6" kindref="member">wc_InitRsaKey</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1aba7b6eef17f80e711309f53f2c17dfc6" kindref="member">wc_InitRsaKey_Id</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>devId);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1ade0e7ccd93ec8c9e5ba5ded3e11b1226" kindref="member">wc_RsaSetRNG</ref>(RsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a0e5ef34d84c264a1affa8d3a6478b4ce" kindref="member">wc_FreeRsaKey</ref>(RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a72130d1043824f7e8a5df91fc6832539" kindref="member">wc_RsaPublicEncrypt</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a27ae50a0bc76cb4eea37fdbb565ae2a6" kindref="member">wc_RsaPrivateDecryptInline</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a674c968fd03a8b88931e412df8db7732" kindref="member">wc_RsaPrivateDecrypt</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a8299328ea8ddff961b79038bc97a4044" kindref="member">wc_RsaSSL_Sign</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a192d864bacce51770e774e304a343585" kindref="member">wc_RsaSSL_VerifyInline</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a1e996b7382fa0951cd5000d11fc4c0ea" kindref="member">wc_RsaSSL_Verify</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1aaf1d180d5e8bcad38da35d34bef49e11" kindref="member">wc_RsaPSS_Sign</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1ac6e4d2ef764f65e53569508a0060818e" kindref="member">wc_RsaPSS_Verify</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a3de78c85b8d5cf9d7b755292d6e75e3c" kindref="member">wc_RsaPSS_VerifyInline</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="465"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1abc0162af195b6a97d58deaec89d62d10" kindref="member">wc_RsaPSS_VerifyCheck</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>outLen,</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/>word32<sp/>digestLen,</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="527"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a4beef229be508f04004789e1e51ac859" kindref="member">wc_RsaPSS_VerifyCheck_ex</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>outLen,</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/>word32<sp/>digestLen,</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saltLen,</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"></highlight></codeline>
+<codeline lineno="587"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1af11e0726a51dd4278346902c10d6f6b5" kindref="member">wc_RsaPSS_VerifyCheckInline</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/>word32<sp/>digentLen,</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="646"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1ac6f0820cdf3b0189b01993814635fda3" kindref="member">wc_RsaPSS_VerifyCheckInline_ex</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,</highlight></codeline>
+<codeline lineno="647"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>digest,<sp/>word32<sp/>digentLen,</highlight></codeline>
+<codeline lineno="648"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saltLen,</highlight></codeline>
+<codeline lineno="649"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="650"><highlight class="normal"></highlight></codeline>
+<codeline lineno="701"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1ac32f035dce2d7765faf2bfc0289deeba" kindref="member">wc_RsaPSS_CheckPadding</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,</highlight></codeline>
+<codeline lineno="702"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>sigSz,</highlight></codeline>
+<codeline lineno="703"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hashType);</highlight></codeline>
+<codeline lineno="755"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a8149b3fea0859eb26d1dbcadba46cb4b" kindref="member">wc_RsaPSS_CheckPadding_ex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>sig,</highlight></codeline>
+<codeline lineno="756"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>sigSz,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hashType,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saltLen,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bits);</highlight></codeline>
+<codeline lineno="769"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1aa4149b9e60fcc1eba1e7a263bb10a558" kindref="member">wc_RsaEncryptSize</ref>(RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="770"><highlight class="normal"></highlight></codeline>
+<codeline lineno="796"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1ac52250c3b5c69ff052dfa6605cf49837" kindref="member">wc_RsaPrivateKeyDecode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32*<sp/>inOutIdx,</highlight></codeline>
+<codeline lineno="797"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key,<sp/>word32<sp/>inSz);</highlight></codeline>
+<codeline lineno="798"><highlight class="normal"></highlight></codeline>
+<codeline lineno="826"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a2610326206b322f33f59e31a845e24b9" kindref="member">wc_RsaPublicKeyDecode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32*<sp/>inOutIdx,</highlight></codeline>
+<codeline lineno="827"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RsaKey*<sp/>key,<sp/>word32<sp/>inSz);</highlight></codeline>
+<codeline lineno="828"><highlight class="normal"></highlight></codeline>
+<codeline lineno="855"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a437b3432338f18022e9b62d109ce0518" kindref="member">wc_RsaPublicKeyDecodeRaw</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>n,<sp/>word32<sp/>nSz,</highlight></codeline>
+<codeline lineno="856"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>e,<sp/>word32<sp/>eSz,<sp/>RsaKey*<sp/>key);</highlight></codeline>
+<codeline lineno="857"><highlight class="normal"></highlight></codeline>
+<codeline lineno="888"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1a428f841fea0e37d3c855c31b32f39dbd" kindref="member">wc_RsaKeyToDer</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>inLen);</highlight></codeline>
+<codeline lineno="889"><highlight class="normal"></highlight></codeline>
+<codeline lineno="923"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a9c5787bc3306eb65bec0f018314d309c" kindref="member">wc_RsaPublicEncrypt_ex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="924"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key,<sp/>WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type,</highlight></codeline>
+<codeline lineno="925"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>label,<sp/>word32<sp/>labelSz);</highlight></codeline>
+<codeline lineno="926"><highlight class="normal"></highlight></codeline>
+<codeline lineno="966"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1aa51e899f36d2429b30213b3374f76521" kindref="member">wc_RsaPrivateDecrypt_ex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,</highlight></codeline>
+<codeline lineno="967"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>out,<sp/>word32<sp/>outLen,<sp/>RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type,</highlight></codeline>
+<codeline lineno="968"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>label,<sp/>word32<sp/>labelSz);</highlight></codeline>
+<codeline lineno="969"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1011"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a66a1aded8d710cec00046029be411ecb" kindref="member">wc_RsaPrivateDecryptInline_ex</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>in,<sp/>word32<sp/>inLen,</highlight></codeline>
+<codeline lineno="1012"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">**<sp/>out,<sp/>RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type,<sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>wc_HashType<sp/>hash,</highlight></codeline>
+<codeline lineno="1013"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mgf,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>label,<sp/>word32<sp/>labelSz);</highlight></codeline>
+<codeline lineno="1014"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1045"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="rsa_8h_1a65277ef2482b2a2af05c613b33cbf02a" kindref="member">wc_RsaFlattenPublicKey</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>e,<sp/>word32*<sp/>eSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>n,</highlight></codeline>
+<codeline lineno="1046"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>nSz);</highlight></codeline>
+<codeline lineno="1047"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1074"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1a4a7ac764a306106a2d805de0ce03f78a" kindref="member">wc_RsaKeyToPublicDer</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>inLen);</highlight></codeline>
+<codeline lineno="1075"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1102"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1a754534e6ddb9db7c55de5793d442f904" kindref="member">wc_RsaKeyToPublicDer_ex</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>inLen,</highlight></codeline>
+<codeline lineno="1103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>with_header);</highlight></codeline>
+<codeline lineno="1104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1143"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1a3f89eea8d56ae352730ffd49ec2fd68e" kindref="member">wc_MakeRsaKey</ref>(RsaKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>e,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="1144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1179"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1ab62eca8ad6726c5db562947e5e165a61" kindref="member">wc_RsaSetNonBlock</ref>(RsaKey*<sp/>key,<sp/>RsaNb*<sp/>nb);</highlight></codeline>
+<codeline lineno="1180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1200"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rsa_8h_1a623ecefb5f932cbdab21f9b777fa8ea9" kindref="member">wc_RsaSetNonBlockTime</ref>(RsaKey*<sp/>key,<sp/>word32<sp/>maxBlockUs,</highlight></codeline>
+<codeline lineno="1201"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>cpuMHz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/rsa.h"/>
+  </compounddef>
+</doxygen>

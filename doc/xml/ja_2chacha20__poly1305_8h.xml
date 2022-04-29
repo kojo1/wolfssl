@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2chacha20__poly1305_8h" kind="file" language="C++">
+    <compoundname>chacha20_poly1305.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ChaCha20Poly1305_1ga80f8e7aba79e4fed82216a7850cc2b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ChaCha20Poly1305_Encrypt</definition>
+        <argsstring>(const byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE], const byte inIV[CHACHA20_POLY1305_AEAD_IV_SIZE], const byte *inAAD, const word32 inAADLen, const byte *inPlaintext, const word32 inPlaintextLen, byte *outCiphertext, byte outAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE])</argsstring>
+        <name>wc_ChaCha20Poly1305_Encrypt</name>
+        <param>
+          <type>const byte</type>
+          <declname>inKey</declname>
+          <array>[CHACHA20_POLY1305_AEAD_KEYSIZE]</array>
+        </param>
+        <param>
+          <type>const byte</type>
+          <declname>inIV</declname>
+          <array>[CHACHA20_POLY1305_AEAD_IV_SIZE]</array>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inAAD</declname>
+        </param>
+        <param>
+          <type>const word32</type>
+          <declname>inAADLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inPlaintext</declname>
+        </param>
+        <param>
+          <type>const word32</type>
+          <declname>inPlaintextLen</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>outCiphertext</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>outAuthTag</declname>
+          <array>[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]</array>
+        </param>
+        <briefdescription>
+<para>This function encrypts an input message, inPlaintext, using the ChaCha20 stream cipher, into the output buffer, outCiphertext. It also performs Poly-1305 authentication (on the cipher text), and stores the generated authentication tag in the output buffer, outAuthTag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、Chacha20 Stream暗号を使用して、Chacha20 Stream暗号を使用して、Output BufferTextに入力メッセージ、InPleaintextを暗号化します。また、Poly-1305認証（暗号テキスト）を実行し、生成した認証タグを出力バッファOutauthTagに格納します。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully encrypting the message </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG returned if there is an error during the encryption process</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the 32 byte key to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inIv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the 12 byte iv to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAAD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing arbitrary length additional authenticated data (AAD) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAADLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input AAD </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inPlaintext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the plaintext to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inPlaintextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of the plain text to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outCiphertext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outAuthTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a 16 byte wide buffer in which to store the authentication tag</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>12<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>inAAD[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>AAD<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[16];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_ChaCha20Poly1305_Encrypt(key,<sp/>iv,<sp/>inAAD,<sp/>sizeof(inAAD),</highlight></codeline>
+<codeline><highlight class="normal">plain,<sp/>sizeof(plain),<sp/>cipher,<sp/>authTag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>running<sp/>encrypt</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ChaCha20Poly1305_1gad9e109b0ad448d6ff4d4cb65d5c05d6a" kindref="member">wc_ChaCha20Poly1305_Decrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_ChaCha_* </para>
+</simplesect>
+<simplesect kind="see"><para>wc_Poly1305*</para>
+</simplesect>
+<simplesect kind="return"><para>0 メッセージの暗号化に成功したら返されました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 暗号化プロセス中にエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する32バイトのキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inIv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用する12バイトのIVを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAAD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>任意の長さの追加認証データ（AAD）を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAADLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力AADの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inPlaintext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化する平文を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inPlaintextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するプレーンテキストの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outCiphertext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号文を保存するバッファーへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>12<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>inAAD[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>AAD<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[16];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_ChaCha20Poly1305_Encrypt(key,<sp/>iv,<sp/>inAAD,<sp/>sizeof(inAAD),</highlight></codeline>
+<codeline><highlight class="normal">plain,<sp/>sizeof(plain),<sp/>cipher,<sp/>authTag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>running<sp/>encrypt</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ChaCha20Poly1305_1gad9e109b0ad448d6ff4d4cb65d5c05d6a" kindref="member">wc_ChaCha20Poly1305_Decrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_ChaCha_* </para>
+</simplesect>
+<simplesect kind="see"><para>wc_Poly1305* </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/chacha20_poly1305.h" line="50" column="5" declfile="dox_comments/header_files/chacha20_poly1305.h" declline="50" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ChaCha20Poly1305_1gad9e109b0ad448d6ff4d4cb65d5c05d6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ChaCha20Poly1305_Decrypt</definition>
+        <argsstring>(const byte inKey[CHACHA20_POLY1305_AEAD_KEYSIZE], const byte inIV[CHACHA20_POLY1305_AEAD_IV_SIZE], const byte *inAAD, const word32 inAADLen, const byte *inCiphertext, const word32 inCiphertextLen, const byte inAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE], byte *outPlaintext)</argsstring>
+        <name>wc_ChaCha20Poly1305_Decrypt</name>
+        <param>
+          <type>const byte</type>
+          <declname>inKey</declname>
+          <array>[CHACHA20_POLY1305_AEAD_KEYSIZE]</array>
+        </param>
+        <param>
+          <type>const byte</type>
+          <declname>inIV</declname>
+          <array>[CHACHA20_POLY1305_AEAD_IV_SIZE]</array>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inAAD</declname>
+        </param>
+        <param>
+          <type>const word32</type>
+          <declname>inAADLen</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inCiphertext</declname>
+        </param>
+        <param>
+          <type>const word32</type>
+          <declname>inCiphertextLen</declname>
+        </param>
+        <param>
+          <type>const byte</type>
+          <declname>inAuthTag</declname>
+          <array>[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]</array>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>outPlaintext</declname>
+        </param>
+        <briefdescription>
+<para>This function decrypts input ciphertext, inCiphertext, using the ChaCha20 stream cipher, into the output buffer, outPlaintext. It also performs Poly-1305 authentication, comparing the given inAuthTag to an authentication generated with the inAAD (arbitrary length additional authentication data). Note: If the generated authentication tag does not match the supplied authentication tag, the text is not decrypted. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、Chacha20 Stream暗号を使用して、Chacha20 Stream暗号を使用して、出力バッファ、OutpleAntextに入力された暗号文の入力を復号化します。また、Poly-1305認証を実行し、指定されたINAUTHTAGをINAADで生成された認証（任意の長さの追加認証データ）と比較します。注：生成された認証タグが提供された認証タグと一致しない場合、テキストは復号化されません。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully decrypting the message </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if any of the function arguments do not match what is expected </para>
+</simplesect>
+<simplesect kind="return"><para>MAC_CMP_FAILED_E Returned if the generated authentication tag does not match the supplied inAuthTag.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the 32 byte key to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inIv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the 12 byte iv to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAAD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing arbitrary length additional authenticated data (AAD) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAADLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input AAD </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inCiphertext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the ciphertext to decrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outCiphertextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the length of the ciphertext to decrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAuthTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 16 byte digest for authentication </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outPlaintext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the plaintext</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>12<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>inAAD[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>AAD<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[16]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>authentication<sp/>tag<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_ChaCha20Poly1305_Decrypt(key,<sp/>iv,<sp/>inAAD,<sp/>sizeof(inAAD),</highlight></codeline>
+<codeline><highlight class="normal">cipher,<sp/>sizeof(cipher),<sp/>plain,<sp/>authTag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>==<sp/>MAC_CMP_FAILED_E)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>during<sp/>authentication</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>with<sp/>function<sp/>arguments</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__ChaCha20Poly1305_1ga80f8e7aba79e4fed82216a7850cc2b30" kindref="member">wc_ChaCha20Poly1305_Encrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_ChaCha_* </para>
+</simplesect>
+<simplesect kind="see"><para>wc_Poly1305*</para>
+</simplesect>
+<simplesect kind="return"><para>0 メッセージの復号化に成功したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数引数のいずれかが予想されるものと一致しない場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>MAC_CMP_FAILED_E 生成された認証タグが提供されているINAUTHTAGと一致しない場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する32バイトのキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inIv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する12バイトのIVを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAAD</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>任意の長さの追加認証データ（AAD）を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAADLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力AADの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inCiphertext</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化する暗号文を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outCiphertextLen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化する暗号文の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inAuthTag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>認証のための16バイトのダイジェストを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>32<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>12<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>inAAD[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>AAD<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/><sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>authTag[16]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>received<sp/>authentication<sp/>tag<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_ChaCha20Poly1305_Decrypt(key,<sp/>iv,<sp/>inAAD,<sp/>sizeof(inAAD),</highlight></codeline>
+<codeline><highlight class="normal">cipher,<sp/>sizeof(cipher),<sp/>plain,<sp/>authTag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(ret<sp/>==<sp/>MAC_CMP_FAILED_E)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>during<sp/>authentication</highlight></codeline>
+<codeline><highlight class="normal">}<sp/>else<sp/>if(<sp/>ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>with<sp/>function<sp/>arguments</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__ChaCha20Poly1305_1ga80f8e7aba79e4fed82216a7850cc2b30" kindref="member">wc_ChaCha20Poly1305_Encrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_ChaCha_* </para>
+</simplesect>
+<simplesect kind="see"><para>wc_Poly1305* </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/chacha20_poly1305.h" line="114" column="5" declfile="dox_comments/header_files/chacha20_poly1305.h" declline="114" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="35"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ChaCha20Poly1305_1ga80f8e7aba79e4fed82216a7850cc2b30" kindref="member">wc_ChaCha20Poly1305_Encrypt</ref>(</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>inKey[CHACHA20_POLY1305_AEAD_KEYSIZE],</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>inIV[CHACHA20_POLY1305_AEAD_IV_SIZE],</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>inAAD,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>word32<sp/>inAADLen,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>inPlaintext,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>word32<sp/>inPlaintextLen,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>outCiphertext,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>outAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE]);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__ChaCha20Poly1305_1gad9e109b0ad448d6ff4d4cb65d5c05d6a" kindref="member">wc_ChaCha20Poly1305_Decrypt</ref>(</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>inKey[CHACHA20_POLY1305_AEAD_KEYSIZE],</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>inIV[CHACHA20_POLY1305_AEAD_IV_SIZE],</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>inAAD,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>word32<sp/>inAADLen,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>inCiphertext,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>word32<sp/>inCiphertextLen,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal"><sp/>inAuthTag[CHACHA20_POLY1305_AEAD_AUTHTAG_SIZE],</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>outPlaintext);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/chacha20_poly1305.h"/>
+  </compounddef>
+</doxygen>

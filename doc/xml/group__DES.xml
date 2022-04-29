@@ -1,0 +1,1725 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__DES" kind="group">
+    <compoundname>DES</compoundname>
+    <title>Algorithms - 3DES</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_SetKey</definition>
+        <argsstring>(Des *des, const byte *key, const byte *iv, int dir)</argsstring>
+        <name>wc_Des_SetKey</name>
+        <param>
+          <type>Des *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the key and initialization vector (iv) for the Des structure given as argument. It also initializes and allocates space for the buffers needed for encryption and decryption, if these have not yet been initialized. Note: If no iv is provided (i.e. iv == NULL) the initialization vector defaults to an iv of 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、引数として与えられたDES構造体のキーと初期化ベクトル（IV）を設定します。また、これらがまだ初期化されていない場合は、暗号化と復号化に必要なバッファーのスペースを初期化して割り当てます。注：IVが指定されていない場合（i.e.iv == null）初期化ベクトルは、デフォルトのIV 0になります。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 On successfully setting the key and initialization vector for the Des structure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des structure to initialize </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte key with which to initialize the Des structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv with which to initialize the Des structure. If this is not provided, the iv defaults to 0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>direction of encryption. Valid options are: DES_ENCRYPTION, and DES_DECRYPTION</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Des_SetKey(&amp;des,<sp/>key,<sp/>iv,<sp/>DES_ENCRYPTION);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>des<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga45363b66e4d05d03606cb1791c106e24" kindref="member">wc_Des_SetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 DES構造体のキーと初期化ベクトルを正常に設定する </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するDES構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DES構造を初期化するための8バイトのキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DES構造を初期化するための8バイトIVを含むバッファへのポインタ。これが提供されていない場合、IVはデフォルトで0になります <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Des_SetKey(&amp;des,<sp/>key,<sp/>iv,<sp/>DES_ENCRYPTION);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>des<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga45363b66e4d05d03606cb1791c106e24" kindref="member">wc_Des_SetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="37" column="6" declfile="dox_comments/header_files/des3.h" declline="37" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga45363b66e4d05d03606cb1791c106e24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_Des_SetIV</definition>
+        <argsstring>(Des *des, const byte *iv)</argsstring>
+        <name>wc_Des_SetIV</name>
+        <param>
+          <type>Des *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the initialization vector (iv) for the Des structure given as argument. When passed a NULL iv, it sets the initialization vector to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、引数として与えられたDES構造体の初期化ベクトル（IV）を設定します。NULL IVを渡したら、初期化ベクトルを0に設定します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des structure for which to set the iv </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv with which to initialize the Des structure. If this is not provided, the iv defaults to 0</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Des_SetIV(&amp;enc,<sp/>iv);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IVを設定するためのDES構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Des_SetIV(&amp;enc,<sp/>iv);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="64" column="6" declfile="dox_comments/header_files/des3.h" declline="64" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcEncrypt</definition>
+        <argsstring>(Des *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des_CbcEncrypt</name>
+        <param>
+          <type>Des *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function encrypts the input message, in, and stores the result in the output buffer, out. It uses DES encryption with cipher block chaining (CBC) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力メッセージを暗号化し、結果を出力バッファーに格納します。暗号ブロックチェーンチェーン（CBC）モードでDES暗号化を使用します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully encrypting the given input message</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the message to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the message to encrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gab608cc56cab33a74e928951856c6467e" kindref="member">wc_Des_CbcDecrypt</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 与えられた入力メッセージの暗号化に成功したときに返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するDES構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するメッセージを含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gab608cc56cab33a74e928951856c6467e" kindref="member">wc_Des_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="96" column="6" declfile="dox_comments/header_files/des3.h" declline="96" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gab608cc56cab33a74e928951856c6467e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcDecrypt</definition>
+        <argsstring>(Des *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des_CbcDecrypt</name>
+        <param>
+          <type>Des *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function decrypts the input ciphertext, in, and stores the resulting plaintext in the output buffer, out. It uses DES encryption with cipher block chaining (CBC) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーンチェーン（CBC）モードでDES暗号化を使用します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully decrypting the given ciphertext</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des structure to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the decrypted plaintext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the ciphertext to decrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>dec;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>decryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_DECRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcDecrypt(&amp;dec,<sp/>decoded,<sp/>cipher,<sp/>sizeof(cipher))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" kindref="member">wc_Des_CbcEncrypt</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用するDES構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>dec;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>decryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_DECRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcDecrypt(&amp;dec,<sp/>decoded,<sp/>cipher,<sp/>sizeof(cipher))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga53cc69c0d49017e7cffdc6e8cb10d6c9" kindref="member">wc_Des_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" kindref="member">wc_Des_CbcEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="129" column="6" declfile="dox_comments/header_files/des3.h" declline="129" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gab22332e1ecdac8315af8aa508934747b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_EcbEncrypt</definition>
+        <argsstring>(Des *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des_EcbEncrypt</name>
+        <param>
+          <type>Des *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function encrypts the input message, in, and stores the result in the output buffer, out. It uses Des encryption with Electronic Codebook (ECB) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力メッセージを暗号化し、結果を出力バッファーに格納します。電子コードブック（ECB）モードでDES暗号化を使用します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0: Returned upon successfully encrypting the given plaintext.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the encrypted message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the plaintext to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the plaintext to encrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_EcbEncrypt(&amp;enc,cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_Des_SetKe</para>
+</simplesect>
+3 <simplesect kind="return"><para>0: 与えられた平文を正常に暗号化すると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するDES構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージを保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化する平文を含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des<sp/>enc;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_EcbEncrypt(&amp;enc,cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_Des_SetKe </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="161" column="6" declfile="dox_comments/header_files/des3.h" declline="161" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga405a57ea9dbc59d01b718c1f6d76efff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_EcbEncrypt</definition>
+        <argsstring>(Des3 *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des3_EcbEncrypt</name>
+        <param>
+          <type>Des3 *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function encrypts the input message, in, and stores the result in the output buffer, out. It uses Des3 encryption with Electronic Codebook (ECB) mode. Warning: In nearly all use cases ECB mode is considered to be less secure. Please avoid using ECB API’s directly whenever possible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力メッセージを暗号化し、結果を出力バッファーに格納します。電子コードブック（ECB）モードでDES3暗号化を使用します。警告：ほぼすべてのユースケースでECBモードは安全性が低いと考えられています。可能な限りECB APIを直接使用しないでください。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully encrypting the given plaintext</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des3 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the encrypted message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the plaintext to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the plaintext to encrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_EcbEncrypt(&amp;enc,cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 与えられた平文を正常に暗号化すると返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するDES3構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されたメッセージを保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化する平文を含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>encrypt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_EcbEncrypt(&amp;enc,cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="195" column="5" declfile="dox_comments/header_files/des3.h" declline="195" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gaac994db29073c6ee2898981020010f27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_SetKey</definition>
+        <argsstring>(Des3 *des, const byte *key, const byte *iv, int dir)</argsstring>
+        <name>wc_Des3_SetKey</name>
+        <param>
+          <type>Des3 *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the key and initialization vector (iv) for the Des3 structure given as argument. It also initializes and allocates space for the buffers needed for encryption and decryption, if these have not yet been initialized. Note: If no iv is provided (i.e. iv == NULL) the initialization vector defaults to an iv of 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、引数として与えられたDES3構造のキーと初期化ベクトル（IV）を設定します。また、これらがまだ初期化されていない場合は、暗号化と復号化に必要なバッファーのスペースを初期化して割り当てます。注：IVが指定されていない場合（i.e.iv == null）初期化ベクトルは、デフォルトのIV 0になります。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 On successfully setting the key and initialization vector for the Des structure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des3 structure to initialize </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 24 byte key with which to initialize the Des3 structure </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv with which to initialize the Des3 structure. If this is not provided, the iv defaults to 0 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>direction of encryption. Valid options are: DES_ENCRYPTION, and DES_DECRYPTION</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>24<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Des3_SetKey(&amp;des,<sp/>key,<sp/>iv,<sp/>DES_ENCRYPTION);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>des<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gaf84a8b5c969ad9023cba0206d8983b12" kindref="member">wc_Des3_SetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga471bf2c8a92d9dd8902d936ea453b8a5" kindref="member">wc_Des3_CbcEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 DES構造体のキーと初期化ベクトルを正常に設定する </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するDES3構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DES3構造を初期化する24バイトのキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DES3構造を初期化するための8バイトIVを含むバッファへのポインタ。これが提供されていない場合、IVはデフォルトで0になります <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>24<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_Des3_SetKey(&amp;des,<sp/>key,<sp/>iv,<sp/>DES_ENCRYPTION);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>des<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gaf84a8b5c969ad9023cba0206d8983b12" kindref="member">wc_Des3_SetIV</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga471bf2c8a92d9dd8902d936ea453b8a5" kindref="member">wc_Des3_CbcEncrypt</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="236" column="6" declfile="dox_comments/header_files/des3.h" declline="236" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gaf84a8b5c969ad9023cba0206d8983b12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_SetIV</definition>
+        <argsstring>(Des3 *des, const byte *iv)</argsstring>
+        <name>wc_Des3_SetIV</name>
+        <param>
+          <type>Des3 *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the initialization vector (iv) for the Des3 structure given as argument. When passed a NULL iv, it sets the initialization vector to 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、引数として与えられたDES3構造の初期化ベクトル（IV）を設定します。NULL IVを渡したら、初期化ベクトルを0に設定します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des3 structure for which to set the iv </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv with which to initialize the Des3 structure. If this is not provided, the iv defaults to 0</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_Des3_SetIV(&amp;enc,<sp/>iv);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>IVを設定するためのDES3構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_Des3_SetIV(&amp;enc,<sp/>iv);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="266" column="6" declfile="dox_comments/header_files/des3.h" declline="266" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga471bf2c8a92d9dd8902d936ea453b8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcEncrypt</definition>
+        <argsstring>(Des3 *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des3_CbcEncrypt</name>
+        <param>
+          <type>Des3 *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function encrypts the input message, in, and stores the result in the output buffer, out. It uses Triple Des (3DES) encryption with cipher block chaining (CBC) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力メッセージを暗号化し、結果を出力バッファーに格納します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully encrypting the given input message</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des3 structure to use for encryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the message to encrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the message to encrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 与えられた入力メッセージの暗号化に成功したときに返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するDES3構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化するメッセージを含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>enc;<sp/>//<sp/>Des3<sp/>structure<sp/>used<sp/>for<sp/>encryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>enc<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_ENCRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>plain[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[sizeof(plain)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcEncrypt(&amp;enc,<sp/>cipher,<sp/>plain,<sp/>sizeof(plain))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="298" column="6" declfile="dox_comments/header_files/des3.h" declline="298" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcDecrypt</definition>
+        <argsstring>(Des3 *des, byte *out, const byte *in, word32 sz)</argsstring>
+        <name>wc_Des3_CbcDecrypt</name>
+        <param>
+          <type>Des3 *</type>
+          <declname>des</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function decrypts the input ciphertext, in, and stores the resulting plaintext in the output buffer, out. It uses Triple Des (3DES) encryption with cipher block chaining (CBC) mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。</para>
+<para>3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully decrypting the given ciphertext</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Des3 structure to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the decrypted plaintext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the ciphertext to decrypt</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>dec;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>decryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_DECRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcDecrypt(&amp;dec,<sp/>decoded,<sp/>cipher,<sp/>sizeof(cipher))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga471bf2c8a92d9dd8902d936ea453b8a5" kindref="member">wc_Des3_CbcEncrypt</ref></para>
+</simplesect>
+3 <simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>des</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用するDES3構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Des3<sp/>dec;<sp/>//<sp/>Des<sp/>structure<sp/>used<sp/>for<sp/>decryption</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>dec<sp/>with<sp/>wc_Des3_SetKey,<sp/>use<sp/>mode<sp/>DES_DECRYPTION</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcDecrypt(&amp;dec,<sp/>decoded,<sp/>cipher,<sp/>sizeof(cipher))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gaac994db29073c6ee2898981020010f27" kindref="member">wc_Des3_SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga471bf2c8a92d9dd8902d936ea453b8a5" kindref="member">wc_Des3_CbcEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/des3.h" line="331" column="6" declfile="dox_comments/header_files/des3.h" declline="331" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des_CbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーンチェーン（CBC）モードでDES暗号化を使用します。この関数は、wc_des_cbcdecryptの代わりに、ユーザーがDES構造体を直接インスタンス化せずにメッセージを復号化できるようにします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function decrypts the input ciphertext, in, and stores the resulting plaintext in the output buffer, out. It uses DES encryption with cipher block chaining (CBC) mode. This function is a substitute for wc_Des_CbcDecrypt, allowing the user to decrypt a message without directly instantiating a Des structure.</para>
+<para>3 <simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体の割り当てスペースが割り当てられている場合に返された </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化する暗号文の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する8バイトのキーを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),<sp/>key,</highlight></codeline>
+<codeline><highlight class="normal">iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gab608cc56cab33a74e928951856c6467e" kindref="member">wc_Des_CbcDecrypt</ref></para>
+</simplesect>
+3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully decrypting the given ciphertext </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating space for a Des structure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the decrypted plaintext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the ciphertext to decrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte key to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv to use for decryption. If no iv is provided, the iv defaults to 0</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),<sp/>key,</highlight></codeline>
+<codeline><highlight class="normal">iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gab608cc56cab33a74e928951856c6467e" kindref="member">wc_Des_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_encrypt.h" line="60" column="6" declfile="dox_comments/header_files/ja/wc_encrypt.h" declline="60" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga185c52a79aec5dab46d3b909b17174da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des_CbcEncryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des_CbcEncryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力平文を暗号化し、結果の暗号文を出力バッファーに出力します。暗号ブロックチェーンチェーン（CBC）モードでDES暗号化を使用します。この関数は、WC_DES_CBCENCRYPTの代わりになり、ユーザーがDES構造を直接インスタンス化せずにメッセージを暗号化できます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function encrypts the input plaintext, in, and stores the resulting ciphertext in the output buffer, out. It uses DES encryption with cipher block chaining (CBC) mode. This function is a substitute for wc_Des_CbcEncrypt, allowing the user to encrypt a message without directly instantiating a Des structure.</para>
+<para>3 <simplesect kind="return"><para>0 データの暗号化に成功した後に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体にメモリを割り当てるエラーがある場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 暗号化中に任意のエラーに戻ります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最終暗号化データ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるデータは、DESブロックサイズに埋められなければなりません。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するキーへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" kindref="member">wc_Des_CbcEncrypt</ref></para>
+</simplesect>
+3</para>
+<para><simplesect kind="return"><para>0 Returned after successfully encrypting data. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there&apos;s an error allocating memory for a Des structure. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Returned on any error during encryption.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Final encrypted data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data to be encrypted, must be padded to Des block size. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the key to use for encryption. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initialization vector</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga4334ddc8046c4f72df1c54f4cd1a2a25" kindref="member">wc_Des_CbcEncrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_encrypt.h" line="88" column="6" declfile="dox_comments/header_files/ja/wc_encrypt.h" declline="88" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1gacbf21084c40f2dcb73785252404dfebc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcEncryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des3_CbcEncryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力平文を暗号化し、結果の暗号文を出力バッファーに出力します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。この関数は、WC_DES3_CBCENCRYPTの代わりになり、ユーザーがDES3構造を直接インスタンス化せずにメッセージを暗号化できます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function encrypts the input plaintext, in, and stores the resulting ciphertext in the output buffer, out. It uses Triple DES (3DES) encryption with cipher block chaining (CBC) mode. This function is a substitute for wc_Des3_CbcEncrypt, allowing the user to encrypt a message without directly instantiating a Des3 structure.</para>
+<para>3 <simplesect kind="return"><para>0 データの暗号化に成功した後に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体にメモリを割り当てるエラーがある場合は返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 暗号化中に任意のエラーに戻ります。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最終暗号化データ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化されるデータは、DESブロックサイズに埋められなければなりません。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化に使用するキーへのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" kindref="member">wc_Des3_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga185c52a79aec5dab46d3b909b17174da" kindref="member">wc_Des_CbcEncryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref></para>
+</simplesect>
+3</para>
+<para><simplesect kind="return"><para>0 Returned after successfully encrypting data. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there&apos;s an error allocating memory for a Des structure. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Returned on any error during encryption.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Final encrypted data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data to be encrypted, must be padded to Des block size. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input buffer. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the key to use for encryption. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initialization vector</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>in[]<sp/>=<sp/>{<sp/>//<sp/>Initialize<sp/>with<sp/>plaintext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>out[sizeof(in)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcEncryptWithKey(&amp;out,<sp/>in,<sp/>sizeof(in),<sp/>key,<sp/>iv)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>encrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" kindref="member">wc_Des3_CbcDecryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1ga185c52a79aec5dab46d3b909b17174da" kindref="member">wc_Des_CbcEncryptWithKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__DES_1gae060cdb2d60657b9c38bab3b37cb1c3d" kindref="member">wc_Des_CbcDecryptWithKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_encrypt.h" line="119" column="6" declfile="dox_comments/header_files/ja/wc_encrypt.h" declline="119" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__DES_1ga9576b55b381f594534ecf96fbb80f2b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Des3_CbcDecryptWithKey</definition>
+        <argsstring>(byte *out, const byte *in, word32 sz, const byte *key, const byte *iv)</argsstring>
+        <name>wc_Des3_CbcDecryptWithKey</name>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力暗号文を復号化し、結果の平文を出力バッファーに出力します。暗号ブロックチェーン（CBC）モードでトリプルDES（3DES）暗号化を使用します。この関数は、wc_des3_cbcdecryptの代わりに、ユーザーがDES3構造を直接インスタンス化せずにメッセージを復号化できるようにします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function decrypts the input ciphertext, in, and stores the resulting plaintext in the output buffer, out. It uses Triple Des (3DES) encryption with cipher block chaining (CBC) mode. This function is a substitute for wc_Des3_CbcDecrypt, allowing the user to decrypt a message without directly instantiating a Des3 structure.</para>
+<para>3 <simplesect kind="return"><para>0 与えられた暗号文を正常に復号化したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E DES構造体の割り当てスペースが割り当てられている場合に返された </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化された平文を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>暗号化された暗号文を含む入力バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化する暗号文の長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化に使用する24バイトのキーを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>24<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),</highlight></codeline>
+<codeline><highlight class="normal">key,<sp/>iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref></para>
+</simplesect>
+3</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully decrypting the given ciphertext </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating space for a Des structure</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the decrypted plaintext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the input buffer containing the encrypted ciphertext </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the ciphertext to decrypt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 24 byte key to use for decryption </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the 8 byte iv to use for decryption. If no iv is provided, the iv defaults to 0</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>24<sp/>byte<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>iv[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>8<sp/>byte<sp/>iv<sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>cipher[]<sp/><sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>ciphertext<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>decoded[sizeof(cipher)];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Des3_CbcDecryptWithKey(decoded,<sp/>cipher,<sp/>sizeof(cipher),</highlight></codeline>
+<codeline><highlight class="normal">key,<sp/>iv)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decrypting<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__DES_1ga04fad3c19e143a7bd72b1adec933e0ce" kindref="member">wc_Des3_CbcDecrypt</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/wc_encrypt.h" line="148" column="6" declfile="dox_comments/header_files/ja/wc_encrypt.h" declline="148" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

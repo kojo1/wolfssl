@@ -1,0 +1,1460 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2dh_8h" kind="file" language="C++">
+    <compoundname>dh.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitDhKey</definition>
+        <argsstring>(DhKey *key)</argsstring>
+        <name>wc_InitDhKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This function initializes a Diffie-Hellman key for use in negotiating a secure secret key with the Diffie-Hellman exchange protocol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、Diffie-Hellman Exchangeプロトコルを使用して安全な秘密鍵を交渉するのに使用するためのDiffie-Hellmanキーを初期化します。</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure to initialize for use with secure key exchanges</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDhKey(&amp;key);<sp/>//<sp/>initialize<sp/>DH<sp/>key</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gad980c654cab110b848d4f1236c31c97f" kindref="member">wc_FreeDhKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" kindref="member">wc_DhGenerateKeyPair</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitDhKey(&amp;key);<sp/>//<sp/>initialize<sp/>DH<sp/>key</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gad980c654cab110b848d4f1236c31c97f" kindref="member">wc_FreeDhKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" kindref="member">wc_DhGenerateKeyPair</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="21" column="5" declfile="dox_comments/header_files/dh.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gad980c654cab110b848d4f1236c31c97f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_FreeDhKey</definition>
+        <argsstring>(DhKey *key)</argsstring>
+        <name>wc_FreeDhKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>This function frees a Diffie-Hellman key after it has been used to negotiate a secure secret key with the Diffie-Hellman exchange protocol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、Diffie-Hellman Exchangeプロトコルを使用して安全な秘密鍵をネゴシエートするために使用された後にDiffie-Hellmanキーを解放します。</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure to free</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>perform<sp/>key<sp/>exchange</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeDhKey(&amp;key);<sp/>//<sp/>free<sp/>DH<sp/>key<sp/>to<sp/>avoid<sp/>memory<sp/>leaks</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" kindref="member">wc_InitDhKey</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>perform<sp/>key<sp/>exchange</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_FreeDhKey(&amp;key);<sp/>//<sp/>free<sp/>DH<sp/>key<sp/>to<sp/>avoid<sp/>memory<sp/>leaks</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" kindref="member">wc_InitDhKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="43" column="6" declfile="dox_comments/header_files/dh.h" declline="43" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhGenerateKeyPair</definition>
+        <argsstring>(DhKey *key, WC_RNG *rng, byte *priv, word32 *privSz, byte *pub, word32 *pubSz)</argsstring>
+        <name>wc_DhGenerateKeyPair</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>pubSz</declname>
+        </param>
+        <briefdescription>
+<para>This function generates a public/private key pair based on the Diffie-Hellman public parameters, storing the private key in priv and the public key in pub. It takes an initialized Diffie-Hellman key and an initialized rng structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数はdiffie-hellmanパブリックパラメータに基づいてパブリック/秘密鍵ペアを生成し、PRIVSの秘密鍵とPubの公開鍵を格納します。初期化されたDiffie-Hellmanキーと初期化されたRNG構造を取ります。</para>
+<para><simplesect kind="return"><para>BAD_FUNC_ARG Returned if there is an error parsing one of the inputs to this function </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E Returned if there is an error generating a random number using rng </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E May be returned if there is an error in the math library while generating the public key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E May be returned if there is an error in the math library while generating the public key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E May be returned if there is an error in the math library while generating the public key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E May be returned if there is an error in the math library while generating the public key</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure from which to generate the key pair </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an initialized random number generator (rng) with which to generate the keys </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer in which to store the private key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>will store the size of the private key written to priv </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer in which to store the public key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>will store the size of the private key written to pub</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[256];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[256];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>privSz,<sp/>pubSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitDhKey(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Set<sp/>DH<sp/>parameters<sp/>using<sp/>wc_DhSetKey<sp/>or<sp/>wc_DhKeyDecode</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhGenerateKeyPair(&amp;key,<sp/>&amp;rng,<sp/>priv,<sp/>&amp;privSz,<sp/>pub,<sp/>&amp;pubSz);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" kindref="member">wc_InitDhKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref></para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG この関数への入力の1つを解析するエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E RNGを使用して乱数を生成するエラーが発生した場合 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 公開鍵の生成中に数学ライブラリにエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 公開鍵の生成中に数学ライブラリにエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 公開鍵の生成中に数学ライブラリにエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 公開鍵の生成中に数学ライブラリにエラーがある場合は返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーペアを生成するDHKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを生成するための初期化された乱数発生器（RNG）へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密鍵を保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PRIVに書かれた秘密鍵のサイズを保存します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>公開鍵を保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[256];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[256];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>privSz,<sp/>pubSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_InitDhKey(&amp;key);<sp/>//<sp/>initialize<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Set<sp/>DH<sp/>parameters<sp/>using<sp/>wc_DhSetKey<sp/>or<sp/>wc_DhKeyDecode</highlight></codeline>
+<codeline><highlight class="normal">WC_RNG<sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">wc_InitRng(&amp;rng);<sp/>//<sp/>initialize<sp/>rng</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhGenerateKeyPair(&amp;key,<sp/>&amp;rng,<sp/>priv,<sp/>&amp;privSz,<sp/>pub,<sp/>&amp;pubSz);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" kindref="member">wc_InitDhKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="94" column="5" declfile="dox_comments/header_files/dh.h" declline="94" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gab40f5052ed8ebc01b4f6fd1f9a7181dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhAgree</definition>
+        <argsstring>(DhKey *key, byte *agree, word32 *agreeSz, const byte *priv, word32 privSz, const byte *otherPub, word32 pubSz)</argsstring>
+        <name>wc_DhAgree</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>agree</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>agreeSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>privSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>otherPub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <briefdescription>
+<para>This function generates an agreed upon secret key based on a local private key and a received public key. If completed on both sides of an exchange, this function generates an agreed upon secret key for symmetric communication. On successfully generating a shared secret key, the size of the secret key written will be stored in agreeSz. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、ローカル秘密鍵と受信した公開鍵に基づいて合意された秘密鍵を生成します。交換の両側で完了した場合、この関数は対称通信のための秘密鍵の合意を生成します。共有秘密鍵の生成に成功すると、書かれた秘密鍵のサイズは仲間に保存されます。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully generating an agreed upon secret key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E May be returned if there is an error while generating the shared secret key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E May be returned if there is an error while generating the shared secret key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E May be returned if there is an error while generating the shared secret key </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E May be returned if there is an error while generating the shared secret key</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure to use to compute the shared key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>agree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the secret key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>agreeSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>will hold the size of the secret key after successful generation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the local secret key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the local secret key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherPub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the received public key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pubSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the received public key</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[256];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>agree[256];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>agreeSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>set<sp/>key<sp/>prime<sp/>and<sp/>base</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>wc_DhGenerateKeyPair<sp/>--<sp/>store<sp/>private<sp/>key<sp/>in<sp/>priv</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/>=<sp/>{<sp/>//<sp/>initialized<sp/>with<sp/>the<sp/>received<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhAgree(&amp;key,<sp/>agree,<sp/>&amp;agreeSz,<sp/>priv,<sp/>sizeof(priv),<sp/>pub,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(pub));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>shared<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" kindref="member">wc_DhGenerateKeyPair</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 合意された秘密鍵の生成に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E 共有秘密鍵の生成中にエラーが発生した場合に返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_READ_E 共有秘密鍵の生成中にエラーが発生した場合に返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_EXPTMOD_E 共有秘密鍵の生成中にエラーが発生した場合に返却される可能性があります </para>
+</simplesect>
+<simplesect kind="return"><para>MP_TO_E 共有秘密鍵の生成中にエラーが発生した場合に返却される可能性があります </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>共有キーを計算するために使用するDHKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>agree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>秘密キーを保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>agreeSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>成功した後に秘密鍵のサイズを保持します </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ローカル秘密鍵を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>privSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>地元の秘密鍵のサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherPub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>受信した公開鍵を含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>priv[256];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>agree[256];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>agreeSz;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>key,<sp/>set<sp/>key<sp/>prime<sp/>and<sp/>base</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>wc_DhGenerateKeyPair<sp/>--<sp/>store<sp/>private<sp/>key<sp/>in<sp/>priv</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>pub[]<sp/>=<sp/>{<sp/>//<sp/>initialized<sp/>with<sp/>the<sp/>received<sp/>public<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhAgree(&amp;key,<sp/>agree,<sp/>&amp;agreeSz,<sp/>priv,<sp/>sizeof(priv),<sp/>pub,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(pub));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>shared<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" kindref="member">wc_DhGenerateKeyPair</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="145" column="5" declfile="dox_comments/header_files/dh.h" declline="145" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhKeyDecode</definition>
+        <argsstring>(const byte *input, word32 *inOutIdx, DhKey *key, word32)</argsstring>
+        <name>wc_DhKeyDecode</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>inOutIdx</declname>
+        </param>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+        </param>
+        <briefdescription>
+<para>This function decodes a Diffie-Hellman key from the given input buffer containing the key in DER format. It stores the result in the DhKey structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この機能は、DERフォーマットのキーを含む与えられた入力バッファからDiffie-Hellmanキーをデコードします。結果をDHKEY構造体に格納します。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully decoding the input key </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E Returned if there is an error parsing the sequence of the input </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E Returned if there is an error reading the private key parameters from the parsed input</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the DER formatted Diffie-Hellman key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to an integer in which to store the index parsed to while decoding the key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure to initialize with the input key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input buffer. Gives the max length that may be read</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>keyBuff[1024];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>with<sp/>DER<sp/>formatted<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_DhKeyInit(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhKeyDecode(keyBuff,<sp/>&amp;idx,<sp/>&amp;key,<sp/>sizeof(keyBuff));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decoding<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 入力キーの復号に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E 入力のシーケンスを解析したエラーがある場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E 解析された入力から秘密鍵パラメータを読み取るエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>derフォーマットされたdiffie-hellmanキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutIdx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーをデコードしている間に解析されたインデックスを保存する整数へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力キーで初期化するためのDHKEY構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>keyBuff[1024];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>with<sp/>DER<sp/>formatted<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">wc_DhKeyInit(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhKeyDecode(keyBuff,<sp/>&amp;idx,<sp/>&amp;key,<sp/>sizeof(keyBuff));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>decoding<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="187" column="5" declfile="dox_comments/header_files/dh.h" declline="187" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhSetKey</definition>
+        <argsstring>(DhKey *key, const byte *p, word32 pSz, const byte *g, word32 gSz)</argsstring>
+        <name>wc_DhSetKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>gSz</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the key for a DhKey structure using the input private key parameters. Unlike wc_DhKeyDecode, this function does not require that the input key be formatted in DER format, and instead simply accepts the parsed input parameters p (prime) and g (base). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、入力秘密鍵パラメータを使用してDHKEY構造体のキーを設定します。WC_DHKEYDECODEとは異なり、この関数は入力キーがDERフォーマットでフォーマットされ、代わりにPARSED入力パラメータP（Prime）とG（Base）を受け入れる必要はありません。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully setting the key </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if any of the input parameters evaluate to NULL </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E Returned if there is an error initializing the key parameters for storage </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E Returned if there is an error reading in the DH key parameters p and g</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the DhKey structure on which to set the key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the prime for use with the key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input prime </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the base for use with the key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input base</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>p[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>prime<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>base<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_DhKeyInit(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhSetKey(key,<sp/>p,<sp/>sizeof(p),<sp/>g,<sp/>sizeof(g));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>setting<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 鍵の設定に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力パラメータのいずれかがNULLに評価された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>MP_INIT_E ストレージのキーパラメータの初期化中にエラーがある場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_DH_KEY_E DHキーパラメータPおよびGでエラーの読み取りがある場合は返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーを設定するDHKEY構造体へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーで使用するためのプライムを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力プライムの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーで使用するためのベースを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">DhKey<sp/>key;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>p[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>prime<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>base<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_DhKeyInit(&amp;key);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhSetKey(key,<sp/>p,<sp/>sizeof(p),<sp/>g,<sp/>sizeof(g));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>setting<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="228" column="5" declfile="dox_comments/header_files/dh.h" declline="228" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gac23600c6671651b44370dae535cb798e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhParamsLoad</definition>
+        <argsstring>(const byte *input, word32 inSz, byte *p, word32 *pInOutSz, byte *g, word32 *gInOutSz)</argsstring>
+        <name>wc_DhParamsLoad</name>
+        <param>
+          <type>const byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>pInOutSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>gInOutSz</declname>
+        </param>
+        <briefdescription>
+<para>This function loads the Diffie-Hellman parameters, p (prime) and g (base) out of the given input buffer, DER formatted. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、与えられた入力バッファからDiffie-HellmanパラメータP（Prime）とG（ベース）をフォーマットされています。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully extracting the DH parameters </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E Returned if an error occurs while parsing the DER formatted DH certificate </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if there is inadequate space in p or g to store the parsed parameters</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing a DER formatted Diffie-Hellman certificate to parse </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the input buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer in which to store the parsed prime </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pInOutSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a word32 object containing the available size in the p buffer. Will be overwritten with the number of bytes written to the buffer after completing the function call </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer in which to store the parsed base </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gInOutSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a word32 object containing the available size in the g buffer. Will be overwritten with the number of bytes written to the buffer after completing the function call</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>dhCert[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>DER<sp/>formatted<sp/>certificate<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>p[MAX_DH_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[MAX_DH_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pSz<sp/>=<sp/>MAX_DH_SIZE;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>gSz<sp/>=<sp/>MAX_DH_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhParamsLoad(dhCert,<sp/>sizeof(dhCert),<sp/>p,<sp/>&amp;pSz,<sp/>g,<sp/>&amp;gSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>inputs</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 DHパラメータの抽出に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>ASN_PARSE_E DERフォーマットのDH証明書の解析中にエラーが発生した場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E 解析されたパラメータを格納するためにPまたはGに不適切なスペースがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解析するDERフォーマットされたDifie-Hellman証明書を含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解析されたプライムを保存するバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pInOutSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pバッファ内の使用可能なサイズを含むWord32オブジェクトへのポインタ。関数呼び出しを完了した後にバッファに書き込まれたバイト数で上書きされます。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解析されたベースを保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>dhCert[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>DER<sp/>formatted<sp/>certificate<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>p[MAX_DH_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[MAX_DH_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>pSz<sp/>=<sp/>MAX_DH_SIZE;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>gSz<sp/>=<sp/>MAX_DH_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_DhParamsLoad(dhCert,<sp/>sizeof(dhCert),<sp/>p,<sp/>&amp;pSz,<sp/>g,<sp/>&amp;gSz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>parsing<sp/>inputs</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="272" column="5" declfile="dox_comments/header_files/dh.h" declline="272" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const DhParams *</type>
+        <definition>const DhParams * wc_Dh_ffdhe2048_Get</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_Dh_ffdhe2048_Get</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns ... and requires that HAVE_FFDHE_2048 be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" kindref="member">wc_Dh_ffdhe3072_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" kindref="member">wc_Dh_ffdhe4096_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" kindref="member">wc_Dh_ffdhe6144_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" kindref="member">wc_Dh_ffdhe8192_Get</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="286" column="16" declfile="dox_comments/header_files/dh.h" declline="286" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const DhParams *</type>
+        <definition>const DhParams * wc_Dh_ffdhe3072_Get</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_Dh_ffdhe3072_Get</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns ... and requires that HAVE_FFDHE_3072 be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" kindref="member">wc_Dh_ffdhe2048_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" kindref="member">wc_Dh_ffdhe4096_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" kindref="member">wc_Dh_ffdhe6144_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" kindref="member">wc_Dh_ffdhe8192_Get</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="299" column="16" declfile="dox_comments/header_files/dh.h" declline="299" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const DhParams *</type>
+        <definition>const DhParams * wc_Dh_ffdhe4096_Get</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_Dh_ffdhe4096_Get</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns ... and requires that HAVE_FFDHE_4096 be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" kindref="member">wc_Dh_ffdhe2048_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" kindref="member">wc_Dh_ffdhe3072_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" kindref="member">wc_Dh_ffdhe6144_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" kindref="member">wc_Dh_ffdhe8192_Get</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="312" column="16" declfile="dox_comments/header_files/dh.h" declline="312" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const DhParams *</type>
+        <definition>const DhParams * wc_Dh_ffdhe6144_Get</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_Dh_ffdhe6144_Get</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns ... and requires that HAVE_FFDHE_6144 be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" kindref="member">wc_Dh_ffdhe2048_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" kindref="member">wc_Dh_ffdhe3072_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" kindref="member">wc_Dh_ffdhe4096_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" kindref="member">wc_Dh_ffdhe8192_Get</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="325" column="16" declfile="dox_comments/header_files/dh.h" declline="325" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const DhParams *</type>
+        <definition>const DhParams * wc_Dh_ffdhe8192_Get</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_Dh_ffdhe8192_Get</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns ... and requires that HAVE_FFDHE_8192 be defined. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" kindref="member">wc_Dh_ffdhe2048_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" kindref="member">wc_Dh_ffdhe3072_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" kindref="member">wc_Dh_ffdhe4096_Get</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" kindref="member">wc_Dh_ffdhe6144_Get</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="338" column="16" declfile="dox_comments/header_files/dh.h" declline="338" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1ga7d59d4a4170374e129b0556315ae20ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhCheckKeyPair</definition>
+        <argsstring>(DhKey *key, const byte *pub, word32 pubSz, const byte *priv, word32 privSz)</argsstring>
+        <name>wc_DhCheckKeyPair</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>privSz</declname>
+        </param>
+        <briefdescription>
+<para>Checks DH keys for pair-wise consistency per process in SP 800-56Ar3, section 5.6.2.1.4, method (b) for FFC. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="346" column="5" declfile="dox_comments/header_files/dh.h" declline="346" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Diffie-Hellman_1gabcd624ee1705d51b3b4c16829d15a261" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhCheckPrivKey</definition>
+        <argsstring>(DhKey *key, const byte *priv, word32 pubSz)</argsstring>
+        <name>wc_DhCheckPrivKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <briefdescription>
+<para>Check DH private key for invalid numbers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/dh.h" line="354" column="5" declfile="dox_comments/header_files/dh.h" declline="354" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1aa4bb14234053cbc77d92e566c1fd4cad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhCheckPrivKey_ex</definition>
+        <argsstring>(DhKey *key, const byte *priv, word32 pubSz, const byte *prime, word32 primeSz)</argsstring>
+        <name>wc_DhCheckPrivKey_ex</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>prime</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>primeSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="247" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="247" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1a8c5969655456c3c058131e46caea3a19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhCheckPubKey</definition>
+        <argsstring>(DhKey *key, const byte *pub, word32 pubSz)</argsstring>
+        <name>wc_DhCheckPubKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="252" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="252" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1acc38264621f25a684492eaabd73c86d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhCheckPubKey_ex</definition>
+        <argsstring>(DhKey *key, const byte *pub, word32 pubSz, const byte *prime, word32 primeSz)</argsstring>
+        <name>wc_DhCheckPubKey_ex</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pubSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>prime</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>primeSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="256" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="256" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1a4d05bef74108b9ad74980144002a95d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhExportParamsRaw</definition>
+        <argsstring>(DhKey *dh, byte *p, word32 *pSz, byte *q, word32 *qSz, byte *g, word32 *gSz)</argsstring>
+        <name>wc_DhExportParamsRaw</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>dh</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>pSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>qSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>gSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="261" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="261" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1a0a4d94f23522ecaf7d07ff97d1d37c4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhGenerateParams</definition>
+        <argsstring>(WC_RNG *rng, int modSz, DhKey *dh)</argsstring>
+        <name>wc_DhGenerateParams</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>modSz</declname>
+        </param>
+        <param>
+          <type>DhKey *</type>
+          <declname>dh</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="266" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="266" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1aa7c2b835dafea9d128d76c151590c41b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhSetCheckKey</definition>
+        <argsstring>(DhKey *key, const byte *p, word32 pSz, const byte *g, word32 gSz, const byte *q, word32 qSz, int trusted, WC_RNG *rng)</argsstring>
+        <name>wc_DhSetCheckKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>gSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>qSz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trusted</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="270" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="270" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1a7eb780da9392e18a7ee86e1c88fb25d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_DhSetKey_ex</definition>
+        <argsstring>(DhKey *key, const byte *p, word32 pSz, const byte *g, word32 gSz, const byte *q, word32 qSz)</argsstring>
+        <name>wc_DhSetKey_ex</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>pSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>gSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>qSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="276" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="276" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="ja_2dh_8h_1a00a76187fad7c8c97681b80b288629eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_FreeDhKey</definition>
+        <argsstring>(DhKey *key)</argsstring>
+        <name>wc_FreeDhKey</name>
+        <param>
+          <type>DhKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/dh.h" line="281" column="5" declfile="dox_comments/header_files/ja/dh.h" declline="281" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="13"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga6874ae7224978dbd80865148a28bccee" kindref="member">wc_InitDhKey</ref>(DhKey*<sp/>key);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gad980c654cab110b848d4f1236c31c97f" kindref="member">wc_FreeDhKey</ref>(DhKey*<sp/>key);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga76d6d16e84dcf6bfcae2bf6fe9dc3b72" kindref="member">wc_DhGenerateKeyPair</ref>(DhKey*<sp/>key,<sp/>WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>privSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pub,<sp/>word32*<sp/>pubSz);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gab40f5052ed8ebc01b4f6fd1f9a7181dc" kindref="member">wc_DhAgree</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>agree,<sp/>word32*<sp/>agreeSz,</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,<sp/>word32<sp/>privSz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>otherPub,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>pubSz);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga44bd25be589eb218aa31df21a7ea68f0" kindref="member">wc_DhKeyDecode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32*<sp/>inOutIdx,<sp/>DhKey*<sp/>key,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga5969738068563689c95d5dc3202068a4" kindref="member">wc_DhSetKey</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>p,<sp/>word32<sp/>pSz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>g,</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>gSz);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gac23600c6671651b44370dae535cb798e" kindref="member">wc_DhParamsLoad</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32<sp/>inSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>p,</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32*<sp/>pInOutSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>g,<sp/>word32*<sp/>gInOutSz);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DhParams*<sp/><ref refid="group__Diffie-Hellman_1ga3c596d1dde5e01f6adc7f8a195f30a97" kindref="member">wc_Dh_ffdhe2048_Get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DhParams*<sp/><ref refid="group__Diffie-Hellman_1ga5c75345f3d8938c056ddb2022cc8c2b1" kindref="member">wc_Dh_ffdhe3072_Get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DhParams*<sp/><ref refid="group__Diffie-Hellman_1gaf602f17053e00c610ca4c290887ec812" kindref="member">wc_Dh_ffdhe4096_Get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DhParams*<sp/><ref refid="group__Diffie-Hellman_1gac4610960f933287fa4921b7254d05830" kindref="member">wc_Dh_ffdhe6144_Get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>DhParams*<sp/><ref refid="group__Diffie-Hellman_1ga32af0aa56b8280ea4792ab4a40249337" kindref="member">wc_Dh_ffdhe8192_Get</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga7d59d4a4170374e129b0556315ae20ce" kindref="member">wc_DhCheckKeyPair</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pub,<sp/>word32<sp/>pubSz,</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,<sp/>word32<sp/>privSz);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gabcd624ee1705d51b3b4c16829d15a261" kindref="member">wc_DhCheckPrivKey</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,<sp/>word32<sp/>pubSz);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gaa4bb14234053cbc77d92e566c1fd4cad" kindref="member">wc_DhCheckPrivKey_ex</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>priv,<sp/>word32<sp/>pubSz,</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>prime,<sp/>word32<sp/>primeSz);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga8c5969655456c3c058131e46caea3a19" kindref="member">wc_DhCheckPubKey</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pub,<sp/>word32<sp/>pubSz);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gacc38264621f25a684492eaabd73c86d5" kindref="member">wc_DhCheckPubKey_ex</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>pub,<sp/>word32<sp/>pubSz,</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>prime,<sp/>word32<sp/>primeSz);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga4d05bef74108b9ad74980144002a95d8" kindref="member">wc_DhExportParamsRaw</ref>(DhKey*<sp/>dh,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>p,<sp/>word32*<sp/>pSz,</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>q,<sp/>word32*<sp/>qSz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>g,<sp/>word32*<sp/>gSz);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga0a4d94f23522ecaf7d07ff97d1d37c4f" kindref="member">wc_DhGenerateParams</ref>(WC_RNG<sp/>*rng,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>modSz,<sp/>DhKey<sp/>*dh);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gaa7c2b835dafea9d128d76c151590c41b" kindref="member">wc_DhSetCheckKey</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>p,<sp/>word32<sp/>pSz,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>g,<sp/>word32<sp/>gSz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>q,<sp/>word32<sp/>qSz,</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>trusted,<sp/>WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1ga7eb780da9392e18a7ee86e1c88fb25d0" kindref="member">wc_DhSetKey_ex</ref>(DhKey*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>p,<sp/>word32<sp/>pSz,</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>g,<sp/>word32<sp/>gSz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>q,<sp/>word32<sp/>qSz);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Diffie-Hellman_1gad980c654cab110b848d4f1236c31c97f" kindref="member">wc_FreeDhKey</ref>(DhKey*<sp/>key);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/dh.h"/>
+  </compounddef>
+</doxygen>

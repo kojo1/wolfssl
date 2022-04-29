@@ -1,0 +1,596 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__HMAC" kind="group">
+    <compoundname>HMAC</compoundname>
+    <title>Algorithms - HMAC</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HmacSetKey</definition>
+        <argsstring>(Hmac *hmac, int type, const byte *key, word32 keySz)</argsstring>
+        <name>wc_HmacSetKey</name>
+        <param>
+          <type>Hmac *</type>
+          <declname>hmac</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>keySz</declname>
+        </param>
+        <briefdescription>
+<para>This function initializes an Hmac object, setting its encryption type, key and HMAC length. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数はHMACオブジェクトを初期化し、その暗号化タイプ、キー、およびHMACの長さを設定します。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully initializing the Hmac object </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the input type is invalid. Valid options are: MD5, SHA, SHA256, SHA384, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory for the structure to use for hashing </para>
+</simplesect>
+<simplesect kind="return"><para>HMAC_MIN_KEYLEN_E May be returned when using a FIPS implementation and the key length specified is shorter than the minimum acceptable FIPS standard</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Hmac object to initialize </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type specifying which encryption method the Hmac object should use. Valid options are: MD5, SHA, SHA256, SHA384, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing the key with which to initialize the Hmac object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the key</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_HmacSetKey(&amp;hmac,<sp/>MD5,<sp/>key,<sp/>sizeof(key))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>Hmac<sp/>object</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__HMAC_1ga4533277215772c6cea848d2ad072823c" kindref="member">wc_HmacUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga3c163b9dcb460081fd8c5d0885b21f7b" kindref="member">wc_HmacFinal</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 HMACオブジェクトの初期化に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力タイプが無効な場合は返されます。有効なオプションは次のとおりです.MD5、SHA、SHA256、SHA384、SHA3-224、SHA3-256、SHA3-384、SHA3-512 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ハッシュに使用する構造体の割り当てメモリの割り当てがある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>HMAC_MIN_KEYLEN_E FIPS実装を使用するときに返されることがあり、指定されたキー長は最小許容FIPS規格よりも短いです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するHMACオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HMACオブジェクトを使用する暗号化方式を指定します。有効なオプションは次のとおりです.MD5、SHA、SHA256、SHA384、SHA3-224、SHA3-256、SHA3-384、SHA3-512 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HMACオブジェクトを初期化するキーを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_HmacSetKey(&amp;hmac,<sp/>MD5,<sp/>key,<sp/>sizeof(key))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>initializing<sp/>Hmac<sp/>object</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga4533277215772c6cea848d2ad072823c" kindref="member">wc_HmacUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga3c163b9dcb460081fd8c5d0885b21f7b" kindref="member">wc_HmacFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hmac.h" line="37" column="5" declfile="dox_comments/header_files/hmac.h" declline="37" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__HMAC_1ga4533277215772c6cea848d2ad072823c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HmacUpdate</definition>
+        <argsstring>(Hmac *hmac, const byte *in, word32 sz)</argsstring>
+        <name>wc_HmacUpdate</name>
+        <param>
+          <type>Hmac *</type>
+          <declname>hmac</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>This function updates the message to authenticate using HMAC. It should be called after the Hmac object has been initialized with wc_HmacSetKey. This function may be called multiple times to update the message to hash. After calling wc_HmacUpdate as desired, one should call wc_HmacFinal to obtain the final authenticated message tag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、HMACを使用して認証するメッセージを更新します。HMACオブジェクトがWC_HMACSETKEYで初期化された後に呼び出されるべきです。この関数は、ハッシュへのメッセージを更新するために複数回呼び出されることがあります。必要に応じてwc_hmacupdateを呼び出した後、最終認証済みメッセージタグを取得するためにwc_hmacfinalを呼び出す必要があります。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully updating the message to authenticate </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory for use with a hashing algorithm</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Hmac object for which to update the message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the message to append </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the message to append</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>authenticate<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg2[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>second<sp/>half<sp/>of<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>hmac</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_HmacUpdate(&amp;hmac,<sp/>msg,<sp/>sizeof(msg))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_HmacUpdate(&amp;hmac,<sp/>msg2,<sp/>sizeof(msg))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>with<sp/>second<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga3c163b9dcb460081fd8c5d0885b21f7b" kindref="member">wc_HmacFinal</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 認証するメッセージの更新に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ハッシュアルゴリズムで使用するためにメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メッセージを更新するHMACオブジェクトへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加するメッセージを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>authenticate<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg2[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>second<sp/>half<sp/>of<sp/>message<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>hmac</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_HmacUpdate(&amp;hmac,<sp/>msg,<sp/>sizeof(msg))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_HmacUpdate(&amp;hmac,<sp/>msg2,<sp/>sizeof(msg))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>with<sp/>second<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga3c163b9dcb460081fd8c5d0885b21f7b" kindref="member">wc_HmacFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hmac.h" line="73" column="5" declfile="dox_comments/header_files/hmac.h" declline="73" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__HMAC_1ga3c163b9dcb460081fd8c5d0885b21f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HmacFinal</definition>
+        <argsstring>(Hmac *hmac, byte *out)</argsstring>
+        <name>wc_HmacFinal</name>
+        <param>
+          <type>Hmac *</type>
+          <declname>hmac</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>This function computes the final hash of an Hmac object&apos;s message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、HMACオブジェクトのメッセージの最終ハッシュを計算します。</para>
+<para><simplesect kind="return"><para>0 Returned on successfully computing the final hash </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory for use with a hashing algorithm</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the Hmac object for which to calculate the final hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the final hash. Should have room available as required by the hashing algorithm chosen</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[MD5_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>hmac<sp/>with<sp/>MD5<sp/>as<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>wc_HmacUpdate()<sp/>with<sp/>messages</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_HmacFinal(&amp;hmac,<sp/>hash)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>computing<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga4533277215772c6cea848d2ad072823c" kindref="member">wc_HmacUpdate</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 最後のハッシュの計算に成功した </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E ハッシュアルゴリズムで使用するためにメモリを割り当てるエラーがある場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hmac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最終ハッシュを計算するHMACオブジェクトへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Hmac<sp/>hmac;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>hash[MD5_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>initialize<sp/>hmac<sp/>with<sp/>MD5<sp/>as<sp/>type</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>wc_HmacUpdate()<sp/>with<sp/>messages</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_HmacFinal(&amp;hmac,<sp/>hash)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>computing<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__HMAC_1ga4533277215772c6cea848d2ad072823c" kindref="member">wc_HmacUpdate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hmac.h" line="104" column="5" declfile="dox_comments/header_files/hmac.h" declline="104" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__HMAC_1ga1a51bb4d737f62b8362a09bf92b330ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_GetHmacMaxSize</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_GetHmacMaxSize</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>This function returns the largest HMAC digest size available based on the configured cipher suites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、構成された暗号スイートに基づいて使用可能な最大のHMACダイジェストサイズを返します。</para>
+<para><simplesect kind="return"><para>Success Returns the largest HMAC digest size available based on the configured cipher suites</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>maxDigestSz<sp/>=<sp/>wolfSSL_GetHmacMaxSize();</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>none</para>
+</simplesect>
+<simplesect kind="return"><para>Success 設定された暗号スイートに基づいて使用可能な最大のHMACダイジェストサイズを返します <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>maxDigestSz<sp/>=<sp/>wolfSSL_GetHmacMaxSize();</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hmac.h" line="124" column="5" declfile="dox_comments/header_files/hmac.h" declline="124" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__HMAC_1gaaec145333b157e9cb6962ef324fd61ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_HKDF</definition>
+        <argsstring>(int type, const byte *inKey, word32 inKeySz, const byte *salt, word32 saltSz, const byte *info, word32 infoSz, byte *out, word32 outSz)</argsstring>
+        <name>wc_HKDF</name>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>inKey</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inKeySz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>saltSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>info</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>infoSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outSz</declname>
+        </param>
+        <briefdescription>
+<para>This function provides access to a HMAC Key Derivation Function (HKDF). It utilizes HMAC to convert inKey, with an optional salt and optional info into a derived key, which it stores in out. The hash type defaults to MD5 if 0 or NULL is given. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、HMACキー導出機能（HKDF）へのアクセスを提供します。HMACを利用して、任意のSALTとオプションの情報を派生したキーに変換します。0またはNULLが指定されている場合、ハッシュ型はデフォルトでMD5になります。</para>
+<para><simplesect kind="return"><para>0 Returned upon successfully generating a key with the given inputs </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if an invalid hash type is given as argument. Valid types are: MD5, SHA, SHA256, SHA384, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E Returned if there is an error allocating memory </para>
+</simplesect>
+<simplesect kind="return"><para>HMAC_MIN_KEYLEN_E May be returned when using a FIPS implementation and the key length specified is shorter than the minimum acceptable FIPS standard</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>hash type to use for the HKDF. Valid types are: MD5, SHA, SHA256, SHA384, SHA512, SHA3-224, SHA3-256, SHA3-384, SHA3-512 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the key to use for KDF </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inKeySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the input key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing an optional salt. Use NULL instead if not using a salt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the salt. Use 0 if not using a salt </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a buffer containing optional additional info. Use NULL if not appending extra info </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>infoSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of additional info. Use 0 if not using additional info </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the derived key </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>space available in the output buffer to store the generated key</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>salt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derivedKey[MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_HKDF(SHA512,<sp/>key,<sp/>sizeof(key),<sp/>salt,<sp/>sizeof(salt),</highlight></codeline>
+<codeline><highlight class="normal">NULL,<sp/>0,<sp/>derivedKey,<sp/>sizeof(derivedKey));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>derived<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 与えられた入力でキーの生成に成功したら返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 無効なハッシュ型が引数として指定されている場合に返されます。有効な型は次のとおりです.MD5、SHA、SHA256、SHA384、SHA3-224、SHA3-256、SHA3-384、SHA3-512 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E メモリの割り当て中にエラーが発生した場合に返されます </para>
+</simplesect>
+<simplesect kind="return"><para>HMAC_MIN_KEYLEN_E FIPS実装を使用するときに返されることがあり、指定されたキー長は最小許容FIPS規格よりも短いです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HKDFに使用するハッシュタイプ。有効な型は次のとおりです.MD5、SHA、SHA256、SHA384、SHA3-224、SHA3-256、SHA3-384、SHA3-512 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KDFに使用するキーを含むバッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inKeySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力キーの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>任意の塩を含む緩衝液へのポインタ。塩を使用しない場合は代わりにNULLを使用してください </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>塩の長さ。塩を使用しない場合は0を使用してください </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>オプションの追加情報を含むバッファへのポインタ。追加情報を追加していない場合はNULLを使用してください </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>infoSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加情報の長さ追加情報を使用しない場合は0を使用してください </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>派生キーを保存するバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>key<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>//<sp/>initialize<sp/>with<sp/>salt<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>derivedKey[MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_HKDF(SHA512,<sp/>key,<sp/>sizeof(key),<sp/>salt,<sp/>sizeof(salt),</highlight></codeline>
+<codeline><highlight class="normal">NULL,<sp/>0,<sp/>derivedKey,<sp/>sizeof(derivedKey));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>ret<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>generating<sp/>derived<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__HMAC_1gaa1ed3269712d18437a618acb7a278dae" kindref="member">wc_HmacSetKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/hmac.h" line="172" column="5" declfile="dox_comments/header_files/hmac.h" declline="172" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

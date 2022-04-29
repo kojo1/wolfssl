@@ -1,0 +1,1003 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2random_8h" kind="file" language="C++">
+    <compoundname>random.h</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ja_2random_8h_1ac5f0c3220b340f4f78d34bca64c6c699" prot="public" static="no" mutable="no">
+        <type>WC_RNG byte *</type>
+        <definition>WC_RNG byte* b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="162" column="10" bodyfile="dox_comments/header_files/ja/random.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Random_1ga842e9e8a75a6f1465e354d536286bf6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitNetRandom</definition>
+        <argsstring>(const char *configFile, wnr_hmac_key hmac_cb, int timeout)</argsstring>
+        <name>wc_InitNetRandom</name>
+        <param>
+          <type>const char *</type>
+          <declname>configFile</declname>
+        </param>
+        <param>
+          <type>wnr_hmac_key</type>
+          <declname>hmac_cb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>timeout</declname>
+        </param>
+        <briefdescription>
+<para>Init Global WhiteWood Netrandomのコンテキスト </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Init global Whitewood netRandom context.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG configfileがnullまたはタイムアウトのどちらかが否定的です。 </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E RNGの初期化に失敗しました。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>設定ファイルへのパス </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hmac_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HMACコールバックを作成するにはオプションです。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">char*<sp/>config<sp/>=<sp/>&quot;path/to/config/example.conf&quot;;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>time<sp/>=<sp/>//<sp/>Some<sp/>sufficient<sp/>timeout<sp/>value;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_InitNetRandom(config,<sp/>NULL,<sp/>time)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Some<sp/>error<sp/>occurred</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Random_1gaf9e2480c5142c1a61c7f5cef2c78f066" kindref="member">wc_FreeNetRandom</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Either configFile is null or timeout is negative. </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E There was a failure initializing the rng.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>configFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to configuration file </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hmac_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional to create HMAC callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timeout</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A timeout duration.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">char*<sp/>config<sp/>=<sp/>&quot;path/to/config/example.conf&quot;;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>time<sp/>=<sp/>//<sp/>Some<sp/>sufficient<sp/>timeout<sp/>value;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_InitNetRandom(config,<sp/>NULL,<sp/>time)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Some<sp/>error<sp/>occurred</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Random_1gaf9e2480c5142c1a61c7f5cef2c78f066" kindref="member">wc_FreeNetRandom</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="21" column="6" declfile="dox_comments/header_files/ja/random.h" declline="21" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1gaf9e2480c5142c1a61c7f5cef2c78f066" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_FreeNetRandom</definition>
+        <argsstring>(void)</argsstring>
+        <name>wc_FreeNetRandom</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>無料のGlobal WhiteWood Netrandomコンテキスト。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Free global Whitewood netRandom context.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_E Wnr_Mutexでミューテックスをロックするエラー <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_FreeNetRandom();</highlight></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>the<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga842e9e8a75a6f1465e354d536286bf6d" kindref="member">wc_InitNetRandom</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_MUTEX_E Error locking mutex on wnr_mutex</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No returns.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_FreeNetRandom();</highlight></codeline>
+<codeline><highlight class="normal">if(ret<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>the<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Random_1ga842e9e8a75a6f1465e354d536286bf6d" kindref="member">wc_InitNetRandom</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="38" column="6" declfile="dox_comments/header_files/ja/random.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitRng</definition>
+        <argsstring>(WC_RNG *)</argsstring>
+        <name>wc_InitRng</name>
+        <param>
+          <type>WC_RNG *</type>
+        </param>
+        <briefdescription>
+<para>RNGのシード（OSから）とキー暗号を取得します。割り当てられたRNG-&gt; DRBG（決定論的ランダムビットジェネレータ）が割り当てられます（WC_FREERNGで割り当てられている必要があります）。これはブロッキング操作です。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the seed (from OS) and key cipher for rng. rng-&gt;drbg (deterministic random bit generator) allocated (should be deallocated with wc_FreeRng). This is a blocking operation.</para>
+<para><simplesect kind="return"><para>0 成功しています。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E XMallocに失敗しました </para>
+</simplesect>
+<simplesect kind="return"><para>WINCRYPT_E WC_GENERATSEED：コンテキストの取得に失敗しました </para>
+</simplesect>
+<simplesect kind="return"><para>CRYPTGEN_E WC_GENERATSEED：ランダムになりました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG WC_RNG_GenerateBlock入力はNULLまたはSZがMAX_REQUEST_LENを超えています </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E wc_rng_generateblock：hash_genはdrbg_cont_failureを返しました </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E wc_rng_generateBlock：デフォルトエラーです。RNGのステータスはもともとOKではなく、drbg_failedに設定されています <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>HAVE_CAVIUM</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRngCavium(&amp;rng,<sp/>CAVIUM_DEV_ID);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(“RNG<sp/>Nitrox<sp/>init<sp/>for<sp/>device:<sp/>%d<sp/>failed”,<sp/>CAVIUM_DEV_ID);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(“RNG<sp/>init<sp/>failed”);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 on success. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E XMALLOC failed </para>
+</simplesect>
+<simplesect kind="return"><para>WINCRYPT_E wc_GenerateSeed: failed to acquire context </para>
+</simplesect>
+<simplesect kind="return"><para>CRYPTGEN_E wc_GenerateSeed: failed to get random </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG wc_RNG_GenerateBlock input is null or sz exceeds MAX_REQUEST_LEN </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E wc_RNG_GenerateBlock: Hash_gen returned DRBG_CONT_FAILURE </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E wc_RNG_GenerateBlock: Default error. rng’s status originally not ok, or set to DRBG_FAILED</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random number generator to be initialized for use with a seed and key cipher</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>HAVE_CAVIUM</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRngCavium(&amp;rng,<sp/>CAVIUM_DEV_ID);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(“RNG<sp/>Nitrox<sp/>init<sp/>for<sp/>device:<sp/>%d<sp/>failed”,<sp/>CAVIUM_DEV_ID);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0){</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(“RNG<sp/>init<sp/>failed”);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="74" column="6" declfile="dox_comments/header_files/ja/random.h" declline="74" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RNG_GenerateBlock</definition>
+        <argsstring>(WC_RNG *rng, byte *b, word32 sz)</argsstring>
+        <name>wc_RNG_GenerateBlock</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+<para>疑似ランダムデータのSZバイトを出力にコピーします。必要に応じてRNG（ブロッキング）します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copies a sz bytes of pseudorandom data to output. Will reseed rng if needed (blocking).</para>
+<para><simplesect kind="return"><para>0 成功した </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力はNULLまたはSZがMAX_REQUEST_LENを超えています </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E hash_genはdrbg_cont_failureを返しました </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E デフォルトのエラーRNGのステータスはもともとOKではなく、drbg_failedに設定されています </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>乱数発生器はWC_INITRNGで初期化された </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ブロックがコピーされるバッファ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/>sz<sp/>=<sp/>32;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>block[sz];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_GenerateBlock(&amp;rng,<sp/>block,<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//generating<sp/>block<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_InitRngCavium, <ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 on success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG an input is null or sz exceeds MAX_REQUEST_LEN </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E Hash_gen returned DRBG_CONT_FAILURE </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E Default error. rng’s status originally not ok, or set to DRBG_FAILED</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random number generator initialized with wc_InitRng </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffer to which the block is copied </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of output in bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/>sz<sp/>=<sp/>32;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>block[sz];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_GenerateBlock(&amp;rng,<sp/>block,<sp/>sz);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//generating<sp/>block<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_InitRngCavium, <ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="106" column="6" declfile="dox_comments/header_files/ja/random.h" declline="106" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1gafa99e5d25a47592d220b0d7fb4732d44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WC_RNG *</type>
+        <definition>WC_RNG * wc_rng_new</definition>
+        <argsstring>(byte *nonce, word32 nonceSz, void *heap) int wc_RNG_GenerateByte(WC_RNG *rng</argsstring>
+        <name>wc_rng_new</name>
+        <param>
+          <type>byte *</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nonceSz</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <briefdescription>
+<para>新しいWC_RNG構造を作成します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a new WC_RNG structure.</para>
+<para><simplesect kind="return"><para>WC_RNG 成功の構造 </para>
+</simplesect>
+<simplesect kind="return"><para>NULL 誤りに </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ヒープ識別子へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nonceを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>nonceSz<sp/>=<sp/>sizeof(nonce);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_rng_new(&amp;nonce,<sp/>nonceSz,<sp/>&amp;heap);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga0b77b2671091079dd8ebb46f881b13a1" kindref="member">wc_rng_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+wc_rng_generateBlockを呼び出して、疑似ランダムデータのバイトをbにコピーします。必要に応じてRNGが再販されます。 <simplesect kind="return"><para>0 成功した </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 入力はNULLまたはSZがMAX_REQUEST_LENを超えています </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E hash_genはdrbg_cont_failureを返しました </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E デフォルトのエラーRNGのステータスはもともとOKではなく、drbg_failedに設定されています </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>乱数発生器はWC_INITRNGで初期化された <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/>sz<sp/>=<sp/>32;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>b[1];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_GenerateByte(&amp;rng,<sp/>b);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//generating<sp/>block<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+<simplesect kind="return"><para>WC_RNG structure on success </para>
+</simplesect>
+<simplesect kind="return"><para>NULL on error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a heap identifier </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonce</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the nonce </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nonceSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of the nonce</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>nonceSz<sp/>=<sp/>sizeof(nonce);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_rng_new(&amp;nonce,<sp/>nonceSz,<sp/>&amp;heap);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga0b77b2671091079dd8ebb46f881b13a1" kindref="member">wc_rng_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+Calls wc_RNG_GenerateBlock to copy a byte of pseudorandom data to b. Will reseed rng if needed.</para>
+<para><simplesect kind="return"><para>0 on success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG an input is null or sz exceeds MAX_REQUEST_LEN </para>
+</simplesect>
+<simplesect kind="return"><para>DRBG_CONT_FIPS_E Hash_gen returned DRBG_CONT_FAILURE </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E Default error. rng’s status originally not ok, or set to DRBG_FAILED</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random number generator initialized with wc_InitRng </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one byte buffer to which the block is copied</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/><sp/>sz<sp/>=<sp/>32;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>b[1];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_GenerateByte(&amp;rng,<sp/>b);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//generating<sp/>block<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="130" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_FreeRng</definition>
+        <argsstring>(WC_RNG *)</argsstring>
+        <name>wc_FreeRng</name>
+        <param>
+          <type>WC_RNG *</type>
+        </param>
+        <briefdescription>
+<para>RNGがDRGBを安全に解放するために必要なときに呼び出されるべきです。ゼロとXfrees RNG-DRBG。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be called when RNG no longer needed in order to securely free drgb. Zeros and XFREEs rng-drbg.</para>
+<para><simplesect kind="return"><para>0 成功した </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG RNGまたはRNG-&gt; DRGB NULL </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E DRBGの割り当て解除に失敗しました <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_FreeRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//free<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte, </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 on success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG rng or rng-&gt;drgb null </para>
+</simplesect>
+<simplesect kind="return"><para>RNG_FAILURE_E Failed to deallocated drbg</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random number generator initialized with wc_InitRng</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_InitRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//init<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wc_FreeRng(&amp;rng);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//free<sp/>of<sp/>rng<sp/>failed!</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte, </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="189" column="6" declfile="dox_comments/header_files/ja/random.h" declline="189" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1ga0b77b2671091079dd8ebb46f881b13a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WC_RNG *</type>
+        <definition>WC_RNG * wc_rng_free</definition>
+        <argsstring>(WC_RNG *rng)</argsstring>
+        <name>wc_rng_free</name>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+<para>RNGを安全に自由に解放するためにRNGが不要になったときに呼び出されるべきです。 <emphasis>Example</emphasis> </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Should be called when RNG no longer needed in order to securely free rng.</para>
+<para><programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>nonceSz<sp/>=<sp/>sizeof(nonce);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">rng<sp/>=<sp/>wc_rng_new(&amp;nonce,<sp/>nonceSz,<sp/>&amp;heap);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>use<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_rng_free(&amp;rng);</highlight></codeline>
+</programlisting> <simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1gafa99e5d25a47592d220b0d7fb4732d44" kindref="member">wc_rng_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref></para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rng</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random number generator initialized with wc_InitRng</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">RNG<sp/><sp/>rng;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>nonce[]<sp/>=<sp/>{<sp/>initialize<sp/>nonce<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>nonceSz<sp/>=<sp/>sizeof(nonce);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">rng<sp/>=<sp/>wc_rng_new(&amp;nonce,<sp/>nonceSz,<sp/>&amp;heap);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>use<sp/>rng</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_rng_free(&amp;rng);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1gafa99e5d25a47592d220b0d7fb4732d44" kindref="member">wc_rng_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="212" column="8" declfile="dox_comments/header_files/ja/random.h" declline="212" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Random_1ga97d6e079d64601341fb14b5926d3d879" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_RNG_HealthTest</definition>
+        <argsstring>(int reseed, const byte *entropyA, word32 entropyASz, const byte *entropyB, word32 entropyBSz, byte *output, word32 outputSz)</argsstring>
+        <name>wc_RNG_HealthTest</name>
+        <param>
+          <type>int</type>
+          <declname>reseed</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>entropyA</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>entropyASz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>entropyB</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>entropyBSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>outputSz</declname>
+        </param>
+        <briefdescription>
+<para>DRBGの機能を作成しテストします。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates and tests functionality of drbg.</para>
+<para><simplesect kind="return"><para>0 成功した </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG ELTOPYAと出力はNULLにしないでください。Reseed Set EntropybがNULLでなければならない場合 </para>
+</simplesect>
+<simplesect kind="return"><para>-1 テスト失敗 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>RESEED：設定されている場合は、Reseed機能をテストします </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DRGBをインスタンス化するエントロピー </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyASz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト数のエントロピヤのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reseed Setを設定した場合、DRBGはEntropybでリサイードされます </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyBSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト単位のEntropybのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SEADRANDOMが設定されている場合は、Entropybに播種されたランダムなデータに初期化され、それ以外の場合はEntropya <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>output[SHA256_DIGEST_SIZE<sp/>*<sp/>4];</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test1EntropyB[]<sp/>=<sp/>....;<sp/>//<sp/>test<sp/>input<sp/>for<sp/>reseed<sp/>false</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test1Output[]<sp/>=<sp/>....;<sp/><sp/><sp/>//<sp/>testvector:<sp/>expected<sp/>output<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>reseed<sp/>false</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_HealthTest(0,<sp/>test1Entropy,<sp/>sizeof(test1Entropy),<sp/>NULL,<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output,<sp/>sizeof(output));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;//healthtest<sp/>without<sp/>reseed<sp/>failed</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(XMEMCMP(test1Output,<sp/>output,<sp/>sizeof(output))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//compare<sp/>to<sp/>testvector<sp/>failed:<sp/>unexpected<sp/>output</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test2EntropyB[]<sp/>=<sp/>....;<sp/>//<sp/>test<sp/>input<sp/>for<sp/>reseed</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test2Output[]<sp/>=<sp/>....;<sp/><sp/><sp/>//<sp/>testvector<sp/>expected<sp/>output<sp/>of<sp/>reseed</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_HealthTest(1,<sp/>test2EntropyA,<sp/>sizeof(test2EntropyA),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>test2EntropyB,<sp/>sizeof(test2EntropyB),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output,<sp/>sizeof(output));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(XMEMCMP(test2Output,<sp/>output,<sp/>sizeof(output))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//compare<sp/>to<sp/>testvector<sp/>failed</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 on success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG entropyA and output must not be null. If reseed set entropyB must not be null </para>
+</simplesect>
+<simplesect kind="return"><para>-1 test failed</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reseed: if set, will test reseed functionality </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyA</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>entropy to instantiate drgb with </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyASz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of entropyA in bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyB</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If reseed set, drbg will be reseeded with entropyB </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>entropyBSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of entropyB in bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>initialized to random data seeded with entropyB if seedrandom is set, and entropyA otherwise </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outputSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of output in bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>output[SHA256_DIGEST_SIZE<sp/>*<sp/>4];</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test1EntropyB[]<sp/>=<sp/>....;<sp/>//<sp/>test<sp/>input<sp/>for<sp/>reseed<sp/>false</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test1Output[]<sp/>=<sp/>....;<sp/><sp/><sp/>//<sp/>testvector:<sp/>expected<sp/>output<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>reseed<sp/>false</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_HealthTest(0,<sp/>test1Entropy,<sp/>sizeof(test1Entropy),<sp/>NULL,<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output,<sp/>sizeof(output));</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;//healthtest<sp/>without<sp/>reseed<sp/>failed</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(XMEMCMP(test1Output,<sp/>output,<sp/>sizeof(output))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//compare<sp/>to<sp/>testvector<sp/>failed:<sp/>unexpected<sp/>output</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test2EntropyB[]<sp/>=<sp/>....;<sp/>//<sp/>test<sp/>input<sp/>for<sp/>reseed</highlight></codeline>
+<codeline><highlight class="normal">const<sp/>byte<sp/>test2Output[]<sp/>=<sp/>....;<sp/><sp/><sp/>//<sp/>testvector<sp/>expected<sp/>output<sp/>of<sp/>reseed</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wc_RNG_HealthTest(1,<sp/>test2EntropyA,<sp/>sizeof(test2EntropyA),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>test2EntropyB,<sp/>sizeof(test2EntropyB),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output,<sp/>sizeof(output));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(XMEMCMP(test2Output,<sp/>output,<sp/>sizeof(output))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;<sp/>//compare<sp/>to<sp/>testvector<sp/>failed</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_InitRngCavium </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_RNG_GenerateByte </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/random.h" line="255" column="5" declfile="dox_comments/header_files/ja/random.h" declline="255" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="21"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Random_1ga842e9e8a75a6f1465e354d536286bf6d" kindref="member">wc_InitNetRandom</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>configFile,<sp/>wnr_hmac_key<sp/>hmac_cb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>timeout);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Random_1gaf9e2480c5142c1a61c7f5cef2c78f066" kindref="member">wc_FreeNetRandom</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Random_1ga1a87307fac65d3c2a47ffb743020f83c" kindref="member">wc_InitRng</ref>(WC_RNG*);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Random_1ga9a289fb3f58f4a5f7e15c2b5a1b0d7c6" kindref="member">wc_RNG_GenerateBlock</ref>(WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/><ref refid="ja_2random_8h_1ac5f0c3220b340f4f78d34bca64c6c699" kindref="member">b</ref>,<sp/>word32<sp/>sz);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">WC_RNG*<sp/><ref refid="group__Random_1gafa99e5d25a47592d220b0d7fb4732d44" kindref="member">wc_rng_new</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>nonce,<sp/>word32<sp/>nonceSz,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="ja_2random_8h_1ac5f0c3220b340f4f78d34bca64c6c699" refkind="member"><highlight class="normal">int<sp/><sp/>wc_RNG_GenerateByte(WC_RNG*<sp/>rng,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/><ref refid="ja_2random_8h_1ac5f0c3220b340f4f78d34bca64c6c699" kindref="member">b</ref>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="group__Random_1ga72ffd8b507b3a895af8a6e9996caba86" kindref="member">wc_FreeRng</ref>(WC_RNG*);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal">WC_RNG*<sp/><ref refid="group__Random_1ga0b77b2671091079dd8ebb46f881b13a1" kindref="member">wc_rng_free</ref>(WC_RNG*<sp/>rng);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Random_1ga97d6e079d64601341fb14b5926d3d879" kindref="member">wc_RNG_HealthTest</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>reseed,</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>entropyA,<sp/>word32<sp/>entropyASz,</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>entropyB,<sp/>word32<sp/>entropyBSz,</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>output,<sp/>word32<sp/>outputSz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/random.h"/>
+  </compounddef>
+</doxygen>

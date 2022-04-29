@@ -1,0 +1,1602 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__SRP" kind="group">
+    <compoundname>SRP</compoundname>
+    <title>Algorithms - SRP</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__SRP_1gae8584f826660880783a9603579f856af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpInit</definition>
+        <argsstring>(Srp *srp, SrpType type, SrpSide side)</argsstring>
+        <name>wc_SrpInit</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>SrpType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>SrpSide</type>
+          <declname>side</declname>
+        </param>
+        <briefdescription>
+<para>使用方法のためにSRP構造体を初期化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the Srp struct for usage.</para>
+<para><simplesect kind="return"><para>0 成功しています。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRPなどの引数がNULLまたはSRPSIDEの問題がある場合は、SRP_CLIENT_SIESまたはSRP_SERVER_SIEDでは問題がある場合に返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN タイプが引数として渡されたが、WolfCryptビルドに設定されていない場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー時に。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化されるSRP構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するハッシュ型。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialization<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_SrpTerm(&amp;srp);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 on success. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returns when there&apos;s an issue with the arguments such as srp being null or SrpSide not being SRP_CLIENT_SIDE or SRP_SERVER_SIDE. </para>
+</simplesect>
+<simplesect kind="return"><para>NOT_COMPILED_IN Returns when a type is passed as an argument but hasn&apos;t been configured in the wolfCrypt build. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 on error.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure to be initialized. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the hash type to be used. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>side</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the side of the communication.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Initialization<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wc_SrpTerm(&amp;srp);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="25" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga72b7e47afb9f716247d22c432480b226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_SrpTerm</definition>
+        <argsstring>(Srp *srp)</argsstring>
+        <name>wc_SrpTerm</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <briefdescription>
+<para>使用後にSRP構造リソースを解放します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Releases the Srp struct resources after usage.</para>
+<para><simplesect kind="return"><para>none いいえ返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>srp</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp)</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the Srp structure to be terminated.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Use<sp/>srp</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp)</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="40" column="6" declfile="dox_comments/header_files/ja/srp.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpSetUsername</definition>
+        <argsstring>(Srp *srp, const byte *username, word32 size)</argsstring>
+        <name>wc_SrpSetUsername</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>username</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>ユーザー名を設定します。この関数は、wc_srpinitの後に呼び出す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the username. This function MUST be called after wc_SrpInit.</para>
+<para><simplesect kind="return"><para>0 ユーザー名は正常に設定されました。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG: srpまたはusernameがnullの場合に返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E: SRP-&gt;ユーザーにメモリを割り当てる問題がある場合 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt; 0：エラー。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ユーザー名を含むバッファ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>occurred<sp/>setting<sp/>username.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Username set successfully. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG: Return if srp or username is null. </para>
+</simplesect>
+<simplesect kind="return"><para>MEMORY_E: Returns if there is an issue allocating memory for srp-&gt;user </para>
+</simplesect>
+<simplesect kind="return"><para>&lt; 0: Error.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>username</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the buffer containing the username. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the username size in bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>occurred<sp/>setting<sp/>username.</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="68" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="68" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpSetParams</definition>
+        <argsstring>(Srp *srp, const byte *N, word32 nSz, const byte *g, word32 gSz, const byte *salt, word32 saltSz)</argsstring>
+        <name>wc_SrpSetParams</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>nSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>gSz</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>salt</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>saltSz</declname>
+        </param>
+        <briefdescription>
+<para>ユーザー名に基づいてSRPパラメータを設定します.. wc_srpsetuserNameの後に呼び出す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the srp parameters based on the username.. Must be called after wc_SrpSetUsername.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRP、N、G、またはSALTがNULLの場合、またはNSZ &lt;GSZの場合は返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E wc_srpsetuserNameの前にwc_srpsetparamsが呼び出された場合、返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>弾性率n = 2q + 1、[q、n]はプリムです。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nサイズをバイト単位で。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ジェネレータモジュロN. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バイト数のGサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>小さいランダムな塩。各ユーザー名に特有のものです。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(salt))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>params</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returns if srp, N, g, or salt is null or if nSz &lt; gSz. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returns if wc_SrpSetParams is called before wc_SrpSetUsername. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Modulus. N = 2q+1, [q, N] are primes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the N size in bytes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Generator modulo N. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the g size in bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>salt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a small random salt. Specific for each username. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>saltSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the salt size in bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(salt))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>params</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="107" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="107" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1gaa61b2ac6a14357ef0499a107b293edd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpSetPassword</definition>
+        <argsstring>(Srp *srp, const byte *password, word32 size)</argsstring>
+        <name>wc_SrpSetPassword</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>password</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>パスワードを設定します。パスワードを設定しても、SRP構造内のパスワードデータが消去されません。クライアントは、x = h（salt + h（user：pswd））を計算し、それを認証フィールドに格納します。この関数は、wc_srpsetparamsの後に呼び出されなければならず、クライアント側のみです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the password. Setting the password does not persists the clear password data in the srp structure. The client calculates x = H(salt + H(user:pswd)) and stores it in the auth field. This function MUST be called after wc_SrpSetParams and is CLIENT SIDE ONLY.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG srpまたはpasswordがnullの場合、またはsrp-&gt; sideがsrp_client_sideに設定されていない場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E WC_SRPSETPASSWORDが順不同で呼び出されたときに戻ります。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワードを含むバッファ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returns if srp or password is null or if srp-&gt;side is not set to SRP_CLIENT_SIDE. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returns when wc_SrpSetPassword is called out of order. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>password</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer containing the password. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the password in bytes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>password</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga7acf63aa2c1a1e2cf9cc1837b2b92ab0" kindref="member">wc_SrpSetUsername</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="147" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="147" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga5f9fa3b0ab92c78139534a1338f27f48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpSetVerifier</definition>
+        <argsstring>(Srp *srp, const byte *verifier, word32 size)</argsstring>
+        <name>wc_SrpSetVerifier</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>verifier</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>検証者を設定します。この関数は、wc_srpsetparamsの後に呼び出され、サーバー側のみです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the verifier. This function MUST be called after wc_SrpSetParams and is SERVER SIDE ONLY.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRPまたはVerifierがNULLまたはSRP-&gt; ISの場合、SRP_SERVER_SIEDではなく返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>verifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証者を含む構造体。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetVerifier(&amp;srp,<sp/>verifier,<sp/>sizeof(verifier))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga2ac38c69fcf5b918c07858b9d2325d00" kindref="member">wc_SrpGetVerifier</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if srp or verifier is null or srp-&gt;side is not SRP_SERVER_SIDE. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>verifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The structure containing the verifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The verifier size in bytes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(wc_SrpSetVerifier(&amp;srp,<sp/>verifier,<sp/>sizeof(verifier))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1gae8584f826660880783a9603579f856af" kindref="member">wc_SrpInit</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga20edf7d124ae9ac9b8011c8171f46015" kindref="member">wc_SrpSetParams</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga2ac38c69fcf5b918c07858b9d2325d00" kindref="member">wc_SrpGetVerifier</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="182" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="182" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga2ac38c69fcf5b918c07858b9d2325d00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpGetVerifier</definition>
+        <argsstring>(Srp *srp, byte *verifier, word32 *size)</argsstring>
+        <name>wc_SrpGetVerifier</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>verifier</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>検証者を取得します。クライアントはV = g ^ x％Nで検証者を計算します。この関数は、wc_srpsetpasswordの後に呼び出され、クライアント側のみです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the verifier. The client calculates the verifier with v = g ^ x % N. This function MAY be called after wc_SrpSetPassword and is CLIENT SIDE ONLY.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRP、Verifier、またはSizeがNULLの場合、またはSRP-&gt; SIDEがSRP_CLIENT_SIEDではない場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E WC_SRPGetverifierが順不同で呼び出された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>verifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>検証者を書き込むためのバッファー。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>v[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>vSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">vSz<sp/>=<sp/>sizeof(v);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpGetVerifier(&amp;srp,<sp/>v,<sp/>&amp;vSz<sp/>)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga5f9fa3b0ab92c78139534a1338f27f48" kindref="member">wc_SrpSetVerifier</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gaa61b2ac6a14357ef0499a107b293edd9" kindref="member">wc_SrpSetPassword</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if srp, verifier or size is null or if srp-&gt;side is not SRP_CLIENT_SIDE. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returned if wc_SrpGetVerifier is called out of order. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>verifier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The buffer to write the verifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer size in bytes. Updated with the verifier size.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>v[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>vSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">vSz<sp/>=<sp/>sizeof(v);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpGetVerifier(&amp;srp,<sp/>v,<sp/>&amp;vSz<sp/>)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga5f9fa3b0ab92c78139534a1338f27f48" kindref="member">wc_SrpSetVerifier</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gaa61b2ac6a14357ef0499a107b293edd9" kindref="member">wc_SrpSetPassword</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="222" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="222" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga30a3f45c5d54d58a491e8054a8147ed0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpSetPrivate</definition>
+        <argsstring>(Srp *srp, const byte *priv, word32 size)</argsstring>
+        <name>wc_SrpSetPrivate</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>priv</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>プライベートのエフェラル値を設定します。プライベートの一時的な値は、クライアント側のAとして知られています。サーバー側のand random（）b。b = random（）この関数は、ユニットテストケース、または開発者が外部ランダムソースを使用してエフェメラル値を設定したい場合は便利です。この関数は、WC_SRPGetPublicの前に呼び出されることがあります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the private ephemeral value. The private ephemeral value is known as: a at the client side. a = random() b at the server side. b = random() This function is handy for unit test cases or if the developer wants to use an external random source to set the ephemeral value. This function MAY be called before wc_SrpGetPublic.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRP、Private、またはSizeがNULLの場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E WC_SRPSetPrivateが順不同で呼び出された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>一時的な値。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetVerifier(&amp;srp,<sp/>verifier,<sp/>sizeof(verifier))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>b[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Some<sp/>ephemeral<sp/>value</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpSetPrivate(&amp;srp,<sp/>b,<sp/>sizeof(b))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>private<sp/>ephemeral</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga355d15b75810986f22e904ca6dc92e6a" kindref="member">wc_SrpGetPublic</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if srp, private, or size is null. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returned if wc_SrpSetPrivate is called out of order. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>priv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the ephemeral value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the private size in bytes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt))</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetVerifier(&amp;srp,<sp/>verifier,<sp/>sizeof(verifier))</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>b[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Some<sp/>ephemeral<sp/>value</highlight></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpSetPrivate(&amp;srp,<sp/>b,<sp/>sizeof(b))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>setting<sp/>private<sp/>ephemeral</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga355d15b75810986f22e904ca6dc92e6a" kindref="member">wc_SrpGetPublic</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="258" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="258" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga355d15b75810986f22e904ca6dc92e6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpGetPublic</definition>
+        <argsstring>(Srp *srp, byte *pub, word32 *size)</argsstring>
+        <name>wc_SrpGetPublic</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>pub</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>公共の一時的な値を取得します。公共の一時的な値は、クライアント側のAとして知られています。サーバ側のA = g ^ A％n b。B =（k * v +（g b％n））％n wc_srpsetpasswordまたはwc_srpsetverifierの後に呼び出す必要があります。関数WC_SRPSetPrivateは、WC_SRPGetPublicの前に呼び出されることがあります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the public ephemeral value. The public ephemeral value is known as: A at the client side. A = g ^ a % N B at the server side. B = (k * v + (g ˆ b % N)) % N This function MUST be called after wc_SrpSetPassword or wc_SrpSetVerifier. The function wc_SrpSetPrivate may be called before wc_SrpGetPublic.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG srp、pub、またはsizeがnullの場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E WC_SRPGetPublicが順不同で呼び出された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E サイズ&lt;srp.nの場合は返しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パブリックエフェラル値を書き込むためのバッファ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>public[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>publicSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpGetPublic(&amp;srp,<sp/>public,<sp/>&amp;publicSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>public<sp/>ephemeral</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga30a3f45c5d54d58a491e8054a8147ed0" kindref="member">wc_SrpSetPrivate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gaa61b2ac6a14357ef0499a107b293edd9" kindref="member">wc_SrpSetPassword</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga5f9fa3b0ab92c78139534a1338f27f48" kindref="member">wc_SrpSetVerifier</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if srp, pub, or size is null. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returned if wc_SrpGetPublic is called out of order. </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returned if size &lt; srp.N. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pub</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the buffer to write the public ephemeral value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the the buffer size in bytes. Will be updated with the ephemeral value size.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>srp;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;srp,<sp/>SRP_TYPE_SHA,<sp/>SRP_CLIENT_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;srp,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;srp,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetPassword(&amp;srp,<sp/>password,<sp/>passwordSize)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>public[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>publicSz<sp/>=<sp/>0;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_SrpGetPublic(&amp;srp,<sp/>public,<sp/>&amp;publicSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>public<sp/>ephemeral</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;srp);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga30a3f45c5d54d58a491e8054a8147ed0" kindref="member">wc_SrpSetPrivate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gaa61b2ac6a14357ef0499a107b293edd9" kindref="member">wc_SrpSetPassword</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga5f9fa3b0ab92c78139534a1338f27f48" kindref="member">wc_SrpSetVerifier</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="300" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="300" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga07b6f312117b6324189a137c3e2e6201" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpComputeKey</definition>
+        <argsstring>(Srp *srp, byte *clientPubKey, word32 clientPubKeySz, byte *serverPubKey, word32 serverPubKeySz)</argsstring>
+        <name>wc_SrpComputeKey</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>clientPubKey</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>clientPubKeySz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>serverPubKey</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>serverPubKeySz</declname>
+        </param>
+        <briefdescription>
+<para>セッションキーを計算します。成功後にSRP-&gt;キーでキーをアクセスできます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the session key. The key can be accessed at srp-&gt;key after success.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRP、ClientPubKey、またはServerPubKeyの場合、またはClientPubkeyszまたはServerPubKeyszが0の場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E WC_SRPComputeKeyが順不同で呼び出された場合に返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clientPubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>クライアントの公共の一時的な価値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clientPubKeySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>クライアントの公共の一時的な値のサイズ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>serverPubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>サーバーの一般の一時的な値。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>server;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>serverPubKey[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>server<sp/>pub<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>serverPubKeySize<sp/>=<sp/>sizeof(serverPubKey);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientPubKey[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientPubKeySize<sp/>=<sp/>64;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;server,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;server,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;server,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetVerifier(&amp;server,<sp/>verifier,<sp/>sizeof(verifier));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpGetPublic(&amp;server,<sp/>serverPubKey,<sp/>&amp;serverPubKeySize);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpComputeKey(&amp;server,<sp/>clientPubKey,<sp/>clientPubKeySz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>serverPubKey,<sp/>serverPubKeySize)</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;server);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga355d15b75810986f22e904ca6dc92e6a" kindref="member">wc_SrpGetPublic</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if srp, clientPubKey, or serverPubKey or if clientPubKeySz or serverPubKeySz is 0. </para>
+</simplesect>
+<simplesect kind="return"><para>SRP_CALL_ORDER_E Returned if wc_SrpComputeKey is called out of order. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clientPubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the client&apos;s public ephemeral value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clientPubKeySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the client&apos;s public ephemeral value size. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>serverPubKey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the server&apos;s public ephemeral value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>serverPubKeySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the server&apos;s public ephemeral value size.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>server;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>username[]<sp/>=<sp/>&quot;user&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>usernameSize<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>password[]<sp/>=<sp/>&quot;password&quot;;</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>passwordSize<sp/>=<sp/>8;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>N[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>N</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>g[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>g</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>salt[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>byte<sp/>array<sp/>salt</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>verifier[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>some<sp/>verifier</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>serverPubKey[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>Contents<sp/>of<sp/>server<sp/>pub<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>serverPubKeySize<sp/>=<sp/>sizeof(serverPubKey);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientPubKey[64];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientPubKeySize<sp/>=<sp/>64;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpInit(&amp;server,<sp/>SRP_TYPE_SHA,<sp/>SRP_SERVER_SIDE);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetUsername(&amp;server,<sp/>username,<sp/>usernameSize);</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetParams(&amp;server,<sp/>N,<sp/>sizeof(N),<sp/>g,<sp/>sizeof(g),<sp/>salt,<sp/>sizeof(salt));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpSetVerifier(&amp;server,<sp/>verifier,<sp/>sizeof(verifier));</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpGetPublic(&amp;server,<sp/>serverPubKey,<sp/>&amp;serverPubKeySize);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_SrpComputeKey(&amp;server,<sp/>clientPubKey,<sp/>clientPubKeySz,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>serverPubKey,<sp/>serverPubKeySize)</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpTerm(&amp;server);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga355d15b75810986f22e904ca6dc92e6a" kindref="member">wc_SrpGetPublic</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="342" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="342" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1gacf4349192069b647d6f5b34deab4f5ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpGetProof</definition>
+        <argsstring>(Srp *srp, byte *proof, word32 *size)</argsstring>
+        <name>wc_SrpGetProof</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>proof</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>証明を取得します。この関数は、wc_srpcomputekeyの後に呼び出す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the proof. This function MUST be called after wc_SrpComputeKey.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SRP、PROV、またはSIZEがNULLの場合に返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E サイズがSRP-&gt; Typeのハッシュサイズより小さい場合に返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proof</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ピアプルーフ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>cli;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientProof[SRP_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientProofSz<sp/>=<sp/>SRP_MAX_DIGEST_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>Srp<sp/>following<sp/>steps<sp/>from<sp/>previous<sp/>examples</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpGetProof(&amp;cli,<sp/>clientProof,<sp/>&amp;clientProofSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga07b6f312117b6324189a137c3e2e6201" kindref="member">wc_SrpComputeKey</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returns if srp, proof, or size is null. </para>
+</simplesect>
+<simplesect kind="return"><para>BUFFER_E Returns if size is less than the hash size of srp-&gt;type. </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proof</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the peers proof. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the proof size in bytes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>cli;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientProof[SRP_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientProofSz<sp/>=<sp/>SRP_MAX_DIGEST_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>Srp<sp/>following<sp/>steps<sp/>from<sp/>previous<sp/>examples</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpGetProof(&amp;cli,<sp/>clientProof,<sp/>&amp;clientProofSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>getting<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__SRP_1ga07b6f312117b6324189a137c3e2e6201" kindref="member">wc_SrpComputeKey</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="370" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="370" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__SRP_1ga55c898aca55ea35235cddfdd628c2080" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SrpVerifyPeersProof</definition>
+        <argsstring>(Srp *srp, byte *proof, word32 size)</argsstring>
+        <name>wc_SrpVerifyPeersProof</name>
+        <param>
+          <type>Srp *</type>
+          <declname>srp</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>proof</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>ピアプルーフを確認します。この関数は、WC_SRPGetSessionKeyの前に呼び出す必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Verifies the peers proof. This function MUST be called before wc_SrpGetSessionKey.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 エラー </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SRP構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proof</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ピアプルーフ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>cli;</highlight></codeline>
+<codeline><highlight class="normal">Srp<sp/>srv;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientProof[SRP_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientProofSz<sp/>=<sp/>SRP_MAX_DIGEST_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>Srp<sp/>following<sp/>steps<sp/>from<sp/>previous<sp/>examples</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>First<sp/>get<sp/>the<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpGetProof(&amp;cli,<sp/>clientProof,<sp/>&amp;clientProofSz)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpVerifyPeersProof(&amp;srv,<sp/>clientProof,<sp/>clientProofSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>verifying<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wc_SrpGetSessionKey </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gacf4349192069b647d6f5b34deab4f5ff" kindref="member">wc_SrpGetProof</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>&lt;0 Error</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>srp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the Srp structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proof</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the peers proof. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the proof size in bytes.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Srp<sp/>cli;</highlight></codeline>
+<codeline><highlight class="normal">Srp<sp/>srv;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>clientProof[SRP_MAX_DIGEST_SIZE];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>clientProofSz<sp/>=<sp/>SRP_MAX_DIGEST_SIZE;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>Srp<sp/>following<sp/>steps<sp/>from<sp/>previous<sp/>examples</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>First<sp/>get<sp/>the<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">wc_SrpGetProof(&amp;cli,<sp/>clientProof,<sp/>&amp;clientProofSz)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(wc_SrpVerifyPeersProof(&amp;srv,<sp/>clientProof,<sp/>clientProofSz)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Error<sp/>verifying<sp/>proof</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wc_SrpGetSessionKey </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1gacf4349192069b647d6f5b34deab4f5ff" kindref="member">wc_SrpGetProof</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__SRP_1ga72b7e47afb9f716247d22c432480b226" kindref="member">wc_SrpTerm</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/srp.h" line="399" column="5" declfile="dox_comments/header_files/ja/srp.h" declline="399" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

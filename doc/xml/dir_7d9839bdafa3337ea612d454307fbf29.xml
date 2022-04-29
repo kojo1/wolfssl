@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_7d9839bdafa3337ea612d454307fbf29" kind="dir">
+    <compoundname>dox_comments/header_files</compoundname>
+    <innerdir refid="dir_dfc8448f8129746d23a901ae20f5c7b5">dox_comments/header_files/ja</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="dox_comments/header_files/"/>
+  </compounddef>
+</doxygen>

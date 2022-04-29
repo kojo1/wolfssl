@@ -1,0 +1,3129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__openSSL" kind="group">
+    <compoundname>openSSL</compoundname>
+    <title>OpenSSL API</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__openSSL_1ga703adbf9556827f846f1450caeb13428" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_BN_mod_exp</definition>
+        <argsstring>(WOLFSSL_BIGNUM *r, const WOLFSSL_BIGNUM *a, const WOLFSSL_BIGNUM *p, const WOLFSSL_BIGNUM *m, WOLFSSL_BN_CTX *ctx)</argsstring>
+        <name>wolfSSL_BN_mod_exp</name>
+        <param>
+          <type>WOLFSSL_BIGNUM *</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_BIGNUM *</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_BN_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>This function performs the following math “r = (a^p) % m”. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、次の数学「R =（A ^ P）％M」を実行します。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS On successfully performing math operation. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If an error case was encountered.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to hold result. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to be raised by a power. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>power to raise a by. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>modulus to use. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>currently not used with wolfSSL can be NULL.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIGNUM<sp/>r,a,p,m;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>big<sp/>number<sp/>values</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/><sp/>=<sp/>wolfSSL_BN_mod_exp(r,<sp/>a,<sp/>p,<sp/>m,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_BN_new </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_BN_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 数学操作をうまく実行します。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE エラーケースに遭遇した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>結果を保持するための構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>電力で上げられる値。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>によって上げる力。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用率 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIGNUM<sp/>r,a,p,m;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>big<sp/>number<sp/>values</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/><sp/>=<sp/>wolfSSL_BN_mod_exp(r,<sp/>a,<sp/>p,<sp/>m,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_BN_new </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_BN_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/bn.h" line="27" column="5" declfile="dox_comments/header_files/bn.h" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga7c91f7e2d297cdaa4fe56ba85093c703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const WOLFSSL_EVP_CIPHER *</type>
+        <definition>const WOLFSSL_EVP_CIPHER * wolfSSL_EVP_des_ede3_ecb</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_EVP_des_ede3_ecb</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Getter functions for the respective WOLFSSL_EVP_CIPHER pointers. wolfSSL_EVP_init() must be called once in the program first to populate these cipher strings. WOLFSSL_DES_ECB macro must be defined for <ref refid="group__openSSL_1ga7c91f7e2d297cdaa4fe56ba85093c703" kindref="member">wolfSSL_EVP_des_ede3_ecb()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>それぞれのwolfssl_evp_cipherポインタのゲッター関数。最初にプログラム内でwolfssl_evp_init（）を1回呼び出す必要があります。wolfssl_des_ecbマクロは、wolfssl_evp_des_ede3_ecb（）に対して定義する必要があります。</para>
+<para><simplesect kind="return"><para>pointer Returns a WOLFSSL_EVP_CIPHER pointer for DES EDE3 operations.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">printf(&quot;block<sp/>size<sp/>des<sp/>ede3<sp/>cbc<sp/>=<sp/>%d\n&quot;,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_des_ede3_cbc()));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;block<sp/>size<sp/>des<sp/>ede3<sp/>ecb<sp/>=<sp/>%d\n&quot;,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_des_ede3_ecb()));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_init</para>
+</simplesect>
+<simplesect kind="return"><para>pointer DES EDE3操作のためのwolfssl_evp_cipherポインタを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">printf(&quot;block<sp/>size<sp/>des<sp/>ede3<sp/>cbc<sp/>=<sp/>%d\n&quot;,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_des_ede3_cbc()));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;block<sp/>size<sp/>des<sp/>ede3<sp/>ecb<sp/>=<sp/>%d\n&quot;,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_des_ede3_ecb()));</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_init </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="23" column="26" declfile="dox_comments/header_files/evp.h" declline="23" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga5e86765cca6c9b3f5aa8cc0c0f21012a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const WOLFSSL_EVP_CIPHER *</type>
+        <definition>const WOLFSSL_EVP_CIPHER * wolfSSL_EVP_des_cbc</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_EVP_des_cbc</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Getter functions for the respective WOLFSSL_EVP_CIPHER pointers. wolfSSL_EVP_init() must be called once in the program first to populate these cipher strings. WOLFSSL_DES_ECB macro must be defined for wolfSSL_EVP_des_ecb(). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>それぞれのwolfssl_evp_cipherポインタのゲッター関数。最初にプログラム内でwolfssl_evp_init（）を1回呼び出す必要があります。wolfssl_des_ecbマクロは、wolfssl_evp_des_ecb（）に対して定義する必要があります。</para>
+<para><simplesect kind="return"><para>pointer Returns a WOLFSSL_EVP_CIPHER pointer for DES operations.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>none</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>No parameters.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER*<sp/>cipher;</highlight></codeline>
+<codeline><highlight class="normal">cipher<sp/>=<sp/>wolfSSL_EVP_des_cbc();</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_init</para>
+</simplesect>
+<simplesect kind="return"><para>pointer DES操作のためのwolfssl_evp_cipherポインタを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER*<sp/>cipher;</highlight></codeline>
+<codeline><highlight class="normal">cipher<sp/>=<sp/>wolfSSL_EVP_des_cbc();</highlight></codeline>
+<codeline><highlight class="normal">…</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_init </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="46" column="26" declfile="dox_comments/header_files/evp.h" declline="46" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga890b5bda81583c030f782157af2a0c7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_DigestInit_ex</definition>
+        <argsstring>(WOLFSSL_EVP_MD_CTX *ctx, const WOLFSSL_EVP_MD *type, WOLFSSL_ENGINE *impl)</argsstring>
+        <name>wolfSSL_EVP_DigestInit_ex</name>
+        <param>
+          <type>WOLFSSL_EVP_MD_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_MD *</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_ENGINE *</type>
+          <declname>impl</declname>
+        </param>
+        <briefdescription>
+<para>Function for initializing WOLFSSL_EVP_MD_CTX. This function is a wrapper for wolfSSL_EVP_DigestInit() because wolfSSL does not use WOLFSSL_ENGINE. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_md_ctxを初期化する機能。この関数はwolfssl_engineがwolfssl_engineを使用しないため、wolfssl_evp_digestinit（）のラッパーです。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to initialize. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of hash to do, for example SHA. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>engine to use. N/A for wolfSSL, can be NULL.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_MD_CTX*<sp/>md<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">md<sp/>=<sp/>wolfSSL_EVP_MD_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(md<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;error<sp/>setting<sp/>md\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>md<sp/>init<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DigestInit_ex(md,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_sha1(),<sp/>e));</highlight></codeline>
+<codeline><highlight class="normal">//free<sp/>resources</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_MD_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_MD_CTX_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 成功しなかった場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化する構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>SHAなどのハッシュの種類。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_MD_CTX*<sp/>md<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">md<sp/>=<sp/>wolfSSL_EVP_MD_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(md<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;error<sp/>setting<sp/>md\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>md<sp/>init<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DigestInit_ex(md,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_sha1(),<sp/>e));</highlight></codeline>
+<codeline><highlight class="normal">//free<sp/>resources</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_MD_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_MD_CTX_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="80" column="5" declfile="dox_comments/header_files/evp.h" declline="80" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga8f32540b0399d10a63b67648eac21fff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CipherInit_ex</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, const WOLFSSL_EVP_CIPHER *type, WOLFSSL_ENGINE *impl, const unsigned char *key, const unsigned char *iv, int enc)</argsstring>
+        <name>wolfSSL_EVP_CipherInit_ex</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_ENGINE *</type>
+          <declname>impl</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>iv</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>enc</declname>
+        </param>
+        <briefdescription>
+<para>Function for initializing WOLFSSL_EVP_CIPHER_CTX. This function is a wrapper for wolfSSL_CipherInit() because wolfSSL does not use WOLFSSL_ENGINE. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_cipher_ctxを初期化する機能。この関数はwolfssl_engineがwolfssl_engineを使用しないため、wolfssl_ciphinit（）のラッパーです。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to initialize. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of encryption/decryption to do, for example AES. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>engine to use. N/A for wolfSSL, can be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key to set . </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iv if needed by algorithm. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>encryption (1) or decryption (0) flag.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_ENGINE*<sp/>e<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>iv[12];</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;issue<sp/>creating<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>error<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_CipherInit_ex(NULL,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_<sp/><sp/><sp/><sp/>cbc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>success<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_CipherInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_c<sp/><sp/><sp/><sp/>bc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 成功しなかった場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化する構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AESなどの暗号化/復号化の種類。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するエンジン。wolfsslのn / aは、nullになることができます。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>設定するキー </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アルゴリズムで必要な場合はIV。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_ENGINE*<sp/>e<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>iv[12];</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;issue<sp/>creating<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>error<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_CipherInit_ex(NULL,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_<sp/><sp/><sp/><sp/>cbc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>success<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_CipherInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_c<sp/><sp/><sp/><sp/>bc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="125" column="6" declfile="dox_comments/header_files/evp.h" declline="125" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gae33fa86bf2c37dd7c399f852ee7afa2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_EncryptInit_ex</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, const WOLFSSL_EVP_CIPHER *type, WOLFSSL_ENGINE *impl, const unsigned char *key, const unsigned char *iv)</argsstring>
+        <name>wolfSSL_EVP_EncryptInit_ex</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_ENGINE *</type>
+          <declname>impl</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>Function for initializing WOLFSSL_EVP_CIPHER_CTX. This function is a wrapper for wolfSSL_EVP_CipherInit() because wolfSSL does not use WOLFSSL_ENGINE. Sets encrypt flag to be encrypt. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_cipher_ctxを初期化する機能。WolfSSLはWOLFSSL_ENGINEを使用しないため、この関数はwolfssl_evp_ciphinit（）のラッパーです。暗号化フラグを暗号化するように設定します。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to initialize. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of encryption to do, for example AES. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>engine to use. N/A for wolfSSL, can be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key to use. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iv to use.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;error<sp/>setting<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>ctx<sp/>init<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_EncryptInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_aes_128_cbc(),<sp/>e,<sp/>key,<sp/>iv));</highlight></codeline>
+<codeline><highlight class="normal">//free<sp/>resources</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 成功しなかった場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化する構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AESなどの暗号化の種類。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するエンジン。wolfsslのn / aは、nullになることができます。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用する鍵 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;error<sp/>setting<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>ctx<sp/>init<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_EncryptInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_aes_128_cbc(),<sp/>e,<sp/>key,<sp/>iv));</highlight></codeline>
+<codeline><highlight class="normal">//free<sp/>resources</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="166" column="6" declfile="dox_comments/header_files/evp.h" declline="166" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga308283a4e99ec286a4f382dd00acf413" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_DecryptInit_ex</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, const WOLFSSL_EVP_CIPHER *type, WOLFSSL_ENGINE *impl, const unsigned char *key, const unsigned char *iv)</argsstring>
+        <name>wolfSSL_EVP_DecryptInit_ex</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_ENGINE *</type>
+          <declname>impl</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>iv</declname>
+        </param>
+        <briefdescription>
+<para>Function for initializing WOLFSSL_EVP_CIPHER_CTX. This function is a wrapper for wolfSSL_EVP_CipherInit() because wolfSSL does not use WOLFSSL_ENGINE. Sets encrypt flag to be decrypt. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_cipher_ctxを初期化する機能。WolfSSLはWOLFSSL_ENGINEを使用しないため、この関数はwolfssl_evp_ciphinit（）のラッパーです。暗号化フラグを復号化するように設定します。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to initialize. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of encryption/decryption to do, for example AES. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>engine to use. N/A for wolfSSL, can be NULL. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key to set . </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iv if needed by algorithm. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>enc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>encryption (1) or decryption (0) flag.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_ENGINE*<sp/>e<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>iv[12];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;issue<sp/>creating<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>error<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DecryptInit_ex(NULL,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_<sp/><sp/><sp/><sp/>cbc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>success<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DecryptInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_c<sp/><sp/><sp/><sp/>bc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 成功しなかった場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化する構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>AESなどの暗号化/復号化の種類。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>impl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するエンジン。wolfsslのn / aは、nullになることができます。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>設定するキー </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>アルゴリズムで必要な場合はIV。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_ENGINE*<sp/>e<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>iv[12];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wolfCrypt_Init();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ctx<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(&quot;issue<sp/>creating<sp/>ctx\n&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>error<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DecryptInit_ex(NULL,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_<sp/><sp/><sp/><sp/>cbc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">printf(&quot;cipher<sp/>init<sp/>ex<sp/>success<sp/>ret<sp/>=<sp/>%d\n&quot;,<sp/>wolfSSL_EVP_DecryptInit_ex(ctx,</highlight></codeline>
+<codeline><highlight class="normal">EVP_aes_128_c<sp/><sp/><sp/><sp/>bc(),<sp/>e,<sp/>key,<sp/>iv,<sp/>1));</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="215" column="6" declfile="dox_comments/header_files/evp.h" declline="215" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga5d0ef9e15afeeb76c6f13239cc1c1bc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CipherUpdate</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl, const unsigned char *in, int inl)</argsstring>
+        <name>wolfSSL_EVP_CipherUpdate</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outl</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>inl</declname>
+        </param>
+        <briefdescription>
+<para>Function for encrypting/decrypting data. In buffer is added to be encrypted or decrypted and out buffer holds the results. outl will be the length of encrypted/decrypted information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>データを暗号化/復号化する機能。バッファ内では暗号化または復号化され、OUTバッファが結果を保持します。OUTORは暗号化/復号化された情報の長さになります。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successful. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If not successful.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to get cipher type from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffer to hold output. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>adjusted to be size of output. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffer to perform operation on. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of input buffer.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>out[100];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>outl;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>in[100];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>inl<sp/>=<sp/>100;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>up<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_EVP_CipherUpdate(ctx,<sp/>out,<sp/>outl,<sp/>in,<sp/>inl);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>check<sp/>ret<sp/>value</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>buffer<sp/>out<sp/>holds<sp/>outl<sp/>bytes<sp/>of<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 成功した場合 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 成功しなかった場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>から暗号化の種類を取得するための構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力を保持するためのバッファ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>出力のサイズになるように調整しました。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>操作を実行するためのバッファー。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>out[100];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>outl;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>in[100];</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>inl<sp/>=<sp/>100;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new();</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>set<sp/>up<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_EVP_CipherUpdate(ctx,<sp/>out,<sp/>outl,<sp/>in,<sp/>inl);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>check<sp/>ret<sp/>value</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>buffer<sp/>out<sp/>holds<sp/>outl<sp/>bytes<sp/>of<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>free<sp/>resources</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__wolfCrypt_1ga3e568483c1b82d388b394e267345ef08" kindref="member">wolfCrypt_Init</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="257" column="5" declfile="dox_comments/header_files/evp.h" declline="257" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga8c8694d5e43d6f20a2a7e9c20893a644" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CipherFinal</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, unsigned char *out, int *outl)</argsstring>
+        <name>wolfSSL_EVP_CipherFinal</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outl</declname>
+        </param>
+        <briefdescription>
+<para>This function performs the final cipher operations adding in padding. If WOLFSSL_EVP_CIPH_NO_PADDING flag is set in WOLFSSL_EVP_CIPHER_CTX structure then 1 is returned and no encryption/decryption is done. If padding flag is seti padding is added and encrypted when ctx is set to encrypt, padding values are checked when set to decrypt. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>この関数は、パディングを追加する最終暗号化操作を実行します。wolfssl_evp_ciph_no_paddingフラグがwolfssl_evp_cipher_ctx構造に設定されている場合、1が返され、暗号化/復号化は行われません。PADDING FLAGがSETIパディングを追加して暗号化すると、暗号化にCTXが設定されていると、復号化されたときにパディング値がチェックされます。</para>
+<para><simplesect kind="return"><para>1 Returned on success. </para>
+</simplesect>
+<simplesect kind="return"><para>0 If encountering a failure.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to decrypt/encrypt with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffer for final decrypt/encrypt. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of out buffer when data has been added by function.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>out1;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>out[64];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CipherFinal(ctx,<sp/>out,<sp/>&amp;out1);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new</para>
+</simplesect>
+<simplesect kind="return"><para>1 成功に戻りました。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 失敗に遭遇した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>復号化/暗号化する構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>最後の復号化/暗号化のためのバッファ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>out1;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>out[64];</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CipherFinal(ctx,<sp/>out,<sp/>&amp;out1);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="289" column="6" declfile="dox_comments/header_files/evp.h" declline="289" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga99ae78845bc76b61b2bcfe9e5de54134" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CIPHER_CTX_set_key_length</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, int keylen)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_set_key_length</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keylen</declname>
+        </param>
+        <briefdescription>
+<para>Setter function for WOLFSSL_EVP_CIPHER_CTX structure key length. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>WolfSSL EVP_CIPHER_CTX構造キー長の設定機能</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If failed to set key length.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to set key length. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keylen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key length.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>keylen;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_key_length(ctx,<sp/>keylen);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE キーの長さを設定できなかった場合。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>キーの長さを設定する構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>keylen;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_key_length(ctx,<sp/>keylen);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="313" column="6" declfile="dox_comments/header_files/evp.h" declline="313" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga9e462687113f0ef2bbfcdbab194be6f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CIPHER_CTX_block_size</definition>
+        <argsstring>(const WOLFSSL_EVP_CIPHER_CTX *ctx)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_block_size</name>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>This is a getter function for the ctx block size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>これはCTXブロックサイズのGetter関数です。</para>
+<para><simplesect kind="return"><para>size Returns ctx-&gt;block_size.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the cipher ctx to get block size of.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>WOLFSSL_CVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">printf(“block<sp/>size<sp/>=<sp/>%d\n”,<sp/>wolfSSL_EVP_CIPHER_CTX_block_size(ctx));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1gac9534914030c0b02e49f4866cb0a4ef8" kindref="member">wolfSSL_EVP_CIPHER_block_size</ref></para>
+</simplesect>
+<simplesect kind="return"><para>size ctx-&gt; block_sizeを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">const<sp/>WOLFSSL_CVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">//set<sp/>up<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">printf(“block<sp/>size<sp/>=<sp/>%d\n”,<sp/>wolfSSL_EVP_CIPHER_CTX_block_size(ctx));</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9534914030c0b02e49f4866cb0a4ef8" kindref="member">wolfSSL_EVP_CIPHER_block_size</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="334" column="5" declfile="dox_comments/header_files/evp.h" declline="334" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gac9534914030c0b02e49f4866cb0a4ef8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CIPHER_block_size</definition>
+        <argsstring>(const WOLFSSL_EVP_CIPHER *cipher)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_block_size</name>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>cipher</declname>
+        </param>
+        <briefdescription>
+<para>This is a getter function for the block size of cipher. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>これは暗号のブロックサイズのゲッター関数です。</para>
+<para><simplesect kind="return"><para>size returns the block size.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cipher</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>cipher to get block size of.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">printf(“block<sp/>size<sp/>=<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_aes_256_ecb()));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_aes_256_ctr</para>
+</simplesect>
+<simplesect kind="return"><para>size ブロックサイズを返します。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">printf(“block<sp/>size<sp/>=<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_block_size(wolfSSL_EVP_aes_256_ecb()));</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_aes_256_ctr </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="353" column="5" declfile="dox_comments/header_files/evp.h" declline="353" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga946d1e3ad4abe233c9a1f122ba9dd33c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_EVP_CIPHER_CTX_set_flags</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, int flags)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_set_flags</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Setter function for WOLFSSL_EVP_CIPHER_CTX structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>WolfSSL evp_cipher_ctx構造の設定機能</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to set flag. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag to set in structure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>flag;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_flags(ctx,<sp/>flag);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gae4dce359090323afaf9a29e6dba45262" kindref="member">wolfSSL_EVP_CIPHER_CTX_flags</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>フラグを設定する構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>flag;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_flags(ctx,<sp/>flag);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gae4dce359090323afaf9a29e6dba45262" kindref="member">wolfSSL_EVP_CIPHER_CTX_flags</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="376" column="6" declfile="dox_comments/header_files/evp.h" declline="376" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gae23b18ec8f57b2f7054e7b645bc9e8e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_EVP_CIPHER_CTX_clear_flags</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *ctx, int flags)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_clear_flags</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Clearing function for WOLFSSL_EVP_CIPHER_CTX structure. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>WolfSSL evp_cipher_ctx構造のクリア機能</para>
+<para><simplesect kind="return"><para>none No returns.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to clear flag. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>flag value to clear in structure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>flag;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_clear_flags(ctx,<sp/>flag);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gae4dce359090323afaf9a29e6dba45262" kindref="member">wolfSSL_EVP_CIPHER_CTX_flags</ref></para>
+</simplesect>
+<simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>フラグをクリアするための構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>flag;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_clear_flags(ctx,<sp/>flag);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gae4dce359090323afaf9a29e6dba45262" kindref="member">wolfSSL_EVP_CIPHER_CTX_flags</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="399" column="6" declfile="dox_comments/header_files/evp.h" declline="399" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga4a732172783d2be5d0ce46befef87804" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_EVP_CIPHER_CTX_set_padding</definition>
+        <argsstring>(WOLFSSL_EVP_CIPHER_CTX *c, int pad)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_set_padding</name>
+        <param>
+          <type>WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pad</declname>
+        </param>
+        <briefdescription>
+<para>Setter function for WOLFSSL_EVP_CIPHER_CTX structure to use padding. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_cipher_ctx構造のためのセッター機能パディングを使用する。</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS If successfully set. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG If null argument passed in.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to set padding flag. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>padding</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>0 for not setting padding, 1 for setting padding.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_padding(ctx,<sp/>1);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS 正常に設定されている場合。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG NULL引数が渡された場合。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パディングフラグを設定する構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>ctx</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_EVP_CIPHER_CTX_set_padding(ctx,<sp/>1);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="421" column="6" declfile="dox_comments/header_files/evp.h" declline="421" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gae4dce359090323afaf9a29e6dba45262" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long</type>
+        <definition>unsigned long wolfSSL_EVP_CIPHER_CTX_flags</definition>
+        <argsstring>(const WOLFSSL_EVP_CIPHER_CTX *ctx)</argsstring>
+        <name>wolfSSL_EVP_CIPHER_CTX_flags</name>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Getter function for WOLFSSL_EVP_CIPHER_CTX structure. Deprecated v1.1.0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfssl_evp_cipher_ctx構造のゲッター関数廃止予定のV1.1.0</para>
+<para><simplesect kind="return"><para>unsigned long of flags/mode.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to get flag.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>long<sp/>flags;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new()</highlight></codeline>
+<codeline><highlight class="normal">flags<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_flags(ctx);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags</para>
+</simplesect>
+<simplesect kind="return"><para>unsigned フラグ/モードの長い。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_EVP_CIPHER_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>long<sp/>flags;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_new()</highlight></codeline>
+<codeline><highlight class="normal">flags<sp/>=<sp/>wolfSSL_EVP_CIPHER_CTX_flags(ctx);</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_CTX_new </para>
+</simplesect>
+<simplesect kind="see"><para>wolfSSL_EVP_CIPHER_flags </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/evp.h" line="444" column="15" declfile="dox_comments/header_files/evp.h" declline="444" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gaa7fd7fe3afdfd38e76a5c041a7630909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_PEM_write_bio_PrivateKey</definition>
+        <argsstring>(WOLFSSL_BIO *bio, WOLFSSL_EVP_PKEY *key, const WOLFSSL_EVP_CIPHER *cipher, unsigned char *passwd, int len, wc_pem_password_cb *cb, void *arg)</argsstring>
+        <name>wolfSSL_PEM_write_bio_PrivateKey</name>
+        <param>
+          <type>WOLFSSL_BIO *</type>
+          <declname>bio</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_EVP_PKEY *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const WOLFSSL_EVP_CIPHER *</type>
+          <declname>cipher</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>passwd</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>wc_pem_password_cb *</type>
+          <declname>cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、PEM形式のwolfssl_bio構造体にキーを書き込みます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function writes a key into a WOLFSSL_BIO structure in PEM format.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 失敗すると。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_bio構造体からPEMバッファを取得します。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PEM形式に変換するためのキー。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cipher</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>EVP暗号構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワード。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワードの長さ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>パスワードコールバック <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>bio<sp/>and<sp/>setup<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_PEM_write_bio_PrivateKey(bio,<sp/>key,<sp/>NULL,<sp/>NULL,<sp/>0,<sp/>NULL,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga87c1045d2e6e1fc397f83f0b6444a6bd" kindref="member">wolfSSL_PEM_read_bio_X509_AUX</ref></para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE upon failure.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WOLFSSL_BIO structure to get PEM buffer from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key to convert to PEM format. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cipher</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>EVP cipher structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>passwd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>password. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>length of password. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>password callback. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>optional argument.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>key;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>create<sp/>bio<sp/>and<sp/>setup<sp/>key</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_PEM_write_bio_PrivateKey(bio,<sp/>key,<sp/>NULL,<sp/>NULL,<sp/>0,<sp/>NULL,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal">//check<sp/>ret<sp/>value</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1ga87c1045d2e6e1fc397f83f0b6444a6bd" kindref="member">wolfSSL_PEM_read_bio_X509_AUX</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/pem.h" line="24" column="5" declfile="dox_comments/header_files/ja/pem.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga5ac4ee334e34247e03b25a05f1b63f31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_CTX_use_RSAPrivateKey_file</definition>
+        <argsstring>(WOLFSSL_CTX *ctx, const char *file, int format)</argsstring>
+        <name>wolfSSL_CTX_use_RSAPrivateKey_file</name>
+        <param>
+          <type>WOLFSSL_CTX *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、SSL接続で使用されているプライベートRSAキーをSSLコンテキスト（WolfSSL_CTX）にロードします。この関数は、wolfsslがOpenSSL互換層有効（<ndash/>enable-openSSlextra、#define openssl_extra）でコンパイルされている場合にのみ利用可能で、より一般的に使用されているwolfssl_ctx_use_privatekey_file（）関数と同じです。ファイル引数には、RSA秘密鍵ファイルへのポインタが、フォーマットで指定された形式で含まれています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function loads the private RSA key used in the SSL connection into the SSL context (WOLFSSL_CTX). This function is only available when wolfSSL has been compiled with the OpenSSL compatibility layer enabled (<ndash/>enable-opensslExtra, #define OPENSSL_EXTRA), and is identical to the more-typically used <ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file()</ref> function. The file argument contains a pointer to the RSA private key file, in the format specified by format.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 関数呼び出しが失敗した場合、可能な原因には次のようになります。入力キーファイルが誤った形式であるか、または「format」引数を使用して誤った形式が与えられている場合は、ファイルが存在しない、読み込めない、または破損していない、メモリ不足状態が発生します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_ctx_new（）を使用して作成されたwolfssl_ctx構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>フォーマットで指定された形式で、WolfSSL SSLコンテキストにロードされるRSA秘密鍵を含むファイルの名前へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_use_RSAPrivateKey_file(ctx,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>private<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga4d441e98207dd84508fcf496e4d6ec08" kindref="member">wolfSSL_use_RSAPrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" kindref="member">wolfSSL_use_PrivateKey_file</ref></para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If the function call fails, possible causes might include: The input key file is in the wrong format, or the wrong format has been given using the “format” argument, file doesn’t exist, can’t be read, or is corrupted, an out of memory condition occurs.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL_CTX structure, created using <ref refid="group__Setup_1ga2bcaa81e9fd11074c6e504891370dd45" kindref="member">wolfSSL_CTX_new()</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the name of the file containing the RSA private key to be loaded into the wolfSSL SSL context, with format as specified by format. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the encoding type of the RSA private key specified by file. Possible values include SSL_FILETYPE_PEM and SSL_FILETYPE_ASN1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_CTX_use_RSAPrivateKey_file(ctx,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>private<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga4d441e98207dd84508fcf496e4d6ec08" kindref="member">wolfSSL_use_RSAPrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" kindref="member">wolfSSL_use_PrivateKey_file</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="810" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="810" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gabc3597e8f838c48740498196b3a9d61d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_use_certificate_file</definition>
+        <argsstring>(WOLFSSL *ssl, const char *file, int format)</argsstring>
+        <name>wolfSSL_use_certificate_file</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>この関数は証明書ファイルをSSLセッション（WolfSSL構造体）にロードします。証明書ファイルはファイル引数によって提供されます。format引数は、ファイルのフォーマットタイプ（SSL_FILETYPE_ASN1またはSSL_FILETYPE_PEM）を指定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function loads a certificate file into the SSL session (WOLFSSL structure). The certificate file is provided by the file argument. The format argument specifies the format type of the file - either SSL_FILETYPE_ASN1 or SSL_FILETYPE_PEM.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 関数呼び出しが失敗した場合、可能な原因には次のようになります。ファイルは誤った形式で、または「format」引数を使用して誤った形式が与えられています。メモリ不足状態が発生すると、ファイルでbase16のデコードが失敗する </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたwolfssl構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl sslセッションにロードされる証明書を含むファイルの名前へのポインタは、フォーマットで指定された形式でフォーマットします。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_certificate_file(ssl,<sp/>“./client-cert.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>cert<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gae424b3a63756ab805de5c43b67f4df4f" kindref="member">wolfSSL_CTX_use_certificate_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga5a31292b75b4caa4462a3305d2615beb" kindref="member">wolfSSL_CTX_use_certificate_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga0027df230fa26421b3bb940525b3d330" kindref="member">wolfSSL_use_certificate_buffer</ref></para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If the function call fails, possible causes might include: The file is in the wrong format, or the wrong format has been given using the “format” argument, file doesn’t exist, can’t be read, or is corrupted, an out of memory condition occurs, Base16 decoding fails on the file</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created with <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the name of the file containing the certificate to be loaded into the wolfSSL SSL session, with format as specified by format. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the encoding type of the certificate specified by file. Possible values include SSL_FILETYPE_PEM and SSL_FILETYPE_ASN1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_certificate_file(ssl,<sp/>“./client-cert.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>cert<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1gae424b3a63756ab805de5c43b67f4df4f" kindref="member">wolfSSL_CTX_use_certificate_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga5a31292b75b4caa4462a3305d2615beb" kindref="member">wolfSSL_CTX_use_certificate_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga0027df230fa26421b3bb940525b3d330" kindref="member">wolfSSL_use_certificate_buffer</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="880" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="880" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_use_PrivateKey_file</definition>
+        <argsstring>(WOLFSSL *ssl, const char *file, int format)</argsstring>
+        <name>wolfSSL_use_PrivateKey_file</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、秘密鍵ファイルをSSLセッション（WolfSSL構造体）にロードします。キーファイルはファイル引数によって提供されます。format引数は、ファイルの形式タイプを指定します - SSL_FILETYPE_ASN1またはSSL_FILETYPE_PEM。外部キーストアを使用し、秘密鍵を持っていない場合は、代わりに公開鍵を入力してCryProコールバックを登録して署名を処理することができます。このためには、CryptoコールバックまたはPKコールバックを使用したビルドで構築できます。Cryptoコールバックを有効にするには、<ndash/>enable-cryptocbまたはwolf_crypto_cbを使用し、wc_cryptocb_registerDeviceを使用して暗号コールバックを登録し、wolfssl_setdevidを使用して関連するdevidを設定します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function loads a private key file into the SSL session (WOLFSSL structure). The key file is provided by the file argument. The format argument specifies the format type of the file - SSL_FILETYPE_ASN1 or SSL_FILETYPE_PEM.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 関数呼び出しが失敗した場合、可能な原因には次のようになります。ファイルは誤った形式で、または「format」引数を使用して誤った形式が与えられていますが、ファイルは存在しません。メモリ不足状態が発生すると、ベース16のデコードがファイルで失敗し、キーファイルは暗号化されていますが、パスワードは提供されていません。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）で作成されたwolfssl構造へのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl sslセッションにロードされるキーファイルを含むファイルの名前へのポインタは、フォーマットで指定された形式でフォーマットします。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_PrivateKey_file(ssl,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" kindref="member">wc_CryptoCb_RegisterDevice</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2ssl_8h_1a706356ae2ac664740d36b2a53abe5c36" kindref="member">wolfSSL_SetDevId</ref></para>
+</simplesect>
+If using an external key store and do not have the private key you can instead provide the public key and register the crypro callback to handle the signing. For this you can build with either build with crypto callbacks or PK callbacks. To enable crypto callbacks use <ndash/>enable-cryptocb or WOLF_CRYPTO_CB and register a crypto callback using wc_CryptoCb_RegisterDevice and set the associated devId using wolfSSL_SetDevId.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If the function call fails, possible causes might include: The file is in the wrong format, or the wrong format has been given using the “format” argument, The file doesn’t exist, can’t be read, or is corrupted, An out of memory condition occurs, Base16 decoding fails on the file, The key file is encrypted but no password is provided</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created with <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the name of the file containing the key file to be loaded into the wolfSSL SSL session, with format as specified by format. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the encoding type of the key specified by file. Possible values include SSL_FILETYPE_PEM and SSL_FILETYPE_ASN1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_PrivateKey_file(ssl,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2cryptocb_8h_1abfd83a2117d09b5a69ea70931621fcdf" kindref="member">wc_CryptoCb_RegisterDevice</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="ja_2ssl_8h_1a706356ae2ac664740d36b2a53abe5c36" kindref="member">wolfSSL_SetDevId</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="907" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="907" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga5c2fb9d299fe7522f2bc9249e333ae6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_use_certificate_chain_file</definition>
+        <argsstring>(WOLFSSL *ssl, const char *file)</argsstring>
+        <name>wolfSSL_use_certificate_chain_file</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、Chain of chainをSSLセッション（WolfSSL構造体）にロードします。証明書チェーンを含むファイルはファイル引数によって提供され、PEM形式の証明書を含める必要があります。この関数は、MAX_CHAIN_DEPTH（Default = 9、internal.hで定義されている）証明書に加えて、サブジェクト証明書を処理します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function loads a chain of certificates into the SSL session (WOLFSSL structure). The file containing the certificate chain is provided by the file argument, and must contain PEM-formatted certificates. This function will process up to MAX_CHAIN_DEPTH (default = 9, defined in internal.h) certificates, plus the subject certificate.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 関数呼び出しが失敗した場合、可能な原因には次のようになります。ファイルは誤った形式で、または「format」引数を使用して誤った形式が与えられています。メモリの状態が発生します </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたwolfssl構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_certificate_chain_file(ssl,<sp/>“./cert-chain.pem”);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>cert<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga833efbfe54c5ab598a351ab332e9500e" kindref="member">wolfSSL_CTX_use_certificate_chain_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gae08af065814c816d79c6c4279297a769" kindref="member">wolfSSL_CTX_use_certificate_chain_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga5ba0212a7137e70748e52112c4368067" kindref="member">wolfSSL_use_certificate_chain_buffer</ref></para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If the function call fails, possible causes might include: The file is in the wrong format, or the wrong format has been given using the “format” argument, file doesn’t exist, can’t be read, or is corrupted, an out of memory condition occurs</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the name of the file containing the chain of certificates to be loaded into the wolfSSL SSL session. Certificates must be in PEM format.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_certificate_chain_file(ssl,<sp/>“./cert-chain.pem”);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>cert<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__CertsKeys_1ga833efbfe54c5ab598a351ab332e9500e" kindref="member">wolfSSL_CTX_use_certificate_chain_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gae08af065814c816d79c6c4279297a769" kindref="member">wolfSSL_CTX_use_certificate_chain_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga5ba0212a7137e70748e52112c4368067" kindref="member">wolfSSL_use_certificate_chain_buffer</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="930" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="930" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga4d441e98207dd84508fcf496e4d6ec08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_use_RSAPrivateKey_file</definition>
+        <argsstring>(WOLFSSL *ssl, const char *file, int format)</argsstring>
+        <name>wolfSSL_use_RSAPrivateKey_file</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、SSL接続で使用されているプライベートRSAキーをSSLセッション（WolfSSL構造体）にロードします。この関数は、wolfsslがOpenSSL互換層有効（<ndash/>enable-openSSlextra、#define openssl_extra）でコンパイルされている場合にのみ利用可能で、より一般的に使用されるwolfssl_use_privatekey_file（）関数と同じです。ファイル引数には、RSA秘密鍵ファイルへのポインタが、フォーマットで指定された形式で含まれています。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function loads the private RSA key used in the SSL connection into the SSL session (WOLFSSL structure). This function is only available when wolfSSL has been compiled with the OpenSSL compatibility layer enabled (<ndash/>enable-opensslExtra, #define OPENSSL_EXTRA), and is identical to the more-typically used <ref refid="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" kindref="member">wolfSSL_use_PrivateKey_file()</ref> function. The file argument contains a pointer to the RSA private key file, in the format specified by format.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE 関数呼び出しが失敗した場合、可能な原因には次のようになります。入力キーファイルが誤った形式であるか、または「format」引数を使用して誤った形式が与えられている場合は、ファイルが存在しない、読み込めない、または破損していない、メモリ不足状態が発生します </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wolfssl_new（）を使用して作成されたwolfssl構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_RSAPrivateKey_file(ssl,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>private<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga5ac4ee334e34247e03b25a05f1b63f31" kindref="member">wolfSSL_CTX_use_RSAPrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" kindref="member">wolfSSL_use_PrivateKey_file</ref></para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If the function call fails, possible causes might include: The input key file is in the wrong format, or the wrong format has been given using the “format” argument, file doesn’t exist, can’t be read, or is corrupted, an out of memory condition occurs</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to a WOLFSSL structure, created using <ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new()</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the name of the file containing the RSA private key to be loaded into the wolfSSL SSL session, with format as specified by format. \parm format the encoding type of the RSA private key specified by file. Possible values include SSL_FILETYPE_PEM and SSL_FILETYPE_ASN1.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL*<sp/>ssl;</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>wolfSSL_use_RSAPrivateKey_file(ssl,<sp/>“./server-key.pem”,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SSL_FILETYPE_PEM);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>SSL_SUCCESS)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>loading<sp/>private<sp/>key<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga5ac4ee334e34247e03b25a05f1b63f31" kindref="member">wolfSSL_CTX_use_RSAPrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gaf88bd3ade7faefb028679f48ef64a237" kindref="member">wolfSSL_CTX_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1gab80ef18b3232ebd19acab106b52feeb0" kindref="member">wolfSSL_CTX_use_PrivateKey_file</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__CertsKeys_1ga3fb351ed993396e8b3ef3e0c49ebdfe9" kindref="member">wolfSSL_use_PrivateKey_buffer</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga99e95fd9a63e9784ccd22c494d3d5f48" kindref="member">wolfSSL_use_PrivateKey_file</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="956" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="956" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gaec133503dcd6c3b5ece78702932b59a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long wolfSSL_set_tlsext_status_type</definition>
+        <argsstring>(WOLFSSL *s, int type)</argsstring>
+        <name>wolfSSL_set_tlsext_status_type</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、サーバがOCSPステータス応答（OCSPステイプルとも呼ばれる）を送受信するクライアントアプリケーションが要求されたときに呼び出されます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is called when the client application request that a server send back an OCSP status response (also known as OCSP stapling).Currently, the only supported type is TLSEXT_STATUSTYPE_ocsp.</para>
+<para><simplesect kind="return"><para>1 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 エラー時に。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ssl_new（）関数によって作成されたwolfssl構造体へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX<sp/>*ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_CTX_new(wolfSSLv23_server_method());</highlight></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>WolfSSL_set_tlsext_status_type(ssl,TLSEXT_STATUSTYPE_ocsp);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_free(ssl);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_free(ctx);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga2bcaa81e9fd11074c6e504891370dd45" kindref="member">wolfSSL_CTX_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga640f0a9e17f4727e996fc8bab4eee3c6" kindref="member">wolfSSL_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1gabe86939065276c9271a17d799860535d" kindref="member">wolfSSL_CTX_free</ref></para>
+</simplesect>
+<simplesect kind="return"><para>1 upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>0 upon error.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to WolfSSL struct which is created by SSL_new() function </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ssl extension type which TLSEXT_STATUSTYPE_ocsp is only supported.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WOLFSSL<sp/>*ssl;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_CTX<sp/>*ctx;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret;</highlight></codeline>
+<codeline><highlight class="normal">ctx<sp/>=<sp/>wolfSSL_CTX_new(wolfSSLv23_server_method());</highlight></codeline>
+<codeline><highlight class="normal">ssl<sp/>=<sp/>wolfSSL_new(ctx);</highlight></codeline>
+<codeline><highlight class="normal">ret<sp/>=<sp/>WolfSSL_set_tlsext_status_type(ssl,TLSEXT_STATUSTYPE_ocsp);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_free(ssl);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_CTX_free(ctx);</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Setup_1gab6d54b7485d74962e57bc636008aa9a0" kindref="member">wolfSSL_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga2bcaa81e9fd11074c6e504891370dd45" kindref="member">wolfSSL_CTX_new</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1ga640f0a9e17f4727e996fc8bab4eee3c6" kindref="member">wolfSSL_free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Setup_1gabe86939065276c9271a17d799860535d" kindref="member">wolfSSL_CTX_free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="3340" column="6" declfile="dox_comments/header_files/ja/ssl.h" declline="3340" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WOLFSSL_X509_CHAIN *</type>
+        <definition>WOLFSSL_X509_CHAIN * wolfSSL_get_peer_chain</definition>
+        <argsstring>(WOLFSSL *ssl)</argsstring>
+        <name>wolfSSL_get_peer_chain</name>
+        <param>
+          <type>WOLFSSL *</type>
+          <declname>ssl</declname>
+        </param>
+        <briefdescription>
+<para>ピアの証明書チェーンを取得します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the peer’s certificate chain.</para>
+<para><simplesect kind="return"><para>chain 正常にコールがピアの証明書チェーンを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 無効なWolfSSLポインタが関数に渡されると返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref></para>
+</simplesect>
+<simplesect kind="return"><para>chain If successful the call will return the peer’s certificate chain. </para>
+</simplesect>
+<simplesect kind="return"><para>0 will be returned if an invalid WOLFSSL pointer is passed to the function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ssl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid WOLFSSL structure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="3954" column="20" declfile="dox_comments/header_files/ja/ssl.h" declline="3954" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_get_chain_count</definition>
+        <argsstring>(WOLFSSL_X509_CHAIN *chain)</argsstring>
+        <name>wolfSSL_get_chain_count</name>
+        <param>
+          <type>WOLFSSL_X509_CHAIN *</type>
+          <declname>chain</declname>
+        </param>
+        <briefdescription>
+<para>ピアの証明書チェーン数を取得します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieve&apos;s the peers certificate chain count.</para>
+<para><simplesect kind="return"><para>Success 正常にコールがピアの証明書チェーン数を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 無効なチェーンポインタが関数に渡されると返されます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful the call will return the peer’s certificate chain count. </para>
+</simplesect>
+<simplesect kind="return"><para>0 will be returned if an invalid chain pointer is passed to the function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid WOLFSSL_X509_CHAIN structure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="3970" column="6" declfile="dox_comments/header_files/ja/ssl.h" declline="3970" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gac9c428d8efd878074bbef090a7037274" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_get_chain_length</definition>
+        <argsstring>(WOLFSSL_X509_CHAIN *chain, int idx)</argsstring>
+        <name>wolfSSL_get_chain_length</name>
+        <param>
+          <type>WOLFSSL_X509_CHAIN *</type>
+          <declname>chain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Index（IDX）のピアのASN1.DER証明書長をバイト単位で取得します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the peer’s ASN1.DER certificate length in bytes at index (idx).</para>
+<para><simplesect kind="return"><para>Success 正常にコールがインデックス別にピアの証明書長をバイト単位で返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 無効なチェーンポインタが関数に渡されると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>有効なwolfssl_x509_chain構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful the call will return the peer’s certificate length in bytes by index. </para>
+</simplesect>
+<simplesect kind="return"><para>0 will be returned if an invalid chain pointer is passed to the function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid WOLFSSL_X509_CHAIN structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>index to start of chain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="3987" column="6" declfile="dox_comments/header_files/ja/ssl.h" declline="3987" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned char *</type>
+        <definition>unsigned char * wolfSSL_get_chain_cert</definition>
+        <argsstring>(WOLFSSL_X509_CHAIN *chain, int idx)</argsstring>
+        <name>wolfSSL_get_chain_cert</name>
+        <param>
+          <type>WOLFSSL_X509_CHAIN *</type>
+          <declname>chain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>インデックス（IDX）でピアのASN1.DER証明書を取得します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the peer’s ASN1.DER certificate at index (idx).</para>
+<para><simplesect kind="return"><para>Success 正常にコールがインデックスでピアの証明書を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 無効なチェーンポインタが関数に渡されると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>有効なwolfssl_x509_chain構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful the call will return the peer’s certificate by index. </para>
+</simplesect>
+<simplesect kind="return"><para>0 will be returned if an invalid chain pointer is passed to the function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid WOLFSSL_X509_CHAIN structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>index to start of chain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" kindref="member">wolfSSL_get_chain_cert_pem</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4004" column="15" declfile="dox_comments/header_files/ja/ssl.h" declline="4004" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gaba8bfa60c7f55fe3a510608f5d05932e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_get_chain_cert_pem</definition>
+        <argsstring>(WOLFSSL_X509_CHAIN *chain, int idx, unsigned char *buf, int inLen, int *outLen)</argsstring>
+        <name>wolfSSL_get_chain_cert_pem</name>
+        <param>
+          <type>WOLFSSL_X509_CHAIN *</type>
+          <declname>chain</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>inLen</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outLen</declname>
+        </param>
+        <briefdescription>
+<para>インデックス（IDX）でピアのPEM証明書を取得します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the peer’s PEM certificate at index (idx).</para>
+<para><simplesect kind="return"><para>Success 正常にコールがインデックスでピアの証明書を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>0 無効なチェーンポインタが関数に渡されると返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>有効なwolfssl_x509_chain構造へのポインタ。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref></para>
+</simplesect>
+<simplesect kind="return"><para>Success If successful the call will return the peer’s certificate by index. </para>
+</simplesect>
+<simplesect kind="return"><para>0 will be returned if an invalid chain pointer is passed to the function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid WOLFSSL_X509_CHAIN structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>indexto start of chain.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga0f4bc0953a9f638b77dfb3d0be6403c6" kindref="member">wolfSSL_get_peer_chain</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gaaf50df2b3aaf1066fd48acb1c3d8040f" kindref="member">wolfSSL_get_chain_count</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1gac9c428d8efd878074bbef090a7037274" kindref="member">wolfSSL_get_chain_length</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga26acb3645badfc72a6e6b92402256ce2" kindref="member">wolfSSL_get_chain_cert</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4046" column="6" declfile="dox_comments/header_files/ja/ssl.h" declline="4046" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gae623573087e09af10316cc20fd6d63f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const unsigned char *</type>
+        <definition>const unsigned char * wolfSSL_get_sessionID</definition>
+        <argsstring>(const WOLFSSL_SESSION *s)</argsstring>
+        <name>wolfSSL_get_sessionID</name>
+        <param>
+          <type>const WOLFSSL_SESSION *</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>セッションのIDを取得します。セッションIDは常に32バイトの長さです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the session’s ID. The session ID is always 32 bytes long.</para>
+<para><simplesect kind="return"><para>id セッションID。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para>SSL_get_session</para>
+</simplesect>
+<simplesect kind="return"><para>id The session ID.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>session</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a valid wolfssl session.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>SSL_get_session </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4059" column="21" declfile="dox_comments/header_files/ja/ssl.h" declline="4059" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1gaf28dd542c2da23d9c2a9346e6a22ea52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_X509_get_serial_number</definition>
+        <argsstring>(WOLFSSL_X509 *x509, unsigned char *in, int *inOutSz)</argsstring>
+        <name>wolfSSL_X509_get_serial_number</name>
+        <param>
+          <type>WOLFSSL_X509 *</type>
+          <declname>x509</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>inOutSz</declname>
+        </param>
+        <briefdescription>
+<para>ピアの証明書のシリアル番号を取得します。シリアル番号バッファ（IN）は少なくとも32バイト以上であり、入力として* INOUTSZ引数として提供されます。関数を呼び出した後* INOUTSZはINバッファに書き込まれた実際の長さをバイト単位で保持します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the peer’s certificate serial number. The serial number buffer (in) should be at least 32 bytes long and be provided as the *inOutSz argument as input. After calling the function *inOutSz will hold the actual length in bytes written to the in buffer.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS 成功すると。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数の不良引数が見つかった場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>シリアル番号バッファは少なくとも32バイトの長さであるべきです <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>SSL_get_peer_certificate</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS upon success. </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG will be returned if a bad function argument was encountered.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The serial number buffer and should be at least 32 bytes long </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inOutSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>will hold the actual length in bytes written to the in buffer.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">none</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para>SSL_get_peer_certificate </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4073" column="6" declfile="dox_comments/header_files/ja/ssl.h" declline="4073" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga560c154d5cc0c9ee48ee00aec7e2ca56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WC_PKCS12 *</type>
+        <definition>WC_PKCS12 * wolfSSL_d2i_PKCS12_bio</definition>
+        <argsstring>(WOLFSSL_BIO *bio, WC_PKCS12 **pkcs12)</argsstring>
+        <name>wolfSSL_d2i_PKCS12_bio</name>
+        <param>
+          <type>WOLFSSL_BIO *</type>
+          <declname>bio</declname>
+        </param>
+        <param>
+          <type>WC_PKCS12 **</type>
+          <declname>pkcs12</declname>
+        </param>
+        <briefdescription>
+<para>WOLFSSL_D2I_PKCS12_BIO（D2I_PKCS12_BIO）は、WOLFSSL_BIOから構造WC_PKCS12へのPKCS12情報にコピーされます。この情報は、オプションのMAC情報を保持するための構造とともにコンテンツに関する情報のリストとして構造内に分割されています。構造体WC_PKCS12で情報がチャンク（ただし復号化されていない）に分割された後、それはその後、呼び出しによって解析および復号化され得る。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfSSL_d2i_PKCS12_bio (d2i_PKCS12_bio) copies in the PKCS12 information from WOLFSSL_BIO to the structure WC_PKCS12. The information is divided up in the structure as a list of Content Infos along with a structure to hold optional MAC information. After the information has been divided into chunks (but not decrypted) in the structure WC_PKCS12, it can then be parsed and decrypted by calling.</para>
+<para><simplesect kind="return"><para>WC_PKCS12 WC_PKCS12構造へのポインタ。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure 関数に失敗した場合はNULLを返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS12バッファを読み取るためのWOLFSSL_BIO構造。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12*<sp/>pkcs;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_X509*<sp/>cert;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>pkey;</highlight></codeline>
+<codeline><highlight class="normal">STACK_OF(X509)<sp/>certs;</highlight></codeline>
+<codeline><highlight class="normal">//bio<sp/>loads<sp/>in<sp/>PKCS12<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_d2i_PKCS12_bio(bio,<sp/>&amp;pkcs);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_PKCS12_parse(pkcs,<sp/>“a<sp/>password”,<sp/>&amp;pkey,<sp/>&amp;cert,<sp/>&amp;certs)</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>cert,<sp/>pkey,<sp/>and<sp/>optionally<sp/>certs<sp/>stack</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga9bde570fabcb5436c246e1e45707558b" kindref="member">wolfSSL_PKCS12_parse</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free</para>
+</simplesect>
+<simplesect kind="return"><para>WC_PKCS12 pointer to a WC_PKCS12 structure. </para>
+</simplesect>
+<simplesect kind="return"><para>Failure If function failed it will return NULL.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WOLFSSL_BIO structure to read PKCS12 buffer from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkcs12</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_PKCS12 structure pointer for new PKCS12 structure created. Can be NULL</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12*<sp/>pkcs;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_X509*<sp/>cert;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>pkey;</highlight></codeline>
+<codeline><highlight class="normal">STACK_OF(X509)<sp/>certs;</highlight></codeline>
+<codeline><highlight class="normal">//bio<sp/>loads<sp/>in<sp/>PKCS12<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_d2i_PKCS12_bio(bio,<sp/>&amp;pkcs);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_PKCS12_parse(pkcs,<sp/>“a<sp/>password”,<sp/>&amp;pkey,<sp/>&amp;cert,<sp/>&amp;certs)</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>cert,<sp/>pkey,<sp/>and<sp/>optionally<sp/>certs<sp/>stack</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga9bde570fabcb5436c246e1e45707558b" kindref="member">wolfSSL_PKCS12_parse</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4345" column="11" declfile="dox_comments/header_files/ja/ssl.h" declline="4345" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga12a977d5aa756bbdacc4b30686f2dc0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>WC_PKCS12 *</type>
+        <definition>WC_PKCS12 * wolfSSL_i2d_PKCS12_bio</definition>
+        <argsstring>(WOLFSSL_BIO *bio, WC_PKCS12 *pkcs12)</argsstring>
+        <name>wolfSSL_i2d_PKCS12_bio</name>
+        <param>
+          <type>WOLFSSL_BIO *</type>
+          <declname>bio</declname>
+        </param>
+        <param>
+          <type>WC_PKCS12 *</type>
+          <declname>pkcs12</declname>
+        </param>
+        <briefdescription>
+<para>WOLFSSL_I2D_PKCS12_BIO（I2D_PKCS12_BIO）は、構造WC_PKCS12からWOLFSSL_BIOへの証明書情報にコピーされます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>wolfSSL_i2d_PKCS12_bio (i2d_PKCS12_bio) copies in the cert information from the structure WC_PKCS12 to WOLFSSL_BIO.</para>
+<para><simplesect kind="return"><para>1 成功のために。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure 0。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS12バッファを書き込むためのWOLFSSL_BIO構造。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12<sp/>pkcs12;</highlight></codeline>
+<codeline><highlight class="normal">FILE<sp/>*f;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buffer[5300];</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>file[]<sp/>=<sp/>&quot;./test.p12&quot;;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>bytes;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">pkcs12<sp/>=<sp/>wc_PKCS12_new();</highlight></codeline>
+<codeline><highlight class="normal">f<sp/>=<sp/>fopen(file,<sp/>&quot;rb&quot;);</highlight></codeline>
+<codeline><highlight class="normal">bytes<sp/>=<sp/>(int)fread(buffer,<sp/>1,<sp/>sizeof(buffer),<sp/>f);</highlight></codeline>
+<codeline><highlight class="normal">fclose(f);</highlight></codeline>
+<codeline><highlight class="normal">//convert<sp/>the<sp/>DER<sp/>file<sp/>into<sp/>an<sp/>internal<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">wc_d2i_PKCS12(buffer,<sp/>bytes,<sp/>pkcs12);</highlight></codeline>
+<codeline><highlight class="normal">bio<sp/>=<sp/>wolfSSL_BIO_new(wolfSSL_BIO_s_mem());</highlight></codeline>
+<codeline><highlight class="normal">//convert<sp/>PKCS12<sp/>structure<sp/>into<sp/>bio</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_i2d_PKCS12_bio(bio,<sp/>pkcs12);</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>bio</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga9bde570fabcb5436c246e1e45707558b" kindref="member">wolfSSL_PKCS12_parse</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free</para>
+</simplesect>
+<simplesect kind="return"><para>1 for success. </para>
+</simplesect>
+<simplesect kind="return"><para>Failure 0.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WOLFSSL_BIO structure to write PKCS12 buffer to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkcs12</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_PKCS12 structure for PKCS12 structure as input.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12<sp/>pkcs12;</highlight></codeline>
+<codeline><highlight class="normal">FILE<sp/>*f;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>buffer[5300];</highlight></codeline>
+<codeline><highlight class="normal">char<sp/>file[]<sp/>=<sp/>&quot;./test.p12&quot;;</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>bytes;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">pkcs12<sp/>=<sp/>wc_PKCS12_new();</highlight></codeline>
+<codeline><highlight class="normal">f<sp/>=<sp/>fopen(file,<sp/>&quot;rb&quot;);</highlight></codeline>
+<codeline><highlight class="normal">bytes<sp/>=<sp/>(int)fread(buffer,<sp/>1,<sp/>sizeof(buffer),<sp/>f);</highlight></codeline>
+<codeline><highlight class="normal">fclose(f);</highlight></codeline>
+<codeline><highlight class="normal">//convert<sp/>the<sp/>DER<sp/>file<sp/>into<sp/>an<sp/>internal<sp/>structure</highlight></codeline>
+<codeline><highlight class="normal">wc_d2i_PKCS12(buffer,<sp/>bytes,<sp/>pkcs12);</highlight></codeline>
+<codeline><highlight class="normal">bio<sp/>=<sp/>wolfSSL_BIO_new(wolfSSL_BIO_s_mem());</highlight></codeline>
+<codeline><highlight class="normal">//convert<sp/>PKCS12<sp/>structure<sp/>into<sp/>bio</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_i2d_PKCS12_bio(bio,<sp/>pkcs12);</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>bio</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga9bde570fabcb5436c246e1e45707558b" kindref="member">wolfSSL_PKCS12_parse</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4377" column="11" declfile="dox_comments/header_files/ja/ssl.h" declline="4377" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="group__openSSL_1ga9bde570fabcb5436c246e1e45707558b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_PKCS12_parse</definition>
+        <argsstring>(WC_PKCS12 *pkcs12, const char *psw, WOLFSSL_EVP_PKEY **pkey, WOLFSSL_X509 **cert, WOLF_STACK_OF(WOLFSSL_X509) **ca)</argsstring>
+        <name>wolfSSL_PKCS12_parse</name>
+        <param>
+          <type>WC_PKCS12 *</type>
+          <declname>pkcs12</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>psw</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_EVP_PKEY **</type>
+          <declname>pkey</declname>
+        </param>
+        <param>
+          <type>WOLFSSL_X509 **</type>
+          <declname>cert</declname>
+        </param>
+        <param>
+          <type><ref refid="group__CertsKeys_1ga9aa6e326195805ad0782cc7d70d49691" kindref="member">WOLF_STACK_OF</ref>(WOLFSSL_X509) **</type>
+          <declname>ca</declname>
+        </param>
+        <briefdescription>
+<para>pkcs12は、configureコマンドへの-enable-openSSLAXTRAを追加することで有効にできます。それは復号化のためにトリプルDESとRC4を使うことができるので、OpenSSlextra（<ndash/>enable-des3 -enable-arc4）を有効にするときにもこれらの機能を有効にすることをお勧めします。 wolfsslは現在RC2をサポートしていませんので、RC2での復号化は現在利用できません。これは、.p12ファイルを作成するためにOpenSSLコマンドラインで使用されるデフォルトの暗号化方式では注目すかもしれません。 WOLFSSL_PKCS12_PARSE（PKCS12_PARSE）。この関数が最初に行っているのは、存在する場合はMacが正しいチェックです。 MACが失敗した場合、関数は返され、保存されているコンテンツ情報のいずれかを復号化しようとしません。この関数は、バッグタイプを探している各コンテンツ情報を介して解析します。バッグタイプがわかっている場合は、必要に応じて復号化され、構築されている証明書のリストに格納されているか、見つかったキーとして保存されます。すべてのバッグを介して解析した後、見つかったキーは、一致するペアが見つかるまで証明書リストと比較されます。この一致するペアはキーと証明書として返され、オプションで見つかった証明書リストはstack_of証明書として返されます。瞬間、CRL、秘密または安全なバッグがスキップされ、解析されません。デバッグプリントアウトを見ることで、これらまたは他の「不明」バッグがスキップされているかどうかがわかります。フレンドリー名などの追加の属性は、PKCS12ファイルを解析するときにスキップされます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>PKCS12 can be enabled with adding –enable-opensslextra to the configure command. It can use triple DES and RC4 for decryption so would recommend also enabling these features when enabling opensslextra (<ndash/>enable-des3 –enable-arc4). wolfSSL does not currently support RC2 so decryption with RC2 is currently not available. This may be noticeable with default encryption schemes used by OpenSSL command line to create .p12 files. wolfSSL_PKCS12_parse (PKCS12_parse). The first thing this function does is check the MAC is correct if present. If the MAC fails then the function returns and does not try to decrypt any of the stored Content Infos. This function then parses through each Content Info looking for a bag type, if the bag type is known it is decrypted as needed and either stored in the list of certificates being built or as a key found. After parsing through all bags the key found is then compared with the certificate list until a matching pair is found. This matching pair is then returned as the key and certificate, optionally the certificate list found is returned as a STACK_OF certificates. At the moment a CRL, Secret or SafeContents bag will be skipped over and not parsed. It can be seen if these or other “Unknown” bags are skipped over by viewing the debug print out. Additional attributes such as friendly name are skipped over when parsing a PKCS12 file.</para>
+<para><simplesect kind="return"><para>SSL_SUCCESS PKCS12の解析に成功しました。 </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE エラーケースに遭遇した場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs12</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>wc_pkcs12解析する構造 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paswd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS12を復号化するためのパスワード。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS12からデコードされた秘密鍵を保持するための構造。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>PKCS12から復号された証明書を保持する構造 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12*<sp/>pkcs;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_X509*<sp/>cert;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>pkey;</highlight></codeline>
+<codeline><highlight class="normal">STACK_OF(X509)<sp/>certs;</highlight></codeline>
+<codeline><highlight class="normal">//bio<sp/>loads<sp/>in<sp/>PKCS12<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_d2i_PKCS12_bio(bio,<sp/>&amp;pkcs);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_PKCS12_parse(pkcs,<sp/>“a<sp/>password”,<sp/>&amp;pkey,<sp/>&amp;cert,<sp/>&amp;certs)</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>cert,<sp/>pkey,<sp/>and<sp/>optionally<sp/>certs<sp/>stack</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__openSSL_1ga560c154d5cc0c9ee48ee00aec7e2ca56" kindref="member">wolfSSL_d2i_PKCS12_bio</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free</para>
+</simplesect>
+<simplesect kind="return"><para>SSL_SUCCESS On successfully parsing PKCS12. </para>
+</simplesect>
+<simplesect kind="return"><para>SSL_FAILURE If an error case was encountered.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pkcs12</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>WC_PKCS12 structure to parse. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paswd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>password for decrypting PKCS12. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pkey</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to hold private key decoded from PKCS12. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>structure to hold certificate decoded from PKCS12. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stack</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>optional stack of extra certificates.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">WC_PKCS12*<sp/>pkcs;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_BIO*<sp/>bio;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_X509*<sp/>cert;</highlight></codeline>
+<codeline><highlight class="normal">WOLFSSL_EVP_PKEY*<sp/>pkey;</highlight></codeline>
+<codeline><highlight class="normal">STACK_OF(X509)<sp/>certs;</highlight></codeline>
+<codeline><highlight class="normal">//bio<sp/>loads<sp/>in<sp/>PKCS12<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_d2i_PKCS12_bio(bio,<sp/>&amp;pkcs);</highlight></codeline>
+<codeline><highlight class="normal">wolfSSL_PKCS12_parse(pkcs,<sp/>“a<sp/>password”,<sp/>&amp;pkey,<sp/>&amp;cert,<sp/>&amp;certs)</highlight></codeline>
+<codeline><highlight class="normal">wc_PKCS12_free(pkcs)</highlight></codeline>
+<codeline><highlight class="normal">//use<sp/>cert,<sp/>pkey,<sp/>and<sp/>optionally<sp/>certs<sp/>stack</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__openSSL_1ga560c154d5cc0c9ee48ee00aec7e2ca56" kindref="member">wolfSSL_d2i_PKCS12_bio</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wc_PKCS12_free </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/ssl.h" line="4405" column="5" declfile="dox_comments/header_files/ja/ssl.h" declline="4405" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

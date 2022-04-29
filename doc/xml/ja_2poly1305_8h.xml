@@ -1,0 +1,509 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="ja_2poly1305_8h" kind="file" language="C++">
+    <compoundname>poly1305.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Poly1305SetKey</definition>
+        <argsstring>(Poly1305 *poly1305, const byte *key, word32 kySz)</argsstring>
+        <name>wc_Poly1305SetKey</name>
+        <param>
+          <type>Poly1305 *</type>
+          <declname>poly1305</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>kySz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、Poly1305コンテキスト構造のキーを設定し、ハッシュに初期化します。注：セキュリティを確保するために、WC_POLY1305FINALでメッセージハッシュを生成した後に新しいキーを設定する必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the key for a Poly1305 context structure, initializing it for hashing. Note: A new key should be set after generating a message hash with wc_Poly1305Final to ensure security.</para>
+<para><simplesect kind="return"><para>0 キーを正常に設定し、Poly1305構造の初期化 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 与えられたキーが32バイトの長さでない場合、またはPoly1305コンテキストがNULLの場合 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化するためのPoly1305構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュに使用する鍵を含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>hashing<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" kindref="member">wc_Poly1305Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned on successfully setting the key and initializing the Poly1305 structure </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the given key is not 32 bytes long, or the Poly1305 context is NULL</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a Poly1305 structure to initialize </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the key to use for hashing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keySz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the key in the buffer. Should be 32 bytes</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>hashing<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" kindref="member">wc_Poly1305Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/poly1305.h" line="17" column="5" declfile="dox_comments/header_files/ja/poly1305.h" declline="17" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Poly1305Update</definition>
+        <argsstring>(Poly1305 *poly1305, const byte *m, word32 bytes)</argsstring>
+        <name>wc_Poly1305Update</name>
+        <param>
+          <type>Poly1305 *</type>
+          <declname>poly1305</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>bytes</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、Poly1305構造を持つハッシュにメッセージを更新します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function updates the message to hash with the Poly1305 structure.</para>
+<para><simplesect kind="return"><para>0 ハッシュへのメッセージの更新に成功しました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Poly1305構造がNULLの場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>HASHにメッセージを更新するためのPoly1305構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ハッシュに追加する必要があるメッセージを含むバッファへのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Poly1305Update(key,<sp/>msg,<sp/>sizeof(msg))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" kindref="member">wc_Poly1305Final</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned on successfully updating the message to hash </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the Poly1305 structure is NULL</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a Poly1305 structure for which to update the message to hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer containing the message which should be added to the hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>size of the message to hash</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if(<sp/>wc_Poly1305Update(key,<sp/>msg,<sp/>sizeof(msg))<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>updating<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" kindref="member">wc_Poly1305Final</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/poly1305.h" line="42" column="5" declfile="dox_comments/header_files/ja/poly1305.h" declline="42" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Poly1305Final</definition>
+        <argsstring>(Poly1305 *poly1305, byte *tag)</argsstring>
+        <name>wc_Poly1305Final</name>
+        <param>
+          <type>Poly1305 *</type>
+          <declname>poly1305</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>tag</declname>
+        </param>
+        <briefdescription>
+<para>この関数は入力メッセージのハッシュを計算し、結果をMACに格納します。この後、キーをリセットする必要があります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the hash of the input messages and stores the result in mac. After this is called, the key should be reset.</para>
+<para><simplesect kind="return"><para>0 最後のMacの計算に成功した </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Poly1305構造がNULLの場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>MACを生成するためのPoly1305構造へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>mac[POLY1305_DIGEST_SIZE];<sp/>//<sp/>space<sp/>for<sp/>a<sp/>16<sp/>byte<sp/>mac</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305Update(key,<sp/>msg,<sp/>sizeof(msg));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Poly1305Final(&amp;enc,<sp/>mac)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>computing<sp/>final<sp/>MAC</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref></para>
+</simplesect>
+<simplesect kind="return"><para>0 Returned on successfully computing the final MAC </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if the Poly1305 structure is NULL</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a Poly1305 structure with which to generate the MAC </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the buffer in which to store the MAC. Should be POLY1305_DIGEST_SIZE (16 bytes) wide</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>enc;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>mac[POLY1305_DIGEST_SIZE];<sp/>//<sp/>space<sp/>for<sp/>a<sp/>16<sp/>byte<sp/>mac</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>encryption</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message<sp/>to<sp/>hash</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;enc,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline><highlight class="normal">wc_Poly1305Update(key,<sp/>msg,<sp/>sizeof(msg));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>(<sp/>wc_Poly1305Final(&amp;enc,<sp/>mac)<sp/>!=<sp/>0<sp/>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>error<sp/>computing<sp/>final<sp/>MAC</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/poly1305.h" line="68" column="5" declfile="dox_comments/header_files/ja/poly1305.h" declline="68" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__Poly1305_1gae9d50f69d4fcc3df81f917c5ccd19710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_Poly1305_MAC</definition>
+        <argsstring>(Poly1305 *ctx, byte *additional, word32 addSz, byte *input, word32 sz, byte *tag, word32 tagSz)</argsstring>
+        <name>wc_Poly1305_MAC</name>
+        <param>
+          <type>Poly1305 *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>additional</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>addSz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>tag</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>tagSz</declname>
+        </param>
+        <briefdescription>
+<para>鍵がロードされ、最近のTLS AEADパディング方式を使用してMAC（タグ）を作成する初期化されたPoly1305構造体を取ります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Takes in an initialized Poly1305 struct that has a key loaded and creates a MAC (tag) using recent TLS AEAD padding scheme.</para>
+<para><simplesect kind="return"><para>0 成功 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG CTX、INPUT、またはTAGがNULLの場合、または追加がNULLで、ADDSZが0より大きい場合、またはTAGSZがWC_POLY1305_MAC_SZより小さい場合に返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>初期化されたPoly1305構造物 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>additional</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用する追加データ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>addSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>追加バッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>からタグを作成するための入力バッファ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>入力バッファのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>作成したタグを保持するためのバッファー <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>hashing</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>additional[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>additional<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>tag[16];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;ctx,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline><highlight class="normal">if(wc_Poly1305_MAC(&amp;ctx,<sp/>additional,<sp/>sizeof(additional),<sp/>(byte*)msg,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(msg),<sp/>tag,<sp/>sizeof(tag))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>the<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wcPoly1305Final</para>
+</simplesect>
+<simplesect kind="return"><para>0 Success </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Returned if ctx, input, or tag is null or if additional is null and addSz is greater than 0 or if tagSz is less than WC_POLY1305_MAC_SZ.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initialized Poly1305 struct to use </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>additional</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional data to use </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>addSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of additional buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input buffer to create tag from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer to hold created tag </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tagSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input tag buffer (must be at least WC_POLY1305_MAC_SZ(16))</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">Poly1305<sp/>ctx;</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>key[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>32<sp/>byte<sp/>key<sp/>to<sp/>use<sp/>for<sp/>hashing</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>additional[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>additional<sp/>data</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>msg[]<sp/>=<sp/>{<sp/>};<sp/>//<sp/>initialize<sp/>with<sp/>message</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>tag[16];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">wc_Poly1305SetKey(&amp;ctx,<sp/>key,<sp/>sizeof(key));</highlight></codeline>
+<codeline><highlight class="normal">if(wc_Poly1305_MAC(&amp;ctx,<sp/>additional,<sp/>sizeof(additional),<sp/>(byte*)msg,</highlight></codeline>
+<codeline><highlight class="normal">sizeof(msg),<sp/>tag,<sp/>sizeof(tag))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>the<sp/>error</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="see"><para><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref> </para>
+</simplesect>
+<simplesect kind="see"><para>wcPoly1305Final </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/poly1305.h" line="100" column="5" declfile="dox_comments/header_files/ja/poly1305.h" declline="100" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="17"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Poly1305_1gaf3d8a41e7539e80e1b1d96e1b9a024ad" kindref="member">wc_Poly1305SetKey</ref>(Poly1305*<sp/>poly1305,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>key,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word32<sp/>kySz);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Poly1305_1ga4b01f700da4feb220012160ff1f29715" kindref="member">wc_Poly1305Update</ref>(Poly1305*<sp/>poly1305,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>m,<sp/>word32<sp/>bytes);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Poly1305_1gaaa3c9d7e033cd72ab9de8a5f3d261968" kindref="member">wc_Poly1305Final</ref>(Poly1305*<sp/>poly1305,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>tag);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="group__Poly1305_1gae9d50f69d4fcc3df81f917c5ccd19710" kindref="member">wc_Poly1305_MAC</ref>(Poly1305*<sp/>ctx,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>additional,<sp/>word32<sp/>addSz,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>input,<sp/>word32<sp/>sz,<sp/></highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>tag,<sp/>word32<sp/>tagSz);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/poly1305.h"/>
+  </compounddef>
+</doxygen>

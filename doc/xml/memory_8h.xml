@@ -1,0 +1,389 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="memory_8h" kind="file" language="C++">
+    <compoundname>memory.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="memory_8h_1a8bb7eb1f72a7aeab4c91d1d290547bab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void* wolfSSL_Malloc</definition>
+        <argsstring>(size_t size, void *heap, int type)</argsstring>
+        <name>wolfSSL_Malloc</name>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はmalloc（）と似ていますが、WolfSSLが使用するように構成されているメモリ割り当て関数を呼び出します。デフォルトでは、WolfSSLはmalloc（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_MALLOCは、WOLFSSLによって直接呼び出されませんが、代わりにMacro XMallocによって呼び出されます。デフォルトのビルドの場合、size引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>pointer 成功した場合、この関数は割り当てられたメモリへのポインタを返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>error エラーがある場合は、NULLが返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるメモリのサイズ（バイト） </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1a3db89b6f813b3dc88e838a63e4d3e748" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1af58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a9af65c607dcc9c8b239f95d842086c45" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1ae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a8570d2fd71074263780ad7a951333514" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="19" column="6" declfile="dox_comments/header_files/ja/memory.h" declline="19" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wolfSSL_Free</definition>
+        <argsstring>(void *ptr, void *heap, int type)</argsstring>
+        <name>wolfSSL_Free</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はfree（）と似ていますが、WolfSSLが使用するように構成されているメモリフリー機能を呼び出します。デフォルトでは、WolfSSLはfree（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_FREEはWOLFSSLによって直接呼び出されませんが、代わりにマクロXFreeによって呼び出されます。デフォルトのビルドの場合、PTR引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>none いいえ返します。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>解放されるメモリへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>process<sp/>data<sp/>as<sp/>desired</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">if(tenInts)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>wolfSSL_Free(tenInts);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>wolfSSL_Alloc </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1a3db89b6f813b3dc88e838a63e4d3e748" kindref="member">wolfSSL_Realloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1af58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a9af65c607dcc9c8b239f95d842086c45" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1ae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a8570d2fd71074263780ad7a951333514" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="43" column="7" declfile="dox_comments/header_files/ja/memory.h" declline="43" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="memory_8h_1a3db89b6f813b3dc88e838a63e4d3e748" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void *</type>
+        <definition>void* wolfSSL_Realloc</definition>
+        <argsstring>(void *ptr, size_t size, void *heap, int type)</argsstring>
+        <name>wolfSSL_Realloc</name>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>この関数はREALLOC（）と似ていますが、WolfSSLが使用するように構成されているメモリ再割り当て機能を呼び出します。デフォルトでは、WolfSSLはRealLoc（）を使用します。これは、WolfSSLメモリ抽象化レイヤを使用して変更できます - wolfssl_setAllocator（）を参照してください。注WOLFSSL_REALLOCはWOLFSSLによって直接呼び出されませんが、代わりにマクロXreallocによって呼び出されます。デフォルトのビルドの場合、size引数のみが存在します。wolfssl_static_memoryビルドを使用する場合は、ヒープとタイプ引数が含まれます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>pointer 成功した場合、この関数はマイポイントを再割り当てするためのポインタを返します。これはPTRと同じポインタ、または新しいポインタの場所であり得る。 </para>
+</simplesect>
+<simplesect kind="return"><para>Null エラーがある場合は、NULLが返されます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>再割り当てされているメモリへのポインタ。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>割り当てるバイト数。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>メモリに使用するヒントヒント。nullになることができます <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int*<sp/>tenInts<sp/>=<sp/>(int*)wolfSSL_Malloc(sizeof(int)*10);</highlight></codeline>
+<codeline><highlight class="normal">int*<sp/>twentyInts<sp/>=<sp/>(int*)wolfSSL_Realloc(tenInts,<sp/>sizeof(int)*20);</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1a8bb7eb1f72a7aeab4c91d1d290547bab" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1af58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a9af65c607dcc9c8b239f95d842086c45" kindref="member">XMALLOC</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1ae4dc607e12745ea1fe128d411792c62f" kindref="member">XFREE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="types_8h_1a8570d2fd71074263780ad7a951333514" kindref="member">XREALLOC</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="65" column="6" declfile="dox_comments/header_files/ja/memory.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="memory_8h_1af58de387b90207e5d5da550192d830d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_SetAllocators</definition>
+        <argsstring>(wolfSSL_Malloc_cb, wolfSSL_Free_cb, wolfSSL_Realloc_cb)</argsstring>
+        <name>wolfSSL_SetAllocators</name>
+        <param>
+          <type>wolfSSL_Malloc_cb</type>
+        </param>
+        <param>
+          <type>wolfSSL_Free_cb</type>
+        </param>
+        <param>
+          <type>wolfSSL_Realloc_cb</type>
+        </param>
+        <briefdescription>
+<para>この機能は、WolfSSLが使用する割り当て関数を登録します。デフォルトでは、システムがそれをサポートしている場合、Malloc / FreeとRealLocが使用されます。この機能を使用すると、実行時にユーザーは独自のメモリハンドラをインストールできます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success 成功した場合、この関数は0を返します。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG 関数ポインタが提供されていない場合に返されるエラーです。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>malloc_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するWolfSSLのメモリ割り当て機能関数署名は、上記のwolfssl_malloc_cbプロトタイプと一致する必要があります。 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>free_function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>使用するWolfSSLのメモリフリー機能関数シグネチャは、上記のwolfssl_free_cbプロトタイプと一致する必要があります。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">static<sp/>void*<sp/>MyMalloc(size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>malloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void<sp/>MyFree(void*<sp/>ptr)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>free<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">static<sp/>void*<sp/>MyRealloc(void*<sp/>ptr,<sp/>size_t<sp/>size)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>custom<sp/>realloc<sp/>function</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Register<sp/>custom<sp/>memory<sp/>functions<sp/>with<sp/>wolfSSL</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>ret<sp/>=<sp/>wolfSSL_SetAllocators(MyMalloc,<sp/>MyFree,<sp/>MyRealloc);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(ret<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>failed<sp/>to<sp/>set<sp/>memory<sp/>functions</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>none </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="99" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="99" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="memory_8h_1ad76da4cbbc588140893371d654c3ef7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_StaticBufferSz</definition>
+        <argsstring>(byte *buffer, word32 sz, int flag)</argsstring>
+        <name>wolfSSL_StaticBufferSz</name>
+        <param>
+          <type>byte *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>この機能は、静的メモリ機能が使用されている場合（<ndash/>enable-staticMemory）の場合に使用できます。メモリの「バケット」に最適なバッファサイズを示します。これにより、パーティション化された後に追加の未使用のメモリが終了しないように、バッファサイズを計算する方法が可能になります。返された値は、正の場合、使用するコンピュータのバッファサイズです。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Success バッファサイズ計算を正常に完了すると、正の値が返されます。この返された値は最適なバッファサイズです。 </para>
+</simplesect>
+<simplesect kind="return"><para>Failure すべての負の値はエラーの場合と見なされます。 </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファへのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>バッファのサイズ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">byte<sp/>buffer[1000];</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>size<sp/>=<sp/>sizeof(buffer);</highlight></codeline>
+<codeline><highlight class="normal">int<sp/>optimum;</highlight></codeline>
+<codeline><highlight class="normal">optimum<sp/>=<sp/>wolfSSL_StaticBufferSz(buffer,<sp/>size,<sp/>WOLFMEM_GENERAL);</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(optimum<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>optimum<sp/>buffer<sp/>size<sp/>to<sp/>make<sp/>use<sp/>of<sp/>all<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">optimum);</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="memory_8h_1a8bb7eb1f72a7aeab4c91d1d290547bab" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="124" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="124" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="memory_8h_1aa357c5b56f7227f1a2649f03578428fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wolfSSL_MemoryPaddingSz</definition>
+        <argsstring>(void)</argsstring>
+        <name>wolfSSL_MemoryPaddingSz</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>この機能は、静的メモリ機能が使用されている場合（<ndash/>enable-staticMemory）の場合に使用できます。メモリの各パーティションに必要なパディングのサイズを示します。このパディングサイズは、メモリアライメントのために追加のメモリ管理構造を含む必要があるサイズになります。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>On 正常なメモリパディング計算戻り値は正の値になります </para>
+</simplesect>
+<simplesect kind="return"><para>All 負の値はエラーケースと見なされます。 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">int<sp/>padding;</highlight></codeline>
+<codeline><highlight class="normal">padding<sp/>=<sp/>wolfSSL_MemoryPaddingSz();</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(padding<sp/>&lt;<sp/>0)<sp/>{<sp/>//handle<sp/>error<sp/>case<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">printf(“The<sp/>padding<sp/>size<sp/>needed<sp/>for<sp/>each<sp/>\”bucket\”<sp/>of<sp/>memory<sp/>is<sp/>%d\n”,</highlight></codeline>
+<codeline><highlight class="normal">padding);</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>calculation<sp/>of<sp/>buffer<sp/>for<sp/>IO<sp/>POOL<sp/>size<sp/>is<sp/>number<sp/>of<sp/>buckets</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>times<sp/>(padding<sp/>+<sp/>WOLFMEM_IO_SZ)</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1a8bb7eb1f72a7aeab4c91d1d290547bab" kindref="member">wolfSSL_Malloc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/memory.h" line="145" column="5" declfile="dox_comments/header_files/ja/memory.h" declline="145" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="19"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="memory_8h_1a8bb7eb1f72a7aeab4c91d1d290547bab" kindref="member">wolfSSL_Malloc</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="memory_8h_1acbd80e0dd4cd62c247bdbef3d163e0ff" kindref="member">wolfSSL_Free</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/><ref refid="memory_8h_1a3db89b6f813b3dc88e838a63e4d3e748" kindref="member">wolfSSL_Realloc</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*ptr,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>size,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>heap,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="memory_8h_1af58de387b90207e5d5da550192d830d1" kindref="member">wolfSSL_SetAllocators</ref>(wolfSSL_Malloc_cb,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wolfSSL_Free_cb,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wolfSSL_Realloc_cb);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="memory_8h_1ad76da4cbbc588140893371d654c3ef7e" kindref="member">wolfSSL_StaticBufferSz</ref>(</highlight><highlight class="keywordtype">byte</highlight><highlight class="normal">*<sp/>buffer,<sp/>word32<sp/>sz,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="memory_8h_1aa357c5b56f7227f1a2649f03578428fc" kindref="member">wolfSSL_MemoryPaddingSz</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/memory.h"/>
+  </compounddef>
+</doxygen>

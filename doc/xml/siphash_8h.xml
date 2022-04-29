@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="siphash_8h" kind="file" language="C++">
+    <compoundname>siphash.h</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="siphash_8h_1aed34a97f5344ad0a8ae21e4de05fc7aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitSipHash</definition>
+        <argsstring>(SipHash *siphash, const unsigned char *key, unsigned char outSz)</argsstring>
+        <name>wc_InitSipHash</name>
+        <param>
+          <type>SipHash *</type>
+          <declname>siphash</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>outSz</declname>
+        </param>
+        <briefdescription>
+<para>この関数は、MacサイズのキーでSiphashを初期化します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 初期化に成功したときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SiphashまたはキーがNULLのときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG OUTSZが8でも16でもない場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>siphash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Macingに使用するサイプハッシュ構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>16バイト配列へのポインタ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">SipHash<sp/>siphash[1];</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16]<sp/>=<sp/>{<sp/>...<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>macSz<sp/>=<sp/>8;<sp/>//<sp/>8<sp/>or<sp/>16</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSipHash(siphash,<sp/>key,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSipHash<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashUpdate(siphash,<sp/>data,<sp/>len))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashUpdate<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashFinal(siphash,<sp/>mac,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashFinal<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="siphash_8h_1a62b288e0ec438b90902468bf280cad95" kindref="member">wc_SipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1af460b7d6f6531ff72ebe7cc990bd09fa" kindref="member">wc_SipHashUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1afc9aaeb4869cb1031172b709c62c7536" kindref="member">wc_SipHashFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/siphash.h" line="30" column="5" declfile="dox_comments/header_files/ja/siphash.h" declline="30" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="siphash_8h_1af460b7d6f6531ff72ebe7cc990bd09fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SipHashUpdate</definition>
+        <argsstring>(SipHash *siphash, const unsigned char *in, word32 inSz)</argsstring>
+        <name>wc_SipHashUpdate</name>
+        <param>
+          <type>SipHash *</type>
+          <declname>siphash</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <briefdescription>
+<para>長さLENの提供されたバイト配列を絶えずハッシュするように呼び出すことができます。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Macにデータを追加したら、返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG Siphashがnullのとき返されました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG inneがnullのとき返され、Inszはゼロではありません </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>siphash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Macingに使用するサイプハッシュ構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マイートするデータ <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">SipHash<sp/>siphash[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>MACed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSipHash(siphash,<sp/>key,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSipHash<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashUpdate(siphash,<sp/>data,<sp/>len))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashUpdate<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashFinal(siphash,<sp/>mac,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashFinal<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="siphash_8h_1a62b288e0ec438b90902468bf280cad95" kindref="member">wc_SipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1aed34a97f5344ad0a8ae21e4de05fc7aa" kindref="member">wc_InitSipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1afc9aaeb4869cb1031172b709c62c7536" kindref="member">wc_SipHashFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/siphash.h" line="61" column="5" declfile="dox_comments/header_files/ja/siphash.h" declline="61" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="siphash_8h_1afc9aaeb4869cb1031172b709c62c7536" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SipHashFinal</definition>
+        <argsstring>(SipHash *siphash, unsigned char *out, unsigned char outSz)</argsstring>
+        <name>wc_SipHashFinal</name>
+        <param>
+          <type>SipHash *</type>
+          <declname>siphash</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>outSz</declname>
+        </param>
+        <briefdescription>
+<para>データのMacingを確定します。結果が出入りする。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 ファイナライズに成功したときに返されます。 </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG SiphashのOUTがNULLのときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG OUTSZが初期化された値と同じではない場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>siphash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Macingに使用するサイプハッシュ構造へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>MAC値を保持するためのバイト配列 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">SipHash<sp/>siphash[1];</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>mac[8]<sp/>=<sp/>{<sp/>...<sp/>};<sp/>//<sp/>8<sp/>or<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>macSz<sp/>=<sp/>sizeof(mac);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_InitSipHash(siphash,<sp/>key,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_InitSipHash<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashUpdate(siphash,<sp/>data,<sp/>len))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashUpdate<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">else<sp/>if<sp/>((ret<sp/>=<sp/>wc_SipHashFinal(siphash,<sp/>mac,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHashFinal<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="siphash_8h_1a62b288e0ec438b90902468bf280cad95" kindref="member">wc_SipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1aed34a97f5344ad0a8ae21e4de05fc7aa" kindref="member">wc_InitSipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1af460b7d6f6531ff72ebe7cc990bd09fa" kindref="member">wc_SipHashUpdate</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/siphash.h" line="92" column="5" declfile="dox_comments/header_files/ja/siphash.h" declline="92" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="siphash_8h_1a62b288e0ec438b90902468bf280cad95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SipHash</definition>
+        <argsstring>(const unsigned char *key, const unsigned char *in, word32 inSz, unsigned char *out, unsigned char outSz)</argsstring>
+        <name>wc_SipHash</name>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const unsigned char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>inSz</declname>
+        </param>
+        <param>
+          <type>unsigned char *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>unsigned char</type>
+          <declname>outSz</declname>
+        </param>
+        <briefdescription>
+<para>この機能はSiphashを使用してデータを1ショットして、キーに基づいてMACを計算します。 </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 Macingに成功したときに返されました </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG キーまたはOUTがNULLのときに返されます </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG inneがnullのとき返され、Inszはゼロではありません </para>
+</simplesect>
+<simplesect kind="return"><para>BAD_FUNC_ARG OUTSZが8でも16でもない場合に返されます </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>16バイト配列へのポインタ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マイートするデータ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inSz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>マイクされるデータのサイズ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>MAC値を保持するためのバイト配列 <emphasis>Example</emphasis> <programlisting><codeline><highlight class="normal">unsigned<sp/>char<sp/>key[16]<sp/>=<sp/>{<sp/>...<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>data[]<sp/>=<sp/>{<sp/>Data<sp/>to<sp/>be<sp/>MACed<sp/>};</highlight></codeline>
+<codeline><highlight class="normal">word32<sp/>len<sp/>=<sp/>sizeof(data);</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>mac[8]<sp/>=<sp/>{<sp/>...<sp/>};<sp/>//<sp/>8<sp/>or<sp/>16<sp/>bytes</highlight></codeline>
+<codeline><highlight class="normal">byte<sp/>macSz<sp/>=<sp/>sizeof(mac);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">if<sp/>((ret<sp/>=<sp/>wc_SipHash(key,<sp/>data,<sp/>len,<sp/>mac,<sp/>macSz))<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>WOLFSSL_MSG(&quot;wc_SipHash<sp/>failed&quot;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="siphash_8h_1aed34a97f5344ad0a8ae21e4de05fc7aa" kindref="member">wc_InitSipHash</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1af460b7d6f6531ff72ebe7cc990bd09fa" kindref="member">wc_SipHashUpdate</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="siphash_8h_1afc9aaeb4869cb1031172b709c62c7536" kindref="member">wc_SipHashFinal</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/ja/siphash.h" line="122" column="5" declfile="dox_comments/header_files/ja/siphash.h" declline="122" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="30"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="siphash_8h_1aed34a97f5344ad0a8ae21e4de05fc7aa" kindref="member">wc_InitSipHash</ref>(SipHash*<sp/>siphash,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>key,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>outSz);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="siphash_8h_1af460b7d6f6531ff72ebe7cc990bd09fa" kindref="member">wc_SipHashUpdate</ref>(SipHash*<sp/>siphash,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>in,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>inSz);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="siphash_8h_1afc9aaeb4869cb1031172b709c62c7536" kindref="member">wc_SipHashFinal</ref>(SipHash*<sp/>siphash,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>out,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>outSz);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="siphash_8h_1a62b288e0ec438b90902468bf280cad95" kindref="member">wc_SipHash</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>key,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>in,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>word32<sp/>inSz,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>out,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>outSz);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="dox_comments/header_files/ja/siphash.h"/>
+  </compounddef>
+</doxygen>

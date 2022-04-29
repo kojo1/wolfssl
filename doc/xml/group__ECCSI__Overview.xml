@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__ECCSI__Overview" kind="group">
+    <compoundname>ECCSI_Overview</compoundname>
+    <title>Overview of ECCSI</title>
+    <briefdescription>
+<para>ECCSI (Elliptic Curve-Based Certificateless Signatures for Identity-Based Encryption) is specified in RFC 6507 (<ulink url="https://tools.ietf.org/html/rfc6507">https://tools.ietf.org/html/rfc6507</ulink>). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>In Identity-Based cryptography, there is a Key Management Service that generates keys based on an identity for a client. The private key (SSK) and public key (PVT) are delivered to the signer and the public key (PVT) only delivered to the verifier on request.<linebreak/>
+<linebreak/>
+wolfCrypt offers the ability to:<orderedlist>
+<listitem><para>Create KMS keys,</para>
+</listitem><listitem><para>Generate signing key pairs,</para>
+</listitem><listitem><para>Validate signing key pairs,</para>
+</listitem><listitem><para>Sign messages and</para>
+</listitem><listitem><para>Verify messages.</para>
+</listitem></orderedlist>
+</para>
+<para>KMS:<orderedlist>
+<listitem><para>Initialize ECCSI Key: <ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para>
+</listitem><listitem><para>Make and save or load ECCSI Key:<orderedlist>
+<listitem><para><ref refid="group__ECCSI__Setup_1ga50bd581ed54d1aca0be0520fd196f585" kindref="member">wc_MakeEccsiKey()</ref>, <ref refid="group__ECCSI__Setup_1gabb672e78507abc2e1a93f260529e004a" kindref="member">wc_ExportEccsiKey()</ref>, <ref refid="group__ECCSI__Setup_1ga346390f4dbf184a72a3238430ee6d54b" kindref="member">wc_ExportEccsiPublicKey()</ref> or</para>
+</listitem><listitem><para><ref refid="group__ECCSI__Setup_1ga700c559a604fc54778077bbbc70c5441" kindref="member">wc_ImportEccsiKey()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Wait for request:<orderedlist>
+<listitem><para>Receive signing ID from client.</para>
+</listitem><listitem><para>Generate signing key pair from ID: <ref refid="group__ECCSI__Operations_1ga53b58464921d21f6466ae8ed0ae834b8" kindref="member">wc_MakeEccsiPair()</ref></para>
+</listitem><listitem><para>Encode result:<orderedlist>
+<listitem><para>For signer, signing key pair: <ref refid="group__ECCSI__Operations_1gaa75cf5b1c3a80606b6db94e3fe31033c" kindref="member">wc_EncodeEccsiPair()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Send KPAK and result</para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Free ECCSI Key: <ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Client, signer:<orderedlist>
+<listitem><para>Initialize ECCSI Key: <ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para>
+</listitem><listitem><para>(When signing pair not cached) Request KPAK and signing pair from KMS<orderedlist>
+<listitem><para>Send signing ID to KMS.</para>
+</listitem><listitem><para>Receive signing key pair from KMS.</para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para>
+</listitem><listitem><para>Decode signing key pair: <ref refid="group__ECCSI__Operations_1ga8bf2233bc94052a2972597a513ac0a26" kindref="member">wc_DecodeEccsiPair()</ref></para>
+</listitem><listitem><para>Validate the key pair: <ref refid="group__ECCSI__Operations_1ga08e58acfbbcf01e91a159c1fa7921a50" kindref="member">wc_ValidateEccsiPair()</ref></para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>(If not done above) Load KMS Public Key: <ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para>
+</listitem><listitem><para>(If not cached) Calculate hash of the ID and PVT: <ref refid="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" kindref="member">wc_HashEccsiId()</ref></para>
+</listitem><listitem><para>For each message:<orderedlist>
+<listitem><para>Set Hash of Identity: <ref refid="group__ECCSI__Setup_1ga902a78834dd7bd6080e47099b779bc00" kindref="member">wc_SetEccsiHash()</ref></para>
+</listitem><listitem><para>Sign message: <ref refid="group__ECCSI__Operations_1ga64f67314f1760c19c6d9cb543f22bcf2" kindref="member">wc_SignEccsiHash()</ref></para>
+</listitem><listitem><para>Send hash ID, message and signature to peer.</para>
+</listitem></orderedlist>
+</para>
+</listitem><listitem><para>Free ECCSI Key: <ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref></para>
+</listitem></orderedlist>
+</para>
+<para>Client, verifier:<orderedlist>
+<listitem><para>Receive hash ID, message and signature from signer.</para>
+</listitem><listitem><para>Request KPAK (if not cached) and PVT (if not cached) for hash ID from KMS.</para>
+</listitem><listitem><para>Receive KPAK (if not cached) and PVT (if not cached) for hash ID from KMS.</para>
+</listitem><listitem><para>Initialize ECCSI Key: <ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref></para>
+</listitem><listitem><para>Load KMS Public Key: <ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref></para>
+</listitem><listitem><para>Decode PVT: <ref refid="group__ECCSI__Operations_1gab5816f2dbd951785d9ed25930dec5974" kindref="member">wc_DecodeEccsiPvtFromSig()</ref></para>
+</listitem><listitem><para>Calculate hash of the ID and PVT: <ref refid="group__ECCSI__Operations_1ga9e9c6d8701e5f96aa7755b061e0d1004" kindref="member">wc_HashEccsiId()</ref></para>
+</listitem><listitem><para>Set ECCSI key pair: <ref refid="group__ECCSI__Setup_1ga7a10e19ecb684b279cc3c6fc079c21f9" kindref="member">wc_SetEccsiPair()</ref></para>
+</listitem><listitem><para>Verify signature of message: <ref refid="group__ECCSI__Operations_1ga22e6ca729bd78ede754da6a08da4ddbc" kindref="member">wc_VerifyEccsiHash()</ref></para>
+</listitem><listitem><para>Free ECCSI Key: <ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref> </para>
+</listitem></orderedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

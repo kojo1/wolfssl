@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="group__ECCSI__Setup" kind="group">
+    <compoundname>ECCSI_Setup</compoundname>
+    <title>Setup ECCSI Key</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitEccsiKey</definition>
+        <argsstring>(EccsiKey *key, void *heap, int devId)</argsstring>
+        <name>wc_InitEccsiKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="5" column="5" declfile="dox_comments/header_files/eccsi.h" declline="5" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1gac866497c5534af9097d0b69b1697857c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_InitEccsiKey_ex</definition>
+        <argsstring>(EccsiKey *key, int keySz, int curveId, void *heap, int devId)</argsstring>
+        <name>wc_InitEccsiKey_ex</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keySz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>curveId</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>heap</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>devId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="9" column="5" declfile="dox_comments/header_files/eccsi.h" declline="9" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wc_FreeEccsiKey</definition>
+        <argsstring>(EccsiKey *key)</argsstring>
+        <name>wc_FreeEccsiKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="14" column="6" declfile="dox_comments/header_files/eccsi.h" declline="14" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga50bd581ed54d1aca0be0520fd196f585" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_MakeEccsiKey</definition>
+        <argsstring>(EccsiKey *key, WC_RNG *rng)</argsstring>
+        <name>wc_MakeEccsiKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>WC_RNG *</type>
+          <declname>rng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="19" column="5" declfile="dox_comments/header_files/eccsi.h" declline="19" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1gabb672e78507abc2e1a93f260529e004a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportEccsiKey</definition>
+        <argsstring>(EccsiKey *key, byte *data, word32 *sz)</argsstring>
+        <name>wc_ExportEccsiKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="77" column="5" declfile="dox_comments/header_files/eccsi.h" declline="77" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga700c559a604fc54778077bbbc70c5441" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportEccsiKey</definition>
+        <argsstring>(EccsiKey *key, const byte *data, word32 sz)</argsstring>
+        <name>wc_ImportEccsiKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="81" column="5" declfile="dox_comments/header_files/eccsi.h" declline="81" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga8ef4ecc7200d4dce2dd6a6d88ecee59e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportEccsiPrivateKey</definition>
+        <argsstring>(EccsiKey *key, byte *data, word32 *sz)</argsstring>
+        <name>wc_ExportEccsiPrivateKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="86" column="5" declfile="dox_comments/header_files/eccsi.h" declline="86" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1gac12eaf9022deeff292ca43716c08fea1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportEccsiPrivateKey</definition>
+        <argsstring>(EccsiKey *key, const byte *data, word32 sz)</argsstring>
+        <name>wc_ImportEccsiPrivateKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="90" column="5" declfile="dox_comments/header_files/eccsi.h" declline="90" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga346390f4dbf184a72a3238430ee6d54b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ExportEccsiPublicKey</definition>
+        <argsstring>(EccsiKey *key, byte *data, word32 *sz, int raw)</argsstring>
+        <name>wc_ExportEccsiPublicKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32 *</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>raw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="96" column="5" declfile="dox_comments/header_files/eccsi.h" declline="96" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_ImportEccsiPublicKey</definition>
+        <argsstring>(EccsiKey *key, const byte *data, word32 sz, int trusted)</argsstring>
+        <name>wc_ImportEccsiPublicKey</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>word32</type>
+          <declname>sz</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>trusted</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="101" column="5" declfile="dox_comments/header_files/eccsi.h" declline="101" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga902a78834dd7bd6080e47099b779bc00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SetEccsiHash</definition>
+        <argsstring>(EccsiKey *key, const byte *hash, byte hashSz)</argsstring>
+        <name>wc_SetEccsiHash</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const byte *</type>
+          <declname>hash</declname>
+        </param>
+        <param>
+          <type>byte</type>
+          <declname>hashSz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="112" column="5" declfile="dox_comments/header_files/eccsi.h" declline="112" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="group__ECCSI__Setup_1ga7a10e19ecb684b279cc3c6fc079c21f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int wc_SetEccsiPair</definition>
+        <argsstring>(EccsiKey *key, const mp_int *ssk, const ecc_point *pvt)</argsstring>
+        <name>wc_SetEccsiPair</name>
+        <param>
+          <type>EccsiKey *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const mp_int *</type>
+          <declname>ssk</declname>
+        </param>
+        <param>
+          <type>const ecc_point *</type>
+          <declname>pvt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="dox_comments/header_files/eccsi.h" line="116" column="5" declfile="dox_comments/header_files/eccsi.h" declline="116" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Operations for establinshing an ECCSI key. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Initialize ECCSI Key before use (<ref refid="group__ECCSI__Setup_1ga359d079b7f942ccd423c48ad89b409bf" kindref="member">wc_InitEccsiKey()</ref>).<linebreak/>
+Initialize ECCSI Key before use (<ref refid="group__ECCSI__Setup_1gac866497c5534af9097d0b69b1697857c" kindref="member">wc_InitEccsiKey_ex()</ref>) for use with a curve other than P256.<linebreak/>
+Either make a new key (<ref refid="group__ECCSI__Setup_1ga50bd581ed54d1aca0be0520fd196f585" kindref="member">wc_MakeEccsiKey()</ref>), import an existing key (<ref refid="group__ECCSI__Setup_1ga700c559a604fc54778077bbbc70c5441" kindref="member">wc_ImportEccsiKey()</ref>) or import existing private key (<ref refid="group__ECCSI__Setup_1gac12eaf9022deeff292ca43716c08fea1" kindref="member">wc_ImportEccsiPrivateKey()</ref>) and public key (<ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref>).<linebreak/>
+Export the key (<ref refid="group__ECCSI__Setup_1gabb672e78507abc2e1a93f260529e004a" kindref="member">wc_ExportEccsiKey()</ref>) after making a new key for future use.<linebreak/>
+Export the private key (<ref refid="group__ECCSI__Setup_1ga8ef4ecc7200d4dce2dd6a6d88ecee59e" kindref="member">wc_ExportEccsiPrivateKey()</ref>) after making a new key for future use.<linebreak/>
+Export the public key (<ref refid="group__ECCSI__Setup_1ga346390f4dbf184a72a3238430ee6d54b" kindref="member">wc_ExportEccsiPublicKey()</ref>) from KMS to pass to client.<linebreak/>
+Import the public key (<ref refid="group__ECCSI__Setup_1gaed3c6c9956409c2c443290dbbd25f687" kindref="member">wc_ImportEccsiPublicKey()</ref>) into client.<linebreak/>
+Free the ECCSI Key (<ref refid="group__ECCSI__Setup_1ga742c22e5b1cbb0c8557caa82a0d5c7d5" kindref="member">wc_FreeEccsiKey()</ref>) when finished. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
