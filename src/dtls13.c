@@ -1212,9 +1212,10 @@ int Dtls13RecordRecvd(WOLFSSL *ssl)
 
     ssl->dtls13FastTimeout = 1;
     ret = Dtls13RtxAddAck(ssl, &ssl->handshakeRtxFSM, seq);
-    if (ret != 0)
+    if (ret != 0) {
         WOLFSSL_MSG("can't save ack fragment");
-
+    }
+    
     return ret;
 }
 
