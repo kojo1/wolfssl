@@ -22447,8 +22447,8 @@ int pkcs7callback_test(byte* cert, word32 certSz, byte* key, word32 keySz)
 {
 
     int ret = 0;
-    byte derBuf[FOURK_BUF/2];
-    word32 derSz = FOURK_BUF/2;
+    byte derBuf[FOURK_BUF];
+    word32 derSz = FOURK_BUF;
 
     /* Doing default generation and verify */
     ret = generateBundle(derBuf, &derSz, defKey, sizeof(defKey), 0, cert,
