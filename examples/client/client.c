@@ -834,7 +834,7 @@ const char* starttlsCmd[6] = {
 static int StartTLS_Init(SOCKET_T* sockfd)
 {
     char tmpBuf[512];
-    char buf[3];
+    char buf[3];     /* 3 digit number */
 
     if (sockfd == NULL)
         return BAD_FUNC_ARG;
