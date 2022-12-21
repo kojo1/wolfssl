@@ -834,7 +834,7 @@ const char* starttlsCmd[6] = {
 static int StartTLS_Init(SOCKET_T* sockfd)
 {
     char tmpBuf[512];
-    char buf[3];     /* 3 digit number */
+    char buf[4];     /* 3 digit number plus null char */
 
     if (sockfd == NULL)
         return BAD_FUNC_ARG;
@@ -844,7 +844,8 @@ static int StartTLS_Init(SOCKET_T* sockfd)
     if (recv(*sockfd, tmpBuf, sizeof(tmpBuf)-1, 0) < 0)
         err_sys("failed to read STARTTLS command\n");
 
-    XMEMCPY(buf,tmpBuf,XSTRLEN(starttlsCmd[0]));
+    XMEMCPY(buf, tmpBuf, XSTRLEN(starttlsCmd[0])+1);
+    buf[sizeof(buf)-1] = '\0';
     if (!XSTRCMP(buf, starttlsCmd[0])) {
         printf("%s\n", tmpBuf);
     } else {
@@ -861,7 +862,8 @@ static int StartTLS_Init(SOCKET_T* sockfd)
     if (recv(*sockfd, tmpBuf, sizeof(tmpBuf)-1, 0) < 0)
         err_sys("failed to read STARTTLS command\n");
 
-    XMEMCPY(buf,tmpBuf,XSTRLEN(starttlsCmd[2]));
+    XMEMCPY(buf, tmpBuf, XSTRLEN(starttlsCmd[2])+1);
+    buf[sizeof(buf)-1] = '\0';
     if (!XSTRCMP(buf, starttlsCmd[2])) {
         printf("%s\n", tmpBuf);
     } else {
@@ -878,9 +880,9 @@ static int StartTLS_Init(SOCKET_T* sockfd)
     XMEMSET(tmpBuf, 0, sizeof(tmpBuf));
     if (recv(*sockfd, tmpBuf, sizeof(tmpBuf)-1, 0) < 0)
         err_sys("failed to read STARTTLS command\n");
-    tmpBuf[sizeof(tmpBuf)-1] = '\0';
 
-    XMEMCPY(buf,tmpBuf,XSTRLEN(starttlsCmd[4]));
+    XMEMCPY(buf, tmpBuf, XSTRLEN(starttlsCmd[4])+1);
+    buf[sizeof(buf)-1] = '\0';
     if (!XSTRCMP(buf, starttlsCmd[4])) {
         printf("%s\n", tmpBuf);
     } else {
