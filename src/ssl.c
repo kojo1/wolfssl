@@ -3235,6 +3235,10 @@ int AddCA(WOLFSSL_CERT_MANAGER* cm, DerBuffer** pDer, int type, int verify)
             signer->permittedNames = cert->permittedNames;
             signer->excludedNames  = cert->excludedNames;
         #endif
+            signer->pathLength = cert->pathLength;
+            signer->maxPathLen = cert->maxPathLen;
+            signer->pathLengthSet = cert->pathLengthSet;
+            signer->selfSigned = cert->selfSigned;
         #ifndef NO_SKID
             XMEMCPY(signer->subjectKeyIdHash, cert->extSubjKeyId,
                     SIGNER_DIGEST_SIZE);

@@ -3627,6 +3627,19 @@ int DecodeToKey(DecodedCert* cert, int verify)
 
     WOLFSSL_MSG("Got Subject Name");
 
+    /* Determine if self signed */
+#ifdef WOLFSSL_CERT_REQ
+    if (cert->isCSR)
+        cert->selfSigned = 1;
+    else
+#endif
+    {
+        cert->selfSigned = XMEMCMP(cert->issuerHash,
+                                   cert->subjectHash,
+                                   KEYID_SIZE) == 0 ? 1 : 0;
+    }
+
+
     if ( (ret = GetKey(cert)) < 0)
         return ret;
 
@@ -5382,6 +5395,8 @@ int ParseCertRelative(DecodedCert* cert, int type, int verify, void* cm)
 {
     word32 confirmOID;
     int    ret;
+    int checkPathLen = 0;
+    int decrementMaxPathLen = 0;
     int    badDate     = 0;
     int    criticalExt = 0;
 
@@ -5442,52 +5457,155 @@ int ParseCertRelative(DecodedCert* cert, int type, int verify, void* cm)
         }
     #endif
 
-   if (verify != NO_VERIFY && type != CA_TYPE && type != TRUSTED_PEER_TYPE) {
-        Signer* ca = NULL;
-        #ifndef NO_SKID
-            if (cert->extAuthKeyIdSet)
-                ca = GetCA(cm, cert->extAuthKeyId);
-            if (ca == NULL)
-                ca = GetCAByName(cm, cert->issuerHash);
-        #else /* NO_SKID */
-            ca = GetCA(cm, cert->issuerHash);
-        #endif /* NO SKID */
-        WOLFSSL_MSG("About to verify certificate signature");
+    if (!cert->selfSigned || (verify != NO_VERIFY && type != CA_TYPE &&
+                                                type != TRUSTED_PEER_TYPE)) {
+        cert->ca = NULL;
+#ifndef NO_SKID
+        if (cert->extAuthKeyIdSet) {
+            cert->ca = GetCA(cm, cert->extAuthKeyId);
+        }
+        if (cert->ca == NULL && cert->extSubjKeyIdSet
+                                && verify != VERIFY_OCSP) {
+            cert->ca = GetCA(cm, cert->extSubjKeyId);
+        }
+        if (cert->ca != NULL && XMEMCMP(cert->issuerHash,
+                                cert->ca->subjectNameHash, KEYID_SIZE) != 0) {
+            cert->ca = NULL;
+        }
+        if (cert->ca == NULL) {
+            cert->ca = GetCAByName(cm, cert->issuerHash);
+            /* If AKID is available then this CA doesn't have the public
+                * key required */
+            if (cert->ca && cert->extAuthKeyIdSet) {
+                WOLFSSL_MSG("CA SKID doesn't match AKID");
+                cert->ca = NULL;
+            }
+        }
 
-        if (ca) {
+        /* OCSP Only: alt lookup using subject and pub key w/o sig check */
+    #ifdef WOLFSSL_NO_TRUSTED_CERTS_VERIFY
+        if (cert->ca == NULL && verify == VERIFY_OCSP) {
+            cert->ca = GetCABySubjectAndPubKey(cert, cm);
+            if (cert->ca) {
+                ret = 0; /* success */
+                goto exit_pcr;
+            }
+        }
+    #endif /* WOLFSSL_NO_TRUSTED_CERTS_VERIFY */
+#else
+        cert->ca = GetCA(cm, cert->issuerHash);
+#endif /* !NO_SKID */
+
+        if (cert->ca) {
+            WOLFSSL_MSG("CA found");
+        }
+    }
+
+    if (cert->selfSigned) {
+        cert->maxPathLen = WOLFSSL_MAX_PATH_LEN;
+    } else {
+        /* RFC 5280 Section 4.2.1.9:
+            *
+            * load/receive check
+            *
+            * 1) Is CA boolean set?
+            *      No  - SKIP CHECK
+            *      Yes - Check key usage
+            * 2) Is Key usage extension present?
+            *      No  - goto 3
+            *      Yes - check keyCertSign assertion
+            *     2.a) Is keyCertSign asserted?
+            *          No  - goto 4
+            *          Yes - goto 3
+            * 3) Is pathLen set?
+            *      No  - goto 4
+            *      Yes - check pathLen against maxPathLen.
+            *      3.a) Is pathLen less than maxPathLen?
+            *           No - goto 4
+            *           Yes - set maxPathLen to pathLen and EXIT
+            * 4) Is maxPathLen > 0?
+            *      Yes - Reduce by 1
+            *      No  - ERROR
+            */
+
+        if (cert->ca && cert->pathLengthSet) {
+            cert->maxPathLen = cert->pathLength;
             if (cert->isCA) {
-                if (ca->pathLengthSet) {
-                    if (ca->pathLength == 0) {
-                        WOLFSSL_MSG("CA with path length 0 signing a CA");
-                        return ASN_PATHLEN_INV_E;
+                WOLFSSL_MSG("\tCA boolean set");
+                if (cert->extKeyUsageSet) {
+                    WOLFSSL_MSG("\tExtension Key Usage Set");
+                    if ((cert->extKeyUsage & KEYUSE_KEY_CERT_SIGN) != 0) {
+                        checkPathLen = 1;
                     }
-                    if (cert->pathLengthSet &&
-                        cert->pathLength >= ca->pathLength) {
+                    else {
+                        decrementMaxPathLen = 1;
+                    }
+                }
+                else {
+                    checkPathLen = 1;
+                } /* !cert->ca check */
+            } /* cert is not a CA (assuming entity cert) */
 
-                        WOLFSSL_MSG("CA signing CA with longer path length");
-                        return ASN_PATHLEN_INV_E;
-                    }
+            if (checkPathLen && cert->pathLengthSet) {
+                if (cert->pathLength < cert->ca->maxPathLen) {
+                    WOLFSSL_MSG("\tmaxPathLen status: set to pathLength");
+                    cert->maxPathLen = cert->pathLength;
+                }
+                else {
+                    decrementMaxPathLen = 1;
                 }
             }
 
-#ifdef HAVE_OCSP
-            /* Need the ca's public key hash for OCSP */
-    #ifdef NO_SHA
-            ret = wc_Sha256Hash(ca->publicKey, ca->pubKeySize,
-                                cert->issuerKeyHash);
-    #else /* NO_SHA */
-            ret = wc_ShaHash(ca->publicKey, ca->pubKeySize,
-                                cert->issuerKeyHash);
-    #endif /* NO_SHA */
-            if (ret != 0)
-                return ret;
-#endif /* HAVE_OCSP */
+            if (decrementMaxPathLen && cert->ca->maxPathLen > 0) {
+                WOLFSSL_MSG("\tmaxPathLen status: reduce by 1");
+                cert->maxPathLen = cert->ca->maxPathLen - 1;
+                if (verify != NO_VERIFY && type != CA_TYPE &&
+                                                type != TRUSTED_PEER_TYPE) {
+                    WOLFSSL_MSG("\tmaxPathLen status: OK");
+                }
+            } else if (decrementMaxPathLen && cert->ca->maxPathLen == 0) {
+                cert->maxPathLen = 0;
+                if (verify != NO_VERIFY && type != CA_TYPE &&
+                                                type != TRUSTED_PEER_TYPE) {
+                    WOLFSSL_MSG("\tNon-entity cert, maxPathLen is 0");
+                    WOLFSSL_MSG("\tmaxPathLen status: ERROR");
+                    return ASN_PATHLEN_INV_E;
+                }
+            }
+        } else if (cert->ca && cert->isCA) {
+            /* case where cert->pathLength extension is not set */
+            if (cert->ca->maxPathLen > 0) {
+                cert->maxPathLen = cert->ca->maxPathLen - 1;
+            } else {
+                cert->maxPathLen = 0;
+                if (verify != NO_VERIFY && type != CA_TYPE &&
+                                                type != TRUSTED_PEER_TYPE) {
+                    WOLFSSL_MSG("\tNon-entity cert, maxPathLen is 0");
+                    WOLFSSL_MSG("\tmaxPathLen status: ERROR");
+                    return ASN_PATHLEN_INV_E;
+                }
+            }
+        }
+    }
 
+    #ifdef HAVE_OCSP
+    if (verify != NO_VERIFY && type != CA_TYPE &&
+                                            type != TRUSTED_PEER_TYPE) {
+        if (cert->ca) {
+            /* Need the CA's public key hash for OCSP */
+            XMEMCPY(cert->issuerKeyHash, cert->ca->subjectKeyHash,
+                                                            KEYID_SIZE);
+        }
+    }
+    #endif /* HAVE_OCSP */
+
+    if (verify != NO_VERIFY && type != CA_TYPE && type != TRUSTED_PEER_TYPE) {
+        if (cert->ca) {
             if (verify == VERIFY) {
                 /* try to confirm/verify signature */
                 if (!ConfirmSignature(cert->source + cert->certBegin,
                             cert->sigIndex - cert->certBegin,
-                        ca->publicKey, ca->pubKeySize, ca->keyOID,
+                        cert->ca->publicKey, cert->ca->pubKeySize, cert->ca->keyOID,
                         cert->signature, cert->sigLength, cert->signatureOID,
                         cert->heap)) {
                     WOLFSSL_MSG("Confirm signature failed");
@@ -5496,11 +5614,12 @@ int ParseCertRelative(DecodedCert* cert, int type, int verify, void* cm)
                 #ifndef IGNORE_NAME_CONSTRAINTS
                 /* check that this cert's name is permitted by the signer's
                  * name constraints */
-                if (!ConfirmNameConstraints(ca, cert)) {
+                if (!ConfirmNameConstraints(cert->ca, cert))
+                {
                     WOLFSSL_MSG("Confirm name constraint failed");
                     return ASN_NAME_INVALID_E;
                 }
-                #endif /* IGNORE_NAME_CONSTRAINTS */
+#endif /* IGNORE_NAME_CONSTRAINTS */
             }
         }
         else {
