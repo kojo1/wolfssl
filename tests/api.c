@@ -4368,10 +4368,11 @@ static void test_wolfSSL_PKCS12(void)
 #endif /* HAVE_FIPS */
 }
 
-
 #if (defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)) && \
         !defined(NO_DES3) && !defined(NO_FILESYSTEM) && \
         !defined(NO_ASN) && !defined(NO_PWDBASED) && !defined(NO_RSA)
+
+#ifdef TEST_PKCS8_ENC
 /* for PKCS8 test case */
 static WC_INLINE int PKCS8TestCallBack(char* passwd, int sz, int rw, void* userdata)
 {
@@ -4393,6 +4394,7 @@ static WC_INLINE int PKCS8TestCallBack(char* passwd, int sz, int rw, void* userd
             return BAD_FUNC_ARG;
     }
 }
+#endif
 #endif
 
 
@@ -4441,12 +4443,6 @@ static void test_wolfSSL_PKCS8(void)
     #else
         AssertNotNull(ctx = wolfSSL_CTX_new(wolfTLSv1_3_server_method()));
     #endif
-#endif
-
-#if (defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)) && \
-        !defined(NO_DES3) && !defined(NO_FILESYSTEM) && \
-        !defined(NO_ASN) && !defined(NO_PWDBASED) && !defined(NO_RSA)
-    wolfSSL_CTX_set_default_passwd_cb(ctx, PKCS8TestCallBack);
 #endif
 
 #ifdef TEST_PKCS8_ENC
@@ -20284,7 +20280,7 @@ static void test_wolfSSL_PEM_read_bio(void)
 {
     #if defined(OPENSSL_EXTRA) && !defined(NO_CERTS) && \
        !defined(NO_FILESYSTEM) && !defined(NO_RSA)
-    byte buff[5300];
+    byte buff[6000];
     XFILE f;
     int  bytes;
     X509* x509;
@@ -20297,7 +20293,6 @@ static void test_wolfSSL_PEM_read_bio(void)
     AssertTrue((f != XBADFILE));
     bytes = (int)XFREAD(buff, 1, sizeof(buff), f);
     XFCLOSE(f);
-
     AssertNull(x509 = PEM_read_bio_X509_AUX(bio, NULL, NULL, NULL));
     AssertNotNull(bio = BIO_new_mem_buf((void*)buff, bytes));
     AssertNotNull(x509 = PEM_read_bio_X509_AUX(bio, NULL, NULL, NULL));

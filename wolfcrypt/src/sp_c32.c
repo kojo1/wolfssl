@@ -7558,7 +7558,7 @@ static int sp_256_mod_mul_norm_10(sp_digit* r, sp_digit* a, sp_digit* m)
  * r  A single precision integer.
  * a  A multi-precision integer.
  */
-static void sp_256_from_mp(sp_digit* r, int max, const mp_int* a)
+static void sp_256_from_mp(sp_digit *r, int max, mp_int *a)
 {
 #if DIGIT_BIT == 26
     int j;

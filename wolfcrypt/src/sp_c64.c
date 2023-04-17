@@ -7310,7 +7310,7 @@ static int sp_256_mod_mul_norm_5(sp_digit* r, sp_digit* a, sp_digit* m)
  * r  A single precision integer.
  * a  A multi-precision integer.
  */
-static void sp_256_from_mp(sp_digit* r, int max, const mp_int* a)
+static void sp_256_from_mp(sp_digit* r, int max, mp_int* a)
 {
 #if DIGIT_BIT == 52
     int j;
@@ -9152,7 +9152,7 @@ static int sp_256_ecc_mulmod_5(sp_point* r, sp_point* g, sp_digit* k,
  * heap  Heap to use for allocation.
  * returns MEMORY_E when memory allocation fails and MP_OKAY on success.
  */
-int sp_ecc_mulmod_256(const mp_int* km, ecc_point* gm, ecc_point* r, int map,
+int sp_ecc_mulmod_256(mp_int* km, ecc_point* gm, ecc_point* r, int map,
         void* heap)
 {
 #if !defined(WOLFSSL_SP_SMALL) && !defined(WOLFSSL_SMALL_STACK)
@@ -10774,7 +10774,7 @@ static int sp_256_ecc_mulmod_base_5(sp_point* r, sp_digit* k,
  * heap  Heap to use for allocation.
  * returns MEMORY_E when memory allocation fails and MP_OKAY on success.
  */
-int sp_ecc_mulmod_base_256(const mp_int *km, ecc_point *r, int map, void *heap)
+int sp_ecc_mulmod_base_256(mp_int* km, ecc_point* r, int map, void* heap)
 {
 #if !defined(WOLFSSL_SP_SMALL) && !defined(WOLFSSL_SMALL_STACK)
     sp_point p;
@@ -11016,8 +11016,8 @@ static void sp_256_to_bin(sp_digit* r, byte* a)
  * returns BUFFER_E if the buffer is to small for output size,
  * MEMORY_E when memory allocation fails and MP_OKAY on success.
  */
-int sp_ecc_secret_gen_256(const mp_int *priv, ecc_point *pub, byte *out,
-                          word32 *outLen, void *heap)
+int sp_ecc_secret_gen_256(mp_int* priv, ecc_point* pub, byte* out,
+                          word32* outLen, void* heap)
 {
 #if !defined(WOLFSSL_SP_SMALL) && !defined(WOLFSSL_SMALL_STACK)
     sp_point p;
@@ -11768,7 +11768,7 @@ static int sp_256_ecc_is_point_5(sp_point* point, void* heap)
  * returns MEMORY_E if dynamic memory allocation fails, MP_VAL if the point is
  * not on the curve and MP_OKAY otherwise.
  */
-int sp_ecc_is_point_256(const mp_int *pX, mp_int *pY)
+int sp_ecc_is_point_256(mp_int* pX, mp_int* pY)
 {
 #if !defined(WOLFSSL_SP_SMALL) && !defined(WOLFSSL_SMALL_STACK)
     sp_point pubd;
@@ -11802,7 +11802,7 @@ int sp_ecc_is_point_256(const mp_int *pX, mp_int *pY)
  * ECC_PRIV_KEY_E when the private scalar doesn't generate the EC point and
  * MP_OKAY otherwise.
  */
-int sp_ecc_check_key_256(const mp_int* pX, mp_int* pY, mp_int* privm, void* heap)
+int sp_ecc_check_key_256(mp_int* pX, mp_int* pY, mp_int* privm, void* heap)
 {
 #if !defined(WOLFSSL_SP_SMALL) && !defined(WOLFSSL_SMALL_STACK)
     sp_digit privd[5];
