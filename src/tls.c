@@ -7874,6 +7874,8 @@ static int TLSX_KeyShare_Parse(WOLFSSL* ssl, byte* input, word16 length,
 
         /* Try to use the server's group. */
         ret = TLSX_KeyShare_Use(ssl, group, 0, NULL, NULL);
+        if (ret == 0)
+            ssl->session.namedGroup = ssl->namedGroup = group;
     }
     else {
         /* Not a message type that is allowed to have this extension. */
