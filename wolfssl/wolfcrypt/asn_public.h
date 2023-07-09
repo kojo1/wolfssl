@@ -84,8 +84,9 @@ enum Ecc_Sum {
 
 
 /* Certificate file Type */
-enum CertType {
-    CERT_TYPE       = 0,
+enum CertType
+{
+    CERT_TYPE = 0,
     PRIVATEKEY_TYPE,
     DH_PARAM_TYPE,
     DSA_PARAM_TYPE,
@@ -105,9 +106,9 @@ enum CertType {
     ED25519_TYPE,
     PKCS12_TYPE,
     PKCS8_PRIVATEKEY_TYPE,
-    PKCS8_ENC_PRIVATEKEY_TYPE
+    PKCS8_ENC_PRIVATEKEY_TYPE,
+    CHAIN_CERT_TYPE
 };
-
 
 /* Signature type, by OID sum */
 enum Ctc_SigType {
