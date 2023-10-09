@@ -50,9 +50,9 @@
     mp_digit get_digit(mp_int* a, int n);
     int get_rand_digit(WC_RNG* rng, mp_digit* d);
     int mp_rand(mp_int* a, int digits, WC_RNG* rng);
+    int mp_cond_copy(mp_int *a, int copy, mp_int *b);
 
-
-    #ifdef HAVE_WOLF_BIGINT
+#ifdef HAVE_WOLF_BIGINT
         void wc_bigint_init(WC_BIGINT* a);
         int wc_bigint_alloc(WC_BIGINT* a, word32 sz);
         int wc_bigint_from_unsigned_bin(WC_BIGINT* a, const byte* in, word32 inlen);
