@@ -14071,7 +14071,7 @@ static void test_wolfSSL_certs(void)
 }
 
 
-static void test_wolfSSL_ASN1_TIME_print()
+static void test_wolfSSL_ASN1_TIME_print(void)
 {
     #if defined(OPENSSL_EXTRA) && !defined(NO_CERTS) && !defined(NO_RSA) \
         && (defined(WOLFSSL_MYSQL_COMPATIBLE) || defined(WOLFSSL_NGINX) || \
@@ -17483,7 +17483,7 @@ static void test_DhCallbacks(void)
 
 #ifdef HAVE_HASHDRBG
 
-static int test_wc_RNG_GenerateBlock()
+static int test_wc_RNG_GenerateBlock(void)
 {
     int i, ret;
     WC_RNG rng;
