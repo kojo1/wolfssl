@@ -18421,7 +18421,7 @@ char* wolfSSL_X509_NAME_oneline(WOLFSSL_X509_NAME* name, char* in, int sz)
 char* wolfSSL_X509_get_name_oneline(WOLFSSL_X509_NAME* name, char* in, int sz)
 {
     WOLFSSL_X509_NAME_ENTRY* entry;
-    int nameSz, strSz, count, i, idx = 0;
+    int nameSz, strSz, count, i;
     int totalSz = 0;
     char *str;
     char tmpBuf[256];
@@ -18493,7 +18493,6 @@ char* wolfSSL_X509_get_name_oneline(WOLFSSL_X509_NAME* name, char* in, int sz)
         }
         /* Copy string to tmpBuf */
         XSTRNCAT(tmpBuf, str, strSz);
-        idx += strSz;
         XFREE(str, NULL, DYNAMIC_TYPE_TMP_BUFFER);
     }
 
@@ -50664,7 +50663,7 @@ WOLFSSL_BN_ULONG wolfSSL_BN_mod_word(const WOLFSSL_BIGNUM *bn,
 
     if (w <= MP_MASK) {
         mp_digit bn_ret;
-        if (mp_mod_d((mp_int*)bn->internal, (WOLFSSL_BN_ULONG)w, &bn_ret) != MP_OKAY) {
+        if (mp_mod_d((mp_int*)bn->internal, (fp_digit)w, &bn_ret) != MP_OKAY) {
             WOLFSSL_MSG("mp_add_d error");
             return (WOLFSSL_BN_ULONG)WOLFSSL_FATAL_ERROR;
         }
