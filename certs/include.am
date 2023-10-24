@@ -11,6 +11,8 @@ EXTRA_DIST += \
 	     certs/client-key.pem \
 	     certs/client-uri-cert.pem \
 	     certs/client-relative-uri.pem \
+		 certs/client-ecc384-cert.pem \
+		 certs/client-ecc384-key.pem \
 	     certs/ecc-key.pem \
 	     certs/ecc-privkey.pem \
 	     certs/ecc-privkeyPkcs8.pem \
@@ -30,6 +32,8 @@ EXTRA_DIST += \
 	     certs/server-ecc-self.pem \
 	     certs/server-ecc-comp.pem \
 	     certs/server-ecc-rsa.pem \
+		 certs/server-ecc384-cert.pem \
+		 certs/server-ecc384-key.pem \
 	     certs/server-keyEnc.pem \
 	     certs/server-key.pem \
 	     certs/server-keyPkcs8.der \
@@ -66,6 +70,9 @@ EXTRA_DIST += \
 	     certs/dsa3072.der \
 	     certs/ecc-client-key.der \
 	     certs/ecc-client-keyPub.der \
+		 certs/ecc-privkeyPkcs8.der \
+		 certs/client-ecc384-cert.der \
+		 certs/client-ecc384-key.der \
 	     certs/ecc-key.der \
 	     certs/ecc-keyPub.der \
 	     certs/server-key.der \
@@ -74,6 +81,8 @@ EXTRA_DIST += \
 	     certs/server-ecc.der \
 	     certs/server-ecc-self.der \
 	     certs/server-ecc-rsa.der \
+		 certs/server-ecc384-cert.der \
+		 certs/server-ecc384-key.der \
 	     certs/server-cert-chain.der
 
 # ECC CA prime256v1

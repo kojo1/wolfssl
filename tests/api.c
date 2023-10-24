@@ -4440,7 +4440,14 @@ static void test_wolfSSL_PKCS8(void)
         AssertNotNull(ctx = wolfSSL_CTX_new(wolfTLSv1_3_server_method()));
     #endif
 #endif
-    wolfSSL_CTX_set_default_passwd_cb(ctx, &PKCS8TestCallBack);
+
+#if (defined(OPENSSL_EXTRA) || defined(OPENSSL_EXTRA_X509_SMALL)) && \
+        !defined(NO_DES3) && !defined(NO_FILESYSTEM) && \
+        !defined(NO_ASN) && !defined(NO_PWDBASED) && !defined(NO_RSA)
+    wolfSSL_CTX_set_default_passwd_cb(ctx, PKCS8TestCallBack);
+#endif
+
+#ifdef TEST_PKCS8_ENC
     wolfSSL_CTX_set_default_passwd_cb_userdata(ctx, (void*)&flag);
     AssertIntEQ(wolfSSL_CTX_use_PrivateKey_buffer(ctx, buffer, bytes,
                 SSL_FILETYPE_PEM), SSL_SUCCESS);
@@ -18207,7 +18214,7 @@ static void test_wolfSSL_ASN1_TIME_print(void)
                 sizeof_client_cert_der_2048, WOLFSSL_FILETYPE_ASN1));
     AssertIntEQ(ASN1_TIME_print(bio, X509_get_notBefore(x509)), 1);
     AssertIntEQ(BIO_read(bio, buf, sizeof(buf)), 24);
-    AssertIntEQ(XMEMCMP(buf, "Apr 13 15:23:09 2018 GMT", sizeof(buf) - 1), 0);
+    AssertIntEQ(XMEMCMP(buf, "Jul  4 04:39:21 2021 GMT", sizeof(buf) - 1), 0);
 
     /* create a bad time and test results */
     AssertNotNull(t = X509_get_notAfter(x509));
