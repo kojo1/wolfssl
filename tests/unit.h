@@ -89,6 +89,73 @@
 #define AssertStrGE(x, y) AssertStr(x, y, >=,  <)
 #define AssertStrLE(x, y) AssertStr(x, y, <=,  >)
 
+#define EXPECT_DECLS \
+    int _ret = TEST_SKIPPED
+#define EXPECT_RESULT() \
+    _ret
+#define EXPECT_SUCCESS() \
+    (_ret == TEST_SUCCESS)
+#define EXPECT_FAIL() \
+    (_ret == TEST_FAIL)
+
+#define ExpFail(description, result)                                     \
+    do                                                                   \
+    {                                                                    \
+        printf("\nERROR - %s line %d failed with:", __FILE__, __LINE__); \
+        fputs("\n    expected: ", stdout);                               \
+        printf description;                                              \
+        fputs("\n    result:   ", stdout);                               \
+        printf result;                                                   \
+        fputs("\n\n", stdout);                                           \
+        fflush(stdout);                                                  \
+        _ret = TEST_FAIL;                                                \
+    } while (0)
+
+#define Expect(test, description, result)     \
+    do                                        \
+    {                                         \
+        if (_ret != TEST_FAIL)                \
+        {                                     \
+            if (!(test))                      \
+                ExpFail(description, result); \
+            else                              \
+                _ret = TEST_SUCCESS;          \
+        }                                     \
+    } while (0)
+
+#define ExpectTrue(x) Expect((x), ("%s is true", #x), (#x " => FALSE"))
+#define ExpectFalse(x) Expect(!(x), ("%s is false", #x), (#x " => TRUE"))
+#define ExpectNotNull(x) Expect((x), ("%s is not null", #x), (#x " => NULL"))
+
+#define ExpectNull(x)                                           \
+    do                                                          \
+    {                                                           \
+        if (_ret != TEST_FAIL)                                  \
+        {                                                       \
+            PEDANTIC_EXTENSION void *_x = (void *)(x);          \
+            Expect(!_x, ("%s is null", #x), (#x " => %p", _x)); \
+        }                                                       \
+    } while (0)
+
+#define ExpectInt(x, y, op, er)                                                     \
+    do                                                                              \
+    {                                                                               \
+        if (_ret != TEST_FAIL)                                                      \
+        {                                                                           \
+            int _x = (int)(x);                                                      \
+            int _y = (int)(y);                                                      \
+            Expect(_x op _y, ("%s " #op " %s", #x, #y), ("%d " #er " %d", _x, _y)); \
+        }                                                                           \
+    } while (0)
+
+#define ExpectIntEQ(x, y) ExpectInt(x, y, ==, !=)
+#define ExpectIntNE(x, y) ExpectInt(x, y, !=, ==)
+#define ExpectIntGT(x, y) ExpectInt(x, y, >, <=)
+#define ExpectIntLT(x, y) ExpectInt(x, y, <, >=)
+#define ExpectIntGE(x, y) ExpectInt(x, y, >=, <)
+#define ExpectIntLE(x, y) ExpectInt(x, y, <=, >)
+
+
 
 void ApiTest(void);
 int  SuiteTest(int argc, char** argv);

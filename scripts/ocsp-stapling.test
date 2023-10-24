@@ -158,7 +158,7 @@ cleanup()
 trap cleanup EXIT INT TERM HUP
 
 server=login.live.com
-ca=certs/external/baltimore-cybertrust-root.pem
+ca=./certs/external/ca_collection.pem
 
 [ ! -x ./examples/client/client ] && echo -e "\n\nClient doesn't exist" && exit 1
 ./examples/client/client -? 2>&1 | grep -- 'Client not compiled in!'
