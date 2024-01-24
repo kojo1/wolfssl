@@ -36627,6 +36627,16 @@ static void test_wc_ecc_get_curve_id_from_params(void)
     printf(resultFmt, passed);
 #endif
 }
+
+/* Test result constants and macros. */
+
+/* Test succeeded. */
+#define TEST_SUCCESS    (1)
+/* Test failed. */
+#define TEST_FAIL       (0)
+/* Test skipped - not run. */
+#define TEST_SKIPPED    (-7777)
+
 static void test_wolfSSL_EVP_PKEY_encrypt(void)
 {
 #if defined(OPENSSL_EXTRA) && !defined(NO_RSA) && defined(WOLFSSL_KEY_GEN) && \
@@ -36713,16 +36723,21 @@ static void test_wolfSSL_EVP_PKEY_sign(void)
 #if defined(OPENSSL_EXTRA) && !defined(NO_RSA) && defined(WOLFSSL_KEY_GEN) && \
     !defined(HAVE_FAST_RSA) && !defined(HAVE_SELFTEST)
 #if !defined(HAVE_FIPS) || (defined(HAVE_FIPS_VERSION) && (HAVE_FIPS_VERSION>2))
+
+    EXPECT_DECLS;
     WOLFSSL_RSA* rsa = NULL;
     WOLFSSL_EVP_PKEY* pkey = NULL;
     WOLFSSL_EVP_PKEY_CTX* ctx = NULL;
+    WOLFSSL_EVP_PKEY_CTX* ctx_verify = NULL;
     const char* in = "What is easy to do is easy not to do.";
     size_t inlen = XSTRLEN(in);
     byte hash[SHA256_DIGEST_LENGTH] = {0};
+    byte zero[SHA256_DIGEST_LENGTH] = {0};
     SHA256_CTX c;
     byte*  sig = NULL;
     byte*  sigVerify = NULL;
     size_t siglen = 0;
+    size_t siglenOnlyLen;
     size_t rsaKeySz = 2048/8;  /* Bytes */
 
     printf(testingFmt, "wolfSSL_EVP_PKEY_sign()");
@@ -36759,6 +36774,57 @@ static void test_wolfSSL_EVP_PKEY_sign(void)
 
     AssertIntEQ(XMEMCMP(hash, sigVerify, SHA256_DIGEST_LENGTH), 0);
     /* error cases */
+
+
+    /* Generate key */
+    ExpectNotNull(pkey = EVP_PKEY_new());
+    ExpectNotNull(rsa = RSA_generate_key(2048, 3, NULL, NULL));
+    ExpectIntEQ(EVP_PKEY_assign_RSA(pkey, rsa), WOLFSSL_SUCCESS);
+    
+    ExpectNotNull(ctx = EVP_PKEY_CTX_new(pkey, NULL));
+    ExpectIntEQ(EVP_PKEY_sign_init(ctx), WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_PADDING),
+                WOLFSSL_SUCCESS);
+    /* Check returning only length */
+    ExpectIntEQ(EVP_PKEY_sign(ctx, NULL, &siglenOnlyLen, hash,
+        SHA256_DIGEST_LENGTH), WOLFSSL_SUCCESS);
+    ExpectIntGT(siglenOnlyLen, 0);
+    /* Sign data */
+    ExpectIntEQ(EVP_PKEY_sign(ctx, sig, &siglen, hash,
+        SHA256_DIGEST_LENGTH), WOLFSSL_SUCCESS);
+    ExpectIntGE(siglenOnlyLen, siglen);
+
+    /* Verify signature */
+    ExpectNotNull(ctx_verify = EVP_PKEY_CTX_new(pkey, NULL));
+    ExpectIntEQ(EVP_PKEY_verify_init(ctx_verify), WOLFSSL_SUCCESS);
+
+    ExpectIntEQ(
+        EVP_PKEY_CTX_set_rsa_padding(ctx_verify, RSA_PKCS1_PADDING),
+        WOLFSSL_SUCCESS);
+
+    ExpectIntEQ(EVP_PKEY_verify(
+        ctx_verify, sig, siglen, hash, SHA256_DIGEST_LENGTH),
+        WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_verify(
+        ctx_verify, sig, siglen, zero, SHA256_DIGEST_LENGTH),
+        WOLFSSL_FAILURE);
+
+    /* Wrong padding schemes. */
+    ExpectIntEQ(EVP_PKEY_sign_init(ctx), WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_CTX_set_rsa_padding(ctx,
+        RSA_PKCS1_OAEP_PADDING), WOLFSSL_SUCCESS);
+    ExpectIntNE(EVP_PKEY_sign(ctx, sigVerify, &siglen, sig,
+        siglen), WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_verify_init(ctx_verify), WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_CTX_set_rsa_padding(ctx_verify,
+        RSA_PKCS1_OAEP_PADDING), WOLFSSL_SUCCESS);
+    ExpectIntNE(EVP_PKEY_verify(ctx_verify, sigVerify, siglen, sig,
+        siglen), WOLFSSL_SUCCESS);
+
+    ExpectIntEQ(EVP_PKEY_CTX_set_rsa_padding(ctx, RSA_PKCS1_PADDING),
+        WOLFSSL_SUCCESS);
+    ExpectIntEQ(EVP_PKEY_CTX_set_rsa_padding(ctx_verify,
+        RSA_PKCS1_PADDING), WOLFSSL_SUCCESS);
 
     AssertIntNE(EVP_PKEY_sign_init(NULL), WOLFSSL_SUCCESS);
     ctx->pkey->type = EVP_PKEY_RSA;

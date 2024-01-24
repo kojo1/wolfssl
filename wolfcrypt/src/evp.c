@@ -1769,6 +1769,107 @@ WOLFSSL_API int wolfSSL_EVP_PKEY_sign(WOLFSSL_EVP_PKEY_CTX *ctx, unsigned char *
     return WOLFSSL_FAILURE;
 }
 
+/******************************************************************************
+ * wolfSSL_EVP_PKEY_verify_init - initializes a public key algorithm context for
+ * a verification operation.
+ *
+ * RETURNS:
+ * returns WOLFSSL_SUCCESS on success, WOLFSSL_FAILURE on failure. In particular
+ * a return value of -2 indicates the operation is not supported by the public
+ * key algorithm.
+ */
+
+int wolfSSL_EVP_PKEY_verify_init(WOLFSSL_EVP_PKEY_CTX *ctx)
+{
+    WOLFSSL_MSG("wolfSSL_EVP_PKEY_verify_init");
+
+    if (!ctx || !ctx->pkey)
+        return WOLFSSL_FAILURE;
+
+    switch (ctx->pkey->type)
+    {
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        ctx->op = EVP_PKEY_OP_VERIFY;
+        return WOLFSSL_SUCCESS;
+#endif /* NO_RSA */
+
+#ifndef NO_DSA
+    case EVP_PKEY_DSA:
+        ctx->op = EVP_PKEY_OP_VERIFY;
+        return WOLFSSL_SUCCESS;
+#endif /* NO_DSA */
+
+#ifdef HAVE_ECC
+    case EVP_PKEY_EC:
+        ctx->op = EVP_PKEY_OP_VERIFY;
+        return WOLFSSL_SUCCESS;
+#endif /* HAVE_ECC */
+
+    default:
+        return -2;
+    }
+}
+
+/******************************************************************************
+ * wolfSSL_EVP_PKEY_verify - verifies a signature using ctx
+ *
+ * RETURNS:
+ * returns WOLFSSL_SUCCESS on success, WOLFSSL_FAILURE on failure. In particular
+ * a return value of -2 indicates the operation is not supported by the public
+ * key algorithm.
+ */
+
+int wolfSSL_EVP_PKEY_verify(WOLFSSL_EVP_PKEY_CTX *ctx, const unsigned char *sig,
+                            size_t siglen, const unsigned char *tbs,
+                            size_t tbslen)
+{
+    WOLFSSL_MSG("wolfSSL_EVP_PKEY_verify");
+
+    if (!ctx || ctx->op != EVP_PKEY_OP_VERIFY || !ctx->pkey)
+        return WOLFSSL_FAILURE;
+
+    switch (ctx->pkey->type)
+    {
+#if !defined(NO_RSA) && !defined(HAVE_USER_RSA)
+    case EVP_PKEY_RSA:
+        return wolfSSL_RSA_verify_ex(WC_HASH_TYPE_NONE, tbs,
+                                     (unsigned int)tbslen, sig, (unsigned int)siglen, ctx->pkey->rsa,
+                                     ctx->padding);
+#endif /* NO_RSA */
+
+#ifndef NO_DSA
+    case EVP_PKEY_DSA:
+    {
+        int dsacheck = 0;
+        if (wolfSSL_DSA_do_verify(tbs, (unsigned char *)sig, ctx->pkey->dsa,
+                                  &dsacheck) != WOLFSSL_SUCCESS ||
+            dsacheck != 1)
+            return WOLFSSL_FAILURE;
+        return WOLFSSL_SUCCESS;
+    }
+#endif /* NO_DSA */
+
+#ifdef HAVE_ECC
+    case EVP_PKEY_EC:
+    {
+        int ret;
+        WOLFSSL_ECDSA_SIG *ecdsaSig = wolfSSL_d2i_ECDSA_SIG(
+            NULL, (const unsigned char **)&sig, (long)siglen);
+        if (ecdsaSig == NULL)
+            return WOLFSSL_FAILURE;
+        ret = wolfSSL_ECDSA_do_verify(tbs, (int)tbslen, ecdsaSig,
+                                      ctx->pkey->ecc);
+        wolfSSL_ECDSA_SIG_free(ecdsaSig);
+        return ret;
+    }
+#endif /* HAVE_ECC */
+
+    default:
+        return -2;
+    }
+}
+
 /* Get the size in bits for WOLFSSL_EVP_PKEY key
  *
  * pkey WOLFSSL_EVP_PKEY structure to get key size of
