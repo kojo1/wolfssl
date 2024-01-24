@@ -37071,6 +37071,37 @@ WOLFSSL_ECDSA_SIG *wolfSSL_ECDSA_SIG_new(void)
     return sig;
 }
 
+/* Set the pointers to the fields of the ECDSA signature.
+ *
+ * @param [in, out] sig  ECDSA signature object to update.
+ * @param [in]      r    R field of ECDSA signature as a BN.
+ * @param [in]      s    S field of ECDSA signature as a BN.
+ * @return  1 on success.
+ * @return  0 on error.
+ */
+int wolfSSL_ECDSA_SIG_set0(WOLFSSL_ECDSA_SIG* sig, WOLFSSL_BIGNUM* r,
+    WOLFSSL_BIGNUM* s)
+{
+    int ret = 1;
+
+    /* Validate parameters. */
+    if ((sig == NULL) || (r == NULL) || (s == NULL)) {
+        ret = 0;
+    }
+
+    if (ret == 1) {
+        /* Dispose of old BN objects. */
+        wolfSSL_BN_free(sig->r);
+        wolfSSL_BN_free(sig->s);
+
+        /* Assign new BN objects. */
+        sig->r = r;
+        sig->s = s;
+    }
+
+    return ret;
+}
+
 /* return signature structure on success, NULL otherwise */
 WOLFSSL_ECDSA_SIG *wolfSSL_ECDSA_do_sign(const unsigned char *d, int dlen,
                                          WOLFSSL_EC_KEY *key)
