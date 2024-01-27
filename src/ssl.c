@@ -35687,7 +35687,7 @@ int wolfSSL_ECDSA_sign(int type, const unsigned char *digest,
     return ret;
 }
 
-#ifndef HAVE_SELFTEST
+    
 /* ECC point compression types were not included in selftest ecc.h */
 
 char* wolfSSL_EC_POINT_point2hex(const WOLFSSL_EC_GROUP* group,
@@ -35749,7 +35749,128 @@ char* wolfSSL_EC_POINT_point2hex(const WOLFSSL_EC_GROUP* group,
     return hex;
 }
 
-#endif /* HAVE_SELFTEST */
+
+static signed char HexCharToByte(char ch)
+{
+    signed char ret = (signed char)ch;
+    if (ret >= '0' && ret <= '9')
+        ret -= '0';
+    else if (ret >= 'A' && ret <= 'F')
+        ret -= 'A' - 10;
+    else if (ret >= 'a' && ret <= 'f')
+        ret -= 'a' - 10;
+    else
+        ret = -1; /* error case - return code must be signed */
+    return ret;
+}
+
+static int hex_to_bytes(const char *hex, unsigned char *output, unsigned long sz)
+{
+    word32 i;
+    for (i = 0; i < sz; i++) {
+        signed char ch1, ch2;
+        ch1 = HexCharToByte(hex[i * 2]);
+        ch2 = HexCharToByte(hex[i * 2 + 1]);
+        if ((ch1 < 0) || (ch2 < 0)) {
+            WOLFSSL_MSG("hex_to_bytes: syntax error");
+            return -1;
+        }
+        output[i] = (unsigned char)((ch1 << 4) + ch2);
+    }
+    return (int)sz;
+}
+
+EC_POINT *wolfSSL_EC_POINT_hex2point(const EC_GROUP *group, const char *hex,
+                             EC_POINT *p, WOLFSSL_BN_CTX *ctx)
+{
+    /* for uncompressed mode */
+    size_t str_sz;
+    BIGNUM *Gx  = NULL;
+    BIGNUM *Gy  = NULL;
+    char   *strGx = NULL;
+
+     /* for compressed mode */
+    int    key_sz;
+    byte   *octGx = NULL;
+
+    #define P_ALLOC 1
+    int p_alloc = 0;
+    int ret;
+
+    if(group == NULL || hex == NULL || ctx == NULL)
+        return NULL;
+
+    if(p == NULL) {
+        if((p = EC_POINT_new(group)) == NULL) {
+            WOLFSSL_MSG("EC_POINT_new");
+            goto err;
+        }
+        p_alloc = P_ALLOC;
+    }
+
+    if(hex[0] ==  '0' && hex[1] == '4') { /* uncompressed mode */
+        str_sz = ((wolfSSL_EC_GROUP_get_degree(group) + 7) / 8) * 2;
+        strGx = (char *)XMALLOC(str_sz + 1, NULL, DYNAMIC_TYPE_ECC);
+        if (strGx == NULL) {
+            WOLFSSL_MSG("EEC_KEY_get_byte_size, XMALLOC");
+            goto err;
+        }
+
+        XMEMSET(strGx, 0x0, str_sz + 1);
+        XMEMCPY(strGx, hex + 2, str_sz);
+ 
+        if(BN_hex2bn(&Gx, strGx) == 0)
+            goto err;
+
+        if(BN_hex2bn(&Gy, hex + 2 + str_sz) == 0)
+            goto err;
+
+        ret = wolfSSL_EC_POINT_set_affine_coordinates_GFp(group, p, Gx, Gy, ctx);
+
+        if (ret != WOLFSSL_SUCCESS) {
+            WOLFSSL_MSG("wolfSSL_EC_POINT_set_affine_coordinates_GFp");
+            goto err;
+        }
+    } else if(hex[0] == '0' && (hex[1] == '2' || hex[1] == '3')) { /* compressed mode */
+        key_sz = ((wolfSSL_EC_GROUP_get_degree(group) + 7) / 8);
+        octGx = (byte *)XMALLOC(key_sz + 1, NULL, DYNAMIC_TYPE_ECC);
+        if (octGx == NULL) {
+            WOLFSSL_MSG("EEC_KEY_get_byte_size, XMALLOC");
+            goto err;
+        }        
+        octGx[0] = 0x03;
+        key_sz = (wolfSSL_EC_GROUP_get_degree(group) + 7) / 8 ;
+        if(hex_to_bytes(hex + 2, octGx + 1, XSTRLEN(hex + 2) / 2)
+                                                != XSTRLEN(hex + 2) / 2)
+            goto err;
+        if(wolfSSL_ECPoint_d2i(octGx, key_sz + 1, group, p) != WOLFSSL_SUCCESS) {
+            goto err;
+        }
+    } else
+        goto err;
+
+    if(SetECPointExternal(p) != WOLFSSL_SUCCESS) {
+        WOLFSSL_MSG("SetECPointExternal");
+        goto err;
+    }
+    XFREE(strGx, NULL, DYNAMIC_TYPE_ECC);
+    XFREE(octGx, NULL, DYNAMIC_TYPE_ECC);
+    BN_free(Gx);
+    BN_free(Gy);
+    return p;
+    
+err:
+    XFREE(strGx, NULL, DYNAMIC_TYPE_ECC);
+    XFREE(octGx, NULL, DYNAMIC_TYPE_ECC);
+    BN_free(Gx);
+    BN_free(Gy);
+    if(p_alloc) {
+        EC_POINT_free(p);
+    }
+    return NULL;
+    
+}
+
 
 void wolfSSL_EC_POINT_dump(const char *msg, const WOLFSSL_EC_POINT *p)
 {

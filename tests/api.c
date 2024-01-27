@@ -2009,7 +2009,7 @@ static void test_wolfSSL_EC(void)
     BN_CTX *ctx;
     EC_GROUP *group;
     EC_GROUP *group2;
-    EC_POINT *Gxy, *new_point, *set_point;
+    EC_POINT *Gxy, *new_point, *set_point, *get_point;
     BIGNUM *k = NULL, *Gx = NULL, *Gy = NULL, *Gz = NULL;
     BIGNUM *X, *Y;
     BIGNUM *set_point_bn;
@@ -2021,7 +2021,6 @@ static void test_wolfSSL_EC(void)
     const char* kGx   = "6B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296";
     const char* kGy   = "4FE342E2FE1A7F9B8EE7EB4A7C0F9E162BCE33576B315ECECBB6406837BF51F5";
 
-#ifndef HAVE_SELFTEST
     EC_POINT *tmp;
     size_t bin_len;
     unsigned char* buf = NULL;
@@ -2043,7 +2042,6 @@ static void test_wolfSSL_EC(void)
         0xe6, 0xe5, 0x63, 0xa4, 0x40, 0xf2, 0x77, 0x03, 0x7d, 0x81, 0x2d,
         0xeb, 0x33, 0xa0, 0xf4, 0xa1, 0x39, 0x45, 0xd8, 0x98, 0xc2, 0x96,
     };
-#endif
 #endif
 
     AssertNotNull(ctx = BN_CTX_new());
@@ -2148,16 +2146,20 @@ static void test_wolfSSL_EC(void)
 #endif
     XFREE(hexStr, NULL, DYNAMIC_TYPE_ECC);
 
-#ifndef HAVE_SELFTEST
     hexStr = EC_POINT_point2hex(group, Gxy, POINT_CONVERSION_UNCOMPRESSED, ctx);
     AssertStrEQ(hexStr, uncompG);
+    AssertNotNull(get_point = EC_POINT_hex2point(group, hexStr, NULL, ctx));
+    AssertIntEQ(EC_POINT_cmp(group, Gxy, get_point, ctx), 0);
     XFREE(hexStr, NULL, DYNAMIC_TYPE_ECC);
 
 #ifdef HAVE_COMP_KEY
     hexStr = EC_POINT_point2hex(group, Gxy, POINT_CONVERSION_COMPRESSED, ctx);
     AssertStrEQ(hexStr, compG);
-    XFREE(hexStr, NULL, DYNAMIC_TYPE_ECC);
+    AssertNotNull(get_point = EC_POINT_hex2point(group, hexStr, get_point, ctx));
+    AssertIntEQ(EC_POINT_cmp(group, Gxy, get_point, ctx), 0);
 #endif
+    XFREE(hexStr, NULL, DYNAMIC_TYPE_ECC);
+    EC_POINT_free(get_point);
 
     bin_len = EC_POINT_point2oct(group, Gxy, POINT_CONVERSION_UNCOMPRESSED, NULL, 0, ctx);
     AssertIntEQ(bin_len, sizeof(binUncompG));
@@ -2187,7 +2189,6 @@ static void test_wolfSSL_EC(void)
     AssertIntEQ(EC_POINT_oct2point(group, tmp, binCompG, sizeof(binCompG), ctx), 1);
     AssertIntEQ(EC_POINT_cmp(group, tmp, Gxy, ctx), 0);
     EC_POINT_free(tmp);
-#endif
 #endif
 
     /* test BN_mod_add */

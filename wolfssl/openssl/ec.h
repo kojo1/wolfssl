@@ -272,12 +272,13 @@ WOLFSSL_API
 int wolfSSL_EC_POINT_is_at_infinity(const WOLFSSL_EC_GROUP *group,
                                     const WOLFSSL_EC_POINT *a);
 
-#ifndef HAVE_SELFTEST
 WOLFSSL_API
 char* wolfSSL_EC_POINT_point2hex(const WOLFSSL_EC_GROUP* group,
                                  const WOLFSSL_EC_POINT* point, int form,
                                  WOLFSSL_BN_CTX* ctx);
-#endif
+WOLFSSL_API
+EC_POINT *wolfSSL_EC_POINT_hex2point(const EC_GROUP *group, const char *hex,
+                             EC_POINT *p, WOLFSSL_BN_CTX *ctx);
 
 #ifndef HAVE_ECC
 #define OPENSSL_NO_EC
@@ -343,9 +344,8 @@ char* wolfSSL_EC_POINT_point2hex(const WOLFSSL_EC_GROUP* group,
 #define i2d_ECPrivateKey                wolfSSL_i2d_ECPrivateKey
 #define EC_KEY_set_conv_form            wolfSSL_EC_KEY_set_conv_form
 
-#ifndef HAVE_SELFTEST
-    #define EC_POINT_point2hex          wolfSSL_EC_POINT_point2hex
-#endif
+#define EC_POINT_point2hex              wolfSSL_EC_POINT_point2hex
+#define EC_POINT_hex2point              wolfSSL_EC_POINT_hex2point
 
 #define EC_POINT_dump                   wolfSSL_EC_POINT_dump
 #define EC_get_builtin_curves           wolfSSL_EC_get_builtin_curves
