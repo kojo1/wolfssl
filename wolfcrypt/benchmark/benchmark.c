@@ -13115,6 +13115,21 @@ void bench_sphincsKeySign(byte level, byte optim)
         return (double)ns / 1000000000.0;
     }
 
+#elif defined(WOLFSSL_GETTIMEOFDAY)
+
+#include <sys/time.h>
+
+double current_time(int reset)
+{
+    struct timeval tv;
+
+    (void)reset;
+
+    gettimeofday(&tv, 0);
+
+    return (double)tv.tv_sec + (double)tv.tv_usec / 1000000;
+}
+
 #else
 
     #include <sys/time.h>
