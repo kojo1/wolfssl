@@ -13115,7 +13115,7 @@ void bench_sphincsKeySign(byte level, byte optim)
         return (double)ns / 1000000000.0;
     }
 
-#elif defined(WOLFSSL_GETTIMEOFDAY)
+#elif defined(WOLFSSL_RPI_PICO)
 
 #include <sys/time.h>
 
@@ -13132,7 +13132,11 @@ double current_time(int reset)
 
 #else
 
-    #include <sys/time.h>
+    #if defined(WOLFSSL_RPI_PICO)
+        #include <time.h>
+    #else
+        #include <sys/time.h>
+    #endif
 
     double current_time(int reset)
     {
