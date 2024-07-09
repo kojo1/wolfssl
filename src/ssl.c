@@ -37386,7 +37386,8 @@ WOLFSSL_ECDSA_SIG *wolfSSL_d2i_ECDSA_SIG(WOLFSSL_ECDSA_SIG **sig,
 
 int wolfSSL_i2d_ECDSA_SIG(const WOLFSSL_ECDSA_SIG *sig, unsigned char **pp)
 {
-    word32 len;
+    word32 len = 0;
+    int    update_p = 1;
 
     if (sig == NULL)
         return 0;
@@ -37403,13 +37404,30 @@ int wolfSSL_i2d_ECDSA_SIG(const WOLFSSL_ECDSA_SIG *sig, unsigned char **pp)
      * and less than 256 bytes.
      */
     len = 1 + ((len > 127) ? 2 : 1) + len;
-    if (pp != NULL && *pp != NULL) {
+
+    #ifdef WOLFSSL_I2D_ECDSA_SIG_ALLOC
+    if ((pp != NULL) && (*pp == NULL)) {
+        *pp = (unsigned char *)XMALLOC(len, NULL, DYNAMIC_TYPE_OPENSSL);
+        if (*pp == NULL) {
+            WOLFSSL_MSG("malloc error");
+            return 0;
+        }
+        update_p = 0;
+    }
+    #endif
+    
+    /* Encode only if there is a buffer to encode into. */
+    if ((pp != NULL) && (*pp != NULL)) {
+        /* Encode using the internal representations of r and s. */
         if (StoreECC_DSA_Sig(*pp, &len, (mp_int*)sig->r->internal,
-                                        (mp_int*)sig->s->internal) != MP_OKAY) {
+                (mp_int*)sig->s->internal) != MP_OKAY) {
+            /* No bytes encoded. */
             len = 0;
         }
-        else
+        else if (update_p) {
+            /* Update pointer to after encoding. */
             *pp += len;
+        }
     }
 
     return (int)len;

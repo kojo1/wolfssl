@@ -2035,8 +2035,9 @@ static void test_wolfSSL_EC(void)
         0x5e, 0xce, 0xcb, 0xb6, 0x40, 0x68, 0x37, 0xbf, 0x51, 0xf5,
     };
 
-#ifdef HAVE_COMP_KEY
     const char* compG   = "036B17D1F2E12C4247F8BCE6E563A440F277037D812DEB33A0F4A13945D898C296";
+    
+#ifdef HAVE_COMP_KEY
     const unsigned char binCompG[] = {
         0x03, 0x6b, 0x17, 0xd1, 0xf2, 0xe1, 0x2c, 0x42, 0x47, 0xf8, 0xbc,
         0xe6, 0xe5, 0x63, 0xa4, 0x40, 0xf2, 0x77, 0x03, 0x7d, 0x81, 0x2d,
@@ -2152,9 +2153,9 @@ static void test_wolfSSL_EC(void)
     AssertIntEQ(EC_POINT_cmp(group, Gxy, get_point, ctx), 0);
     XFREE(hexStr, NULL, DYNAMIC_TYPE_ECC);
 
-#ifdef HAVE_COMP_KEY
     hexStr = EC_POINT_point2hex(group, Gxy, POINT_CONVERSION_COMPRESSED, ctx);
     AssertStrEQ(hexStr, compG);
+#ifdef HAVE_COMP_KEY
     AssertNotNull(get_point = EC_POINT_hex2point(group, hexStr, get_point, ctx));
     AssertIntEQ(EC_POINT_cmp(group, Gxy, get_point, ctx), 0);
 #endif
@@ -2257,6 +2258,16 @@ static void test_wolfSSL_ECDSA_SIG(void)
     AssertIntEQ(wolfSSL_i2d_ECDSA_SIG(sig, &p), sizeof(sigData));
     AssertIntEQ((p == outSig + 8), 1);
     AssertIntEQ(XMEMCMP(sigData, outSig, 8), 0);
+
+    p = NULL;
+    AssertIntEQ(wolfSSL_i2d_ECDSA_SIG(sig, &p), 8);
+#ifndef WOLFSSL_I2D_ECDSA_SIG_ALLOC
+    AssertNull(p);
+#else
+    AssertNotNull(p);
+    AssertIntEQ(XMEMCMP(p, outSig, 8), 0);
+    XFREE(p, NULL, DYNAMIC_TYPE_OPENSSL);
+#endif
 
     wolfSSL_ECDSA_SIG_free(sig);
 #endif /* HAVE_ECC */
