@@ -3534,17 +3534,39 @@ static void RefineSuites(WOLFSSL* ssl, Suites* peerSuites)
 {
     byte suites[WOLFSSL_MAX_SUITE_SZ];
     int suiteSz = 0;
-    word16 i, j;
+    word16 i;
+    word16 j;
 
     XMEMSET(suites, 0, WOLFSSL_MAX_SUITE_SZ);
 
-    for (i = 0; i < ssl->suites->suiteSz; i += 2) {
-        for (j = 0; j < peerSuites->suiteSz; j += 2) {
-            if (ssl->suites->suites[i+0] == peerSuites->suites[j+0] &&
-                ssl->suites->suites[i+1] == peerSuites->suites[j+1]) {
-                suites[suiteSz++] = peerSuites->suites[j+0];
-                suites[suiteSz++] = peerSuites->suites[j+1];
+    if (!ssl->options.useClientOrder) {
+        /* Server order refining. */
+        for (i = 0; i < ssl->suites->suiteSz; i += 2) {
+            for (j = 0; j < peerSuites->suiteSz; j += 2) {
+                if ((ssl->suites->suites[i+0] == peerSuites->suites[j+0]) &&
+                    (ssl->suites->suites[i+1] == peerSuites->suites[j+1])) {
+                    suites[suiteSz++] = peerSuites->suites[j+0];
+                    suites[suiteSz++] = peerSuites->suites[j+1];
+                    break;
+                }
             }
+            if (suiteSz == WOLFSSL_MAX_SUITE_SZ)
+                break;
+        }
+    }
+    else {
+        /* Client order refining. */
+        for (j = 0; j < peerSuites->suiteSz; j += 2) {
+            for (i = 0; i < ssl->suites->suiteSz; i += 2) {
+                if ((ssl->suites->suites[i+0] == peerSuites->suites[j+0]) &&
+                    (ssl->suites->suites[i+1] == peerSuites->suites[j+1])) {
+                    suites[suiteSz++] = peerSuites->suites[j+0];
+                    suites[suiteSz++] = peerSuites->suites[j+1];
+                    break;
+                }
+            }
+            if (suiteSz == WOLFSSL_MAX_SUITE_SZ)
+                break;
         }
     }
 
