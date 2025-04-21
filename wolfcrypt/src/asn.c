@@ -8904,6 +8904,15 @@ static int CheckAlgo(int first, int second, int* id, int* version, int* blockSz)
             }
             break;
     #endif
+    #ifndef NO_AES
+        case PBE_AES256_CBC:
+            *id = PBE_AES256_CBC;
+            *version = PKCS12v1;
+            if (blockSz != NULL) {
+                *blockSz = AES_BLOCK_SIZE;
+            }
+            break;
+    #endif
     #ifdef WC_RC2
         case PBE_SHA1_40RC2_CBC:
             *id = PBE_SHA1_40RC2_CBC;
@@ -9469,6 +9478,7 @@ int wc_EncryptPKCS8Key(byte* key, word32 keySz, byte* out, word32* outSz,
 
     if (ret == 0) {
         ret = CheckAlgo(vPKCS, pbeOid, &pbeId, &version, &blockSz);
+        printf("CheckAlgo: %d\n", ret);
     }
     if (ret == 0 && (salt == NULL || saltSz == 0)) {
         genSalt = 1;

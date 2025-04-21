@@ -2247,6 +2247,18 @@ static byte* PKCS12_create_key_content(WC_PKCS12* pkcs12, int nidKey,
             algo = 3;
             break;
 
+        case PBE_AES256_CBC:
+            algo = 4;
+            break;
+
+        case PBE_AES128_CBC:
+            algo = 5;
+            break;
+
+        case PBES2:
+            algo = 13;
+            break;
+
         /* no encryption */
         case -1:
             algo = -1;
@@ -2368,6 +2380,16 @@ static byte* PKCS12_create_cert_content(WC_PKCS12* pkcs12, int nidCert,
         case PBE_SHA1_DES3:
             type = WC_PKCS12_ENCRYPTED_DATA;
             algo = 3;
+            break;
+
+        case PBE_AES256_CBC:
+            type = WC_PKCS12_ENCRYPTED_DATA;
+            algo = 4;
+            break;
+
+        case PBE_AES128_CBC:
+            type = WC_PKCS12_ENCRYPTED_DATA;
+            algo = 5;
             break;
 
         case -1:
