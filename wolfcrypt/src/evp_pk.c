@@ -398,13 +398,14 @@ static int d2iTryAltDhKey(WOLFSSL_EVP_PKEY** out, const unsigned char* mem,
     /* Create DH key object from data. */
     dhObj = wolfSSL_DH_new();
     if (dhObj == NULL) {
-        return 0;
+        return WOLFSSL_FATAL_ERROR;
     }
 
     key = (DhKey*)dhObj->internal;
     /* Try decoding data as a DH public key. */
     if (wc_DhKeyDecode(mem, &keyIdx, key, (word32)memSz) != 0) {
-        ret = 0;
+        wolfSSL_DH_free(dhObj);
+        return WOLFSSL_FATAL_ERROR;
     }
     if (ret == 1) {
         /* DH key has data and is external to DH object. */
