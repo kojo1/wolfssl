@@ -3787,7 +3787,6 @@ int wolfSSL_X509_EXTENSION_set_data(WOLFSSL_X509_EXTENSION* ext,
     return wolfSSL_ASN1_STRING_copy(&ext->value, data);
 }
 
-#if !defined(NO_PWDBASED)
 int wolfSSL_X509_digest(const WOLFSSL_X509* x509, const WOLFSSL_EVP_MD* digest,
         unsigned char* buf, unsigned int* len)
 {
@@ -3833,7 +3832,6 @@ int wolfSSL_X509_pubkey_digest(const WOLFSSL_X509 *x509,
     WOLFSSL_LEAVE("wolfSSL_X509_pubkey_digest", ret);
     return ret;
 }
-#endif
 
 #endif /* OPENSSL_EXTRA */
 
@@ -11619,8 +11617,7 @@ error:
 #endif /* OPENSSL_ALL || OPENSSL_EXTRA || WOLFSSL_APACHE_HTTPD ||
         * WOLFSSL_HAPROXY || WOLFSSL_WPAS */
 
-#if defined(OPENSSL_EXTRA) && !defined(NO_CERTS) && !defined(NO_ASN) && \
-    !defined(NO_PWDBASED)
+#if defined(OPENSSL_EXTRA) && !defined(NO_CERTS) && !defined(NO_ASN)
 
 int wolfSSL_i2d_X509_PUBKEY(WOLFSSL_X509_PUBKEY* x509_PubKey,
     unsigned char** der)
@@ -11630,7 +11627,7 @@ int wolfSSL_i2d_X509_PUBKEY(WOLFSSL_X509_PUBKEY* x509_PubKey,
     return wolfSSL_i2d_PublicKey(x509_PubKey->pkey, der);
 }
 
-#endif /* OPENSSL_EXTRA && !NO_CERTS && !NO_ASN && !NO_PWDBASED */
+#endif /* OPENSSL_EXTRA && !NO_CERTS && !NO_ASN */
 
 #endif /* OPENSSL_EXTRA || OPENSSL_EXTRA_X509_SMALL */
 
@@ -12236,7 +12233,7 @@ static int CertFromX509(Cert* cert, WOLFSSL_X509* x509)
     static int wolfSSL_sigTypeFromPKEY(WOLFSSL_EVP_MD* md,
             WOLFSSL_EVP_PKEY* pkey)
     {
-    #if !defined(NO_PWDBASED) && defined(OPENSSL_EXTRA)
+    #if defined(OPENSSL_EXTRA)
         int hashType;
         int sigType = WOLFSSL_FAILURE;
 
@@ -12360,9 +12357,9 @@ static int CertFromX509(Cert* cert, WOLFSSL_X509* x509)
 #else
         (void)md;
         (void)pkey;
-        WOLFSSL_MSG("Cannot get hashinfo when NO_PWDBASED is defined");
+        WOLFSSL_MSG("Cannot get signature type without OPENSSL_EXTRA");
         return WOLFSSL_FAILURE;
-#endif /* !NO_PWDBASED && OPENSSL_EXTRA */
+#endif /* OPENSSL_EXTRA */
     }
 
 
@@ -16094,14 +16091,8 @@ int wolfSSL_X509_NAME_digest(const WOLFSSL_X509_NAME *name,
     if (name == NULL || type == NULL)
         return WOLFSSL_FAILURE;
 
-#if !defined(NO_FILESYSTEM) && !defined(NO_PWDBASED)
     return wolfSSL_EVP_Digest((unsigned char*)name->name,
                               name->sz, md, len, type, NULL);
-#else
-    (void)md;
-    (void)len;
-    return NOT_COMPILED_IN;
-#endif
 }
 
 #endif /* OPENSSL_ALL || WOLFSSL_NGINX || WOLFSSL_HAPROXY ||
